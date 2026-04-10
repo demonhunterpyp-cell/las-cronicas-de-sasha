@@ -67,20 +67,18 @@
       border-bottom: 1px solid rgba(216,181,107,.14);
     }
 
-    .nav {
-      min-height: 78px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-    }
+   .nav {
+  min-height: 92px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
 
-    .brand {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      letter-spacing: .04em;
-    }
+    .brand strong {
+  font-size: 1.32rem;
+  color: var(--gold);
+}
 
     .brand strong {
       font-size: 1.15rem;
@@ -127,16 +125,16 @@
       padding: 70px 0 36px;
     }
 
-    .hero-shell {
-      position: relative;
-      overflow: hidden;
-      border: 1px solid rgba(216,181,107,.18);
-      border-radius: calc(var(--radius) + 6px);
-      background:
-        linear-gradient(110deg, rgba(3, 15, 20, 0.92) 12%, rgba(7, 27, 32, 0.68) 48%, rgba(7, 27, 32, 0.25) 72%),
-        url('assets/portada-sasha.png') center/cover no-repeat;
-      box-shadow: var(--shadow);
-    }
+   .hero-shell {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(216,181,107,.18);
+  border-radius: calc(var(--radius) + 6px);
+  background:
+    linear-gradient(90deg, rgba(3, 15, 20, 0.96) 0%, rgba(4, 18, 23, 0.88) 34%, rgba(6, 24, 29, 0.58) 58%, rgba(7, 27, 32, 0.22) 78%),
+    url('assets/portada-sasha.png') center/cover no-repeat;
+  box-shadow: var(--shadow);
+}
 
     .hero-shell::before,
     .hero-shell::after {
@@ -252,10 +250,9 @@
     }
 
     .hero-card img {
-      width: 100%;
-      border-radius: 18px;
-      box-shadow: 0 22px 36px rgba(0,0,0,.38);
-    }
+    .hero-card {
+  justify-self: end;
+  width: min(330px, 100%);
 
     .hero-note {
       margin-top: 16px;
