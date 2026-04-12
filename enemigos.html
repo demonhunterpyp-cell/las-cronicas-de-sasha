@@ -1,1 +1,580 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Enemigos | Las Crónicas de Sasha</title>
+  <meta name="description" content="Galería y ficha de los enemigos en Las Crónicas de Sasha" />
+  <style>
+    :root {
+      --gold: #d6b06a;
+      --gold-2: #a97a34;
+      --ink: #1c2433;
+      --night: #151a2d;
+      --paper: #ead8bc;
+      --paper-text: #3f2f1f;
+      --line: rgba(214, 176, 106, 0.34);
+      --shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+    }
 
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      color: #f7eedc;
+      background:
+        radial-gradient(circle at 70% 18%, rgba(255, 193, 95, 0.08), transparent 18%),
+        radial-gradient(circle at 20% 75%, rgba(214, 176, 106, 0.06), transparent 24%),
+        linear-gradient(180deg, #1b2033 0%, #28334c 100%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .layout {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 290px 1fr;
+    }
+
+    .sidebar {
+      position: relative;
+      background:
+        radial-gradient(circle at 25% 10%, rgba(255,255,255,0.08), transparent 18%),
+        linear-gradient(180deg, #232b44 0%, #1c2436 100%);
+      border-right: 2px solid rgba(214,176,106,.3);
+      box-shadow: inset -1px 0 0 rgba(255,255,255,.05);
+      padding: 22px 22px 28px;
+    }
+
+    .sidebar::before,
+    .sidebar::after {
+      content: "";
+      position: absolute;
+      inset: 14px 10px;
+      pointer-events: none;
+      border: 1px solid rgba(214,176,106,.2);
+    }
+
+    .sidebar-stack {
+      min-height: calc(100vh - 50px);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo-box {
+      position: relative;
+      text-align: center;
+      padding: 18px 14px 22px;
+      margin-bottom: 20px;
+      border-top: 1px solid rgba(214,176,106,.35);
+      border-bottom: 1px solid rgba(214,176,106,.35);
+    }
+
+    .logo-box::before,
+    .logo-box::after {
+      content: "✦";
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--gold);
+      font-size: 14px;
+      letter-spacing: .25em;
+      text-shadow: 0 0 10px rgba(214,176,106,.25);
+    }
+
+    .logo-box::before { top: -11px; }
+    .logo-box::after { bottom: -11px; }
+
+    .logo-small {
+      font-size: 1.08rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: #f0dcc0;
+      line-height: 1.1;
+    }
+
+    .logo-big {
+      font-size: 3rem;
+      line-height: .9;
+      color: #efc665;
+      text-shadow: 0 2px 10px rgba(0,0,0,.35);
+      margin-top: 4px;
+    }
+
+    .side-menu {
+      display: grid;
+      gap: 2px;
+      margin-top: 16px;
+    }
+
+    .side-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 14px;
+      font-size: 1.05rem;
+      border-top: 1px solid rgba(214,176,106,.18);
+      border-bottom: 1px solid rgba(214,176,106,.08);
+      color: #f2e2c3;
+      transition: background .2s ease, transform .2s ease;
+    }
+
+    .side-link:hover {
+      background: rgba(255,255,255,.04);
+      transform: translateX(3px);
+    }
+
+    .side-link .icon {
+      width: 22px;
+      text-align: center;
+      color: var(--gold);
+    }
+
+    .sidebar-note {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: auto;
+      padding-top: 18px;
+      color: #d7c5a7;
+      font-size: .95rem;
+      border-top: 1px solid rgba(214,176,106,.2);
+    }
+
+    .main {
+      background:
+        radial-gradient(circle at 82% 13%, rgba(255, 194, 96, 0.14), transparent 12%),
+        linear-gradient(180deg, #445985 0%, #2d3959 52%, #262f48 100%);
+    }
+
+    .hero {
+      position: relative;
+      min-height: 360px;
+      overflow: hidden;
+      border-bottom: 2px solid rgba(214,176,106,.22);
+      background: linear-gradient(180deg, #445985 0%, #2d3959 52%, #262f48 100%);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(32,12,16,.86) 0%, rgba(32,12,16,.58) 42%, rgba(32,12,16,.24) 72%),
+        url('assets/personajes/enemigos.png') center 18% / cover no-repeat;
+      filter: saturate(.9) brightness(.62);
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 42px 44px 54px;
+    }
+
+    .breadcrumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border: 1px solid rgba(214,176,106,.28);
+      color: #efd7a5;
+      background: rgba(255,255,255,.03);
+      margin-bottom: 18px;
+    }
+
+    .hero-kicker {
+      color: #efc665;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      font-size: .86rem;
+      margin-bottom: 12px;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(3rem, 7vw, 5.2rem);
+      color: #f3ddb2;
+      line-height: .92;
+      text-shadow: 0 3px 12px rgba(0,0,0,.35);
+    }
+
+    .hero-subtitle {
+      margin-top: 16px;
+      max-width: 720px;
+      font-size: 1.18rem;
+      line-height: 1.7;
+      color: #efe3c8;
+    }
+
+    .shell {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 34px 24px 46px;
+    }
+
+    .panel {
+      position: relative;
+      margin-bottom: 28px;
+      padding: 30px 28px;
+      border: 1px solid rgba(214,176,106,.24);
+      background:
+        radial-gradient(circle at 50% 12%, rgba(255,188,109,.08), transparent 18%),
+        linear-gradient(180deg, rgba(28,34,53,.94), rgba(20,25,39,.98));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .panel::before {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border: 1px solid rgba(214,176,106,.12);
+      pointer-events: none;
+    }
+
+    .panel-title {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      text-align: center;
+      font-size: clamp(2rem, 3.2vw, 3rem);
+      color: #f0dbaf;
+      text-transform: uppercase;
+    }
+
+    .divider {
+      width: 220px;
+      height: 22px;
+      margin: 12px auto 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+    }
+
+    .divider::before {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(214,176,106,.55), transparent);
+    }
+
+    .divider::after {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 1px solid rgba(214,176,106,.45);
+      background: #ecd6b5;
+      left: 50%;
+      right: auto;
+      transform: translate(-50%, -50%);
+    }
+
+    .profile-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 420px 1fr;
+      gap: 26px;
+      align-items: start;
+    }
+
+    .profile-image {
+      border: 1px solid rgba(214,176,106,.18);
+      background: rgba(255,255,255,.02);
+      overflow: hidden;
+    }
+
+    .profile-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .profile-copy h2 {
+      margin: 0 0 12px;
+      color: #f0dbaf;
+      font-size: 2rem;
+    }
+
+    .profile-copy p {
+      margin: 0 0 16px;
+      color: #ddd2b7;
+      line-height: 1.8;
+      font-size: 1.05rem;
+    }
+
+    .quote-box {
+      margin-top: 18px;
+      padding: 18px 20px;
+      border-left: 3px solid rgba(214,176,106,.45);
+      background: rgba(255,255,255,.03);
+      color: #f1dfbb;
+      font-size: 1.08rem;
+      line-height: 1.7;
+    }
+
+    .gallery-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .gallery-card {
+      border: 1px solid rgba(214,176,106,.18);
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 10%, rgba(255,188,109,.08), transparent 18%),
+        linear-gradient(180deg, rgba(42,51,77,.95), rgba(22,28,44,.98));
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .gallery-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 28px rgba(0,0,0,.24);
+    }
+
+    .gallery-card img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      object-position: center;
+      border-bottom: 1px solid rgba(214,176,106,.16);
+    }
+
+    .gallery-caption {
+      padding: 14px;
+      color: #e0cba0;
+      text-align: center;
+    }
+
+    .video-box {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 16px;
+    }
+
+    .video-note {
+      color: #ddd2b7;
+      line-height: 1.75;
+      font-size: 1.02rem;
+      text-align: center;
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    .video-placeholder {
+      min-height: 240px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(214,176,106,.18);
+      background:
+        radial-gradient(circle at 50% 35%, rgba(255,188,109,.08), transparent 20%),
+        linear-gradient(180deg, rgba(42,51,77,.95), rgba(22,28,44,.98));
+      color: #e0cba0;
+      text-align: center;
+      padding: 24px;
+      line-height: 1.7;
+    }
+
+    .back-row {
+      display: flex;
+      justify-content: center;
+      margin-top: 8px;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 26px;
+      border-radius: 10px;
+      color: #4a2f12;
+      font-size: 1.05rem;
+      font-weight: 700;
+      background: linear-gradient(180deg, #d8b160 0%, #b78537 100%);
+      border: 2px solid #8b6327;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.42),
+        0 10px 18px rgba(115,82,31,.18);
+    }
+
+    @media (max-width: 1080px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        border-right: 0;
+        border-bottom: 2px solid rgba(214,176,106,.25);
+      }
+
+      .sidebar-stack {
+        min-height: auto;
+      }
+
+      .profile-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .hero-inner {
+        padding: 30px 20px 40px;
+      }
+
+      .shell {
+        padding: 24px 14px 30px;
+      }
+
+      .panel {
+        padding: 24px 16px;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-subtitle {
+        font-size: 1.02rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-stack">
+        <a href="index.html" class="logo-box">
+          <div class="logo-small">Las Crónicas</div>
+          <div class="logo-big">Sasha</div>
+        </a>
+
+        <nav class="side-menu">
+          <a class="side-link" href="index.html"><span class="icon">⌂</span><span>Portada</span></a>
+          <a class="side-link" href="index.html#historia"><span class="icon">✒</span><span>Historia</span></a>
+          <a class="side-link" href="index.html#lore"><span class="icon">⌘</span><span>Personajes</span></a>
+          <a class="side-link" href="#galeria-enemigos"><span class="icon">▧</span><span>Galería</span></a>
+          <a class="side-link" href="#videos-enemigos"><span class="icon">▶</span><span>Vídeos</span></a>
+        </nav>
+
+        <div class="sidebar-note">
+          <span>☾</span>
+          <span>Galería dedicada de Enemigos</span>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <section class="hero">
+        <div class="hero-inner">
+          <a class="breadcrumb" href="index.html">← Volver a la portada</a>
+          <div class="hero-kicker">Amenaza</div>
+          <h1>Enemigos</h1>
+          <p class="hero-subtitle">
+            Monstruos, presencias oscuras y fuerzas que desafían el avance de Sasha. Algunas atacan con violencia. Otras esperan desde la sombra.
+          </p>
+        </div>
+      </section>
+
+      <div class="shell">
+        <section class="panel">
+          <h2 class="panel-title">Perfil</h2>
+          <div class="divider"></div>
+
+          <div class="profile-grid">
+            <div class="profile-image">
+              <img src="assets/personajes/enemigos.png" alt="Enemigos" />
+            </div>
+
+            <div class="profile-copy">
+              <h2>La cara hostil del mundo</h2>
+              <p>
+                Los enemigos representan la parte más oscura y amenazante del universo de Sasha. Son las fuerzas que convierten el viaje en una prueba constante y recuerdan que cada avance tiene un precio.
+              </p>
+              <p>
+                No todos son simples obstáculos. Algunos encarnan peligro físico, otros miedo, poder, corrupción o la idea de un mundo que se resiste a ceder terreno.
+              </p>
+              <p>
+                Esta galería reúne las imágenes que mejor expresan esa presencia hostil: criaturas, figuras, amenazas y formas visuales que se oponen al crecimiento de la protagonista.
+              </p>
+
+              <div class="quote-box">
+                “Hay enemigos que rugen en la oscuridad. Otros sonríen antes de mostrar los dientes.”
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel" id="galeria-enemigos">
+          <h2 class="panel-title">Galería de Enemigos</h2>
+          <div class="divider"></div>
+
+          <div class="gallery-grid">
+            <a class="gallery-card" href="assets/personajes/enemigos.png" target="_blank" rel="noopener noreferrer">
+              <img src="assets/personajes/enemigos.png" alt="Enemigos composición principal" />
+              <div class="gallery-caption">Composición principal</div>
+            </a>
+
+            <a class="gallery-card" href="assets/personajes/enemigos.png" target="_blank" rel="noopener noreferrer">
+              <img src="assets/personajes/enemigos.png" alt="Enemigos presencia oscura" />
+              <div class="gallery-caption">Presencia oscura</div>
+            </a>
+
+            <a class="gallery-card" href="assets/personajes/enemigos.png" target="_blank" rel="noopener noreferrer">
+              <img src="assets/personajes/enemigos.png" alt="Enemigos ficha visual" />
+              <div class="gallery-caption">Ficha visual</div>
+            </a>
+          </div>
+        </section>
+
+        <section class="panel" id="videos-enemigos">
+          <h2 class="panel-title">Vídeos de Enemigos</h2>
+          <div class="divider"></div>
+
+          <div class="video-box">
+            <p class="video-note">
+              Aquí podremos añadir en el futuro vídeos de criaturas, escenas de amenaza, enfrentamientos o clips promocionales centrados en las fuerzas hostiles de la saga.
+            </p>
+
+            <div class="video-placeholder">
+              <div>
+                <strong>Espacio preparado para vídeo</strong><br />
+                Más adelante colocaremos aquí un vídeo incrustado o un reproductor propio.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="back-row">
+          <a class="back-btn" href="index.html#lore">Volver a Personajes</a>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
