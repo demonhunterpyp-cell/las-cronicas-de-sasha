@@ -6,28 +6,32 @@
   <title>Party Girls | Las Crónicas de Sasha</title>
   <meta name="description" content="Galería y ficha de Party Girls en Las Crónicas de Sasha" />
   <style>
-    :root {
-      --gold: #d6b06a;
-      --gold-2: #a97a34;
-      --ink: #1c2433;
-      --night: #151a2d;
-      --paper: #ead8bc;
-      --paper-text: #3f2f1f;
-      --line: rgba(214, 176, 106, 0.34);
-      --shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    :root {
+      --bg: #0b0f16;
+      --panel: #121826;
+      --panel-2: #1a2233;
+      --text: #f3f5f8;
+      --muted: #aab3c2;
+      --accent: #d6a85f;
+      --border: rgba(255,255,255,0.08);
+      --shadow: 0 16px 40px rgba(0,0,0,0.45);
+      --radius: 18px;
+    }
 
     body {
-      margin: 0;
-      font-family: Georgia, "Times New Roman", serif;
-      color: #f7eedc;
+      font-family: Arial, Helvetica, sans-serif;
       background:
-        radial-gradient(circle at 70% 18%, rgba(255, 193, 95, 0.08), transparent 18%),
-        radial-gradient(circle at 20% 75%, rgba(214, 176, 106, 0.06), transparent 24%),
-        linear-gradient(180deg, #1b2033 0%, #28334c 100%);
+        linear-gradient(rgba(7,10,16,0.9), rgba(7,10,16,0.96)),
+        url("assets/fondo-sasha-panorama.png") center/cover no-repeat fixed;
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
     }
 
     a {
@@ -35,546 +39,494 @@
       text-decoration: none;
     }
 
-    img {
-      display: block;
-      max-width: 100%;
-    }
-
-    .layout {
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 290px 1fr;
-    }
-
-    .sidebar {
-      position: relative;
-      background:
-        radial-gradient(circle at 25% 10%, rgba(255,255,255,0.08), transparent 18%),
-        linear-gradient(180deg, #232b44 0%, #1c2436 100%);
-      border-right: 2px solid rgba(214,176,106,.3);
-      box-shadow: inset -1px 0 0 rgba(255,255,255,.05);
-      padding: 22px 22px 28px;
-    }
-
-    .sidebar::before,
-    .sidebar::after {
-      content: "";
-      position: absolute;
-      inset: 14px 10px;
-      pointer-events: none;
-      border: 1px solid rgba(214,176,106,.2);
-    }
-
-    .sidebar-stack {
-      min-height: calc(100vh - 50px);
+    .topbar {
+      width: min(1240px, 92%);
+      margin: 0 auto;
+      padding: 28px 0 12px;
       display: flex;
-      flex-direction: column;
-    }
-
-    .logo-box {
-      position: relative;
-      text-align: center;
-      padding: 18px 14px 22px;
-      margin-bottom: 20px;
-      border-top: 1px solid rgba(214,176,106,.35);
-      border-bottom: 1px solid rgba(214,176,106,.35);
-    }
-
-    .logo-box::before,
-    .logo-box::after {
-      content: "✦";
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      color: var(--gold);
-      font-size: 14px;
-      letter-spacing: .25em;
-      text-shadow: 0 0 10px rgba(214,176,106,.25);
-    }
-
-    .logo-box::before { top: -11px; }
-    .logo-box::after { bottom: -11px; }
-
-    .logo-small {
-      font-size: 1.08rem;
-      text-transform: uppercase;
-      letter-spacing: .08em;
-      color: #f0dcc0;
-      line-height: 1.1;
-    }
-
-    .logo-big {
-      font-size: 3rem;
-      line-height: .9;
-      color: #efc665;
-      text-shadow: 0 2px 10px rgba(0,0,0,.35);
-      margin-top: 4px;
-    }
-
-    .side-menu {
-      display: grid;
-      gap: 2px;
-      margin-top: 16px;
-    }
-
-    .side-link {
-      display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 12px;
-      padding: 16px 14px;
-      font-size: 1.05rem;
-      border-top: 1px solid rgba(214,176,106,.18);
-      border-bottom: 1px solid rgba(214,176,106,.08);
-      color: #f2e2c3;
-      transition: background .2s ease, transform .2s ease;
+      gap: 14px;
+      flex-wrap: wrap;
     }
 
-    .side-link:hover {
-      background: rgba(255,255,255,.04);
-      transform: translateX(3px);
-    }
-
-    .side-link .icon {
-      width: 22px;
-      text-align: center;
-      color: var(--gold);
-    }
-
-    .sidebar-note {
+    .topbar-left,
+    .topbar-right {
       display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .back-link {
+      display: inline-flex;
       align-items: center;
       gap: 10px;
-      margin-top: auto;
-      padding-top: 18px;
-      color: #d7c5a7;
-      font-size: .95rem;
-      border-top: 1px solid rgba(214,176,106,.2);
+      padding: 11px 16px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      transition: 0.25s ease;
+      color: #fff;
     }
 
-    .main {
-      background:
-        radial-gradient(circle at 82% 13%, rgba(255, 194, 96, 0.14), transparent 12%),
-        linear-gradient(180deg, #445985 0%, #2d3959 52%, #262f48 100%);
+    .back-link:hover {
+      background: rgba(255,255,255,0.12);
+      transform: translateY(-1px);
     }
 
     .hero {
-      position: relative;
-      min-height: 360px;
-      overflow: hidden;
-      border-bottom: 2px solid rgba(214,176,106,.22);
-      background: linear-gradient(180deg, #445985 0%, #2d3959 52%, #262f48 100%);
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(90deg, rgba(33,16,38,.82) 0%, rgba(33,16,38,.52) 42%, rgba(33,16,38,.22) 72%),
-        url('assets/personajes/party%20girls.png') center 18% / cover no-repeat;
-      filter: saturate(.92) brightness(.68);
-    }
-
-    .hero-inner {
-      position: relative;
-      z-index: 1;
-      max-width: 1180px;
+      width: min(1240px, 92%);
       margin: 0 auto;
-      padding: 42px 44px 54px;
-    }
-
-    .breadcrumb {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 14px;
-      border: 1px solid rgba(214,176,106,.28);
-      color: #efd7a5;
-      background: rgba(255,255,255,.03);
-      margin-bottom: 18px;
-    }
-
-    .hero-kicker {
-      color: #efc665;
-      text-transform: uppercase;
-      letter-spacing: .14em;
-      font-size: .86rem;
-      margin-bottom: 12px;
+      padding: 18px 0 28px;
     }
 
     .hero h1 {
-      margin: 0;
-      font-size: clamp(3rem, 7vw, 5.2rem);
-      color: #f3ddb2;
-      line-height: .92;
-      text-shadow: 0 3px 12px rgba(0,0,0,.35);
+      font-size: clamp(2rem, 4vw, 3.8rem);
+      line-height: 1.02;
+      margin-bottom: 14px;
+      color: #fff;
     }
 
-    .hero-subtitle {
-      margin-top: 16px;
-      max-width: 720px;
-      font-size: 1.18rem;
-      line-height: 1.7;
-      color: #efe3c8;
+    .hero p {
+      max-width: 850px;
+      color: var(--muted);
+      font-size: 1.03rem;
+      line-height: 1.65;
     }
 
-    .shell {
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 34px 24px 46px;
-    }
-
-    .panel {
-      position: relative;
-      margin-bottom: 28px;
-      padding: 30px 28px;
-      border: 1px solid rgba(214,176,106,.24);
-      background:
-        radial-gradient(circle at 50% 12%, rgba(255,188,109,.08), transparent 18%),
-        linear-gradient(180deg, rgba(28,34,53,.94), rgba(20,25,39,.98));
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-
-    .panel::before {
-      content: "";
-      position: absolute;
-      inset: 12px;
-      border: 1px solid rgba(214,176,106,.12);
-      pointer-events: none;
-    }
-
-    .panel-title {
-      position: relative;
-      z-index: 1;
-      margin: 0;
-      text-align: center;
-      font-size: clamp(2rem, 3.2vw, 3rem);
-      color: #f0dbaf;
-      text-transform: uppercase;
-    }
-
-    .divider {
-      width: 220px;
-      height: 22px;
-      margin: 12px auto 18px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .divider::before,
-    .divider::after {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: 0;
-      right: 0;
-    }
-
-    .divider::before {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(214,176,106,.55), transparent);
-    }
-
-    .divider::after {
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      border: 1px solid rgba(214,176,106,.45);
-      background: #ecd6b5;
-      left: 50%;
-      right: auto;
-      transform: translate(-50%, -50%);
-    }
-
-    .profile-grid {
-      position: relative;
-      z-index: 1;
+    .page-shell {
+      width: min(1240px, 92%);
+      margin: 0 auto 56px;
       display: grid;
-      grid-template-columns: 420px 1fr;
       gap: 26px;
-      align-items: start;
     }
 
-    .profile-image {
-      border: 1px solid rgba(214,176,106,.18);
-      background: rgba(255,255,255,.02);
-      overflow: hidden;
+    .viewer {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 24px;
+      align-items: stretch;
     }
 
-    .profile-image img {
+    .main-image-panel,
+    .info-panel,
+    .thumbs-panel {
+      background: linear-gradient(180deg, rgba(18,24,38,0.96), rgba(13,18,29,0.98));
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .main-image-panel {
+      padding: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 720px;
+    }
+
+    .main-image-wrap {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      min-height: 660px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0a0f18;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.05);
     }
 
-    .profile-copy h2 {
-      margin: 0 0 12px;
-      color: #f0dbaf;
-      font-size: 2rem;
+    .main-image-wrap img {
+      width: 100%;
+      height: 100%;
+      max-height: 700px;
+      object-fit: contain;
+      display: block;
     }
 
-    .profile-copy p {
-      margin: 0 0 16px;
-      color: #ddd2b7;
-      line-height: 1.8;
-      font-size: 1.05rem;
-    }
-
-    .quote-box {
-      margin-top: 18px;
-      padding: 18px 20px;
-      border-left: 3px solid rgba(214,176,106,.45);
-      background: rgba(255,255,255,.03);
-      color: #f1dfbb;
-      font-size: 1.08rem;
-      line-height: 1.7;
-    }
-
-    .gallery-grid {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+    .info-panel {
+      padding: 30px 26px;
+      display: flex;
+      flex-direction: column;
       gap: 18px;
     }
 
-    .gallery-card {
-      border: 1px solid rgba(214,176,106,.18);
-      overflow: hidden;
-      background:
-        radial-gradient(circle at 50% 10%, rgba(255,188,109,.08), transparent 18%),
-        linear-gradient(180deg, rgba(42,51,77,.95), rgba(22,28,44,.98));
-      transition: transform .2s ease, box-shadow .2s ease;
+    .character-name {
+      font-size: 2.2rem;
+      color: #fff;
+      line-height: 1.05;
     }
 
-    .gallery-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 18px 28px rgba(0,0,0,.24);
+    .character-role {
+      color: var(--accent);
+      font-weight: bold;
+      font-size: 1rem;
+      letter-spacing: 0.02em;
     }
 
-    .gallery-card img {
-      width: 100%;
-      aspect-ratio: 4 / 5;
-      object-fit: cover;
-      object-position: center;
-      border-bottom: 1px solid rgba(214,176,106,.16);
+    .scene-tag {
+      display: inline-flex;
+      align-self: flex-start;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(214,168,95,0.12);
+      border: 1px solid rgba(214,168,95,0.25);
+      color: #f0d29a;
+      font-size: 0.92rem;
     }
 
-    .gallery-caption {
-      padding: 14px;
-      color: #e0cba0;
-      text-align: center;
+    .character-description,
+    .scene-description {
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 0.98rem;
     }
 
-    .video-box {
-      position: relative;
-      z-index: 1;
+    .info-box {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+    }
+
+    .info-box h3 {
+      font-size: 1rem;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .info-box ul {
+      list-style: none;
       display: grid;
+      gap: 9px;
+    }
+
+    .info-box li {
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .info-box strong {
+      color: #fff;
+    }
+
+    .thumbs-panel {
+      padding: 18px;
+    }
+
+    .thumbs-title {
+      font-size: 1.1rem;
+      margin-bottom: 16px;
+      color: #fff;
+    }
+
+    .thumbs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 16px;
     }
 
-    .video-note {
-      color: #ddd2b7;
-      line-height: 1.75;
-      font-size: 1.02rem;
-      text-align: center;
-      max-width: 780px;
-      margin: 0 auto;
+    .thumb-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
     }
 
-    .video-placeholder {
-      min-height: 240px;
-      display: grid;
-      place-items: center;
-      border: 1px solid rgba(214,176,106,.18);
-      background:
-        radial-gradient(circle at 50% 35%, rgba(255,188,109,.08), transparent 20%),
-        linear-gradient(180deg, rgba(42,51,77,.95), rgba(22,28,44,.98));
-      color: #e0cba0;
-      text-align: center;
-      padding: 24px;
-      line-height: 1.7;
+    .thumb-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(214,168,95,0.40);
+      box-shadow: 0 16px 28px rgba(0,0,0,0.35);
     }
 
-    .back-row {
-      display: flex;
-      justify-content: center;
-      margin-top: 8px;
+    .thumb-card.active {
+      border-color: rgba(214,168,95,0.75);
+      box-shadow: 0 0 0 1px rgba(214,168,95,0.25) inset;
     }
 
-    .back-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 14px 26px;
-      border-radius: 10px;
-      color: #4a2f12;
-      font-size: 1.05rem;
-      font-weight: 700;
-      background: linear-gradient(180deg, #d8b160 0%, #b78537 100%);
-      border: 2px solid #8b6327;
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.42),
-        0 10px 18px rgba(115,82,31,.18);
+    .thumb-image {
+      aspect-ratio: 4 / 5;
+      background: #0f1420;
+      overflow: hidden;
     }
 
-    @media (max-width: 1080px) {
-      .layout {
+    .thumb-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .thumb-content {
+      padding: 12px 12px 14px;
+    }
+
+    .thumb-content h4 {
+      color: #fff;
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    .thumb-content p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.45;
+    }
+
+    @media (max-width: 1050px) {
+      .viewer {
         grid-template-columns: 1fr;
       }
 
-      .sidebar {
-        border-right: 0;
-        border-bottom: 2px solid rgba(214,176,106,.25);
-      }
-
-      .sidebar-stack {
+      .main-image-panel {
         min-height: auto;
       }
 
-      .profile-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .gallery-grid {
-        grid-template-columns: 1fr 1fr;
+      .main-image-wrap {
+        min-height: 460px;
       }
     }
 
-    @media (max-width: 760px) {
-      .hero-inner {
-        padding: 30px 20px 40px;
+    @media (max-width: 700px) {
+      .hero h1 {
+        font-size: 2.2rem;
       }
 
-      .shell {
-        padding: 24px 14px 30px;
+      .main-image-panel,
+      .info-panel,
+      .thumbs-panel {
+        border-radius: 20px;
       }
 
-      .panel {
-        padding: 24px 16px;
+      .main-image-panel {
+        padding: 14px;
       }
 
-      .gallery-grid {
+      .info-panel {
+        padding: 22px 18px;
+      }
+
+      .character-name {
+        font-size: 1.8rem;
+      }
+
+      .thumbs-grid {
         grid-template-columns: 1fr;
-      }
-
-      .hero-subtitle {
-        font-size: 1.02rem;
       }
     }
   </style>
 </head>
 <body>
-  <div class="layout">
-    <aside class="sidebar">
-      <div class="sidebar-stack">
-        <a href="index.html" class="logo-box">
-          <div class="logo-small">Las Crónicas</div>
-          <div class="logo-big">Sasha</div>
-        </a>
 
-        <nav class="side-menu">
-          <a class="side-link" href="index.html"><span class="icon">⌂</span><span>Portada</span></a>
-          <a class="side-link" href="index.html#historia"><span class="icon">✒</span><span>Historia</span></a>
-          <a class="side-link" href="index.html#lore"><span class="icon">⌘</span><span>Personajes</span></a>
-          <a class="side-link" href="#galeria-party"><span class="icon">▧</span><span>Galería</span></a>
-          <a class="side-link" href="#videos-party"><span class="icon">▶</span><span>Vídeos</span></a>
-        </nav>
+  <header class="topbar">
+    <div class="topbar-left">
+      <a href="./index.html" class="back-link">← Volver al inicio</a>
+      <a href="./index.html#lore" class="back-link">Personajes</a>
+    </div>
+    <div class="topbar-right">
+      <a href="./aliados.html" class="back-link">Siguiente bloque →</a>
+    </div>
+  </header>
 
-        <div class="sidebar-note">
-          <span>✦</span>
-          <span>Galería dedicada de Party Girls</span>
+  <section class="hero">
+    <h1>Galería de Party Girls</h1>
+    <p>
+      Esta sección reúne imágenes del grupo Party Girls en formato de galería con ficha lateral.
+      La página está preparada para crecer hasta diez imágenes sin tocar el diseño.
+    </p>
+  </section>
+
+  <main class="page-shell">
+    <section class="viewer">
+      <article class="main-image-panel">
+        <div class="main-image-wrap">
+          <img id="mainImage" src="assets/galerias/party-girls/party-girls-01.png" alt="Party Girls">
         </div>
-      </div>
-    </aside>
+      </article>
 
-    <main class="main">
-      <section class="hero">
-        <div class="hero-inner">
-          <a class="breadcrumb" href="index.html">← Volver a la portada</a>
-          <div class="hero-kicker">Núcleo social</div>
-          <h1>Party Girls</h1>
-          <p class="hero-subtitle">
-            Un bloque con identidad propia dentro del universo de Sasha. Su presencia aporta fuerza visual, carácter grupal y una energía distinta al recorrido principal.
-          </p>
+      <aside class="info-panel">
+        <h2 class="character-name" id="characterName">Party Girls</h2>
+        <div class="character-role" id="characterRole">Grupo destacado | Núcleo social</div>
+        <div class="scene-tag" id="sceneTag">Presentación del grupo</div>
+
+        <p class="character-description" id="characterDescription">
+          Party Girls es uno de los bloques visuales y narrativos más reconocibles del universo de Sasha.
+          Aporta identidad de grupo, presencia y contraste dentro de la saga.
+        </p>
+
+        <p class="scene-description" id="sceneDescription">
+          Esta imagen funciona como carta de presentación del conjunto, útil para mostrar cohesión,
+          estilo visual compartido y personalidad de grupo.
+        </p>
+
+        <div class="info-box">
+          <h3>Ficha del grupo</h3>
+          <ul id="characterData">
+            <li><strong>Tipo:</strong> Grupo de personajes</li>
+            <li><strong>Función:</strong> Presencia social y apoyo narrativo</li>
+            <li><strong>Valor visual:</strong> Identidad compartida</li>
+            <li><strong>Uso en web:</strong> Galería, lore y presentación</li>
+          </ul>
         </div>
-      </section>
+      </aside>
+    </section>
 
-      <div class="shell">
-        <section class="panel">
-          <h2 class="panel-title">Perfil</h2>
-          <div class="divider"></div>
+    <section class="thumbs-panel">
+      <h3 class="thumbs-title">Escenas disponibles</h3>
+      <div class="thumbs-grid" id="thumbsGrid"></div>
+    </section>
+  </main>
 
-          <div class="profile-grid">
-            <div class="profile-image">
-              <img src="assets/personajes/party%20girls.png" alt="Party Girls" />
-            </div>
+  <script>
+    const partyGirlsGallery = [
+      {
+        image: "assets/galerias/party-girls/party-girls-01.png",
+        title: "Party Girls",
+        scene: "Presentación del grupo",
+        thumbText: "Imagen principal para introducir al conjunto.",
+        role: "Grupo destacado | Núcleo social",
+        characterDescription: "Party Girls es uno de los bloques visuales y narrativos más reconocibles del universo de Sasha. Aporta identidad de grupo, presencia y contraste dentro de la saga.",
+        sceneDescription: "Esta imagen funciona como carta de presentación del conjunto, útil para mostrar cohesión, estilo visual compartido y personalidad de grupo.",
+        details: [
+          { label: "Tipo", value: "Grupo de personajes" },
+          { label: "Función", value: "Presencia social y apoyo narrativo" },
+          { label: "Valor visual", value: "Identidad compartida" },
+          { label: "Uso en web", value: "Galería, lore y presentación" }
+        ]
+      },
+      {
+        image: "assets/galerias/party-girls/party-girls-02.png",
+        title: "Party Girls",
+        scene: "Escena conjunta",
+        thumbText: "Composición que refuerza su unidad como grupo.",
+        role: "Grupo destacado | Escena coral",
+        characterDescription: "Aquí el grupo gana fuerza como bloque narrativo y visual. La composición conjunta transmite relación, energía y sentido de pertenencia dentro del mundo de Sasha.",
+        sceneDescription: "Imagen ideal para remarcar que Party Girls no es solo una suma de personajes, sino una presencia colectiva con peso propio.",
+        details: [
+          { label: "Lectura", value: "Unidad y presencia de grupo" },
+          { label: "Tono", value: "Cercanía, energía, personalidad" },
+          { label: "Enfoque", value: "Composición coral" },
+          { label: "Función", value: "Refuerzo de identidad" }
+        ]
+      },
+      {
+        image: "assets/galerias/party-girls/party-girls-03.png",
+        title: "Party Girls",
+        scene: "Momento destacado",
+        thumbText: "Variante visual útil para ampliar la galería.",
+        role: "Grupo destacado | Escena especial",
+        characterDescription: "Esta versión amplía la visión del grupo y ayuda a mostrar distintos registros, atmósferas o dinámicas internas.",
+        sceneDescription: "Muy útil para dar profundidad a la sección de personajes y evitar que la galería se quede en una sola imagen representativa.",
+        details: [
+          { label: "Tipo de escena", value: "Especial" },
+          { label: "Aporta", value: "Variedad visual" },
+          { label: "Uso", value: "Galería pública y ficha" },
+          { label: "Objetivo", value: "Expandir la presentación del grupo" }
+        ]
+      },
+      {
+        image: "assets/galerias/party-girls/party-girls-04.png",
+        title: "Party Girls",
+        scene: "Variante del grupo",
+        thumbText: "Otra lectura visual del bloque Party Girls.",
+        role: "Grupo destacado | Variante visual",
+        characterDescription: "Con esta imagen el grupo gana más matices visuales y puede mostrarse desde otro ángulo, atmósfera o intención narrativa.",
+        sceneDescription: "Perfecta para enriquecer la galería sin romper la identidad general del bloque.",
+        details: [
+          { label: "Aporta", value: "Matiz y amplitud visual" },
+          { label: "Valor", value: "Riqueza de presentación" },
+          { label: "Sensación", value: "Variedad sin perder unidad" },
+          { label: "Uso recomendado", value: "Lore, personajes y promoción" }
+        ]
+      }
 
-            <div class="profile-copy">
-              <h2>Un grupo con presencia propia</h2>
-              <p>
-                Party Girls no es solo un conjunto de personajes. Es una agrupación con personalidad visual, ritmo interno y una presencia que amplía el universo de la saga.
-              </p>
-              <p>
-                Su fuerza está en lo coral: el contraste entre estilos, la energía compartida y la sensación de bloque unido hacen que este apartado funcione como una entidad reconocible por sí misma.
-              </p>
-              <p>
-                Esta galería está pensada para reunir sus mejores composiciones, retratos de grupo y piezas visuales vinculadas a su papel dentro de <em>Las Crónicas de Sasha</em>.
-              </p>
+      /*
+      Cuando subas más imágenes, añade aquí hasta llegar a 10.
 
-              <div class="quote-box">
-                “Hay grupos que acompañan una historia. Y hay grupos que crean una atmósfera propia.”
-              </div>
-            </div>
+      Ejemplo:
+
+      ,{
+        image: "assets/galerias/party-girls/party-girls-05.png",
+        title: "Party Girls",
+        scene: "Nueva escena",
+        thumbText: "Texto corto para la miniatura.",
+        role: "Grupo destacado | ...",
+        characterDescription: "Descripción general de esta imagen.",
+        sceneDescription: "Descripción concreta de la escena mostrada.",
+        details: [
+          { label: "Campo 1", value: "..." },
+          { label: "Campo 2", value: "..." },
+          { label: "Campo 3", value: "..." },
+          { label: "Campo 4", value: "..." }
+        ]
+      }
+      */
+    ];
+
+    const mainImage = document.getElementById("mainImage");
+    const characterName = document.getElementById("characterName");
+    const characterRole = document.getElementById("characterRole");
+    const sceneTag = document.getElementById("sceneTag");
+    const characterDescription = document.getElementById("characterDescription");
+    const sceneDescription = document.getElementById("sceneDescription");
+    const characterData = document.getElementById("characterData");
+    const thumbsGrid = document.getElementById("thumbsGrid");
+
+    function renderThumbs() {
+      thumbsGrid.innerHTML = "";
+
+      partyGirlsGallery.forEach((item, index) => {
+        const card = document.createElement("article");
+        card.className = "thumb-card";
+        if (index === 0) card.classList.add("active");
+
+        card.innerHTML = `
+          <div class="thumb-image">
+            <img src="${item.image}" alt="${item.title} - ${item.scene}">
           </div>
-        </section>
-
-        <section class="panel" id="galeria-party">
-          <h2 class="panel-title">Galería de Party Girls</h2>
-          <div class="divider"></div>
-
-          <div class="gallery-grid">
-            <a class="gallery-card" href="assets/personajes/party%20girls.png" target="_blank" rel="noopener noreferrer">
-              <img src="assets/personajes/party%20girls.png" alt="Party Girls composición principal" />
-              <div class="gallery-caption">Composición principal</div>
-            </a>
-
-            <a class="gallery-card" href="assets/personajes/party%20girls.png" target="_blank" rel="noopener noreferrer">
-              <img src="assets/personajes/party%20girls.png" alt="Party Girls retrato grupal" />
-              <div class="gallery-caption">Retrato grupal</div>
-            </a>
-
-            <a class="gallery-card" href="assets/personajes/party%20girls.png" target="_blank" rel="noopener noreferrer">
-              <img src="assets/personajes/party%20girls.png" alt="Party Girls ficha visual" />
-              <div class="gallery-caption">Ficha visual</div>
-            </a>
+          <div class="thumb-content">
+            <h4>${item.scene}</h4>
+            <p>${item.thumbText}</p>
           </div>
-        </section>
+        `;
 
-        <section class="panel" id="videos-party">
-          <h2 class="panel-title">Vídeos de Party Girls</h2>
-          <div class="divider"></div>
+        card.addEventListener("click", () => {
+          updateViewer(index);
 
-          <div class="video-box">
-            <p class="video-note">
-              Aquí podremos añadir en el futuro vídeos de grupo, escenas promocionales o clips dedicados. Esta zona está preparada para incrustaciones o reproductores.
-            </p>
+          document.querySelectorAll(".thumb-card").forEach(el => {
+            el.classList.remove("active");
+          });
 
-            <div class="video-placeholder">
-              <div>
-                <strong>Espacio preparado para vídeo</strong><br />
-                Más adelante colocaremos aquí un vídeo incrustado o un reproductor propio.
-              </div>
-            </div>
-          </div>
-        </section>
+          card.classList.add("active");
+        });
 
-        <div class="back-row">
-          <a class="back-btn" href="index.html#lore">Volver a Personajes</a>
-        </div>
-      </div>
-    </main>
-  </div>
+        thumbsGrid.appendChild(card);
+      });
+    }
+
+    function updateViewer(index) {
+      const item = partyGirlsGallery[index];
+
+      mainImage.src = item.image;
+      mainImage.alt = `${item.title} - ${item.scene}`;
+      characterName.textContent = item.title;
+      characterRole.textContent = item.role;
+      sceneTag.textContent = item.scene;
+      characterDescription.textContent = item.characterDescription;
+      sceneDescription.textContent = item.sceneDescription;
+
+      characterData.innerHTML = item.details
+        .map(detail => `<li><strong>${detail.label}:</strong> ${detail.value}</li>`)
+        .join("");
+    }
+
+    renderThumbs();
+    updateViewer(0);
+  </script>
+
 </body>
 </html>
