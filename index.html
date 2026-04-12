@@ -548,14 +548,12 @@
     }
 
     .character-card {
-      min-height: 340px;
+      min-height: 390px;
       border: 1px solid rgba(214,176,106,.18);
-      background:
-        radial-gradient(circle at 50% 18%, rgba(255,188,109,.08), transparent 20%),
-        linear-gradient(180deg, rgba(35,42,64,.96), rgba(22,28,44,.98));
       padding: 20px 20px 22px;
       position: relative;
       overflow: hidden;
+      background: linear-gradient(180deg, rgba(35,42,64,.96), rgba(22,28,44,.98));
     }
 
     .character-card::before {
@@ -566,32 +564,80 @@
       pointer-events: none;
     }
 
+    .character-card.sasha {
+      background:
+        radial-gradient(circle at 50% 18%, rgba(232,168,112,.14), transparent 20%),
+        linear-gradient(180deg, rgba(77,48,54,.96), rgba(34,25,39,.98));
+    }
+
+    .character-card.party {
+      background:
+        radial-gradient(circle at 50% 18%, rgba(226,160,197,.14), transparent 20%),
+        linear-gradient(180deg, rgba(76,43,72,.96), rgba(30,21,39,.98));
+    }
+
+    .character-card.allies {
+      background:
+        radial-gradient(circle at 50% 18%, rgba(183,211,149,.14), transparent 20%),
+        linear-gradient(180deg, rgba(50,71,56,.96), rgba(23,31,28,.98));
+    }
+
+    .character-card.enemies {
+      background:
+        radial-gradient(circle at 50% 18%, rgba(203,119,119,.14), transparent 20%),
+        linear-gradient(180deg, rgba(58,33,39,.96), rgba(24,20,28,.98));
+    }
+
     .portrait {
       width: 100%;
       aspect-ratio: 4 / 5;
       border: 1px solid rgba(214,176,106,.18);
-      background:
-        radial-gradient(circle at 50% 28%, rgba(255,210,138,.18), transparent 18%),
-        linear-gradient(180deg, rgba(58,70,102,.95), rgba(28,34,53,.98));
       display: flex;
       align-items: center;
       justify-content: center;
       color: #f0dbaf;
       font-size: 3rem;
       margin-bottom: 16px;
+      background:
+        radial-gradient(circle at 50% 28%, rgba(255,210,138,.18), transparent 18%),
+        linear-gradient(180deg, rgba(58,70,102,.95), rgba(28,34,53,.98));
+    }
+
+    .character-card.sasha .portrait {
+      background:
+        radial-gradient(circle at 50% 28%, rgba(255,191,139,.22), transparent 18%),
+        linear-gradient(180deg, rgba(115,68,77,.95), rgba(50,34,41,.98));
+    }
+
+    .character-card.party .portrait {
+      background:
+        radial-gradient(circle at 50% 28%, rgba(255,191,231,.22), transparent 18%),
+        linear-gradient(180deg, rgba(102,62,108,.95), rgba(42,28,52,.98));
+    }
+
+    .character-card.allies .portrait {
+      background:
+        radial-gradient(circle at 50% 28%, rgba(212,239,154,.20), transparent 18%),
+        linear-gradient(180deg, rgba(72,98,76,.95), rgba(34,49,39,.98));
+    }
+
+    .character-card.enemies .portrait {
+      background:
+        radial-gradient(circle at 50% 28%, rgba(255,158,158,.18), transparent 18%),
+        linear-gradient(180deg, rgba(89,48,58,.95), rgba(35,25,32,.98));
     }
 
     .character-card h3 {
       margin: 0 0 10px;
       color: #f0dbaf;
-      font-size: 1.5rem;
+      font-size: 1.42rem;
     }
 
     .character-card p {
       margin: 0;
       color: #d4ccb9;
       line-height: 1.72;
-      font-size: 1rem;
+      font-size: .98rem;
     }
 
     .character-tag {
@@ -605,6 +651,15 @@
       text-transform: uppercase;
       margin-bottom: 14px;
       background: rgba(255,255,255,.02);
+    }
+
+    .character-link {
+      display: inline-flex;
+      align-items: center;
+      margin-top: 16px;
+      color: #e5c787;
+      font-weight: 700;
+      font-size: .95rem;
     }
 
     .panel {
@@ -850,44 +905,48 @@
           <h2>Personajes</h2>
           <div class="section-divider"></div>
           <p class="section-lead">
-            Cuatro grandes bloques definen el pulso humano y emocional del universo de Sasha: la protagonista, su círculo más cercano, quienes la acompañan y quienes se oponen a su avance.
+            Cuatro grandes bloques definen el pulso humano y emocional del universo de Sasha: la protagonista, su círculo cercano, quienes la acompañan y quienes se oponen a su avance.
           </p>
 
           <div class="character-grid">
-            <article class="character-card">
+            <article class="character-card sasha">
               <div class="character-tag">Protagonista</div>
               <div class="portrait">S</div>
               <h3>Sasha</h3>
               <p>
-                El eje de la historia. Una joven arrojada a un mundo donde nada es tan simple como parece y donde cada decisión la obliga a crecer.
+                El eje del relato. Una joven que cruza una puerta sin saber que al otro lado la esperan dolor, crecimiento y decisiones que la transformarán.
               </p>
+              <a class="character-link" href="#galeria">Ver perfil →</a>
             </article>
 
-            <article class="character-card">
+            <article class="character-card party">
               <div class="character-tag">Núcleo social</div>
               <div class="portrait">✦</div>
               <h3>Party Girls</h3>
               <p>
-                Un grupo con identidad propia, energía y peso dentro del relato. Su presencia aporta contraste, vínculo y tensión en torno al viaje de Sasha.
+                Un grupo con identidad propia dentro del universo de Sasha. Aportan energía, contraste, vínculo y tensión a la historia.
               </p>
+              <a class="character-link" href="#galeria">Explorar grupo →</a>
             </article>
 
-            <article class="character-card">
+            <article class="character-card allies">
               <div class="character-tag">Compañeros</div>
               <div class="portrait">⚔</div>
               <h3>Aliados</h3>
               <p>
-                Quienes ayudan a Sasha, la protegen o la orientan en momentos clave. No todos luchan del mismo modo, pero todos dejan huella.
+                Figuras que ayudan, orientan o sostienen a Sasha en momentos clave. No todos luchan igual, pero todos influyen en su destino.
               </p>
+              <a class="character-link" href="#galeria">Ver aliados →</a>
             </article>
 
-            <article class="character-card">
+            <article class="character-card enemies">
               <div class="character-tag">Amenaza</div>
               <div class="portrait">☾</div>
               <h3>Enemigos</h3>
               <p>
-                Fuerzas, figuras y presencias que se interponen en su camino. Algunas son visibles. Otras avanzan desde la sombra y esperan su momento.
+                Fuerzas, rostros y presencias que se interponen en el camino. Algunas atacan de frente. Otras esperan desde la sombra.
               </p>
+              <a class="character-link" href="#galeria">Ver enemigos →</a>
             </article>
           </div>
         </section>
@@ -924,9 +983,9 @@
 
           <div class="gallery-grid">
             <div class="gallery-item">Sasha</div>
-            <div class="gallery-item">Portales</div>
-            <div class="gallery-item">Criaturas</div>
-            <div class="gallery-item">Escenarios</div>
+            <div class="gallery-item">Party Girls</div>
+            <div class="gallery-item">Aliados</div>
+            <div class="gallery-item">Enemigos</div>
           </div>
         </section>
       </div>
