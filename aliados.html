@@ -164,6 +164,10 @@
       margin: 0 auto 80px;
     }
 
+    #videos {
+      scroll-margin-top: 18px;
+    }
+
     .video-carousel-header {
       margin-bottom: 22px;
     }
@@ -555,16 +559,16 @@
 </head>
 <body>
 
-<header class="topbar">
-  <div class="topbar-left">
-    <a href="./index.html" class="back-link">← Volver al inicio</a>
-    <a href="./index.html#lore" class="back-link">Personajes</a>
-  </div>
-  <div class="topbar-right">
-    <a href="./party-girls.html" class="back-link">← Party Girls</a>
-    <a href="./enemigos.html" class="back-link">Enemigos →</a>
-  </div>
-</header>
+  <header class="topbar">
+    <div class="topbar-left">
+      <a href="./index.html" class="back-link">← Volver al inicio</a>
+      <a href="./index.html#lore" class="back-link">Personajes</a>
+    </div>
+    <div class="topbar-right">
+      <a href="./party-girls.html" class="back-link">← Party Girls</a>
+      <a href="./enemigos.html" class="back-link">Enemigos →</a>
+    </div>
+  </header>
 
   <section class="hero">
     <h1>Galería de Aliados</h1>
@@ -578,7 +582,7 @@
     <div class="gallery-grid" id="galleryGrid"></div>
   </main>
 
-  <section class="video-carousel-section">
+  <section class="video-carousel-section" id="videos">
     <div class="video-carousel-header">
       <h2>Vídeos de Aliados</h2>
       <p>
@@ -701,14 +705,7 @@
       }
     ];
 
-    const aliadosVideos = [
-      // Cuando subas vídeos, añade aquí entradas como esta:
-      // {
-      //   src: "assets/videos/aliados/video-01.mp4",
-      //   title: "Título del vídeo",
-      //   caption: "Descripción corta del vídeo."
-      // }
-    ];
+    const aliadosVideos = [];
 
     const galleryGrid = document.getElementById("galleryGrid");
     const modal = document.getElementById("imageModal");
@@ -912,6 +909,17 @@
 
     renderVideoCarousel();
     renderGallery();
+  </script>
+
+  <script>
+    window.addEventListener("load", () => {
+      if (window.location.hash === "#videos") {
+        const target = document.getElementById("videos");
+        if (target) {
+          target.scrollIntoView({ behavior: "auto", block: "start" });
+        }
+      }
+    });
   </script>
 
 </body>
