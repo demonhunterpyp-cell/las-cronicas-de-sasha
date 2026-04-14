@@ -27,7 +27,7 @@
       font-family: Arial, Helvetica, sans-serif;
       background:
         linear-gradient(rgba(7,10,16,0.9), rgba(7,10,16,0.95)),
-        url("assets/fondo.jpg") center/cover no-repeat fixed;
+        url("assets/fondo-sasha-panorama.png") center/cover no-repeat fixed;
       background-color: var(--bg);
       color: var(--text);
       min-height: 100vh;
@@ -157,6 +157,173 @@
       color: var(--muted);
       font-size: 0.92rem;
       line-height: 1.5;
+    }
+
+    .video-carousel-section {
+      width: min(1200px, 92%);
+      margin: 0 auto 80px;
+    }
+
+    .video-carousel-header {
+      margin-bottom: 22px;
+    }
+
+    .video-carousel-header h2 {
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .video-carousel-header p {
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .video-carousel-shell {
+      display: grid;
+      grid-template-columns: 62px 1fr 62px;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .video-arrow {
+      width: 62px;
+      height: 62px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      color: #fff;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: 0.25s ease;
+      z-index: 20;
+    }
+
+    .video-arrow:hover {
+      background: rgba(255,255,255,0.14);
+      transform: scale(1.05);
+    }
+
+    .video-carousel-stage {
+      position: relative;
+      height: 500px;
+      overflow: hidden;
+      perspective: 1400px;
+    }
+
+    .video-card {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: min(560px, 78vw);
+      transform-style: preserve-3d;
+      transition:
+        transform 0.55s ease,
+        opacity 0.55s ease,
+        filter 0.55s ease;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .video-card.is-active,
+    .video-card.is-left,
+    .video-card.is-right,
+    .video-card.is-left-far,
+    .video-card.is-right-far {
+      pointer-events: auto;
+    }
+
+    .video-card.is-active {
+      transform: translate(-50%, -50%) translateX(0) scale(1);
+      opacity: 1;
+      z-index: 5;
+      filter: none;
+    }
+
+    .video-card.is-left {
+      transform: translate(-50%, -50%) translateX(-280px) scale(0.8) rotateY(22deg);
+      opacity: 0.52;
+      z-index: 4;
+      filter: blur(2px) saturate(0.8);
+    }
+
+    .video-card.is-right {
+      transform: translate(-50%, -50%) translateX(280px) scale(0.8) rotateY(-22deg);
+      opacity: 0.52;
+      z-index: 4;
+      filter: blur(2px) saturate(0.8);
+    }
+
+    .video-card.is-left-far {
+      transform: translate(-50%, -50%) translateX(-470px) scale(0.62) rotateY(28deg);
+      opacity: 0.18;
+      z-index: 3;
+      filter: blur(4px) saturate(0.55);
+    }
+
+    .video-card.is-right-far {
+      transform: translate(-50%, -50%) translateX(470px) scale(0.62) rotateY(-28deg);
+      opacity: 0.18;
+      z-index: 3;
+      filter: blur(4px) saturate(0.55);
+    }
+
+    .video-card.is-hidden {
+      transform: translate(-50%, -50%) scale(0.45);
+      opacity: 0;
+      z-index: 1;
+      filter: blur(6px);
+    }
+
+    .video-frame {
+      aspect-ratio: 16 / 9;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: #000;
+      box-shadow: 0 24px 50px rgba(0,0,0,0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .video-frame video {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
+      background: #000;
+    }
+
+    .video-meta {
+      text-align: center;
+      padding-top: 12px;
+    }
+
+    .video-meta h3 {
+      color: #fff;
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+    }
+
+    .video-meta p {
+      color: var(--muted);
+      font-size: 0.94rem;
+      line-height: 1.5;
+    }
+
+    .video-empty {
+      display: grid;
+      place-items: center;
+      min-height: 320px;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
+      color: var(--muted);
+      text-align: center;
+      padding: 30px;
     }
 
     .modal {
@@ -301,6 +468,28 @@
       background: rgba(255,255,255,0.14);
     }
 
+    @media (max-width: 1000px) {
+      .video-carousel-stage {
+        height: 430px;
+      }
+
+      .video-card.is-left {
+        transform: translate(-50%, -50%) translateX(-210px) scale(0.78) rotateY(16deg);
+      }
+
+      .video-card.is-right {
+        transform: translate(-50%, -50%) translateX(210px) scale(0.78) rotateY(-16deg);
+      }
+
+      .video-card.is-left-far {
+        transform: translate(-50%, -50%) translateX(-340px) scale(0.6) rotateY(20deg);
+      }
+
+      .video-card.is-right-far {
+        transform: translate(-50%, -50%) translateX(340px) scale(0.6) rotateY(-20deg);
+      }
+    }
+
     @media (max-width: 900px) {
       .modal-content {
         grid-template-columns: 1fr;
@@ -309,6 +498,39 @@
       .modal-image {
         border-right: none;
         border-bottom: 1px solid var(--border);
+      }
+    }
+
+    @media (max-width: 700px) {
+      .video-carousel-shell {
+        grid-template-columns: 50px 1fr 50px;
+      }
+
+      .video-arrow {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+      }
+
+      .video-carousel-stage {
+        height: 360px;
+      }
+
+      .video-card {
+        width: min(92vw, 520px);
+      }
+
+      .video-card.is-left {
+        transform: translate(-50%, -50%) translateX(-120px) scale(0.72);
+      }
+
+      .video-card.is-right {
+        transform: translate(-50%, -50%) translateX(120px) scale(0.72);
+      }
+
+      .video-card.is-left-far,
+      .video-card.is-right-far {
+        opacity: 0;
       }
     }
 
@@ -355,6 +577,27 @@
     <div class="gallery-grid" id="galleryGrid"></div>
   </main>
 
+  <section class="video-carousel-section">
+    <div class="video-carousel-header">
+      <h2>Vídeos de Party Girls</h2>
+      <p>
+        Escenas en movimiento del grupo. El carrusel ya está preparado y se activará en cuanto subas los vídeos.
+      </p>
+    </div>
+
+    <div class="video-carousel-shell">
+      <button class="video-arrow" id="videoPrev" aria-label="Vídeo anterior">‹</button>
+
+      <div class="video-carousel-stage" id="videoCarouselStage">
+        <div class="video-empty">
+          Aún no hay vídeos cargados para Party Girls.
+        </div>
+      </div>
+
+      <button class="video-arrow" id="videoNext" aria-label="Vídeo siguiente">›</button>
+    </div>
+  </section>
+
   <div class="modal" id="imageModal">
     <div class="modal-box">
       <button class="modal-close" id="closeModal" aria-label="Cerrar">×</button>
@@ -385,63 +628,72 @@
 
   <script>
     const partyGirlsGallery = [
-  {
-    image: "assets/galerias/party-girls/Azalea.png",
-    title: "Azalea",
-    subtitle: "Maga",
-    preview: "Aliada de perfil arcano, ligada a la magia y a una presencia poderosa dentro del grupo.",
-    role: "Party Girls | Maga",
-    description: "Azalea aporta al grupo una dimensión mágica, estratégica y visualmente intensa. Su presencia refuerza el equilibrio del conjunto y amplía sus recursos frente al peligro.",
-    details: [
-      { label: "Clase", value: "Maga" },
-      { label: "Enfoque", value: "Magia ofensiva / apoyo arcano" },
-      { label: "Rasgos", value: "Control, conocimiento, presencia mística" },
-      { label: "Función", value: "Versatilidad mágica" }
-    ]
-  },
-  {
-    image: "assets/galerias/party-girls/Elorzal.png",
-    title: "Elorzal",
-    subtitle: "Aliada destacada",
-    preview: "Figura con identidad propia y peso visual dentro de Party Girls.",
-    role: "Party Girls | Integrante destacada",
-    description: "Elorzal aporta personalidad, presencia y matiz al grupo. Su papel ayuda a enriquecer la identidad colectiva de Party Girls y a dar más variedad a su composición.",
-    details: [
-      { label: "Tipo", value: "Integrante del grupo" },
-      { label: "Valor visual", value: "Presencia diferenciada" },
-      { label: "Rasgos", value: "Carácter, identidad, peso escénico" },
-      { label: "Función", value: "Ampliar la riqueza del bloque" }
-    ]
-  },
-  {
-    image: "assets/galerias/party-girls/Ilyanna.png",
-    title: "Ilyanna",
-    subtitle: "Maga eléctrica",
-    preview: "Aliada mágica de gran intensidad visual y perfil ofensivo especializado.",
-    role: "Party Girls | Maga eléctrica",
-    description: "Ilyanna añade energía, intensidad visual y una identidad muy marcada dentro del grupo. Su presencia aporta impacto y contraste dentro de Party Girls.",
-    details: [
-      { label: "Clase", value: "Maga eléctrica" },
-      { label: "Afinidad", value: "Electricidad" },
-      { label: "Rasgos", value: "Precisión, intensidad, impacto visual" },
-      { label: "Función", value: "Ataque mágico especializado" }
-    ]
-  },
-  {
-    image: "assets/galerias/party-girls/Monet.png",
-    title: "Monet",
-    subtitle: "Paladina",
-    preview: "Aliada de presencia firme, marcada por la protección y la disciplina.",
-    role: "Party Girls | Paladina",
-    description: "Monet aporta solidez, protección y contundencia al grupo. Su perfil transmite defensa, compromiso y una fuerte presencia dentro de las escenas compartidas.",
-    details: [
-      { label: "Clase", value: "Paladina" },
-      { label: "Especialidad", value: "Defensa y apoyo en combate" },
-      { label: "Rasgos", value: "Firmeza, disciplina, resistencia" },
-      { label: "Valor narrativo", value: "Seguridad y sostén del grupo" }
-    ]
-  }
-];
+      {
+        image: "assets/galerias/party-girls/Azalea.png",
+        title: "Azalea",
+        subtitle: "Maga",
+        preview: "Aliada de perfil arcano, ligada a la magia y a una presencia poderosa dentro del grupo.",
+        role: "Party Girls | Maga",
+        description: "Azalea aporta al grupo una dimensión mágica, estratégica y visualmente intensa. Su presencia refuerza el equilibrio del conjunto y amplía sus recursos frente al peligro.",
+        details: [
+          { label: "Clase", value: "Maga" },
+          { label: "Enfoque", value: "Magia ofensiva / apoyo arcano" },
+          { label: "Rasgos", value: "Control, conocimiento, presencia mística" },
+          { label: "Función", value: "Versatilidad mágica" }
+        ]
+      },
+      {
+        image: "assets/galerias/party-girls/Elorzal.png",
+        title: "Elorzal",
+        subtitle: "Aliada destacada",
+        preview: "Figura con identidad propia y peso visual dentro de Party Girls.",
+        role: "Party Girls | Integrante destacada",
+        description: "Elorzal aporta personalidad, presencia y matiz al grupo. Su papel ayuda a enriquecer la identidad colectiva de Party Girls y a dar más variedad a su composición.",
+        details: [
+          { label: "Tipo", value: "Integrante del grupo" },
+          { label: "Valor visual", value: "Presencia diferenciada" },
+          { label: "Rasgos", value: "Carácter, identidad, peso escénico" },
+          { label: "Función", value: "Ampliar la riqueza del bloque" }
+        ]
+      },
+      {
+        image: "assets/galerias/party-girls/Ilyanna.png",
+        title: "Ilyanna",
+        subtitle: "Maga eléctrica",
+        preview: "Aliada mágica de gran intensidad visual y perfil ofensivo especializado.",
+        role: "Party Girls | Maga eléctrica",
+        description: "Ilyanna añade energía, intensidad visual y una identidad muy marcada dentro del grupo. Su presencia aporta impacto y contraste dentro de Party Girls.",
+        details: [
+          { label: "Clase", value: "Maga eléctrica" },
+          { label: "Afinidad", value: "Electricidad" },
+          { label: "Rasgos", value: "Precisión, intensidad, impacto visual" },
+          { label: "Función", value: "Ataque mágico especializado" }
+        ]
+      },
+      {
+        image: "assets/galerias/party-girls/Monet.png",
+        title: "Monet",
+        subtitle: "Paladina",
+        preview: "Aliada de presencia firme, marcada por la protección y la disciplina.",
+        role: "Party Girls | Paladina",
+        description: "Monet aporta solidez, protección y contundencia al grupo. Su perfil transmite defensa, compromiso y una fuerte presencia dentro de las escenas compartidas.",
+        details: [
+          { label: "Clase", value: "Paladina" },
+          { label: "Especialidad", value: "Defensa y apoyo en combate" },
+          { label: "Rasgos", value: "Firmeza, disciplina, resistencia" },
+          { label: "Valor narrativo", value: "Seguridad y sostén del grupo" }
+        ]
+      }
+    ];
+
+    const partyGirlsVideos = [
+      // Cuando subas vídeos, añade aquí entradas como esta:
+      // {
+      //   src: "assets/videos/party-girls/video-01.mp4",
+      //   title: "Título del vídeo",
+      //   caption: "Descripción corta del vídeo."
+      // }
+    ];
 
     const galleryGrid = document.getElementById("galleryGrid");
     const modal = document.getElementById("imageModal");
@@ -456,7 +708,12 @@
     const prevBtn = document.getElementById("prevBtn");
     const nextBtn = document.getElementById("nextBtn");
 
+    const videoStage = document.getElementById("videoCarouselStage");
+    const videoPrev = document.getElementById("videoPrev");
+    const videoNext = document.getElementById("videoNext");
+
     let currentIndex = 0;
+    let currentVideoIndex = 0;
 
     function renderGallery() {
       galleryGrid.innerHTML = "";
@@ -513,6 +770,110 @@
       openModal(currentIndex);
     }
 
+    function getCircularDistance(index, activeIndex, total) {
+      let diff = index - activeIndex;
+
+      if (diff > total / 2) diff -= total;
+      if (diff < -total / 2) diff += total;
+
+      return diff;
+    }
+
+    function renderVideoCarousel() {
+      videoStage.innerHTML = "";
+
+      if (!partyGirlsVideos.length) {
+        videoStage.innerHTML = `
+          <div class="video-empty">
+            Aún no hay vídeos cargados para Party Girls.
+          </div>
+        `;
+        return;
+      }
+
+      partyGirlsVideos.forEach((item, index) => {
+        const card = document.createElement("article");
+        card.className = "video-card";
+
+        card.innerHTML = `
+          <div class="video-frame">
+            <video muted loop playsinline preload="auto" controlslist="nodownload">
+              <source src="${item.src}" type="video/mp4">
+              Tu navegador no puede reproducir este vídeo.
+            </video>
+          </div>
+          <div class="video-meta">
+            <h3>${item.title}</h3>
+            <p>${item.caption}</p>
+          </div>
+        `;
+
+        card.addEventListener("click", () => {
+          if (index !== currentVideoIndex) {
+            currentVideoIndex = index;
+            updateVideoCarousel();
+          }
+        });
+
+        videoStage.appendChild(card);
+      });
+
+      updateVideoCarousel();
+    }
+
+    function updateVideoCarousel() {
+      const cards = [...videoStage.querySelectorAll(".video-card")];
+
+      cards.forEach((card, index) => {
+        const distance = getCircularDistance(index, currentVideoIndex, cards.length);
+
+        card.className = "video-card";
+
+        if (distance === 0) {
+          card.classList.add("is-active");
+        } else if (distance === -1) {
+          card.classList.add("is-left");
+        } else if (distance === 1) {
+          card.classList.add("is-right");
+        } else if (distance === -2) {
+          card.classList.add("is-left-far");
+        } else if (distance === 2) {
+          card.classList.add("is-right-far");
+        } else {
+          card.classList.add("is-hidden");
+        }
+
+        const video = card.querySelector("video");
+
+        video.addEventListener("error", () => {
+          const meta = card.querySelector(".video-meta p");
+          if (meta) {
+            meta.textContent = "Este vídeo no se ha podido reproducir.";
+          }
+        });
+
+        if (distance === 0) {
+          video.controls = true;
+          video.play().catch(() => {});
+        } else {
+          video.controls = false;
+          video.pause();
+          video.currentTime = 0;
+        }
+      });
+    }
+
+    function showPrevVideo() {
+      currentVideoIndex =
+        (currentVideoIndex - 1 + partyGirlsVideos.length) % partyGirlsVideos.length;
+      updateVideoCarousel();
+    }
+
+    function showNextVideo() {
+      currentVideoIndex = (currentVideoIndex + 1) % partyGirlsVideos.length;
+      updateVideoCarousel();
+    }
+
     closeModal.addEventListener("click", closeModalWindow);
     prevBtn.addEventListener("click", showPrev);
     nextBtn.addEventListener("click", showNext);
@@ -531,6 +892,10 @@
       if (e.key === "ArrowRight") showNext();
     });
 
+    videoPrev.addEventListener("click", showPrevVideo);
+    videoNext.addEventListener("click", showNextVideo);
+
+    renderVideoCarousel();
     renderGallery();
   </script>
 
