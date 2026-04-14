@@ -42,13 +42,18 @@
     }
 
     .sidebar {
-      position: relative;
+      position: sticky;
+      top: 0;
+      align-self: start;
+      height: 100vh;
+      overflow-y: auto;
       background:
         radial-gradient(circle at 25% 10%, rgba(255,255,255,0.08), transparent 18%),
         linear-gradient(180deg, #232b44 0%, #1c2436 100%);
       border-right: 2px solid rgba(214,176,106,.3);
       box-shadow: inset -1px 0 0 rgba(255,255,255,.05);
       padding: 22px 22px 28px;
+      z-index: 20;
     }
 
     .sidebar::before,
@@ -64,7 +69,7 @@
       position: relative;
       text-align: center;
       padding: 18px 14px 22px;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       border-top: 1px solid rgba(214,176,106,.35);
       border-bottom: 1px solid rgba(214,176,106,.35);
     }
@@ -100,10 +105,36 @@
       margin-top: 4px;
     }
 
+    .menu-toggle {
+      display: none;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px 14px;
+      margin: 0 0 14px;
+      border: 1px solid rgba(214,176,106,.24);
+      background: rgba(255,255,255,.04);
+      color: #f2e2c3;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background .2s ease, border-color .2s ease;
+    }
+
+    .menu-toggle:hover {
+      background: rgba(255,255,255,.08);
+      border-color: rgba(214,176,106,.35);
+    }
+
+    .sidebar-content {
+      display: block;
+    }
+
     .side-menu {
       display: grid;
       gap: 2px;
-      margin-top: 16px;
+      margin-top: 0;
     }
 
     .menu-group-title {
@@ -125,7 +156,8 @@
       border-top: 1px solid rgba(214,176,106,.18);
       border-bottom: 1px solid rgba(214,176,106,.08);
       color: #f2e2c3;
-      transition: background .2s ease, transform .2s ease, border-color .2s ease;
+      transition: background .2s ease, transform .2s ease, border-color .2s ease, color .2s ease;
+      position: relative;
     }
 
     .side-link:hover {
@@ -134,10 +166,23 @@
       border-top-color: rgba(214,176,106,.28);
     }
 
+    .side-link.active {
+      background: linear-gradient(90deg, rgba(214,176,106,.16), rgba(255,255,255,.03));
+      color: #fff3d6;
+      border-top-color: rgba(214,176,106,.46);
+      border-bottom-color: rgba(214,176,106,.22);
+      box-shadow: inset 3px 0 0 var(--gold);
+    }
+
     .side-link .icon {
       width: 22px;
       text-align: center;
       color: var(--gold);
+      transition: transform .2s ease;
+    }
+
+    .side-link.active .icon {
+      transform: scale(1.08);
     }
 
     .socials {
@@ -338,6 +383,7 @@
       min-height: 500px;
       border-radius: 3px;
       overflow: hidden;
+      scroll-margin-top: 28px;
     }
 
     .paper::before {
@@ -499,6 +545,11 @@
       background: linear-gradient(180deg, #d8b160 0%, #b78537 100%);
       border: 2px solid #8b6327;
       box-shadow: inset 0 1px 0 rgba(255,255,255,.35);
+    }
+
+    .section-block,
+    .panel {
+      scroll-margin-top: 28px;
     }
 
     .section-block {
@@ -810,14 +861,33 @@
     }
 
     @media (max-width: 1050px) {
-      .layout { grid-template-columns: 1fr; }
+      .layout {
+        grid-template-columns: 1fr;
+      }
 
       .sidebar {
+        position: relative;
+        height: auto;
+        overflow: visible;
         border-right: 0;
         border-bottom: 2px solid rgba(214,176,106,.25);
       }
 
-      .sidebar-stack { min-height: auto; }
+      .sidebar-stack {
+        min-height: auto;
+      }
+
+      .menu-toggle {
+        display: inline-flex;
+      }
+
+      .sidebar-content {
+        display: none;
+      }
+
+      .sidebar-content.open {
+        display: block;
+      }
 
       .paper {
         padding: 38px 32px 40px;
@@ -905,31 +975,38 @@
           <div class="logo-big">Sasha</div>
         </div>
 
-        <nav class="side-menu">
-          <div class="menu-group-title">Portada</div>
-          <a class="side-link" href="#inicio"><span class="icon">⌂</span><span>Inicio</span></a>
-          <a class="side-link" href="#historia"><span class="icon">✒</span><span>Historia</span></a>
-          <a class="side-link" href="#libros"><span class="icon">▤</span><span>Libros</span></a>
+        <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="sidebarContent">
+          <span>☰</span>
+          <span>Menú de navegación</span>
+        </button>
 
-          <div class="menu-group-title">Universo</div>
-          <a class="side-link" href="#lore"><span class="icon">⚔</span><span>Personajes</span></a>
-          <a class="side-link" href="#universo"><span class="icon">⌘</span><span>Lore</span></a>
-          <a class="side-link" href="#galeria"><span class="icon">▧</span><span>Galería</span></a>
+        <div class="sidebar-content" id="sidebarContent">
+          <nav class="side-menu">
+            <div class="menu-group-title">Portada</div>
+            <a class="side-link" href="#inicio"><span class="icon">⌂</span><span>Inicio</span></a>
+            <a class="side-link" href="#historia"><span class="icon">✒</span><span>Historia</span></a>
+            <a class="side-link" href="#libros"><span class="icon">▤</span><span>Libros</span></a>
 
-          <div class="menu-group-title">Actualidad</div>
-          <a class="side-link" href="#novedades"><span class="icon">✦</span><span>Novedades</span></a>
-          <a class="side-link" href="#tienda"><span class="icon">▣</span><span>Tienda</span></a>
-        </nav>
+            <div class="menu-group-title">Universo</div>
+            <a class="side-link" href="#lore"><span class="icon">⚔</span><span>Personajes</span></a>
+            <a class="side-link" href="#universo"><span class="icon">⌘</span><span>Lore</span></a>
+            <a class="side-link" href="#galeria"><span class="icon">▧</span><span>Galería</span></a>
 
-        <div class="socials">
-          <a href="#">f</a>
-          <a href="#">x</a>
-          <a href="#">◎</a>
-        </div>
+            <div class="menu-group-title">Actualidad</div>
+            <a class="side-link" href="#novedades"><span class="icon">✦</span><span>Novedades</span></a>
+            <a class="side-link" href="#tienda"><span class="icon">▣</span><span>Tienda</span></a>
+          </nav>
 
-        <div class="sidebar-note">
-          <span>⚔</span>
-          <span>Sitio oficial de la saga</span>
+          <div class="socials">
+            <a href="#">f</a>
+            <a href="#">x</a>
+            <a href="#">◎</a>
+          </div>
+
+          <div class="sidebar-note">
+            <span>⚔</span>
+            <span>Sitio oficial de la saga</span>
+          </div>
         </div>
       </div>
     </aside>
@@ -1202,5 +1279,65 @@
       </div>
     </main>
   </div>
+
+  <script>
+    const menuToggle = document.getElementById("menuToggle");
+    const sidebarContent = document.getElementById("sidebarContent");
+    const menuLinks = [...document.querySelectorAll('.side-link[href^="#"]')];
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = sidebarContent.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
+
+    const sections = menuLinks
+      .map(link => {
+        const id = link.getAttribute("href");
+        const target = document.querySelector(id);
+        return target ? { link, target } : null;
+      })
+      .filter(Boolean);
+
+    function setActiveLink(id) {
+      menuLinks.forEach(link => {
+        link.classList.toggle("active", link.getAttribute("href") === id);
+      });
+    }
+
+    if (sections.length) {
+      const observer = new IntersectionObserver((entries) => {
+        const visible = entries
+          .filter(entry => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+        if (visible.length) {
+          setActiveLink(`#${visible[0].target.id}`);
+        }
+      }, {
+        root: null,
+        rootMargin: "-15% 0px -55% 0px",
+        threshold: [0.15, 0.3, 0.5, 0.7]
+      });
+
+      sections.forEach(({ target }) => observer.observe(target));
+      setActiveLink("#inicio");
+    }
+
+    menuLinks.forEach(link => {
+      link.addEventListener("click", () => {
+        if (window.innerWidth <= 1050) {
+          sidebarContent.classList.remove("open");
+          menuToggle.setAttribute("aria-expanded", "false");
+        }
+      });
+    });
+
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 1050) {
+        sidebarContent.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+      }
+    });
+  </script>
 </body>
 </html>
