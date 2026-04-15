@@ -904,8 +904,6 @@
       background: rgba(255,255,255,.02);
     }
 
-    /* BLOQUE LIBROS REHECHO */
-
     .books-shell {
       margin-top: 22px;
       position: relative;
@@ -1018,7 +1016,6 @@
         linear-gradient(180deg, rgba(42,51,77,.95), rgba(22,28,44,.98));
       box-shadow: 0 14px 28px rgba(0,0,0,.20);
       overflow: hidden;
-      scroll-snap-align: start;
       transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
     }
 
@@ -1054,7 +1051,7 @@
       display: flex;
       flex-direction: column;
       gap: 12px;
-      min-height: 250px;
+      min-height: 260px;
     }
 
     .book-tile-head {
@@ -1129,6 +1126,13 @@
       color: #f2e2c3;
       background: rgba(255,255,255,.05);
       border: 1px solid rgba(214,176,106,.24);
+    }
+
+    .book-tile-btn.disabled {
+      opacity: .46;
+      pointer-events: none;
+      cursor: default;
+      transform: none;
     }
 
     .gallery-grid-preview {
@@ -1434,7 +1438,7 @@
           </div>
 
           <div class="floating-book">
-            <img src="assets/libro-sasha-3d.png" alt="Libro Las Crónicas de Sasha - Mis inicios" />
+            <img src="assets/libros/volumenes/libro-sin-fondo.png" alt="Libro Las Crónicas de Sasha - Volumen 1" />
             <a class="book-cta" href="#tienda">Ver en tienda</a>
           </div>
         </section>
@@ -1443,7 +1447,7 @@
           <h2>Libros</h2>
           <div class="panel-divider"></div>
           <p class="panel-lead">
-            La saga principal y sus anexos se presentan aquí como escaparate. Cada portada conduce a su ficha individual y deja preparado el acceso a tienda.
+            La saga principal y sus anexos se muestran aquí como escaparate. El volumen 1 ya tiene ficha propia, y el resto queda preparado para crecer sin romper la estructura.
           </p>
 
           <div class="books-shell">
@@ -1735,102 +1739,6 @@
   </script>
 
   <script>
-    /* EDITA AQUÍ LIBROS Y ANEXOS */
-    const bookCollections = {
-      main: {
-        label: "Saga principal",
-        items: [
-          {
-            tag: "Volumen 1",
-            kind: "Saga principal",
-            title: "Mis inicios",
-            description: "El punto de partida de la saga. La entrada al mundo de Sasha, sus reglas, sus riesgos y el primer gran tramo de su transformación.",
-            cover: "assets/libros/volumen-1.png",
-            page: "volumen-1.html",
-            store: "#tienda"
-          },
-          {
-            tag: "Volumen 2",
-            kind: "Saga principal",
-            title: "Título provisional",
-            description: "Segundo gran avance del viaje. Espacio preparado para el siguiente tomo principal con su portada, ficha y acceso a tienda.",
-            cover: "assets/libros/volumen-2.png",
-            page: "volumen-2.html",
-            store: "#tienda"
-          },
-          {
-            tag: "Volumen 3",
-            kind: "Saga principal",
-            title: "Título provisional",
-            description: "Tercer volumen de la serie principal. Aquí puedes presentar una etapa más amplia, más dura o más épica dentro del arco de Sasha.",
-            cover: "assets/libros/volumen-3.png",
-            page: "volumen-3.html",
-            store: "#tienda"
-          }
-        ]
-      },
-
-      annexes: {
-        label: "Anexos",
-        items: [
-          {
-            tag: "Anexo 1",
-            kind: "Material complementario",
-            title: "Título provisional",
-            description: "Primer anexo de la saga. Ideal para ampliar personajes, contexto, eventos o materiales paralelos al eje principal.",
-            cover: "assets/libros/anexo-1.png",
-            page: "anexo-1.html",
-            store: "#tienda"
-          },
-          {
-            tag: "Anexo 2",
-            kind: "Material complementario",
-            title: "Título provisional",
-            description: "Segundo anexo preparado para desarrollar una pieza concreta del universo con identidad propia.",
-            cover: "assets/libros/anexo-2.png",
-            page: "anexo-2.html",
-            store: "#tienda"
-          },
-          {
-            tag: "Anexo 3",
-            kind: "Material complementario",
-            title: "Título provisional",
-            description: "Tercer anexo reservado para contenido adicional, lateral o especializado dentro del mundo de Sasha.",
-            cover: "assets/libros/anexo-3.png",
-            page: "anexo-3.html",
-            store: "#tienda"
-          },
-          {
-            tag: "Anexo 4",
-            kind: "Material complementario",
-            title: "Título provisional",
-            description: "Cuarto anexo listo para crecer cuando tengas portada, texto y página dedicada.",
-            cover: "assets/libros/anexo-4.png",
-            page: "anexo-4.html",
-            store: "#tienda"
-          },
-          {
-            tag: "Anexo 5",
-            kind: "Material complementario",
-            title: "Título provisional",
-            description: "Quinto anexo preparado para completar el bloque editorial complementario de la saga.",
-            cover: "assets/libros/anexo-5.png",
-            page: "anexo-5.html",
-            store: "#tienda"
-          }
-        ]
-      }
-    };
-
-    const booksTrack = document.getElementById("booksTrack");
-    const booksViewport = document.getElementById("booksViewport");
-    const booksPrev = document.getElementById("booksPrev");
-    const booksNext = document.getElementById("booksNext");
-    const booksCurrentLabel = document.getElementById("booksCurrentLabel");
-    const booksTabs = [...document.querySelectorAll(".books-tab")];
-
-    let currentBooksCollection = "main";
-
     function bookPlaceholder(top, bottom) {
       const topText = encodeURIComponent(top || "Las Crónicas de Sasha");
       const bottomText = encodeURIComponent(bottom || "Portada");
@@ -1849,38 +1757,148 @@
       </svg>`.replace(/\n/g, "");
     }
 
+    const bookCollections = {
+      main: {
+        label: "Saga principal",
+        items: [
+          {
+            tag: "Volumen 1",
+            kind: "Saga principal",
+            title: "Mis inicios",
+            description: "El arranque real de la saga. La primera puerta, el primer gran cambio y la entrada de Sasha en un mundo que no perdona la ingenuidad.",
+            cover: "assets/libros/volumenes/libro-sin-fondo.png",
+            page: "volumen-1.html",
+            store: "#tienda",
+            available: true
+          },
+          {
+            tag: "Volumen 2",
+            kind: "Saga principal",
+            title: "Próximamente",
+            description: "Segundo gran bloque de la saga principal. Tarjeta ya preparada para recibir portada, ficha y acceso de compra cuando toque.",
+            cover: "",
+            page: "",
+            store: "",
+            available: false
+          },
+          {
+            tag: "Volumen 3",
+            kind: "Saga principal",
+            title: "Próximamente",
+            description: "Tercer volumen reservado para ampliar el arco principal y escalar el universo narrativo de Sasha.",
+            cover: "",
+            page: "",
+            store: "",
+            available: false
+          }
+        ]
+      },
+
+      annexes: {
+        label: "Anexos",
+        items: [
+          {
+            tag: "Anexo",
+            kind: "Material complementario",
+            title: "DVNI",
+            description: "Primer anexo con portada real ya cargada. Preparado para tener ficha propia cuando quieras crearla.",
+            cover: "assets/libros/anexos/Portada-DVNI.png",
+            page: "",
+            store: "",
+            available: false
+          },
+          {
+            tag: "Anexo",
+            kind: "Material complementario",
+            title: "Cinco dones",
+            description: "Anexo complementario con portada real. Queda listo para enlazar su página dedicada más adelante.",
+            cover: "assets/libros/anexos/Portada-cinco-dones.png",
+            page: "",
+            store: "",
+            available: false
+          },
+          {
+            tag: "Anexo",
+            kind: "Material complementario",
+            title: "Entrevista",
+            description: "Tercer anexo actualmente disponible como portada. La estructura ya queda lista para convertirlo en ficha individual.",
+            cover: "assets/libros/anexos/Portada-entrevista.png",
+            page: "",
+            store: "",
+            available: false
+          },
+          {
+            tag: "Anexo 4",
+            kind: "Material complementario",
+            title: "Próximamente",
+            description: "Espacio reservado para otro anexo futuro dentro del bloque complementario de la saga.",
+            cover: "",
+            page: "",
+            store: "",
+            available: false
+          },
+          {
+            tag: "Anexo 5",
+            kind: "Material complementario",
+            title: "Próximamente",
+            description: "Último hueco previsto para completar el conjunto de anexos de esta primera tanda.",
+            cover: "",
+            page: "",
+            store: "",
+            available: false
+          }
+        ]
+      }
+    };
+
+    const booksTrack = document.getElementById("booksTrack");
+    const booksViewport = document.getElementById("booksViewport");
+    const booksPrev = document.getElementById("booksPrev");
+    const booksNext = document.getElementById("booksNext");
+    const booksCurrentLabel = document.getElementById("booksCurrentLabel");
+    const booksTabs = [...document.querySelectorAll(".books-tab")];
+
     function renderBooks(collectionKey) {
-      currentBooksCollection = collectionKey;
       const collection = bookCollections[collectionKey];
       const items = collection.items;
 
-      booksTrack.innerHTML = items.map((item) => `
-        <article class="book-tile">
-          <a class="book-tile-cover" href="${item.page}">
-            <img
-              src="${item.cover}"
-              alt="${item.tag} - ${item.title}"
-              data-top="${collection.label}"
-              data-bottom="${item.tag}"
-            />
-          </a>
+      booksTrack.innerHTML = items.map((item) => {
+        const coverSrc = item.cover || bookPlaceholder(collection.label, item.tag);
+        const fichaButton = item.available
+          ? `<a class="book-tile-btn primary" href="${item.page}">Ver ficha</a>`
+          : `<span class="book-tile-btn secondary disabled">Próximamente</span>`;
 
-          <div class="book-tile-body">
-            <div class="book-tile-head">
-              <span class="book-tag">${item.tag}</span>
-              <span class="book-tile-kind">${item.kind}</span>
+        const storeButton = item.available && item.store
+          ? `<a class="book-tile-btn secondary" href="${item.store}">Tienda</a>`
+          : `<span class="book-tile-btn secondary disabled">Tienda</span>`;
+
+        const titleHtml = item.available
+          ? `<h3><a href="${item.page}">${item.title}</a></h3>`
+          : `<h3>${item.title}</h3>`;
+
+        return `
+          <article class="book-tile">
+            <div class="book-tile-cover">
+              <img src="${coverSrc}" alt="${item.tag} - ${item.title}" />
             </div>
 
-            <h3><a href="${item.page}">${item.title}</a></h3>
-            <p>${item.description}</p>
+            <div class="book-tile-body">
+              <div class="book-tile-head">
+                <span class="book-tag">${item.tag}</span>
+                <span class="book-tile-kind">${item.kind}</span>
+              </div>
 
-            <div class="book-tile-actions">
-              <a class="book-tile-btn primary" href="${item.page}">Ver ficha</a>
-              <a class="book-tile-btn secondary" href="${item.store}">Tienda</a>
+              ${titleHtml}
+              <p>${item.description}</p>
+
+              <div class="book-tile-actions">
+                ${fichaButton}
+                ${storeButton}
+              </div>
             </div>
-          </div>
-        </article>
-      `).join("");
+          </article>
+        `;
+      }).join("");
 
       booksCurrentLabel.textContent = `${collection.label} · ${items.length} título${items.length === 1 ? "" : "s"}`;
 
@@ -1888,12 +1906,6 @@
         const isActive = tab.dataset.collection === collectionKey;
         tab.classList.toggle("active", isActive);
         tab.setAttribute("aria-selected", isActive ? "true" : "false");
-      });
-
-      booksTrack.querySelectorAll("img").forEach((img) => {
-        img.addEventListener("error", () => {
-          img.src = bookPlaceholder(img.dataset.top, img.dataset.bottom);
-        });
       });
 
       booksViewport.scrollLeft = 0;
