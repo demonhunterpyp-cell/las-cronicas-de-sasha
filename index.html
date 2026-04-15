@@ -1035,6 +1035,12 @@
         linear-gradient(180deg, rgba(53,64,92,.96), rgba(24,31,47,.98));
     }
 
+    .book-tile-cover a {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
     .book-tile-cover img {
       width: 100%;
       height: 100%;
@@ -1845,6 +1851,11 @@
 
       booksTrack.innerHTML = items.map((item) => {
         const coverSrc = item.cover || bookPlaceholder(collection.label, item.tag);
+
+        const coverHtml = item.available
+          ? `<a href="${item.page}" aria-label="Abrir ${item.title}"><img src="${coverSrc}" alt="${item.tag} - ${item.title}" /></a>`
+          : `<img src="${coverSrc}" alt="${item.tag} - ${item.title}" />`;
+
         const fichaButton = item.available
           ? `<a class="book-tile-btn primary" href="${item.page}">Ver ficha</a>`
           : `<span class="book-tile-btn secondary disabled">Próximamente</span>`;
@@ -1860,7 +1871,7 @@
         return `
           <article class="book-tile">
             <div class="book-tile-cover">
-              <img src="${coverSrc}" alt="${item.tag} - ${item.title}" />
+              ${coverHtml}
             </div>
 
             <div class="book-tile-body">
