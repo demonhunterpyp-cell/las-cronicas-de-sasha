@@ -4,777 +4,717 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sasha | Las Crónicas de Sasha</title>
-  <meta name="description" content="Galería oficial de Sasha en Las Crónicas de Sasha" />
+  <meta name="description" content="Galería de Sasha. Parrilla de imágenes, ficha lateral en modal y carrusel de vídeos." />
+
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    :root{
+      --bg:#0b1016;
+      --bg-soft:#101721;
+      --panel:#121b26;
+      --panel-2:#172232;
+      --line:rgba(255,255,255,.08);
+      --line-strong:rgba(212,177,106,.28);
+      --text:#ecf0f4;
+      --muted:#aab5c3;
+      --accent:#d4b16a;
+      --accent-2:#8c6b2e;
+      --shadow:0 20px 60px rgba(0,0,0,.45);
+      --radius:18px;
+      --radius-sm:12px;
+      --max:1240px;
+      --topbar:74px;
     }
 
-    :root {
-      --bg: #0b0f16;
-      --panel: #121826;
-      --panel-2: #1a2233;
-      --panel-3: #101623;
-      --text: #f3f5f8;
-      --muted: #aab3c2;
-      --muted-2: #8d97aa;
-      --accent: #d6a85f;
-      --accent-soft: rgba(214, 168, 95, 0.18);
-      --border: rgba(255,255,255,0.08);
-      --border-strong: rgba(214,168,95,0.32);
-      --shadow: 0 12px 35px rgba(0,0,0,0.45);
-      --shadow-soft: 0 20px 45px rgba(0,0,0,0.34);
-      --radius: 18px;
-      --radius-lg: 24px;
-      --max: 1200px;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: Arial, Helvetica, sans-serif;
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+      color:var(--text);
       background:
-        linear-gradient(rgba(7,10,16,0.88), rgba(7,10,16,0.95)),
-        url("assets/fondo-sasha-panorama.png") center/cover no-repeat fixed;
-      background-color: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
+        radial-gradient(circle at top, rgba(212,177,106,.08), transparent 26%),
+        linear-gradient(180deg, #0b1016 0%, #0c1219 100%);
+      min-height:100vh;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
+    a{
+      color:inherit;
+      text-decoration:none;
     }
 
-    img,
-    video {
-      display: block;
-      max-width: 100%;
+    img{
+      display:block;
+      max-width:100%;
     }
 
-    .container {
-      width: min(var(--max), 92%);
-      margin: 0 auto;
+    button{
+      font:inherit;
     }
 
-    .topbar {
-      width: min(var(--max), 92%);
-      margin: 0 auto;
-      padding: 28px 0 12px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:40;
+      height:var(--topbar);
+      border-bottom:1px solid var(--line);
+      background:rgba(11,16,22,.86);
+      backdrop-filter:blur(14px);
     }
 
-    .topbar-left,
-    .topbar-right {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
+    .topbar-inner{
+      max-width:var(--max);
+      height:100%;
+      margin:0 auto;
+      padding:0 24px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
     }
 
-    .nav-pill {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      min-height: 44px;
-      padding: 10px 16px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid var(--border);
-      color: #eef2f8;
-      transition: transform 0.22s ease, background 0.22s ease, border-color 0.22s ease;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.16);
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:0;
     }
 
-    .nav-pill:hover {
-      transform: translateY(-1px);
-      background: rgba(255,255,255,0.1);
-      border-color: rgba(214,168,95,0.28);
+    .brand-mark{
+      width:38px;
+      height:38px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      border:1px solid var(--line-strong);
+      background:linear-gradient(145deg, rgba(212,177,106,.14), rgba(255,255,255,.02));
+      color:var(--accent);
+      font-weight:700;
+      letter-spacing:.08em;
+      flex:0 0 auto;
     }
 
-    .hero {
-      width: min(var(--max), 92%);
-      margin: 0 auto;
-      padding: 18px 0 34px;
+    .brand-text{
+      min-width:0;
     }
 
-    .hero-card {
-      position: relative;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      border-radius: 28px;
+    .brand-text strong{
+      display:block;
+      font-size:.98rem;
+      font-weight:700;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .brand-text span{
+      display:block;
+      color:var(--muted);
+      font-size:.8rem;
+      margin-top:2px;
+    }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    .nav a{
+      padding:10px 14px;
+      border-radius:999px;
+      color:var(--muted);
+      border:1px solid transparent;
+      transition:.25s ease;
+      font-size:.95rem;
+    }
+
+    .nav a:hover,
+    .nav a.active{
+      color:var(--text);
+      border-color:var(--line);
+      background:rgba(255,255,255,.03);
+    }
+
+    .page{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:34px 24px 70px;
+    }
+
+    .hero{
+      margin-bottom:28px;
+      padding:18px 0 8px;
+      display:flex;
+      align-items:end;
+      justify-content:space-between;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      color:var(--accent);
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      font-size:.72rem;
+      font-weight:700;
+      margin-bottom:12px;
+    }
+
+    .eyebrow::before{
+      content:"";
+      width:30px;
+      height:1px;
+      background:rgba(212,177,106,.55);
+      display:block;
+    }
+
+    h1{
+      margin:0;
+      font-size:clamp(2rem, 4vw, 3.4rem);
+      line-height:1.04;
+      letter-spacing:-.03em;
+    }
+
+    .hero p{
+      margin:12px 0 0;
+      max-width:720px;
+      color:var(--muted);
+      font-size:1rem;
+      line-height:1.65;
+    }
+
+    .hero-meta{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      min-height:42px;
+      padding:0 16px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      color:var(--text);
+      font-size:.92rem;
+      white-space:nowrap;
+    }
+
+    .pill strong{
+      color:var(--accent);
+      font-weight:700;
+    }
+
+    .section-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin:0 0 18px;
+      flex-wrap:wrap;
+    }
+
+    .section-head h2{
+      margin:0;
+      font-size:1.2rem;
+      letter-spacing:.01em;
+    }
+
+    .section-head span{
+      color:var(--muted);
+      font-size:.92rem;
+    }
+
+    .gallery{
+      display:grid;
+      grid-template-columns:repeat(12, 1fr);
+      gap:16px;
+    }
+
+    .gallery-card{
+      grid-column:span 4;
+      position:relative;
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      overflow:hidden;
+      background:var(--panel);
+      cursor:pointer;
+      transition:transform .28s ease, border-color .28s ease, box-shadow .28s ease;
+      box-shadow:0 10px 30px rgba(0,0,0,.18);
+      min-height:280px;
+      isolation:isolate;
+    }
+
+    .gallery-card:hover{
+      transform:translateY(-4px);
+      border-color:var(--line-strong);
+      box-shadow:0 18px 44px rgba(0,0,0,.28);
+    }
+
+    .gallery-card.featured{
+      grid-column:span 8;
+      min-height:576px;
+    }
+
+    .gallery-card img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      background:#0f151c;
+    }
+
+    .gallery-card::after{
+      content:"";
+      position:absolute;
+      inset:0;
       background:
-        linear-gradient(135deg, rgba(214,168,95,0.12), rgba(255,255,255,0.02) 35%, rgba(255,255,255,0.01)),
-        linear-gradient(180deg, rgba(18,24,38,0.96), rgba(10,15,24,0.98));
-      box-shadow: 0 26px 55px rgba(0,0,0,0.38);
-      padding: 38px 34px 34px;
+        linear-gradient(180deg, rgba(0,0,0,.03) 0%, rgba(0,0,0,.08) 36%, rgba(0,0,0,.74) 100%);
+      z-index:0;
     }
 
-    .hero-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
+    .card-info{
+      position:absolute;
+      inset:auto 0 0 0;
+      z-index:1;
+      padding:20px 20px 18px;
+    }
+
+    .card-topline{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:8px;
+      color:#f6e7c4;
+      font-size:.76rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    .card-topline span{
+      padding:6px 10px;
+      border-radius:999px;
+      background:rgba(12,18,26,.5);
+      border:1px solid rgba(255,255,255,.12);
+      backdrop-filter:blur(8px);
+    }
+
+    .card-title{
+      margin:0;
+      font-size:1.08rem;
+      line-height:1.2;
+    }
+
+    .card-desc{
+      margin:8px 0 0;
+      color:#d5dde7;
+      font-size:.93rem;
+      line-height:1.45;
+      max-width:66ch;
+    }
+
+    .videos-wrap{
+      margin-top:54px;
+      padding-top:10px;
+    }
+
+    .video-toolbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+      margin-bottom:18px;
+    }
+
+    .video-toolbar h2{
+      margin:0;
+      font-size:1.2rem;
+    }
+
+    .video-toolbar p{
+      margin:6px 0 0;
+      color:var(--muted);
+      font-size:.95rem;
+    }
+
+    .video-controls{
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+
+    .ctrl-btn{
+      width:42px;
+      height:42px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      color:var(--text);
+      border-radius:50%;
+      cursor:pointer;
+      transition:.25s ease;
+    }
+
+    .ctrl-btn:hover{
+      border-color:var(--line-strong);
+      background:rgba(255,255,255,.06);
+    }
+
+    .video-rail{
+      display:flex;
+      gap:16px;
+      overflow-x:auto;
+      scroll-behavior:smooth;
+      padding-bottom:10px;
+      scrollbar-width:thin;
+      scrollbar-color:rgba(212,177,106,.35) transparent;
+    }
+
+    .video-rail::-webkit-scrollbar{
+      height:10px;
+    }
+
+    .video-rail::-webkit-scrollbar-thumb{
+      background:rgba(212,177,106,.35);
+      border-radius:999px;
+    }
+
+    .video-card{
+      flex:0 0 min(430px, 92vw);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      overflow:hidden;
+      background:var(--panel);
+      box-shadow:0 12px 34px rgba(0,0,0,.18);
+    }
+
+    .video-frame{
+      aspect-ratio:16 / 9;
+      background:#0f151c;
+      position:relative;
+    }
+
+    .video-frame iframe,
+    .video-frame video{
+      width:100%;
+      height:100%;
+      border:0;
+      display:block;
+    }
+
+    .video-placeholder{
+      position:absolute;
+      inset:0;
+      display:grid;
+      place-items:center;
+      text-align:center;
+      padding:24px;
+      color:var(--muted);
       background:
-        radial-gradient(circle at 15% 20%, rgba(214,168,95,0.2), transparent 22%),
-        radial-gradient(circle at 82% 18%, rgba(214,168,95,0.1), transparent 18%);
-      pointer-events: none;
+        radial-gradient(circle at top, rgba(212,177,106,.12), transparent 28%),
+        linear-gradient(180deg, #111924 0%, #0e141d 100%);
     }
 
-    .hero-inner {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 26px;
-      align-items: center;
+    .video-placeholder div{
+      max-width:280px;
     }
 
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 14px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: rgba(214,168,95,0.1);
-      border: 1px solid rgba(214,168,95,0.22);
-      color: #f1cc8c;
-      font-size: 0.84rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+    .video-placeholder strong{
+      display:block;
+      color:var(--text);
+      font-size:1.02rem;
+      margin-bottom:8px;
     }
 
-    .hero h1 {
-      font-size: clamp(2.2rem, 5vw, 4.1rem);
-      line-height: 0.98;
-      color: #ffffff;
-      margin-bottom: 16px;
+    .video-copy{
+      padding:16px 18px 18px;
     }
 
-    .hero p.lead {
-      max-width: 760px;
-      color: #d9dfeb;
-      font-size: 1.06rem;
-      line-height: 1.72;
-      margin-bottom: 20px;
+    .video-copy h3{
+      margin:0 0 8px;
+      font-size:1rem;
+    }
+
+    .video-copy p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.55;
+      font-size:.92rem;
     }
 
-    .hero-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 22px;
-    }
-
-    .meta-pill {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 38px;
-      padding: 8px 14px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      color: #d9dfeb;
-      font-size: 0.92rem;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .hero-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 48px;
-      padding: 12px 18px;
-      border-radius: 14px;
-      font-weight: 700;
-      transition: transform 0.22s ease, background 0.22s ease, border-color 0.22s ease;
-    }
-
-    .hero-btn:hover {
-      transform: translateY(-2px);
-    }
-
-    .hero-btn.primary {
-      color: #3f2b10;
-      background: linear-gradient(180deg, #e1b86f 0%, #bf8b3d 100%);
-      border: 1px solid #8f682d;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.4);
-    }
-
-    .hero-btn.secondary {
-      color: #eef2f8;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .hero-figure {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .hero-portrait {
-      width: min(360px, 100%);
-      aspect-ratio: 4 / 5;
-      overflow: hidden;
-      border-radius: 24px;
-      border: 1px solid rgba(214,168,95,0.24);
-      background:
-        radial-gradient(circle at 50% 22%, rgba(214,168,95,0.16), transparent 20%),
-        linear-gradient(180deg, rgba(35,42,64,0.95), rgba(14,18,28,0.98));
-      box-shadow: 0 22px 40px rgba(0,0,0,0.34);
-    }
-
-    .hero-portrait img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-    }
-
-    .section-shell {
-      width: min(var(--max), 92%);
-      margin: 0 auto 70px;
-    }
-
-    .section-heading {
-      margin-bottom: 22px;
-    }
-
-    .section-heading h2 {
-      font-size: clamp(1.9rem, 3vw, 2.8rem);
-      color: #ffffff;
-      margin-bottom: 10px;
-    }
-
-    .section-heading p {
-      max-width: 760px;
-      color: var(--muted);
-      font-size: 1rem;
-      line-height: 1.68;
-    }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 22px;
-    }
-
-    .card {
-      position: relative;
-      overflow: hidden;
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015)),
-        linear-gradient(180deg, rgba(18,24,38,0.96), rgba(11,16,25,0.98));
-      box-shadow: var(--shadow);
-      cursor: pointer;
-      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-6px);
-      border-color: var(--border-strong);
-      box-shadow: 0 24px 48px rgba(0,0,0,0.46);
-    }
-
-    .card-image {
-      aspect-ratio: 4 / 5;
-      overflow: hidden;
-      background: #0f1420;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .card-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.35s ease;
-    }
-
-    .card:hover .card-image img {
-      transform: scale(1.045);
-    }
-
-    .card-content {
-      padding: 16px;
-    }
-
-    .card-content h3 {
-      font-size: 1.14rem;
-      color: #ffffff;
-      margin-bottom: 6px;
-    }
-
-    .card-content .subtitle {
-      color: var(--accent);
-      font-size: 0.95rem;
-      margin-bottom: 10px;
-      font-weight: 700;
-    }
-
-    .card-content .mini-text {
-      color: var(--muted);
-      font-size: 0.92rem;
-      line-height: 1.58;
-    }
-
-    .video-carousel-section {
-      width: min(var(--max), 92%);
-      margin: 0 auto 90px;
-    }
-
-    #videos {
-      scroll-margin-top: 18px;
-    }
-
-    .video-carousel-header {
-      margin-bottom: 22px;
-    }
-
-    .video-carousel-header h2 {
-      font-size: clamp(1.9rem, 3vw, 2.8rem);
-      color: #fff;
-      margin-bottom: 10px;
-    }
-
-    .video-carousel-header p {
-      max-width: 760px;
-      color: var(--muted);
-      font-size: 1rem;
-      line-height: 1.68;
-    }
-
-    .video-carousel-shell {
-      display: grid;
-      grid-template-columns: 62px 1fr 62px;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .video-arrow {
-      width: 62px;
-      height: 62px;
-      border: 1px solid var(--border);
-      border-radius: 50%;
-      background: rgba(255,255,255,0.06);
-      color: #fff;
-      font-size: 1.55rem;
-      cursor: pointer;
-      transition: transform 0.22s ease, background 0.22s ease, border-color 0.22s ease;
-      z-index: 20;
-    }
-
-    .video-arrow:hover {
-      transform: scale(1.05);
-      background: rgba(255,255,255,0.14);
-      border-color: var(--border-strong);
-    }
-
-    .video-carousel-stage {
-      position: relative;
-      height: 520px;
-      overflow: hidden;
-      perspective: 1400px;
-      border-radius: 28px;
-      background:
-        linear-gradient(180deg, rgba(18,24,38,0.82), rgba(9,13,21,0.92));
-      border: 1px solid rgba(255,255,255,0.06);
-      box-shadow: var(--shadow-soft);
-    }
-
-    .video-card {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: min(560px, 78vw);
-      transform-style: preserve-3d;
-      transition: transform 0.55s ease, opacity 0.55s ease, filter 0.55s ease;
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .video-card.is-active,
-    .video-card.is-left,
-    .video-card.is-right,
-    .video-card.is-left-far,
-    .video-card.is-right-far {
-      pointer-events: auto;
-    }
-
-    .video-card.is-active {
-      transform: translate(-50%, -50%) translateX(0) scale(1);
-      opacity: 1;
-      z-index: 5;
-      filter: none;
-    }
-
-    .video-card.is-left {
-      transform: translate(-50%, -50%) translateX(-280px) scale(0.8) rotateY(22deg);
-      opacity: 0.52;
-      z-index: 4;
-      filter: blur(2px) saturate(0.8);
-    }
-
-    .video-card.is-right {
-      transform: translate(-50%, -50%) translateX(280px) scale(0.8) rotateY(-22deg);
-      opacity: 0.52;
-      z-index: 4;
-      filter: blur(2px) saturate(0.8);
-    }
-
-    .video-card.is-left-far {
-      transform: translate(-50%, -50%) translateX(-470px) scale(0.62) rotateY(28deg);
-      opacity: 0.18;
-      z-index: 3;
-      filter: blur(4px) saturate(0.55);
-    }
-
-    .video-card.is-right-far {
-      transform: translate(-50%, -50%) translateX(470px) scale(0.62) rotateY(-28deg);
-      opacity: 0.18;
-      z-index: 3;
-      filter: blur(4px) saturate(0.55);
-    }
-
-    .video-card.is-hidden {
-      transform: translate(-50%, -50%) scale(0.45);
-      opacity: 0;
-      z-index: 1;
-      filter: blur(6px);
-    }
-
-    .video-frame {
-      aspect-ratio: 16 / 9;
-      border-radius: 22px;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: #000;
-      box-shadow: 0 24px 50px rgba(0,0,0,0.45);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .video-frame video {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      background: #000;
-    }
-
-    .video-meta {
-      text-align: center;
-      padding-top: 12px;
-    }
-
-    .video-meta h3 {
-      color: #fff;
-      font-size: 1.12rem;
-      margin-bottom: 6px;
-    }
+    .footer{
+      margin-top:56px;
+      padding-top:22px;
+      border-top:1px solid var(--line);
+      color:var(--muted);
+      font-size:.9rem;
+    }
 
-    .video-meta p {
-      color: var(--muted);
-      font-size: 0.94rem;
-      line-height: 1.55;
+    .modal{
+      position:fixed;
+      inset:0;
+      z-index:100;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+      background:rgba(3,7,12,.72);
+      backdrop-filter:blur(12px);
     }
 
-    .video-empty {
-      display: grid;
-      place-items: center;
-      min-height: 320px;
-      height: 100%;
-      color: var(--muted);
-      text-align: center;
-      padding: 30px;
-      font-size: 1rem;
-      line-height: 1.65;
+    .modal.open{
+      display:flex;
     }
 
-    .modal {
-      position: fixed;
-      inset: 0;
-      background: rgba(3, 6, 12, 0.86);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      z-index: 999;
-      backdrop-filter: blur(4px);
+    .modal-dialog{
+      width:min(1200px, 100%);
+      max-height:min(90vh, 980px);
+      display:grid;
+      grid-template-columns:minmax(0, 1.45fr) minmax(320px, .9fr);
+      border:1px solid var(--line);
+      border-radius:24px;
+      overflow:hidden;
+      background:linear-gradient(180deg, #0f161f 0%, #121a24 100%);
+      box-shadow:var(--shadow);
+      position:relative;
     }
 
-    .modal.active {
-      display: flex;
+    .modal-visual{
+      position:relative;
+      min-height:420px;
+      background:#0e141b;
     }
 
-    .modal-box {
-      width: min(1140px, 100%);
-      max-height: 90vh;
-      overflow: auto;
-      position: relative;
-      border-radius: 26px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background:
-        linear-gradient(180deg, #121826, #0d131f);
-      box-shadow: 0 28px 65px rgba(0,0,0,0.62);
+    .modal-visual img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
     }
 
-    .modal-close {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      width: 44px;
-      height: 44px;
-      border: none;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.08);
-      color: #fff;
-      font-size: 1.4rem;
-      cursor: pointer;
-      z-index: 10;
-      transition: background 0.2s ease, transform 0.2s ease;
+    .modal-counter{
+      position:absolute;
+      left:18px;
+      bottom:18px;
+      z-index:2;
+      padding:10px 14px;
+      border-radius:999px;
+      background:rgba(7,11,17,.58);
+      border:1px solid rgba(255,255,255,.12);
+      color:#f4e8c9;
+      font-size:.9rem;
+      backdrop-filter:blur(10px);
     }
 
-    .modal-close:hover {
-      background: rgba(255,255,255,0.16);
-      transform: scale(1.04);
+    .modal-side{
+      border-left:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
+      padding:24px 24px 22px;
+      overflow:auto;
+      position:relative;
     }
 
-    .modal-content {
-      display: grid;
-      grid-template-columns: 1.08fr 0.92fr;
-      min-height: 600px;
+    .modal-actions{
+      position:absolute;
+      top:16px;
+      right:16px;
+      display:flex;
+      gap:10px;
+      z-index:5;
     }
 
-    .modal-image {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 26px;
-      border-right: 1px solid rgba(255,255,255,0.06);
-      background:
-        radial-gradient(circle at 50% 20%, rgba(214,168,95,0.12), transparent 20%),
-        linear-gradient(180deg, #0a0f18, #0b1018);
+    .icon-btn{
+      width:42px;
+      height:42px;
+      border-radius:50%;
+      border:1px solid var(--line);
+      background:rgba(18,27,38,.85);
+      color:var(--text);
+      display:grid;
+      place-items:center;
+      cursor:pointer;
+      transition:.25s ease;
+      backdrop-filter:blur(8px);
     }
 
-    .modal-image img {
-      max-width: 100%;
-      max-height: 78vh;
-      object-fit: contain;
-      border-radius: 18px;
-      box-shadow: 0 18px 40px rgba(0,0,0,0.34);
+    .icon-btn:hover{
+      border-color:var(--line-strong);
+      background:rgba(22,34,50,.96);
     }
 
-    .modal-info {
-      padding: 34px 28px 28px;
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
+    .modal-kicker{
+      color:var(--accent);
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      font-size:.72rem;
+      font-weight:700;
+      margin:4px 0 12px;
     }
 
-    .modal-label {
-      color: var(--accent);
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+    .modal-title{
+      margin:0 0 8px;
+      font-size:clamp(1.5rem, 2.6vw, 2.2rem);
+      line-height:1.08;
     }
 
-    .modal-info h2 {
-      font-size: clamp(1.8rem, 3vw, 2.35rem);
-      color: #fff;
-      line-height: 1.05;
+    .modal-subtitle{
+      margin:0 0 18px;
+      color:var(--muted);
+      font-size:1rem;
+      line-height:1.55;
     }
 
-    .modal-role {
-      color: #efd08f;
-      font-weight: 700;
-      font-size: 1rem;
+    .meta-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+      margin-bottom:18px;
     }
 
-    .modal-description {
-      color: #d5dceb;
-      line-height: 1.72;
-      font-size: 1rem;
+    .meta-card{
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:12px 14px;
+      background:rgba(255,255,255,.02);
     }
 
-    .info-box {
-      padding: 18px;
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.04);
+    .meta-card span{
+      display:block;
+      color:var(--muted);
+      font-size:.78rem;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      margin-bottom:6px;
     }
 
-    .info-box h4 {
-      color: #fff;
-      margin-bottom: 12px;
-      font-size: 1rem;
+    .meta-card strong{
+      display:block;
+      font-size:.96rem;
+      line-height:1.4;
     }
 
-    .info-box ul {
-      list-style: none;
-      display: grid;
-      gap: 10px;
+    .modal-text{
+      border-top:1px solid var(--line);
+      padding-top:18px;
     }
 
-    .info-box li {
-      color: #d2d9e8;
-      line-height: 1.55;
+    .modal-text h3{
+      margin:0 0 10px;
+      font-size:1rem;
     }
 
-    .info-box strong {
-      color: #ffffff;
+    .modal-text p{
+      margin:0;
+      color:#d4dce6;
+      line-height:1.72;
+      font-size:.96rem;
     }
 
-    .modal-controls {
-      display: flex;
-      gap: 12px;
-      margin-top: auto;
-      padding-top: 8px;
+    .tags{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:18px;
     }
 
-    .modal-btn {
-      border: none;
-      background: rgba(255,255,255,0.08);
-      color: #fff;
-      padding: 12px 16px;
-      border-radius: 12px;
-      cursor: pointer;
-      font-size: 0.96rem;
-      transition: background 0.2s ease, transform 0.2s ease;
+    .tag{
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      color:#dfe6ee;
+      font-size:.85rem;
     }
 
-    .modal-btn:hover {
-      background: rgba(255,255,255,0.14);
-      transform: translateY(-1px);
+    .sr-only{
+      position:absolute!important;
+      width:1px!important;
+      height:1px!important;
+      padding:0!important;
+      margin:-1px!important;
+      overflow:hidden!important;
+      clip:rect(0,0,0,0)!important;
+      white-space:nowrap!important;
+      border:0!important;
     }
 
-    @media (max-width: 1000px) {
-      .hero-inner {
-        grid-template-columns: 1fr;
+    @media (max-width: 1100px){
+      .gallery-card{
+        grid-column:span 6;
       }
 
-      .hero-figure {
-        justify-content: flex-start;
+      .gallery-card.featured{
+        grid-column:span 12;
+        min-height:460px;
       }
 
-      .video-carousel-stage {
-        height: 450px;
+      .modal-dialog{
+        grid-template-columns:1fr;
+        max-height:92vh;
       }
 
-      .video-card.is-left {
-        transform: translate(-50%, -50%) translateX(-210px) scale(0.78) rotateY(16deg);
-      }
-
-      .video-card.is-right {
-        transform: translate(-50%, -50%) translateX(210px) scale(0.78) rotateY(-16deg);
-      }
-
-      .video-card.is-left-far {
-        transform: translate(-50%, -50%) translateX(-340px) scale(0.6) rotateY(20deg);
-      }
-
-      .video-card.is-right-far {
-        transform: translate(-50%, -50%) translateX(340px) scale(0.6) rotateY(-20deg);
+      .modal-side{
+        border-left:none;
+        border-top:1px solid var(--line);
       }
     }
 
-    @media (max-width: 900px) {
-      .modal-content {
-        grid-template-columns: 1fr;
+    @media (max-width: 760px){
+      .topbar-inner,
+      .page{
+        padding-left:16px;
+        padding-right:16px;
       }
 
-      .modal-image {
-        border-right: none;
-        border-bottom: 1px solid rgba(255,255,255,0.06);
-      }
-    }
-
-    @media (max-width: 700px) {
-      .topbar {
-        padding-top: 22px;
+      .nav{
+        display:none;
       }
 
-      .hero-card {
-        padding: 28px 20px 22px;
+      .hero{
+        padding-top:8px;
       }
 
-      .video-carousel-shell {
-        grid-template-columns: 50px 1fr 50px;
+      .gallery{
+        gap:14px;
       }
 
-      .video-arrow {
-        width: 50px;
-        height: 50px;
-        font-size: 1.2rem;
+      .gallery-card,
+      .gallery-card.featured{
+        grid-column:span 12;
+        min-height:330px;
       }
 
-      .video-carousel-stage {
-        height: 370px;
+      .card-info{
+        padding:16px;
       }
 
-      .video-card {
-        width: min(92vw, 520px);
+      .card-desc{
+        font-size:.9rem;
       }
 
-      .video-card.is-left {
-        transform: translate(-50%, -50%) translateX(-120px) scale(0.72);
+      .modal{
+        padding:10px;
       }
 
-      .video-card.is-right {
-        transform: translate(-50%, -50%) translateX(120px) scale(0.72);
+      .modal-dialog{
+        border-radius:20px;
       }
 
-      .video-card.is-left-far,
-      .video-card.is-right-far {
-        opacity: 0;
+      .modal-visual{
+        min-height:300px;
       }
 
-      .modal-info {
-        padding: 24px 18px 20px;
-      }
-    }
-
-    @media (max-width: 560px) {
-      .hero h1 {
-        font-size: 2.1rem;
-      }
-
-      .hero-actions {
-        flex-direction: column;
-      }
-
-      .hero-btn {
-        width: 100%;
-      }
-
-      .card-content {
-        padding: 14px;
-      }
-
-      .modal-controls {
-        flex-direction: column;
-      }
-
-      .modal-btn {
-        width: 100%;
+      .meta-grid{
+        grid-template-columns:1fr;
       }
     }
   </style>
@@ -782,399 +722,453 @@
 <body>
 
   <header class="topbar">
-    <div class="topbar-left">
-      <a href="./index.html" class="nav-pill">← Volver al inicio</a>
-      <a href="./index.html#lore" class="nav-pill">Personajes</a>
-    </div>
-    <div class="topbar-right">
-      <a href="./enemigos.html" class="nav-pill">← Enemigos</a>
-      <a href="./party-girls.html" class="nav-pill">Party Girls →</a>
+    <div class="topbar-inner">
+      <a class="brand" href="index.html" aria-label="Volver a inicio">
+        <div class="brand-mark">S</div>
+        <div class="brand-text">
+          <strong>Las Crónicas de Sasha</strong>
+          <span>Galería visual</span>
+        </div>
+      </a>
+
+      <nav class="nav" aria-label="Navegación principal">
+        <a href="index.html">Inicio</a>
+        <a href="sasha.html" class="active">Sasha</a>
+        <a href="party-girls.html">Party Girls</a>
+        <a href="aliados.html">Aliados</a>
+        <a href="enemigos.html">Enemigos</a>
+      </nav>
     </div>
   </header>
 
-  <section class="hero">
-    <div class="hero-card">
-      <div class="hero-inner">
-        <div class="hero-copy">
-          <div class="hero-badge">⚔ Protagonista principal</div>
-          <h1>Galería de Sasha</h1>
-          <p class="lead">
-            El núcleo de la saga. Aquí se reúnen escenas, versiones y momentos clave del personaje principal, con una presentación más cuidada para que la imagen y la ficha respiren mejor.
-          </p>
+  <main class="page">
+    <section class="hero">
+      <div>
+        <div class="eyebrow">Galería</div>
+        <h1>Sasha</h1>
+        <p>
+          Una galería limpia y directa, con la imagen como protagonista. Pulso visual sobrio, ficha lateral en el modal y
+          un bloque inferior para vídeos o escenas relacionadas.
+        </p>
+      </div>
 
-          <div class="hero-meta">
-            <span class="meta-pill">Guerrera defensiva</span>
-            <span class="meta-pill">Espada y escudo</span>
-            <span class="meta-pill">Evolución narrativa</span>
-          </div>
+      <div class="hero-meta">
+        <div class="pill"><strong id="imageCount">0</strong> imágenes</div>
+        <a class="pill" href="#videos">Ir a vídeos</a>
+      </div>
+    </section>
 
-          <div class="hero-actions">
-            <a class="hero-btn primary" href="#galeria">Ver galería</a>
-            <a class="hero-btn secondary" href="#videos">Ir a vídeos</a>
-          </div>
+    <section aria-labelledby="galeria-titulo">
+      <div class="section-head">
+        <h2 id="galeria-titulo">Parrilla principal</h2>
+        <span>Pulsa una imagen para abrir su ficha</span>
+      </div>
+
+      <div id="galleryGrid" class="gallery"></div>
+    </section>
+
+    <section class="videos-wrap" id="videos" aria-labelledby="videos-titulo">
+      <div class="video-toolbar">
+        <div>
+          <h2 id="videos-titulo">Vídeos</h2>
+          <p>Carrusel horizontal para trailers, escenas, animatics o clips del personaje.</p>
         </div>
 
-        <div class="hero-figure">
-          <div class="hero-portrait">
-            <img src="assets/personajes/Sasha.png" alt="Sasha" />
-          </div>
+        <div class="video-controls">
+          <button class="ctrl-btn" id="videosPrev" aria-label="Desplazar vídeos a la izquierda">‹</button>
+          <button class="ctrl-btn" id="videosNext" aria-label="Desplazar vídeos a la derecha">›</button>
         </div>
       </div>
-    </div>
-  </section>
 
-  <main class="section-shell" id="galeria">
-    <div class="section-heading">
-      <h2>Colección visual</h2>
-      <p>
-        Recorre distintas apariciones de Sasha y abre cada imagen para ver su ficha ampliada, con mejor jerarquía visual y una lectura más cómoda.
-      </p>
-    </div>
+      <div class="video-rail" id="videoRail"></div>
+    </section>
 
-    <div class="gallery-grid" id="galleryGrid"></div>
+    <footer class="footer">
+      Página de galería pensada para GitHub Pages. Estructura lista para replicar después en
+      <strong>party-girls.html</strong>, <strong>aliados.html</strong> y <strong>enemigos.html</strong>.
+    </footer>
   </main>
 
-  <section class="video-carousel-section" id="videos">
-    <div class="video-carousel-header">
-      <h2>Vídeos de Sasha</h2>
-      <p>
-        Escenas en movimiento del universo de Sasha. Usa las flechas para girar el carrusel y traer cada vídeo al primer plano.
-      </p>
-    </div>
+  <div class="modal" id="galleryModal" aria-hidden="true">
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-visual">
+        <img id="modalImage" src="" alt="" />
+        <div class="modal-counter" id="modalCounter">1 / 1</div>
 
-    <div class="video-carousel-shell">
-      <button class="video-arrow" id="videoPrev" aria-label="Vídeo anterior">‹</button>
-
-      <div class="video-carousel-stage" id="videoCarouselStage">
-        <div class="video-empty">Cargando vídeos...</div>
-      </div>
-
-      <button class="video-arrow" id="videoNext" aria-label="Vídeo siguiente">›</button>
-    </div>
-  </section>
-
-  <div class="modal" id="imageModal">
-    <div class="modal-box">
-      <button class="modal-close" id="closeModal" aria-label="Cerrar">×</button>
-
-      <div class="modal-content">
-        <div class="modal-image">
-          <img id="modalImg" src="" alt="" />
-        </div>
-
-        <div class="modal-info">
-          <div class="modal-label">Ficha visual</div>
-          <h2 id="modalTitle">Título</h2>
-          <div class="modal-role" id="modalRole">Rol</div>
-          <p class="modal-description" id="modalDescription"></p>
-
-          <div class="info-box">
-            <h4>Datos del personaje</h4>
-            <ul id="modalData"></ul>
-          </div>
-
-          <div class="modal-controls">
-            <button class="modal-btn" id="prevBtn">← Anterior</button>
-            <button class="modal-btn" id="nextBtn">Siguiente →</button>
-          </div>
+        <div class="modal-actions">
+          <button class="icon-btn" id="prevBtn" aria-label="Imagen anterior">‹</button>
+          <button class="icon-btn" id="nextBtn" aria-label="Imagen siguiente">›</button>
+          <button class="icon-btn" id="closeBtn" aria-label="Cerrar ficha">✕</button>
         </div>
       </div>
+
+      <aside class="modal-side">
+        <div class="modal-kicker" id="modalKicker">Sasha</div>
+        <h2 class="modal-title" id="modalTitle">Título</h2>
+        <p class="modal-subtitle" id="modalSubtitle">Subtítulo</p>
+
+        <div class="meta-grid">
+          <div class="meta-card">
+            <span>Rol</span>
+            <strong id="modalRole">-</strong>
+          </div>
+          <div class="meta-card">
+            <span>Etapa</span>
+            <strong id="modalStage">-</strong>
+          </div>
+          <div class="meta-card">
+            <span>Equipo</span>
+            <strong id="modalEquipment">-</strong>
+          </div>
+          <div class="meta-card">
+            <span>Escena</span>
+            <strong id="modalScene">-</strong>
+          </div>
+        </div>
+
+        <div class="modal-text">
+          <h3>Descripción</h3>
+          <p id="modalDescription"></p>
+        </div>
+
+        <div class="tags" id="modalTags"></div>
+      </aside>
     </div>
   </div>
 
   <script>
-    const sashaGallery = [
+    /*
+      EDITA AQUÍ LAS IMÁGENES DE SASHA
+      Cambia las rutas por tus archivos reales.
+      Puedes añadir o quitar elementos sin tocar el resto del HTML.
+    */
+    const galleryItems = [
       {
-        image: "assets/galerias/sasha/sasha-01.png",
-        title: "Sasha",
-        subtitle: "Inicio del viaje",
-        preview: "Una de las primeras apariciones del personaje dentro del nuevo mundo.",
-        role: "Protagonista | Guerrera / tanque",
-        description: "Sasha es la figura central de la saga. Su recorrido mezcla descubrimiento, combate, evolución personal y adaptación a un mundo ajeno lleno de peligros, magia y criaturas.",
-        details: [
-          { label: "Clase", value: "Guerrera defensiva / tanque" },
-          { label: "Arma habitual", value: "Espada y escudo" },
-          { label: "Rasgos", value: "Determinación, resistencia, liderazgo" },
-          { label: "Contexto", value: "Primeras fases de progresión en Demon Hunter" }
-        ]
+        src: "images/sasha/sasha-01.jpg",
+        full: "images/sasha/sasha-01.jpg",
+        title: "Sasha · Retrato principal",
+        subtitle: "Imagen de referencia para abrir la galería con fuerza visual.",
+        role: "Protagonista",
+        stage: "Referencia base",
+        equipment: "Variable según escena",
+        scene: "Retrato",
+        description: "Retrato central de Sasha. Esta pieza funciona bien como imagen de entrada o como tarjeta destacada de la parrilla.",
+        tags: ["canon", "retrato", "portada"]
       },
       {
-        image: "assets/galerias/sasha/sasha-02.png",
-        title: "Sasha",
-        subtitle: "Exploración",
-        preview: "Escena centrada en su faceta de descubrimiento y avance por el mundo.",
-        role: "Protagonista | Aventurera",
-        description: "En esta fase, Sasha aparece ligada a la exploración del entorno, al aprendizaje de las reglas del nuevo mundo y a los primeros contactos con su entorno narrativo.",
-        details: [
-          { label: "Etapa", value: "Descubrimiento inicial" },
-          { label: "Enfoque", value: "Exploración y adaptación" },
-          { label: "Tono", value: "Curiosidad, prudencia, avance" },
-          { label: "Importancia", value: "Construcción del personaje" }
-        ]
+        src: "images/sasha/sasha-02.jpg",
+        full: "images/sasha/sasha-02.jpg",
+        title: "Sasha · Exploración",
+        subtitle: "Versión orientada a viaje, descubrimiento o terreno abierto.",
+        role: "Protagonista",
+        stage: "Inicio / viaje",
+        equipment: "Equipo ligero",
+        scene: "Exploración",
+        description: "Escena útil para mostrar a Sasha en desplazamiento, descubrimiento o transición narrativa.",
+        tags: ["aventura", "campo", "viaje"]
       },
       {
-        image: "assets/galerias/sasha/sasha-03.png",
-        title: "Sasha",
-        subtitle: "Preparada para el combate",
-        preview: "Una versión más orientada a la acción y al papel defensivo del personaje.",
-        role: "Protagonista | Combate",
-        description: "Aquí la imagen refleja mejor la naturaleza de Sasha como personaje resistente, capaz de proteger, aguantar la presión y mantenerse firme frente al peligro.",
-        details: [
-          { label: "Especialidad", value: "Defensa y primera línea" },
-          { label: "Fortaleza", value: "Alta resistencia" },
-          { label: "Estilo", value: "Combate frontal y control del riesgo" },
-          { label: "Símbolo", value: "Voluntad y constancia" }
-        ]
+        src: "images/sasha/sasha-03.jpg",
+        full: "images/sasha/sasha-03.jpg",
+        title: "Sasha · Combate",
+        subtitle: "Lectura más dinámica para escenas de tensión o acción.",
+        role: "Protagonista",
+        stage: "Acción",
+        equipment: "Espada y escudo",
+        scene: "Combate",
+        description: "Imagen pensada para momentos de presión, enfrentamiento o defensa. Encaja bien cuando la galería quiere alternar calma y energía.",
+        tags: ["acción", "batalla", "escudo"]
       },
       {
-        image: "assets/galerias/sasha/sasha-04.png",
-        title: "Sasha",
-        subtitle: "Evolución del personaje",
-        preview: "Imagen representativa de su progreso visual y narrativo.",
-        role: "Protagonista | Evolución",
-        description: "Esta escena puede utilizarse para mostrar cómo Sasha cambia con el paso de la historia, tanto en presencia visual como en madurez, capacidad y peso dentro del relato.",
-        details: [
-          { label: "Lectura narrativa", value: "Progreso y consolidación" },
-          { label: "Uso en web", value: "Ficha, lore o presentación principal" },
-          { label: "Sensación", value: "Presencia, crecimiento, identidad" },
-          { label: "Valor", value: "Refuerzo del arco del personaje" }
-        ]
+        src: "images/sasha/sasha-04.jpg",
+        full: "images/sasha/sasha-04.jpg",
+        title: "Sasha · Guardiana",
+        subtitle: "Perfil más firme, defensivo y protector.",
+        role: "Protagonista",
+        stage: "Defensa",
+        equipment: "Escudo / armadura",
+        scene: "Postura defensiva",
+        description: "Ideal para reforzar el carácter protector del personaje y su presencia sólida dentro del mundo visual de la saga.",
+        tags: ["defensa", "armadura", "presencia"]
       },
       {
-        image: "assets/galerias/sasha/sasha-05.png",
-        title: "Sasha",
-        subtitle: "Escena destacada",
-        preview: "Otra imagen clave para ampliar la galería del personaje.",
-        role: "Protagonista | Escena especial",
-        description: "Esta entrada amplía la colección visual de Sasha y ayuda a mostrar distintas etapas, atmósferas o situaciones relevantes dentro de su recorrido en la saga.",
-        details: [
-          { label: "Tipo de escena", value: "Destacada" },
-          { label: "Uso", value: "Galería y material promocional" },
-          { label: "Enfoque", value: "Variante visual del personaje" },
-          { label: "Función", value: "Enriquecer la presentación narrativa" }
-        ]
+        src: "images/sasha/sasha-05.jpg",
+        full: "images/sasha/sasha-05.jpg",
+        title: "Sasha · Escena narrativa",
+        subtitle: "Uso recomendado para momentos más íntimos o de desarrollo.",
+        role: "Protagonista",
+        stage: "Narrativa",
+        equipment: "Según contexto",
+        scene: "Momento clave",
+        description: "Pieza útil para insertar una pausa dentro de la galería, con una lectura más narrativa que puramente espectacular.",
+        tags: ["narrativa", "personaje", "atmósfera"]
+      },
+      {
+        src: "images/sasha/sasha-06.jpg",
+        full: "images/sasha/sasha-06.jpg",
+        title: "Sasha · Plano medio",
+        subtitle: "Buena opción para reforzar rostro, gesto o vestimenta.",
+        role: "Protagonista",
+        stage: "Intermedio",
+        equipment: "Variable",
+        scene: "Plano medio",
+        description: "Muy útil cuando quieres que el visitante se acerque más al personaje sin salir del lenguaje visual general de la galería.",
+        tags: ["rostro", "detalle", "diseño"]
+      },
+      {
+        src: "images/sasha/sasha-07.jpg",
+        full: "images/sasha/sasha-07.jpg",
+        title: "Sasha · Entorno",
+        subtitle: "Composición donde el escenario también ayuda a contar.",
+        role: "Protagonista",
+        stage: "Ambientación",
+        equipment: "Variable",
+        scene: "Entorno destacado",
+        description: "Sirve para abrir el foco y dar contexto espacial, algo muy útil cuando el mundo de la historia tiene peso propio.",
+        tags: ["mundo", "escenario", "contexto"]
+      },
+      {
+        src: "images/sasha/sasha-08.jpg",
+        full: "images/sasha/sasha-08.jpg",
+        title: "Sasha · Cierre de bloque",
+        subtitle: "Imagen final para cerrar la parrilla con una nota elegante.",
+        role: "Protagonista",
+        stage: "Cierre visual",
+        equipment: "Variable",
+        scene: "Última impresión",
+        description: "Buena candidata para cerrar la galería manteniendo coherencia estética y una última impresión memorable.",
+        tags: ["cierre", "galería", "final"]
       }
     ];
 
-    const sashaVideos = [
+    /*
+      EDITA AQUÍ LOS VÍDEOS
+      Opciones:
+      1) Pon embed con una URL de YouTube embed, por ejemplo:
+         https://www.youtube.com/embed/XXXXXXXXXXX
+      2) O usa local con:
+         local: "videos/sasha/video-01.mp4"
+      3) Si no rellenas nada, sale una tarjeta elegante de marcador.
+    */
+    const videos = [
       {
-        src: "assets/videos/sasha/espejo.mp4",
-        title: "Espejo",
-        caption: "Escena centrada en el reflejo, la identidad o una transición del personaje."
+        title: "Trailer de Sasha",
+        text: "Espacio para un trailer corto, teaser o montaje del personaje.",
+        embed: "",
+        local: ""
       },
       {
-        src: "assets/videos/sasha/gallinas.mp4",
-        title: "Gallinas",
-        caption: "Momento más ligero o cotidiano dentro del recorrido de Sasha."
+        title: "Escena narrativa",
+        text: "Tarjeta lista para incrustar una escena concreta o clip promocional.",
+        embed: "",
+        local: ""
       },
       {
-        src: "assets/videos/sasha/sasha-trasformacion.mp4",
-        title: "Transformación",
-        caption: "Escena de cambio, evolución o revelación del personaje."
+        title: "Proceso o making of",
+        text: "También puede usarse para vídeos de proceso, presentaciones o promos verticales adaptadas.",
+        embed: "",
+        local: ""
       }
     ];
 
     const galleryGrid = document.getElementById("galleryGrid");
-    const modal = document.getElementById("imageModal");
-    const closeModal = document.getElementById("closeModal");
-
-    const modalImg = document.getElementById("modalImg");
+    const imageCount = document.getElementById("imageCount");
+    const modal = document.getElementById("galleryModal");
+    const modalImage = document.getElementById("modalImage");
     const modalTitle = document.getElementById("modalTitle");
+    const modalSubtitle = document.getElementById("modalSubtitle");
     const modalRole = document.getElementById("modalRole");
+    const modalStage = document.getElementById("modalStage");
+    const modalEquipment = document.getElementById("modalEquipment");
+    const modalScene = document.getElementById("modalScene");
     const modalDescription = document.getElementById("modalDescription");
-    const modalData = document.getElementById("modalData");
-
+    const modalTags = document.getElementById("modalTags");
+    const modalCounter = document.getElementById("modalCounter");
     const prevBtn = document.getElementById("prevBtn");
     const nextBtn = document.getElementById("nextBtn");
-
-    const videoStage = document.getElementById("videoCarouselStage");
-    const videoPrev = document.getElementById("videoPrev");
-    const videoNext = document.getElementById("videoNext");
+    const closeBtn = document.getElementById("closeBtn");
+    const videoRail = document.getElementById("videoRail");
+    const videosPrev = document.getElementById("videosPrev");
+    const videosNext = document.getElementById("videosNext");
 
     let currentIndex = 0;
-    let currentVideoIndex = 0;
 
-    function renderGallery() {
-      galleryGrid.innerHTML = "";
+    function svgPlaceholder(label){
+      const text = encodeURIComponent(label || "Imagen");
+      return `data:image/svg+xml;charset=UTF-8,
+        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 900'>
+          <defs>
+            <linearGradient id='g' x1='0' x2='0' y1='0' y2='1'>
+              <stop offset='0%' stop-color='%23131c27'/>
+              <stop offset='100%' stop-color='%230d131b'/>
+            </linearGradient>
+          </defs>
+          <rect width='1200' height='900' fill='url(%23g)'/>
+          <circle cx='980' cy='120' r='160' fill='rgba(212,177,106,.10)'/>
+          <rect x='80' y='90' rx='24' ry='24' width='1040' height='720' fill='none' stroke='rgba(212,177,106,.28)' stroke-width='2'/>
+          <text x='50%' y='48%' dominant-baseline='middle' text-anchor='middle' fill='%23d4b16a' font-family='Segoe UI, Arial, sans-serif' font-size='54' letter-spacing='4'>LAS CRÓNICAS DE SASHA</text>
+          <text x='50%' y='57%' dominant-baseline='middle' text-anchor='middle' fill='%23ecf0f4' font-family='Segoe UI, Arial, sans-serif' font-size='34'>${text}</text>
+        </svg>`.replace(/\n/g, "");
+    }
 
-      sashaGallery.forEach((item, index) => {
+    function buildGallery(){
+      imageCount.textContent = galleryItems.length;
+
+      galleryItems.forEach((item, index) => {
         const card = document.createElement("article");
-        card.className = "card";
-        card.innerHTML = `
-          <div class="card-image">
-            <img src="${item.image}" alt="${item.title} - ${item.subtitle}">
+        card.className = `gallery-card ${index === 0 ? "featured" : ""}`;
+        card.tabIndex = 0;
+        card.setAttribute("role", "button");
+        card.setAttribute("aria-label", `Abrir ficha de ${item.title}`);
+
+        const img = document.createElement("img");
+        img.src = item.src;
+        img.alt = item.title;
+        img.loading = index < 4 ? "eager" : "lazy";
+        img.onerror = function(){
+          this.src = svgPlaceholder(item.title);
+        };
+
+        const info = document.createElement("div");
+        info.className = "card-info";
+        info.innerHTML = `
+          <div class="card-topline">
+            <span>${item.role}</span>
+            <span>${item.stage}</span>
           </div>
-          <div class="card-content">
-            <h3>${item.title}</h3>
-            <div class="subtitle">${item.subtitle}</div>
-            <p class="mini-text">${item.preview}</p>
-          </div>
+          <h3 class="card-title">${item.title}</h3>
+          <p class="card-desc">${item.subtitle}</p>
         `;
+
+        card.appendChild(img);
+        card.appendChild(info);
+
         card.addEventListener("click", () => openModal(index));
+        card.addEventListener("keydown", (e) => {
+          if(e.key === "Enter" || e.key === " "){
+            e.preventDefault();
+            openModal(index);
+          }
+        });
+
         galleryGrid.appendChild(card);
       });
     }
 
-    function openModal(index) {
+    function renderTags(tags){
+      modalTags.innerHTML = "";
+      (tags || []).forEach(tagText => {
+        const tag = document.createElement("span");
+        tag.className = "tag";
+        tag.textContent = tagText;
+        modalTags.appendChild(tag);
+      });
+    }
+
+    function updateModal(index){
+      const item = galleryItems[index];
       currentIndex = index;
-      const item = sashaGallery[index];
 
-      modalImg.src = item.image;
-      modalImg.alt = item.title + " - " + item.subtitle;
-      modalTitle.textContent = item.title + " | " + item.subtitle;
+      modalImage.src = item.full || item.src;
+      modalImage.alt = item.title;
+      modalImage.onerror = function(){
+        this.src = svgPlaceholder(item.title);
+      };
+
+      modalTitle.textContent = item.title;
+      modalSubtitle.textContent = item.subtitle;
       modalRole.textContent = item.role;
+      modalStage.textContent = item.stage;
+      modalEquipment.textContent = item.equipment;
+      modalScene.textContent = item.scene;
       modalDescription.textContent = item.description;
-      modalData.innerHTML = item.details
-        .map(detail => `<li><strong>${detail.label}:</strong> ${detail.value}</li>`)
-        .join("");
+      modalCounter.textContent = `${index + 1} / ${galleryItems.length}`;
+      renderTags(item.tags);
+    }
 
-      modal.classList.add("active");
+    function openModal(index){
+      updateModal(index);
+      modal.classList.add("open");
+      modal.setAttribute("aria-hidden", "false");
       document.body.style.overflow = "hidden";
     }
 
-    function closeModalWindow() {
-      modal.classList.remove("active");
+    function closeModal(){
+      modal.classList.remove("open");
+      modal.setAttribute("aria-hidden", "true");
       document.body.style.overflow = "";
     }
 
-    function showPrev() {
-      currentIndex = (currentIndex - 1 + sashaGallery.length) % sashaGallery.length;
-      openModal(currentIndex);
+    function showPrev(){
+      const nextIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+      updateModal(nextIndex);
     }
 
-    function showNext() {
-      currentIndex = (currentIndex + 1) % sashaGallery.length;
-      openModal(currentIndex);
+    function showNext(){
+      const nextIndex = (currentIndex + 1) % galleryItems.length;
+      updateModal(nextIndex);
     }
 
-    function getCircularDistance(index, activeIndex, total) {
-      let diff = index - activeIndex;
-      if (diff > total / 2) diff -= total;
-      if (diff < -total / 2) diff += total;
-      return diff;
-    }
-
-    function renderVideoCarousel() {
-      videoStage.innerHTML = "";
-
-      if (!sashaVideos.length) {
-        videoStage.innerHTML = `<div class="video-empty">Aún no hay vídeos cargados.</div>`;
-        return;
-      }
-
-      sashaVideos.forEach((item, index) => {
+    function buildVideos(){
+      videos.forEach(item => {
         const card = document.createElement("article");
         card.className = "video-card";
 
-        card.innerHTML = `
-          <div class="video-frame">
-            <video muted loop playsinline preload="auto" controlslist="nodownload">
-              <source src="${item.src}" type="video/mp4">
-              Tu navegador no puede reproducir este vídeo.
-            </video>
-          </div>
-          <div class="video-meta">
-            <h3>${item.title}</h3>
-            <p>${item.caption}</p>
+        let frameContent = `
+          <div class="video-placeholder">
+            <div>
+              <strong>Espacio listo para vídeo</strong>
+              <span>Añade una URL embed de YouTube o un archivo MP4 local.</span>
+            </div>
           </div>
         `;
 
-        card.addEventListener("click", () => {
-          if (index !== currentVideoIndex) {
-            currentVideoIndex = index;
-            updateVideoCarousel();
-          }
-        });
-
-        videoStage.appendChild(card);
-      });
-
-      updateVideoCarousel();
-    }
-
-    function updateVideoCarousel() {
-      const cards = [...videoStage.querySelectorAll(".video-card")];
-
-      cards.forEach((card, index) => {
-        const distance = getCircularDistance(index, currentVideoIndex, cards.length);
-
-        card.className = "video-card";
-
-        if (distance === 0) {
-          card.classList.add("is-active");
-        } else if (distance === -1) {
-          card.classList.add("is-left");
-        } else if (distance === 1) {
-          card.classList.add("is-right");
-        } else if (distance === -2) {
-          card.classList.add("is-left-far");
-        } else if (distance === 2) {
-          card.classList.add("is-right-far");
-        } else {
-          card.classList.add("is-hidden");
+        if(item.embed){
+          frameContent = `<iframe src="${item.embed}" title="${item.title}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
+        } else if(item.local){
+          frameContent = `<video controls preload="metadata"><source src="${item.local}" type="video/mp4">Tu navegador no soporta vídeo HTML5.</video>`;
         }
 
-        const video = card.querySelector("video");
+        card.innerHTML = `
+          <div class="video-frame">${frameContent}</div>
+          <div class="video-copy">
+            <h3>${item.title}</h3>
+            <p>${item.text}</p>
+          </div>
+        `;
 
-        if (distance === 0) {
-          video.controls = true;
-          video.play().catch(() => {});
-        } else {
-          video.controls = false;
-          video.pause();
-          video.currentTime = 0;
-        }
-
-        video.onerror = () => {
-          const meta = card.querySelector(".video-meta p");
-          if (meta) meta.textContent = "Este vídeo no se ha podido reproducir.";
-        };
+        videoRail.appendChild(card);
       });
     }
 
-    function showPrevVideo() {
-      currentVideoIndex = (currentVideoIndex - 1 + sashaVideos.length) % sashaVideos.length;
-      updateVideoCarousel();
-    }
-
-    function showNextVideo() {
-      currentVideoIndex = (currentVideoIndex + 1) % sashaVideos.length;
-      updateVideoCarousel();
-    }
-
-    closeModal.addEventListener("click", closeModalWindow);
     prevBtn.addEventListener("click", showPrev);
     nextBtn.addEventListener("click", showNext);
+    closeBtn.addEventListener("click", closeModal);
 
     modal.addEventListener("click", (e) => {
-      if (e.target === modal) closeModalWindow();
+      if(e.target === modal){
+        closeModal();
+      }
     });
 
     document.addEventListener("keydown", (e) => {
-      if (modal.classList.contains("active")) {
-        if (e.key === "Escape") closeModalWindow();
-        if (e.key === "ArrowLeft") showPrev();
-        if (e.key === "ArrowRight") showNext();
-      }
+      if(!modal.classList.contains("open")) return;
+
+      if(e.key === "Escape") closeModal();
+      if(e.key === "ArrowLeft") showPrev();
+      if(e.key === "ArrowRight") showNext();
     });
 
-    videoPrev.addEventListener("click", showPrevVideo);
-    videoNext.addEventListener("click", showNextVideo);
-
-    renderGallery();
-    renderVideoCarousel();
-  </script>
-
-  <script>
-    window.addEventListener("load", () => {
-      if (window.location.hash) {
-        const target = document.querySelector(window.location.hash);
-        if (target) {
-          target.scrollIntoView({ behavior: "auto", block: "start" });
-        }
-      }
+    videosPrev.addEventListener("click", () => {
+      videoRail.scrollBy({ left: -460, behavior: "smooth" });
     });
-  </script>
 
+    videosNext.addEventListener("click", () => {
+      videoRail.scrollBy({ left: 460, behavior: "smooth" });
+    });
+
+    buildGallery();
+    buildVideos();
+  </script>
 </body>
 </html>
