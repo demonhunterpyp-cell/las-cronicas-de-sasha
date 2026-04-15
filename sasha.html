@@ -72,12 +72,6 @@
       transform: translateY(-1px);
     }
 
-    .disabled-link {
-      opacity: 0.42;
-      cursor: default;
-      pointer-events: none;
-    }
-
     .hero {
       width: min(1200px, 92%);
       margin: 0 auto;
@@ -571,7 +565,6 @@
       <a href="./index.html#lore" class="back-link">Personajes</a>
     </div>
     <div class="topbar-right">
-      <span class="back-link disabled-link">← Anterior</span>
       <a href="./party-girls.html" class="back-link">Party Girls →</a>
     </div>
   </header>
@@ -579,8 +572,7 @@
   <section class="hero">
     <h1>Galería de Sasha</h1>
     <p>
-      Una colección visual de Sasha. Aquí puedes recorrer distintas escenas,
-      composiciones y momentos del personaje, y abrir cada imagen para ver su ficha descriptiva.
+      Una selección visual centrada en Sasha. La parrilla sigue siendo la protagonista, y cada imagen se abre con su ficha lateral. Debajo, el carrusel reúne ya todos los vídeos disponibles, incluidos los dos últimos añadidos.
     </p>
   </section>
 
@@ -592,14 +584,18 @@
     <div class="video-carousel-header">
       <h2>Vídeos de Sasha</h2>
       <p>
-        Escenas en movimiento del personaje. El carrusel ya está preparado y se activará en cuanto subas los vídeos.
+        Escenas en movimiento del personaje, reunidas en un carrusel visual único.
       </p>
     </div>
 
     <div class="video-carousel-shell">
       <button class="video-arrow" id="videoPrev" aria-label="Vídeo anterior">‹</button>
 
-      <div class="video-carousel-stage" id="videoCarouselStage"></div>
+      <div class="video-carousel-stage" id="videoCarouselStage">
+        <div class="video-empty">
+          Aún no hay vídeos cargados para Sasha.
+        </div>
+      </div>
 
       <button class="video-arrow" id="videoNext" aria-label="Vídeo siguiente">›</button>
     </div>
@@ -637,72 +633,72 @@
     const sashaGallery = [
       {
         image: "assets/galerias/sasha/sasha-01.png",
-        title: "Sasha",
-        subtitle: "Retrato principal",
-        preview: "Imagen base del personaje, útil como entrada visual clara a la galería.",
-        role: "Sasha | Protagonista",
-        description: "Retrato principal de Sasha. Esta imagen sirve como ancla visual del personaje y marca el tono general de su galería.",
+        title: "Sasha 01",
+        subtitle: "Retrato / escena",
+        preview: "Una de las composiciones base de la galería de Sasha.",
+        role: "Sasha | Galería principal",
+        description: "Imagen de referencia dentro de la galería principal del personaje. Forma parte del recorrido visual base de Sasha en la web.",
         details: [
-          { label: "Tipo", value: "Retrato" },
-          { label: "Función", value: "Imagen de referencia" },
-          { label: "Peso visual", value: "Central" },
-          { label: "Uso", value: "Identidad del personaje" }
+          { label: "Personaje", value: "Sasha" },
+          { label: "Bloque", value: "Galería principal" },
+          { label: "Tipo", value: "Imagen fija" },
+          { label: "Uso", value: "Ficha visual y recorrido del personaje" }
         ]
       },
       {
         image: "assets/galerias/sasha/sasha-02.png",
-        title: "Sasha",
-        subtitle: "Exploración",
-        preview: "Escena vinculada al viaje, al descubrimiento o al movimiento por el mundo.",
-        role: "Sasha | Aventurera",
-        description: "Sasha en un momento de exploración. Esta imagen ayuda a mostrar su relación con el entorno y la dimensión aventurera del personaje.",
+        title: "Sasha 02",
+        subtitle: "Retrato / escena",
+        preview: "Otra escena representativa dentro del bloque visual de Sasha.",
+        role: "Sasha | Galería principal",
+        description: "Imagen integrada en la parrilla protagonista de Sasha. Mantiene el recorrido limpio, visual y centrado en el personaje.",
         details: [
-          { label: "Tipo", value: "Narrativa" },
-          { label: "Enfoque", value: "Viaje / descubrimiento" },
-          { label: "Rasgos", value: "Curiosidad, avance, presencia" },
-          { label: "Función", value: "Abrir mundo y contexto" }
+          { label: "Personaje", value: "Sasha" },
+          { label: "Bloque", value: "Galería principal" },
+          { label: "Tipo", value: "Imagen fija" },
+          { label: "Uso", value: "Visualización y consulta" }
         ]
       },
       {
         image: "assets/galerias/sasha/sasha-03.png",
-        title: "Sasha",
-        subtitle: "Combate",
-        preview: "Escena de acción donde el personaje transmite energía, decisión y tensión.",
-        role: "Sasha | Combate",
-        description: "Composición orientada a reforzar el perfil activo de Sasha. Aquí el personaje se percibe como fuerza, reacción y determinación.",
+        title: "Sasha 03",
+        subtitle: "Retrato / escena",
+        preview: "Composición incluida en el núcleo de imágenes de Sasha.",
+        role: "Sasha | Galería principal",
+        description: "Una imagen más del conjunto visual de Sasha, pensada para reforzar la identidad del personaje dentro de su galería.",
         details: [
-          { label: "Tipo", value: "Acción" },
-          { label: "Enfoque", value: "Combate / defensa" },
-          { label: "Rasgos", value: "Fuerza, reacción, firmeza" },
-          { label: "Función", value: "Impacto visual" }
+          { label: "Personaje", value: "Sasha" },
+          { label: "Bloque", value: "Galería principal" },
+          { label: "Tipo", value: "Imagen fija" },
+          { label: "Uso", value: "Recorrido visual del personaje" }
         ]
       },
       {
         image: "assets/galerias/sasha/sasha-04.png",
-        title: "Sasha",
-        subtitle: "Presencia defensiva",
-        preview: "Perfil más sólido y protector, ligado a su lado guardián y resistente.",
-        role: "Sasha | Defensora",
-        description: "Imagen centrada en el aspecto más protector de Sasha. Refuerza una lectura del personaje basada en la resistencia, la firmeza y la estabilidad.",
+        title: "Sasha 04",
+        subtitle: "Retrato / escena",
+        preview: "Parte del conjunto de imágenes principales del personaje.",
+        role: "Sasha | Galería principal",
+        description: "Imagen de apoyo dentro de la galería de Sasha, en la misma línea sobria y limpia que el resto del bloque.",
         details: [
-          { label: "Tipo", value: "Postura defensiva" },
-          { label: "Enfoque", value: "Protección" },
-          { label: "Rasgos", value: "Resistencia, calma, contundencia" },
-          { label: "Función", value: "Equilibrio del personaje" }
+          { label: "Personaje", value: "Sasha" },
+          { label: "Bloque", value: "Galería principal" },
+          { label: "Tipo", value: "Imagen fija" },
+          { label: "Uso", value: "Consulta y presentación" }
         ]
       },
       {
         image: "assets/galerias/sasha/sasha-05.png",
-        title: "Sasha",
-        subtitle: "Escena narrativa",
-        preview: "Momento visual pensado para mostrar matiz, atmósfera o desarrollo del personaje.",
-        role: "Sasha | Narrativa",
-        description: "Una escena más narrativa y atmosférica, útil para aportar variedad a la galería y enseñar una faceta menos frontal del personaje.",
+        title: "Sasha 05",
+        subtitle: "Retrato / escena",
+        preview: "Cierra la parrilla base con otra escena del personaje.",
+        role: "Sasha | Galería principal",
+        description: "Última imagen de esta primera parrilla principal de Sasha. Mantiene la coherencia estética del bloque y abre paso a la parte audiovisual.",
         details: [
-          { label: "Tipo", value: "Narrativa" },
-          { label: "Enfoque", value: "Desarrollo / atmósfera" },
-          { label: "Rasgos", value: "Matiz, contexto, humanidad" },
-          { label: "Función", value: "Profundizar en el personaje" }
+          { label: "Personaje", value: "Sasha" },
+          { label: "Bloque", value: "Galería principal" },
+          { label: "Tipo", value: "Imagen fija" },
+          { label: "Uso", value: "Cierre de la parrilla visual" }
         ]
       }
     ];
@@ -711,17 +707,27 @@
       {
         src: "assets/videos/sasha/espejo.mp4",
         title: "Espejo",
-        caption: "Escena de Sasha vinculada al espejo."
+        caption: "Vídeo ya integrado anteriormente en la galería de Sasha."
       },
       {
         src: "assets/videos/sasha/gallinas.mp4",
         title: "Gallinas",
-        caption: "Secuencia de Sasha en la escena de las gallinas."
+        caption: "Secuencia previa del personaje dentro del bloque audiovisual."
       },
       {
         src: "assets/videos/sasha/sasha-transformacion.mp4",
         title: "Transformación",
-        caption: "Escena de transformación de Sasha."
+        caption: "Vídeo de transformación ya presente en la versión anterior."
+      },
+      {
+        src: "assets/galerias/sasha/sasha-tier2.mp4",
+        title: "Tier 2",
+        caption: "Nuevo vídeo añadido a la carpeta de Sasha y aplicado al carrusel."
+      },
+      {
+        src: "assets/galerias/sasha/sasha-viaje.mp4",
+        title: "Viaje",
+        caption: "Segundo vídeo nuevo incorporado al carrusel de Sasha."
       }
     ];
 
@@ -875,12 +881,15 @@
 
         const video = card.querySelector("video");
 
-        video.addEventListener("error", () => {
-          const meta = card.querySelector(".video-meta p");
-          if (meta) {
-            meta.textContent = "Este vídeo no se ha podido reproducir.";
-          }
-        });
+        if (!video.dataset.bound) {
+          video.addEventListener("error", () => {
+            const meta = card.querySelector(".video-meta p");
+            if (meta) {
+              meta.textContent = "Este vídeo no se ha podido reproducir.";
+            }
+          });
+          video.dataset.bound = "true";
+        }
 
         if (distance === 0) {
           video.controls = true;
