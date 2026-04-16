@@ -346,7 +346,7 @@
       margin: 28px 0 18px;
     }
 
-    .socials a {
+    .socials span {
       width: 44px;
       height: 44px;
       border-radius: 50%;
@@ -356,6 +356,7 @@
       color: var(--gold);
       background: rgba(255,255,255,.02);
       font-size: 1.1rem;
+      user-select: none;
     }
 
     .sidebar-note {
@@ -644,6 +645,10 @@
       width: 270px;
       text-align: center;
       z-index: 2;
+    }
+
+    .floating-book-link {
+      display: block;
     }
 
     .floating-book img {
@@ -1546,10 +1551,10 @@
             <a class="side-link" href="tienda.html"><span class="icon">▣</span><span>Tienda</span></a>
           </nav>
 
-          <div class="socials">
-            <a href="#">f</a>
-            <a href="#">x</a>
-            <a href="#">◎</a>
+          <div class="socials" aria-label="Iconos sociales decorativos">
+            <span>f</span>
+            <span>x</span>
+            <span>◎</span>
           </div>
 
           <div class="sidebar-note">
@@ -1602,7 +1607,9 @@
           </div>
 
           <div class="floating-book">
-            <img src="assets/libros/volumenes/libro-sin-fondo.png" alt="Libro Las Crónicas de Sasha - Volumen 1" />
+            <a class="floating-book-link" href="volumen-1.html" aria-label="Abrir ficha de Volumen 1">
+              <img src="assets/libros/volumenes/libro-sin-fondo.png" alt="Libro Las Crónicas de Sasha - Volumen 1" />
+            </a>
             <a class="book-cta" href="tienda.html#producto-volumen-1">Comprar Volumen 1</a>
           </div>
         </section>
