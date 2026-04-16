@@ -803,3 +803,775 @@
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Volumen 1 | Mis inicios | Las Crónicas de Sasha</title>
+  <meta name="description" content="Ficha del Volumen 1, Mis inicios, de Las Crónicas de Sasha." />
+  <style>
+    :root {
+      --gold: #d6b06a;
+      --gold-2: #a97a34;
+      --bg-top: #1b2033;
+      --bg-bottom: #28334c;
+      --panel-top: rgba(28, 34, 53, 0.95);
+      --panel-bottom: rgba(20, 25, 39, 0.98);
+      --paper-top: #f0e0c8;
+      --paper-mid: #e8d5b7;
+      --paper-bottom: #e3cfaf;
+      --paper-text: #3f2f1f;
+      --text: #f7eedc;
+      --text-soft: #ddd2b7;
+      --text-muted: #cdb892;
+      --border-gold: rgba(214, 176, 106, 0.24);
+      --shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      background:
+        radial-gradient(circle at 70% 18%, rgba(255, 193, 95, 0.10), transparent 18%),
+        radial-gradient(circle at 20% 75%, rgba(214, 176, 106, 0.08), transparent 24%),
+        linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 100%);
+      color: var(--text);
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    .topbar {
+      width: min(1180px, 92%);
+      margin: 0 auto;
+      padding: 24px 0 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .topbar-left,
+    .topbar-right {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--border-gold);
+      background: rgba(255, 255, 255, 0.04);
+      color: #f2e2c3;
+      transition: 0.22s ease;
+    }
+
+    .nav-btn:hover {
+      transform: translateY(-1px);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      border-top: 1px solid rgba(214, 176, 106, 0.16);
+      border-bottom: 1px solid rgba(214, 176, 106, 0.22);
+      background:
+        linear-gradient(90deg, rgba(15, 20, 34, 0.78) 0%, rgba(15, 20, 34, 0.46) 52%, rgba(15, 20, 34, 0.18) 100%),
+        url("assets/fondo-sasha-panorama.png") center 38% / cover no-repeat;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 78% 22%, rgba(214, 176, 106, 0.12), transparent 16%),
+        linear-gradient(180deg, rgba(10, 14, 26, 0.08), rgba(10, 14, 26, 0.24));
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      width: min(1180px, 92%);
+      margin: 0 auto;
+      padding: 56px 0 62px;
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .cover-box {
+      border: 1px solid rgba(214, 176, 106, 0.20);
+      background:
+        radial-gradient(circle at 50% 20%, rgba(255, 210, 138, 0.12), transparent 18%),
+        linear-gradient(180deg, rgba(53, 64, 92, 0.96), rgba(24, 31, 47, 0.98));
+      padding: 14px;
+      box-shadow: 0 18px 34px rgba(0, 0, 0, 0.24);
+      max-width: 300px;
+    }
+
+    .cover-box img {
+      width: 100%;
+      aspect-ratio: 2 / 3;
+      object-fit: cover;
+      box-shadow: 0 20px 30px rgba(0, 0, 0, 0.24);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      padding: 7px 12px;
+      margin-bottom: 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(214, 176, 106, 0.24);
+      color: #e5c787;
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      color: #efc665;
+      font-size: clamp(2.2rem, 4.8vw, 4.1rem);
+      line-height: 0.98;
+      text-shadow: 0 3px 10px rgba(0, 0, 0, 0.28);
+    }
+
+    .hero-subtitle {
+      color: #f0debb;
+      font-size: clamp(1.1rem, 2vw, 1.45rem);
+      line-height: 1.6;
+      max-width: 760px;
+      margin: 0 0 18px;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .hero-copy {
+      color: var(--text-soft);
+      line-height: 1.75;
+      font-size: 1rem;
+      max-width: 760px;
+      margin: 0 0 20px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn.primary {
+      color: #4a2f12;
+      background: linear-gradient(180deg, #d8b160 0%, #b78537 100%);
+      border: 1px solid #8b6327;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    }
+
+    .btn.secondary {
+      color: #f2e2c3;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(214, 176, 106, 0.24);
+    }
+
+    .content-shell {
+      width: min(1180px, 92%);
+      margin: 0 auto;
+      padding: 28px 0 52px;
+    }
+
+    .paper {
+      position: relative;
+      overflow: hidden;
+      padding: 42px 42px 44px;
+      background:
+        radial-gradient(circle at 88% 22%, rgba(255, 226, 160, 0.26), transparent 20%),
+        radial-gradient(circle at 12% 10%, rgba(255, 255, 255, 0.14), transparent 16%),
+        linear-gradient(180deg, var(--paper-top) 0%, var(--paper-mid) 52%, var(--paper-bottom) 100%);
+      color: var(--paper-text);
+      border: 1px solid rgba(121, 82, 29, 0.30);
+      box-shadow:
+        0 28px 56px rgba(0, 0, 0, 0.20),
+        inset 0 1px 0 rgba(255, 255, 255, 0.38);
+      margin-top: -26px;
+    }
+
+    .paper::before {
+      content: "";
+      position: absolute;
+      inset: 16px;
+      border: 1px solid rgba(121, 82, 29, 0.16);
+      pointer-events: none;
+    }
+
+    .paper-hook,
+    .paper-text,
+    .paper-closing {
+      position: relative;
+      z-index: 1;
+      max-width: 860px;
+      margin: 0 auto 18px;
+      text-align: center;
+      line-height: 1.75;
+    }
+
+    .paper-hook {
+      font-size: 1.22rem;
+      font-weight: 700;
+      color: #2f2218;
+    }
+
+    .paper-text {
+      font-size: 1.05rem;
+      color: #3b2a1d;
+    }
+
+    .paper-closing {
+      margin-bottom: 0;
+      font-size: 1.18rem;
+      font-weight: 700;
+      color: #2f2218;
+    }
+
+    .divider {
+      width: 240px;
+      height: 22px;
+      margin: 14px auto 22px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+    }
+
+    .divider::before {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(121, 82, 29, 0.55), transparent);
+    }
+
+    .divider::after {
+      left: 50%;
+      right: auto;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 1px solid rgba(121, 82, 29, 0.45);
+      background: #ecd6b5;
+      transform: translate(-50%, -50%);
+    }
+
+    .panel {
+      margin-top: 28px;
+      padding: 30px 28px;
+      border: 1px solid var(--border-gold);
+      background:
+        radial-gradient(circle at 50% 12%, rgba(255, 188, 109, 0.08), transparent 18%),
+        linear-gradient(180deg, var(--panel-top), var(--panel-bottom));
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .panel::before {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border: 1px solid rgba(214, 176, 106, 0.12);
+      pointer-events: none;
+    }
+
+    .panel-title {
+      margin: 0;
+      font-size: clamp(1.8rem, 3vw, 2.9rem);
+      color: #f0dbaf;
+      text-align: center;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 1;
+    }
+
+    .panel-lead {
+      max-width: 860px;
+      margin: 0 auto;
+      text-align: center;
+      color: var(--text-soft);
+      line-height: 1.75;
+      font-size: 1.02rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .ornament {
+      width: 240px;
+      height: 22px;
+      margin: 0 auto 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .ornament::before,
+    .ornament::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+    }
+
+    .ornament::before {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(214, 176, 106, 0.55), transparent);
+    }
+
+    .ornament::after {
+      left: 50%;
+      right: auto;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 1px solid rgba(214, 176, 106, 0.45);
+      background: rgba(20, 25, 39, 0.9);
+      transform: translate(-50%, -50%);
+    }
+
+    .grid-2,
+    .grid-3 {
+      display: grid;
+      gap: 18px;
+      margin-top: 22px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .grid-2 { grid-template-columns: 1.1fr 0.9fr; }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+
+    .card {
+      border: 1px solid rgba(214, 176, 106, 0.16);
+      background: rgba(255, 255, 255, 0.02);
+      padding: 22px 18px;
+      min-height: 180px;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      color: #f0dbaf;
+      font-size: 1.35rem;
+    }
+
+    .card p,
+    .card li {
+      color: #d4ccb9;
+      line-height: 1.72;
+      font-size: 0.97rem;
+    }
+
+    .card ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .meta-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .meta-item {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 10px;
+      align-items: start;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(214, 176, 106, 0.12);
+    }
+
+    .meta-item:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .meta-label {
+      color: #e5c787;
+      font-size: 0.88rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .meta-value {
+      color: #d4ccb9;
+      line-height: 1.6;
+      font-size: 0.97rem;
+    }
+
+    .cta-box {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .cta-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .related-links {
+      display: grid;
+      gap: 14px;
+    }
+
+    .related-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 14px 16px;
+      border: 1px solid rgba(214, 176, 106, 0.18);
+      background: rgba(255, 255, 255, 0.03);
+      color: #f2e2c3;
+      transition: 0.22s ease;
+    }
+
+    .related-link:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(214, 176, 106, 0.28);
+    }
+
+    .related-link strong {
+      color: #f0dbaf;
+      display: block;
+      margin-bottom: 4px;
+      font-size: 1rem;
+    }
+
+    .related-link span {
+      color: var(--text-soft);
+      font-size: 0.92rem;
+    }
+
+    .footer-note {
+      width: min(1180px, 92%);
+      margin: 0 auto;
+      padding: 0 0 42px;
+      color: #d7c5a7;
+      font-size: 0.95rem;
+      line-height: 1.65;
+      text-align: center;
+    }
+
+    @media (max-width: 980px) {
+      .hero-inner,
+      .grid-2,
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .cover-box {
+        max-width: 320px;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .hero-inner,
+      .content-shell,
+      .topbar,
+      .footer-note {
+        width: min(1180px, 94%);
+      }
+
+      .hero-inner {
+        padding: 42px 0 48px;
+      }
+
+      .paper,
+      .panel {
+        padding: 22px 16px;
+      }
+
+      .hero-actions,
+      .cta-actions {
+        flex-direction: column;
+      }
+
+      .btn { width: 100%; }
+
+      .meta-item {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="topbar-left">
+      <a href="./index.html" class="nav-btn">← Volver al inicio</a>
+      <a href="./index.html#libros" class="nav-btn">Libros</a>
+    </div>
+
+    <div class="topbar-right">
+      <a href="./tienda.html#producto-volumen-1" class="nav-btn">Producto en tienda</a>
+      <a href="./tienda.html" class="nav-btn">Tienda general</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="cover-box">
+        <img id="mainCover" src="assets/libros/volumenes/libro-sin-fondo.png" alt="Volumen 1 Mis inicios" />
+      </div>
+
+      <div>
+        <div class="eyebrow">Saga principal · Volumen 1</div>
+        <h1>Mis inicios</h1>
+        <p class="hero-subtitle">
+          La puerta de entrada al universo de Sasha.
+        </p>
+        <p class="hero-copy">
+          Este primer volumen abre la saga y fija el pulso del mundo. Aquí empieza el recorrido, se establecen las primeras reglas y Sasha da el paso que cambia por completo la dirección de su historia.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn primary" href="./tienda.html#producto-volumen-1">Comprar en tienda</a>
+          <a class="btn secondary" href="./tienda.html">Ver tienda general</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="content-shell">
+    <section class="paper">
+      <p class="paper-hook">
+        No todas las heroínas son llamadas por un destino. Algunas cruzan una puerta y descubren que ya no hay vuelta atrás.
+      </p>
+
+      <div class="divider"></div>
+
+      <p class="paper-text">
+        <strong>Mis inicios</strong> es la base de Las Crónicas de Sasha. Presenta el arranque del viaje, el tono del universo y el primer gran giro que transforma la vida del personaje.
+      </p>
+
+      <p class="paper-text">
+        Aquí se establece la tensión entre descubrimiento y supervivencia, entre asombro y aprendizaje. Es el punto desde el que empieza a construirse todo lo demás.
+      </p>
+
+      <p class="paper-closing">
+        La primera piedra del universo. El momento exacto en que Sasha deja de mirar y empieza a avanzar.
+      </p>
+    </section>
+
+    <section class="panel">
+      <div class="ornament"></div>
+      <h2 class="panel-title">Qué aporta esta obra</h2>
+      <p class="panel-lead">
+        Una entrada clara al universo de Sasha, con función de arranque, presentación del mundo y construcción del eje principal.
+      </p>
+
+      <div class="grid-3">
+        <article class="card">
+          <h3>Inicio del universo</h3>
+          <p>
+            Establece el tono, las primeras reglas del entorno y la sensación de descubrimiento que sostiene la saga.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>Construcción del personaje</h3>
+          <p>
+            Sasha no aparece terminada. Este volumen la empieza a forjar desde el conflicto, la experiencia y el cambio.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>Base de la saga</h3>
+          <p>
+            Todo lo que venga después nace aquí. Es el punto de referencia principal frente a anexos y material complementario.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="ornament"></div>
+      <h2 class="panel-title">Ficha de la obra</h2>
+      <p class="panel-lead">
+        Información clara para que esta página funcione como ficha principal dentro del catálogo.
+      </p>
+
+      <div class="grid-2">
+        <article class="card">
+          <h3>Datos principales</h3>
+
+          <div class="meta-list">
+            <div class="meta-item">
+              <div class="meta-label">Título</div>
+              <div class="meta-value">Mis inicios</div>
+            </div>
+
+            <div class="meta-item">
+              <div class="meta-label">Colección</div>
+              <div class="meta-value">Las Crónicas de Sasha</div>
+            </div>
+
+            <div class="meta-item">
+              <div class="meta-label">Tipo</div>
+              <div class="meta-value">Volumen principal</div>
+            </div>
+
+            <div class="meta-item">
+              <div class="meta-label">Función</div>
+              <div class="meta-value">Abrir la saga y presentar el universo</div>
+            </div>
+
+            <div class="meta-item">
+              <div class="meta-label">Estado</div>
+              <div class="meta-value">Activo en web y enlazado con tienda</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>Lectura editorial</h3>
+          <ul>
+            <li>Es la puerta de entrada recomendada para nuevos lectores.</li>
+            <li>Debe ocupar siempre la posición principal dentro del catálogo.</li>
+            <li>Funciona como referencia frente a anexos y material lateral.</li>
+            <li>Concentra el arranque del conflicto y la identidad de la saga.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel" id="compra">
+      <div class="ornament"></div>
+      <h2 class="panel-title">Compra</h2>
+      <p class="panel-lead">
+        Desde aquí el lector puede ir al producto exacto o regresar al escaparate general.
+      </p>
+
+      <div class="grid-2">
+        <article class="card cta-box">
+          <div>
+            <h3>Comprar en tienda</h3>
+            <p>
+              Acceso directo al producto de <strong>Mis inicios</strong> dentro de la tienda oficial.
+            </p>
+          </div>
+
+          <div class="cta-actions">
+            <a class="btn primary" href="./tienda.html#producto-volumen-1">Comprar en tienda</a>
+            <a class="btn secondary" href="./tienda.html">Ver tienda general</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3>Ruta recomendada</h3>
+          <p>
+            Esta página funciona como ficha de detalle. La tienda conserva la visión completa del catálogo y el acceso directo al producto.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="ornament"></div>
+      <h2 class="panel-title">Continúa explorando</h2>
+      <p class="panel-lead">
+        Desde aquí puedes volver al catálogo, abrir la tienda o seguir ampliando el universo con material complementario.
+      </p>
+
+      <div class="related-links">
+        <a class="related-link" href="./tienda.html#producto-volumen-1">
+          <div>
+            <strong>Producto en tienda</strong>
+            <span>Ir al bloque exacto del volumen dentro del escaparate general.</span>
+          </div>
+          <div>→</div>
+        </a>
+
+        <a class="related-link" href="./tienda.html">
+          <div>
+            <strong>Tienda general</strong>
+            <span>Ver todo el catálogo de libros, anexos y futuros productos.</span>
+          </div>
+          <div>→</div>
+        </a>
+
+        <a class="related-link" href="./anexo-entrevista.html">
+          <div>
+            <strong>Primer anexo</strong>
+            <span>Seguir explorando el universo desde su línea complementaria.</span>
+          </div>
+          <div>→</div>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <div class="footer-note">
+    Ficha de <strong>volumen-1.html</strong> unificada con la voz del resto del catálogo.
+  </div>
+
+  <script>
+    function makePlaceholder(top, bottom) {
+      const topText = encodeURIComponent(top || "Las Crónicas de Sasha");
+      const bottomText = encodeURIComponent(bottom || "Volumen 1");
+      return `data:image/svg+xml;charset=UTF-8,
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 1200'>
+        <defs>
+          <linearGradient id='g' x1='0' x2='0' y1='0' y2='1'>
+            <stop offset='0%' stop-color='%23253048'/>
+            <stop offset='100%' stop-color='%23101827'/>
+          </linearGradient>
+        </defs>
+        <rect width='800' height='1200' fill='url(%23g)'/>
+        <rect x='36' y='36' width='728' height='1128' rx='30' fill='none' stroke='rgba(214,176,106,.42)' stroke-width='3'/>
+        <text x='50%' y='34%' text-anchor='middle' fill='%23d6b06a' font-family='Georgia, serif' font-size='36'>${topText}</text>
+        <text x='50%' y='50%' text-anchor='middle' fill='%23f7eedc' font-family='Georgia, serif' font-size='54'>${bottomText}</text>
+      </svg>`.replace(/\n/g, "");
+    }
+
+    const mainCover = document.getElementById("mainCover");
+    mainCover.addEventListener("error", () => {
+      mainCover.src = makePlaceholder("Las Crónicas de Sasha", "Volumen 1");
+    });
+  </script>
+
+</body>
+</html>
