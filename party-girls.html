@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Party Girls | Las Crónicas de Sasha</title>
-  <meta name="description" content="Galería y vídeos de Party Girls." />
+  <meta name="description" content="Galería de Party Girls." />
   <style>
     :root{
       --bg-1:#0f1728;
@@ -15,9 +15,6 @@
       --gold-soft:rgba(216,177,96,.25);
       --text:#f7eedc;
       --text-soft:#ddd2b7;
-      --muted:#cbb891;
-      --panel:rgba(20,25,39,.95);
-      --panel-2:rgba(35,44,65,.97);
       --shadow:0 22px 50px rgba(0,0,0,.33);
       --maxw:1180px;
     }
@@ -35,9 +32,7 @@
     }
 
     a{color:inherit;text-decoration:none}
-    img, video{display:block;max-width:100%}
-
-    .shell{width:min(var(--maxw), 92%); margin:0 auto}
+    img{display:block;max-width:100%}
 
     .topbar{
       width:min(var(--maxw), 92%);
@@ -50,8 +45,7 @@
       flex-wrap:wrap;
     }
 
-    .topbar-left,
-    .topbar-right{
+    .topbar-left,.topbar-right{
       display:flex;
       gap:10px;
       flex-wrap:wrap;
@@ -286,92 +280,6 @@
       line-height:1.7;
     }
 
-    .video-wrap{
-      position:relative;
-      z-index:1;
-      margin-top:22px;
-    }
-
-    .video-carousel{
-      display:grid;
-      grid-template-columns:auto 1fr auto;
-      gap:12px;
-      align-items:center;
-    }
-
-    .video-nav{
-      width:48px;
-      height:48px;
-      border-radius:999px;
-      border:1px solid rgba(216,177,96,.22);
-      background:rgba(255,255,255,.04);
-      color:#f2e2c3;
-      cursor:pointer;
-      font-size:1.3rem;
-      transition:.2s ease;
-    }
-
-    .video-nav:hover{transform:translateY(-2px)}
-    .video-nav:disabled{opacity:.35; cursor:default; transform:none}
-
-    .video-stage{
-      min-height:420px;
-      border:1px solid rgba(216,177,96,.16);
-      border-radius:24px;
-      overflow:hidden;
-      background:
-        radial-gradient(circle at 84% 14%, rgba(216,177,96,.08), transparent 18%),
-        linear-gradient(180deg, rgba(43,53,78,.95), rgba(21,27,42,.98));
-      box-shadow:0 14px 28px rgba(0,0,0,.18);
-      display:grid;
-      grid-template-rows:auto 1fr;
-    }
-
-    .video-head{
-      padding:16px 18px 12px;
-      border-bottom:1px solid rgba(216,177,96,.12);
-    }
-
-    .video-head h3{
-      margin:0 0 6px;
-      color:#f0dbaf;
-      font-size:1.2rem;
-    }
-
-    .video-head p{
-      margin:0;
-      color:#d4ccb9;
-      font-size:.95rem;
-      line-height:1.7;
-    }
-
-    .video-box{
-      padding:18px;
-      display:grid;
-      place-items:center;
-    }
-
-    .video-box video{
-      width:100%;
-      max-height:560px;
-      border-radius:18px;
-      background:#0a0e16;
-    }
-
-    .empty-state{
-      width:100%;
-      min-height:240px;
-      display:grid;
-      place-items:center;
-      text-align:center;
-      color:#d4ccb9;
-      line-height:1.8;
-      padding:24px;
-      border-radius:18px;
-      border:1px dashed rgba(216,177,96,.18);
-      background:rgba(255,255,255,.02);
-    }
-
     .lightbox{
       position:fixed;
       inset:0;
@@ -482,13 +390,9 @@
     }
 
     @media (max-width: 760px){
-      .shell, .page, .topbar, .footer{width:min(var(--maxw), 94%)}
+      .topbar, .page, .footer{width:min(var(--maxw), 94%)}
       .panel{padding:24px 16px}
       .gallery-grid{grid-template-columns:1fr}
-      .video-carousel{grid-template-columns:1fr}
-      .video-nav{width:100%; border-radius:14px}
-      .video-stage{min-height:unset}
-      .video-box video{max-height:380px}
     }
   </style>
 </head>
@@ -508,14 +412,14 @@
   <section class="hero">
     <div class="hero-inner">
       <div class="hero-card">
-        <img id="heroPartyImage" alt="Party Girls" />
+        <img src="assets/galerias/party-girls/party-girls.jpeg" alt="Party Girls" />
       </div>
 
       <div>
         <div class="eyebrow">Galería de grupo</div>
         <h1>Party Girls</h1>
         <p class="hero-copy">
-          Los lazos de una verdadera party se construyen sobre amistad, lealtad, respeto, dedicación y confianza. Aquí se reúnen sus imágenes y vídeos en una sola página, con parrilla visual arriba y carrusel de escenas debajo.
+          Los lazos de una verdadera party se construyen sobre amistad, lealtad, respeto, dedicación y confianza. Aquí se reúnen sus imágenes en una sola página.
         </p>
       </div>
     </div>
@@ -527,28 +431,31 @@
       <h2 class="section-title">Imágenes</h2>
       <p class="section-lead">Una selección visual del grupo, sus escenas y su energía compartida dentro del universo de Sasha.</p>
 
-      <div class="gallery-grid" id="galleryGrid"></div>
-    </section>
+      <div class="gallery-grid" id="galleryGrid">
+        <article class="gallery-card" data-src="assets/galerias/party-girls/party-girls.jpeg" data-title="Party Girls" data-role="Grupo" data-text="Imagen principal del bloque Party Girls.">
+          <img src="assets/galerias/party-girls/party-girls.jpeg" alt="Party Girls grupo">
+          <div class="caption"><h3>Party Girls</h3><p>Grupo</p></div>
+        </article>
 
-    <section class="panel" id="videos">
-      <div class="ornament"></div>
-      <h2 class="section-title">Vídeos de Party Girls</h2>
-      <p class="section-lead">Escenas en movimiento del grupo reunidas en un carrusel único.</p>
+        <article class="gallery-card" data-src="assets/galerias/party-girls/azalea.png" data-title="Azalea" data-role="Party Girls" data-text="Miembro del grupo Party Girls.">
+          <img src="assets/galerias/party-girls/azalea.png" alt="Azalea">
+          <div class="caption"><h3>Azalea</h3><p>Party Girls</p></div>
+        </article>
 
-      <div class="video-wrap">
-        <div class="video-carousel">
-          <button class="video-nav" id="prevVideo" aria-label="Vídeo anterior">‹</button>
+        <article class="gallery-card" data-src="assets/galerias/party-girls/elorzal.png" data-title="Elorzal" data-role="Party Girls" data-text="Miembro del grupo Party Girls.">
+          <img src="assets/galerias/party-girls/elorzal.png" alt="Elorzal">
+          <div class="caption"><h3>Elorzal</h3><p>Party Girls</p></div>
+        </article>
 
-          <div class="video-stage">
-            <div class="video-head">
-              <h3 id="videoTitle">Vídeos de Party Girls</h3>
-              <p id="videoDesc">Escenas en movimiento del grupo.</p>
-            </div>
-            <div class="video-box" id="videoBox"></div>
-          </div>
+        <article class="gallery-card" data-src="assets/galerias/party-girls/ilyanna.png" data-title="Ilyanna" data-role="Party Girls" data-text="Miembro del grupo Party Girls.">
+          <img src="assets/galerias/party-girls/ilyanna.png" alt="Ilyanna">
+          <div class="caption"><h3>Ilyanna</h3><p>Party Girls</p></div>
+        </article>
 
-          <button class="video-nav" id="nextVideo" aria-label="Vídeo siguiente">›</button>
-        </div>
+        <article class="gallery-card" data-src="assets/galerias/party-girls/monet.png" data-title="Monet" data-role="Party Girls" data-text="Miembro del grupo Party Girls.">
+          <img src="assets/galerias/party-girls/monet.png" alt="Monet">
+          <div class="caption"><h3>Monet</h3><p>Party Girls</p></div>
+        </article>
       </div>
     </section>
   </main>
@@ -575,159 +482,7 @@
   </div>
 
   <script>
-    function svgPlaceholder(top, bottom){
-      const topText = encodeURIComponent(top || 'Las Crónicas de Sasha');
-      const bottomText = encodeURIComponent(bottom || 'Party Girls');
-      return `data:image/svg+xml;charset=UTF-8,
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'>
-        <defs>
-          <linearGradient id='g' x1='0' x2='0' y1='0' y2='1'>
-            <stop offset='0%' stop-color='%23253048'/>
-            <stop offset='100%' stop-color='%23101827'/>
-          </linearGradient>
-        </defs>
-        <rect width='1200' height='800' fill='url(%23g)'/>
-        <rect x='30' y='30' width='1140' height='740' rx='30' fill='none' stroke='rgba(216,177,96,.42)' stroke-width='3'/>
-        <text x='50%' y='38%' text-anchor='middle' fill='%23d6b06a' font-family='Georgia, serif' font-size='44'>${topText}</text>
-        <text x='50%' y='54%' text-anchor='middle' fill='%23f7eedc' font-family='Georgia, serif' font-size='62'>${bottomText}</text>
-      </svg>`.replace(/\n/g, '');
-    }
-
-    async function exists(path){
-      try{
-        const res = await fetch(path, { method:'HEAD' });
-        return res.ok;
-      }catch(e){
-        return false;
-      }
-    }
-
-    async function firstExisting(paths){
-      for(const path of paths){
-        if(await exists(path)) return path;
-      }
-      return null;
-    }
-
-    /*
-      ==========================
-      CONFIGURA AQUÍ TUS ARCHIVOS
-      ==========================
-      Si tus nombres reales no coinciden, cambia SOLO estas rutas.
-    */
-
-    const partyImagesConfig = [
-      {
-        paths: [
-          'assets/personajes/party-girls/01.jpg',
-          'assets/personajes/party-girls/01.png',
-          'assets/personajes/party-girls/1.jpg',
-          'assets/personajes/party-girls/1.png',
-          'assets/personajes/party-girls.jpg',
-          'assets/personajes/party-girls.png',
-          'assets/party-girls/01.jpg',
-          'assets/party-girls/1.jpg'
-        ],
-        title: 'Party Girls',
-        role: 'Party',
-        text: 'Los lazos de una verdadera party se construyen sobre amistad, lealtad, respeto, dedicación y confianza.'
-      },
-      {
-        paths: [
-          'assets/personajes/party-girls/02.jpg',
-          'assets/personajes/party-girls/02.png',
-          'assets/personajes/party-girls/2.jpg',
-          'assets/personajes/party-girls/2.png',
-          'assets/party-girls/02.jpg',
-          'assets/party-girls/2.jpg'
-        ],
-        title: 'Party Girls',
-        role: 'Party',
-        text: 'Escena adicional del grupo dentro del universo visual de la saga.'
-      },
-      {
-        paths: [
-          'assets/personajes/party-girls/03.jpg',
-          'assets/personajes/party-girls/03.png',
-          'assets/personajes/party-girls/3.jpg',
-          'assets/personajes/party-girls/3.png',
-          'assets/party-girls/03.jpg',
-          'assets/party-girls/3.jpg'
-        ],
-        title: 'Party Girls',
-        role: 'Party',
-        text: 'Otra imagen del grupo pensada para ampliar la galería.'
-      },
-      {
-        paths: [
-          'assets/personajes/party-girls/04.jpg',
-          'assets/personajes/party-girls/04.png',
-          'assets/personajes/party-girls/4.jpg',
-          'assets/personajes/party-girls/4.png',
-          'assets/party-girls/04.jpg',
-          'assets/party-girls/4.jpg'
-        ],
-        title: 'Party Girls',
-        role: 'Party',
-        text: 'Instantánea visual del grupo lista para la parrilla.'
-      },
-      {
-        paths: [
-          'assets/personajes/party-girls/05.jpg',
-          'assets/personajes/party-girls/05.png',
-          'assets/personajes/party-girls/5.jpg',
-          'assets/personajes/party-girls/5.png',
-          'assets/party-girls/05.jpg',
-          'assets/party-girls/5.jpg'
-        ],
-        title: 'Party Girls',
-        role: 'Party',
-        text: 'Imagen extra para seguir haciendo crecer la galería del grupo.'
-      }
-    ];
-
-    const partyVideosConfig = [
-      {
-        paths: [
-          'assets/personajes/party-girls/videos/video-1.mp4',
-          'assets/personajes/party-girls/videos/01.mp4',
-          'assets/personajes/party-girls/videos/1.mp4',
-          'assets/party-girls/videos/video-1.mp4',
-          'assets/party-girls/videos/01.mp4',
-          'assets/party-girls/videos/1.mp4'
-        ],
-        posterPaths: [
-          'assets/personajes/party-girls/01.jpg',
-          'assets/personajes/party-girls/01.png',
-          'assets/personajes/party-girls/1.jpg',
-          'assets/personajes/party-girls/1.png'
-        ],
-        title: 'Vídeo 1',
-        desc: 'Primera escena en movimiento de Party Girls.'
-      },
-      {
-        paths: [
-          'assets/personajes/party-girls/videos/video-2.mp4',
-          'assets/personajes/party-girls/videos/02.mp4',
-          'assets/personajes/party-girls/videos/2.mp4',
-          'assets/party-girls/videos/video-2.mp4',
-          'assets/party-girls/videos/02.mp4',
-          'assets/party-girls/videos/2.mp4'
-        ],
-        posterPaths: [
-          'assets/personajes/party-girls/02.jpg',
-          'assets/personajes/party-girls/02.png',
-          'assets/personajes/party-girls/2.jpg',
-          'assets/personajes/party-girls/2.png'
-        ],
-        title: 'Vídeo 2',
-        desc: 'Segunda escena en movimiento de Party Girls.'
-      }
-    ];
-
-    const galleryGrid = document.getElementById('galleryGrid');
-    const heroPartyImage = document.getElementById('heroPartyImage');
-
+    const galleryCards = document.querySelectorAll('.gallery-card');
     const lightbox = document.getElementById('lightbox');
     const lightboxClose = document.getElementById('lightboxClose');
     const lightboxImage = document.getElementById('lightboxImage');
@@ -735,149 +490,25 @@
     const lightboxTitle = document.getElementById('lightboxTitle');
     const lightboxText = document.getElementById('lightboxText');
 
-    const prevVideo = document.getElementById('prevVideo');
-    const nextVideo = document.getElementById('nextVideo');
-    const videoTitle = document.getElementById('videoTitle');
-    const videoDesc = document.getElementById('videoDesc');
-    const videoBox = document.getElementById('videoBox');
-
-    let resolvedGallery = [];
-    let resolvedVideos = [];
-    let currentVideoIndex = 0;
-
-    async function buildGallery(){
-      resolvedGallery = [];
-
-      for(const item of partyImagesConfig){
-        const found = await firstExisting(item.paths);
-        if(found){
-          resolvedGallery.push({
-            src: found,
-            title: item.title,
-            role: item.role,
-            text: item.text
-          });
-        }
-      }
-
-      if(!resolvedGallery.length){
-        resolvedGallery.push({
-          src: svgPlaceholder('Las Crónicas de Sasha', 'Party Girls'),
-          title: 'Party Girls',
-          role: 'Party',
-          text: 'Añade aquí las rutas reales de tus imágenes de Party Girls si todavía no coinciden con las del bloque de configuración.'
-        });
-      }
-
-      heroPartyImage.src = resolvedGallery[0].src;
-      heroPartyImage.onerror = () => {
-        heroPartyImage.src = svgPlaceholder('Las Crónicas de Sasha', 'Party Girls');
-      };
-
-      galleryGrid.innerHTML = '';
-
-      resolvedGallery.forEach((item, index) => {
-        const card = document.createElement('article');
-        card.className = 'gallery-card';
-        card.innerHTML = `
-          <img src="${item.src}" alt="${item.title} ${index + 1}">
-          <div class="caption">
-            <h3>${item.title}</h3>
-            <p>${item.role}</p>
-          </div>
-        `;
-        card.addEventListener('click', () => openLightbox(item));
-        galleryGrid.appendChild(card);
+    galleryCards.forEach(card => {
+      card.addEventListener('click', () => {
+        lightboxImage.src = card.dataset.src;
+        lightboxRole.textContent = card.dataset.role;
+        lightboxTitle.textContent = card.dataset.title;
+        lightboxText.textContent = card.dataset.text;
+        lightbox.classList.add('open');
       });
-    }
+    });
 
-    function openLightbox(item){
-      lightboxImage.src = item.src;
-      lightboxImage.onerror = () => {
-        lightboxImage.src = svgPlaceholder('Las Crónicas de Sasha', item.title);
-      };
-      lightboxRole.textContent = item.role;
-      lightboxTitle.textContent = item.title;
-      lightboxText.textContent = item.text;
-      lightbox.classList.add('open');
-    }
-
-    function closeLightbox(){
+    lightboxClose.addEventListener('click', () => {
       lightbox.classList.remove('open');
-    }
+    });
 
-    lightboxClose.addEventListener('click', closeLightbox);
     lightbox.addEventListener('click', (e) => {
-      if(e.target === lightbox) closeLightbox();
-    });
-
-    async function buildVideos(){
-      resolvedVideos = [];
-
-      for(const item of partyVideosConfig){
-        const videoSrc = await firstExisting(item.paths);
-        if(videoSrc){
-          const posterSrc = await firstExisting(item.posterPaths || []);
-          resolvedVideos.push({
-            src: videoSrc,
-            poster: posterSrc || '',
-            title: item.title,
-            desc: item.desc
-          });
-        }
-      }
-
-      renderVideo();
-    }
-
-    function renderVideo(){
-      if(!resolvedVideos.length){
-        prevVideo.disabled = true;
-        nextVideo.disabled = true;
-        videoTitle.textContent = 'Vídeos de Party Girls';
-        videoDesc.textContent = 'Escenas en movimiento del grupo.';
-        videoBox.innerHTML = `
-          <div class="empty-state">
-            <div>
-              <strong>Aún no hay vídeos cargados para Party Girls.</strong><br>
-              Revisa únicamente el bloque de configuración del final del HTML y sustituye las rutas por los nombres reales de tus archivos.
-            </div>
-          </div>
-        `;
-        return;
-      }
-
-      prevVideo.disabled = currentVideoIndex === 0;
-      nextVideo.disabled = currentVideoIndex === resolvedVideos.length - 1;
-
-      const current = resolvedVideos[currentVideoIndex];
-      videoTitle.textContent = current.title;
-      videoDesc.textContent = current.desc;
-
-      videoBox.innerHTML = `
-        <video controls preload="metadata" ${current.poster ? `poster="${current.poster}"` : ''}>
-          <source src="${current.src}" type="video/mp4">
-          Tu navegador no puede reproducir este vídeo.
-        </video>
-      `;
-    }
-
-    prevVideo.addEventListener('click', () => {
-      if(currentVideoIndex > 0){
-        currentVideoIndex--;
-        renderVideo();
+      if (e.target === lightbox) {
+        lightbox.classList.remove('open');
       }
     });
-
-    nextVideo.addEventListener('click', () => {
-      if(currentVideoIndex < resolvedVideos.length - 1){
-        currentVideoIndex++;
-        renderVideo();
-      }
-    });
-
-    buildGallery();
-    buildVideos();
   </script>
 </body>
 </html>
