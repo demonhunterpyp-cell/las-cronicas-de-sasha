@@ -16,8 +16,6 @@
       --text:#f7eedc;
       --text-soft:#ddd2b7;
       --muted:#cbb891;
-      --panel:rgba(20,25,39,.95);
-      --panel-2:rgba(35,44,65,.97);
       --shadow:0 22px 50px rgba(0,0,0,.33);
       --maxw:1180px;
     }
@@ -36,8 +34,6 @@
 
     a{color:inherit;text-decoration:none}
     img, video{display:block;max-width:100%}
-
-    .shell{width:min(var(--maxw), 92%); margin:0 auto}
 
     .topbar{
       width:min(var(--maxw), 92%);
@@ -358,20 +354,6 @@
       background:#0a0e16;
     }
 
-    .empty-state{
-      width:100%;
-      min-height:240px;
-      display:grid;
-      place-items:center;
-      text-align:center;
-      color:#d4ccb9;
-      line-height:1.8;
-      padding:24px;
-      border-radius:18px;
-      border:1px dashed rgba(216,177,96,.18);
-      background:rgba(255,255,255,.02);
-    }
-
     .lightbox{
       position:fixed;
       inset:0;
@@ -482,7 +464,7 @@
     }
 
     @media (max-width: 760px){
-      .shell, .page, .topbar, .footer{width:min(var(--maxw), 94%)}
+      .topbar, .page, .footer{width:min(var(--maxw), 94%)}
       .panel{padding:24px 16px}
       .gallery-grid{grid-template-columns:1fr}
       .video-carousel{grid-template-columns:1fr}
@@ -507,14 +489,14 @@
   <section class="hero">
     <div class="hero-inner">
       <div class="hero-card">
-        <img id="heroSashaImage" alt="Sasha" />
+        <img src="assets/galerias/sasha/sasha-01.png" alt="Sasha" />
       </div>
 
       <div>
         <div class="eyebrow">Galería de personaje</div>
         <h1>Galería de Sasha</h1>
         <p class="hero-copy">
-          Una selección visual centrada en Sasha. La parrilla sigue siendo la protagonista y cada imagen puede abrirse con su ficha lateral. Debajo, el carrusel de vídeos vuelve a estar activo para reunir las escenas disponibles del personaje.
+          Una selección visual centrada en Sasha. La parrilla sigue siendo la protagonista y cada imagen puede abrirse con su ficha lateral. Debajo, el carrusel de vídeos reúne las escenas disponibles del personaje.
         </p>
       </div>
     </div>
@@ -526,7 +508,47 @@
       <h2 class="section-title">Imágenes</h2>
       <p class="section-lead">Retratos, escenas y variaciones visuales de Sasha en una parrilla limpia, lista para seguir creciendo.</p>
 
-      <div class="gallery-grid" id="galleryGrid"></div>
+      <div class="gallery-grid" id="galleryGrid">
+        <article class="gallery-card" data-src="assets/galerias/sasha/sasha-01.png" data-title="Sasha" data-role="Protagonista" data-text="Sasha es el avatar de Margaret, una mujer de 53 años que encuentra en este nuevo mundo una segunda oportunidad para redescubrirse, luchar y volver a sentirse dueña de su propia historia.">
+          <img src="assets/galerias/sasha/sasha-01.png" alt="Sasha 1">
+          <div class="caption">
+            <h3>Sasha</h3>
+            <p>Protagonista</p>
+          </div>
+        </article>
+
+        <article class="gallery-card" data-src="assets/galerias/sasha/sasha-02.png" data-title="Sasha" data-role="Protagonista" data-text="Otra escena visual del personaje dentro del universo de Las Crónicas de Sasha.">
+          <img src="assets/galerias/sasha/sasha-02.png" alt="Sasha 2">
+          <div class="caption">
+            <h3>Sasha</h3>
+            <p>Protagonista</p>
+          </div>
+        </article>
+
+        <article class="gallery-card" data-src="assets/galerias/sasha/sasha-03.png" data-title="Sasha" data-role="Protagonista" data-text="Instantánea visual de Sasha preparada para la galería.">
+          <img src="assets/galerias/sasha/sasha-03.png" alt="Sasha 3">
+          <div class="caption">
+            <h3>Sasha</h3>
+            <p>Protagonista</p>
+          </div>
+        </article>
+
+        <article class="gallery-card" data-src="assets/galerias/sasha/sasha-04.png" data-title="Sasha" data-role="Protagonista" data-text="Otra escena del personaje pensada para ampliar la galería visual.">
+          <img src="assets/galerias/sasha/sasha-04.png" alt="Sasha 4">
+          <div class="caption">
+            <h3>Sasha</h3>
+            <p>Protagonista</p>
+          </div>
+        </article>
+
+        <article class="gallery-card" data-src="assets/galerias/sasha/sasha-05.png" data-title="Sasha" data-role="Protagonista" data-text="Imagen adicional de Sasha lista para mostrarse en la parrilla.">
+          <img src="assets/galerias/sasha/sasha-05.png" alt="Sasha 5">
+          <div class="caption">
+            <h3>Sasha</h3>
+            <p>Protagonista</p>
+          </div>
+        </article>
+      </div>
     </section>
 
     <section class="panel" id="videos">
@@ -540,8 +562,8 @@
 
           <div class="video-stage">
             <div class="video-head">
-              <h3 id="videoTitle">Vídeos de Sasha</h3>
-              <p id="videoDesc">Escenas en movimiento del personaje.</p>
+              <h3 id="videoTitle">Sasha tier 2</h3>
+              <p id="videoDesc">Primera escena en movimiento de Sasha.</p>
             </div>
             <div class="video-box" id="videoBox"></div>
           </div>
@@ -574,9 +596,88 @@
   </div>
 
   <script>
-    function svgPlaceholder(top, bottom){
+    const galleryCards = document.querySelectorAll('.gallery-card');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxClose = document.getElementById('lightboxClose');
+    const lightboxImage = document.getElementById('lightboxImage');
+    const lightboxRole = document.getElementById('lightboxRole');
+    const lightboxTitle = document.getElementById('lightboxTitle');
+    const lightboxText = document.getElementById('lightboxText');
+
+    galleryCards.forEach(card => {
+      card.addEventListener('click', () => {
+        lightboxImage.src = card.dataset.src;
+        lightboxRole.textContent = card.dataset.role;
+        lightboxTitle.textContent = card.dataset.title;
+        lightboxText.textContent = card.dataset.text;
+        lightbox.classList.add('open');
+      });
+    });
+
+    lightboxClose.addEventListener('click', () => {
+      lightbox.classList.remove('open');
+    });
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        lightbox.classList.remove('open');
+      }
+    });
+
+    const videos = [
+      {
+        src: 'assets/galerias/sasha/sasha-tier2.mp4',
+        title: 'Sasha tier 2',
+        desc: 'Primera escena en movimiento de Sasha.'
+      },
+      {
+        src: 'assets/galerias/sasha/sasha-viaje.mp4',
+        title: 'Sasha viaje',
+        desc: 'Segunda escena en movimiento de Sasha.'
+      }
+    ];
+
+    let currentVideoIndex = 0;
+
+    const prevVideo = document.getElementById('prevVideo');
+    const nextVideo = document.getElementById('nextVideo');
+    const videoTitle = document.getElementById('videoTitle');
+    const videoDesc = document.getElementById('videoDesc');
+    const videoBox = document.getElementById('videoBox');
+
+    function renderVideo() {
+      const current = videos[currentVideoIndex];
+      videoTitle.textContent = current.title;
+      videoDesc.textContent = current.desc;
+
+      videoBox.innerHTML = `
+        <video controls preload="metadata">
+          <source src="${current.src}" type="video/mp4">
+          Tu navegador no puede reproducir este vídeo.
+        </video>
+      `;
+
+      prevVideo.disabled = currentVideoIndex === 0;
+      nextVideo.disabled = currentVideoIndex === videos.length - 1;
+    }
+
+    prevVideo.addEventListener('click', () => {
+      if (currentVideoIndex > 0) {
+        currentVideoIndex--;
+        renderVideo();
+      }
+    });
+
+    nextVideo.addEventListener('click', () => {
+      if (currentVideoIndex < videos.length - 1) {
+        currentVideoIndex++;
+        renderVideo();
+      }
+    });
+
+    function makePlaceholder(top, bottom){
       const topText = encodeURIComponent(top || 'Las Crónicas de Sasha');
-      const bottomText = encodeURIComponent(bottom || 'Sasha');
+      const bottomText = encodeURIComponent(bottom || 'Imagen');
       return `data:image/svg+xml;charset=UTF-8,
       <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'>
         <defs>
@@ -592,292 +693,14 @@
       </svg>`.replace(/\n/g, '');
     }
 
-    async function exists(path){
-      try{
-        const res = await fetch(path, { method:'HEAD' });
-        return res.ok;
-      }catch(e){
-        return false;
-      }
-    }
-
-    async function firstExisting(paths){
-      for(const path of paths){
-        if(await exists(path)) return path;
-      }
-      return null;
-    }
-
-    /*
-      ==========================
-      CONFIGURA AQUÍ TUS ARCHIVOS
-      ==========================
-      Si tus nombres reales no coinciden, cambia SOLO estas rutas.
-      Puedes añadir más líneas sin tocar el resto del HTML.
-    */
-
-    const sashaImagesConfig = [
-      {
-        paths: [
-          'assets/personajes/sasha/01.jpg',
-          'assets/personajes/sasha/01.png',
-          'assets/personajes/sasha/1.jpg',
-          'assets/personajes/sasha/1.png',
-          'assets/personajes/sasha.jpg',
-          'assets/personajes/sasha.png',
-          'assets/sasha/01.jpg',
-          'assets/sasha/1.jpg'
-        ],
-        title: 'Sasha',
-        role: 'Protagonista',
-        text: 'Sasha es el avatar de Margaret, una mujer de 53 años que encuentra en este nuevo mundo una segunda oportunidad para redescubrirse, luchar y volver a sentirse dueña de su propia historia.'
-      },
-      {
-        paths: [
-          'assets/personajes/sasha/02.jpg',
-          'assets/personajes/sasha/02.png',
-          'assets/personajes/sasha/2.jpg',
-          'assets/personajes/sasha/2.png',
-          'assets/sasha/02.jpg',
-          'assets/sasha/2.jpg'
-        ],
-        title: 'Sasha',
-        role: 'Protagonista',
-        text: 'Una de las múltiples escenas visuales del personaje dentro del universo de Las Crónicas de Sasha.'
-      },
-      {
-        paths: [
-          'assets/personajes/sasha/03.jpg',
-          'assets/personajes/sasha/03.png',
-          'assets/personajes/sasha/3.jpg',
-          'assets/personajes/sasha/3.png',
-          'assets/sasha/03.jpg',
-          'assets/sasha/3.jpg'
-        ],
-        title: 'Sasha',
-        role: 'Protagonista',
-        text: 'Instantánea visual de Sasha preparada para la parrilla de galería.'
-      },
-      {
-        paths: [
-          'assets/personajes/sasha/04.jpg',
-          'assets/personajes/sasha/04.png',
-          'assets/personajes/sasha/4.jpg',
-          'assets/personajes/sasha/4.png',
-          'assets/sasha/04.jpg',
-          'assets/sasha/4.jpg'
-        ],
-        title: 'Sasha',
-        role: 'Protagonista',
-        text: 'Otra escena del personaje pensada para ampliar la galería visual.'
-      },
-      {
-        paths: [
-          'assets/personajes/sasha/05.jpg',
-          'assets/personajes/sasha/05.png',
-          'assets/personajes/sasha/5.jpg',
-          'assets/personajes/sasha/5.png',
-          'assets/sasha/05.jpg',
-          'assets/sasha/5.jpg'
-        ],
-        title: 'Sasha',
-        role: 'Protagonista',
-        text: 'Imagen adicional de Sasha lista para mostrarse en la parrilla.'
-      }
-    ];
-
-    const sashaVideosConfig = [
-      {
-        paths: [
-          'assets/personajes/sasha/videos/video-1.mp4',
-          'assets/personajes/sasha/videos/01.mp4',
-          'assets/personajes/sasha/videos/1.mp4',
-          'assets/sasha/videos/video-1.mp4',
-          'assets/sasha/videos/01.mp4',
-          'assets/sasha/videos/1.mp4'
-        ],
-        posterPaths: [
-          'assets/personajes/sasha/01.jpg',
-          'assets/personajes/sasha/01.png',
-          'assets/personajes/sasha/1.jpg',
-          'assets/personajes/sasha/1.png'
-        ],
-        title: 'Vídeo 1',
-        desc: 'Primera escena en movimiento de Sasha.'
-      },
-      {
-        paths: [
-          'assets/personajes/sasha/videos/video-2.mp4',
-          'assets/personajes/sasha/videos/02.mp4',
-          'assets/personajes/sasha/videos/2.mp4',
-          'assets/sasha/videos/video-2.mp4',
-          'assets/sasha/videos/02.mp4',
-          'assets/sasha/videos/2.mp4'
-        ],
-        posterPaths: [
-          'assets/personajes/sasha/02.jpg',
-          'assets/personajes/sasha/02.png',
-          'assets/personajes/sasha/2.jpg',
-          'assets/personajes/sasha/2.png'
-        ],
-        title: 'Vídeo 2',
-        desc: 'Segunda escena en movimiento de Sasha.'
-      }
-    ];
-
-    const galleryGrid = document.getElementById('galleryGrid');
-    const heroSashaImage = document.getElementById('heroSashaImage');
-
-    const lightbox = document.getElementById('lightbox');
-    const lightboxClose = document.getElementById('lightboxClose');
-    const lightboxImage = document.getElementById('lightboxImage');
-    const lightboxRole = document.getElementById('lightboxRole');
-    const lightboxTitle = document.getElementById('lightboxTitle');
-    const lightboxText = document.getElementById('lightboxText');
-
-    const prevVideo = document.getElementById('prevVideo');
-    const nextVideo = document.getElementById('nextVideo');
-    const videoTitle = document.getElementById('videoTitle');
-    const videoDesc = document.getElementById('videoDesc');
-    const videoBox = document.getElementById('videoBox');
-
-    let resolvedGallery = [];
-    let resolvedVideos = [];
-    let currentVideoIndex = 0;
-
-    async function buildGallery(){
-      resolvedGallery = [];
-
-      for(const item of sashaImagesConfig){
-        const found = await firstExisting(item.paths);
-        if(found){
-          resolvedGallery.push({
-            src: found,
-            title: item.title,
-            role: item.role,
-            text: item.text
-          });
-        }
-      }
-
-      if(!resolvedGallery.length){
-        resolvedGallery.push({
-          src: svgPlaceholder('Las Crónicas de Sasha', 'Sasha'),
-          title: 'Sasha',
-          role: 'Protagonista',
-          text: 'Añade aquí las rutas reales de tus imágenes de Sasha si todavía no coinciden con las del bloque de configuración.'
-        });
-      }
-
-      heroSashaImage.src = resolvedGallery[0].src;
-      heroSashaImage.onerror = () => {
-        heroSashaImage.src = svgPlaceholder('Las Crónicas de Sasha', 'Sasha');
-      };
-
-      galleryGrid.innerHTML = '';
-
-      resolvedGallery.forEach((item, index) => {
-        const card = document.createElement('article');
-        card.className = 'gallery-card';
-        card.innerHTML = `
-          <img src="${item.src}" alt="${item.title} ${index + 1}">
-          <div class="caption">
-            <h3>${item.title}</h3>
-            <p>${item.role}</p>
-          </div>
-        `;
-        card.addEventListener('click', () => openLightbox(item));
-        galleryGrid.appendChild(card);
-      });
-    }
-
-    function openLightbox(item){
-      lightboxImage.src = item.src;
-      lightboxImage.onerror = () => {
-        lightboxImage.src = svgPlaceholder('Las Crónicas de Sasha', item.title);
-      };
-      lightboxRole.textContent = item.role;
-      lightboxTitle.textContent = item.title;
-      lightboxText.textContent = item.text;
-      lightbox.classList.add('open');
-    }
-
-    function closeLightbox(){
-      lightbox.classList.remove('open');
-    }
-
-    lightboxClose.addEventListener('click', closeLightbox);
-    lightbox.addEventListener('click', (e) => {
-      if(e.target === lightbox) closeLightbox();
+    document.querySelectorAll('img').forEach(img => {
+      img.addEventListener('error', () => {
+        const alt = img.getAttribute('alt') || 'Imagen';
+        img.src = makePlaceholder('Las Crónicas de Sasha', alt);
+      }, { once:true });
     });
 
-    async function buildVideos(){
-      resolvedVideos = [];
-
-      for(const item of sashaVideosConfig){
-        const videoSrc = await firstExisting(item.paths);
-        if(videoSrc){
-          const posterSrc = await firstExisting(item.posterPaths || []);
-          resolvedVideos.push({
-            src: videoSrc,
-            poster: posterSrc || '',
-            title: item.title,
-            desc: item.desc
-          });
-        }
-      }
-
-      renderVideo();
-    }
-
-    function renderVideo(){
-      if(!resolvedVideos.length){
-        prevVideo.disabled = true;
-        nextVideo.disabled = true;
-        videoTitle.textContent = 'Vídeos de Sasha';
-        videoDesc.textContent = 'Escenas en movimiento del personaje.';
-        videoBox.innerHTML = `
-          <div class="empty-state">
-            <div>
-              <strong>Aún no hay vídeos cargados para Sasha.</strong><br>
-              Revisa únicamente el bloque de configuración del final del HTML y sustituye las rutas por los nombres reales de tus archivos.
-            </div>
-          </div>
-        `;
-        return;
-      }
-
-      prevVideo.disabled = currentVideoIndex === 0;
-      nextVideo.disabled = currentVideoIndex === resolvedVideos.length - 1;
-
-      const current = resolvedVideos[currentVideoIndex];
-      videoTitle.textContent = current.title;
-      videoDesc.textContent = current.desc;
-
-      videoBox.innerHTML = `
-        <video controls preload="metadata" ${current.poster ? `poster="${current.poster}"` : ''}>
-          <source src="${current.src}" type="video/mp4">
-          Tu navegador no puede reproducir este vídeo.
-        </video>
-      `;
-    }
-
-    prevVideo.addEventListener('click', () => {
-      if(currentVideoIndex > 0){
-        currentVideoIndex--;
-        renderVideo();
-      }
-    });
-
-    nextVideo.addEventListener('click', () => {
-      if(currentVideoIndex < resolvedVideos.length - 1){
-        currentVideoIndex++;
-        renderVideo();
-      }
-    });
-
-    buildGallery();
-    buildVideos();
+    renderVideo();
   </script>
 </body>
 </html>
