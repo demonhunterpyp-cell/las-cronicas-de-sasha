@@ -803,7 +803,7 @@
 
       <div class="hero-book">
         <a href="volumen-1.html" aria-label="Abrir ficha del Volumen 1">
-          <img id="heroBook" src="assets/libros/volumenes/libro-sin-fondo.png" alt="Las Crónicas de Sasha Volumen 1" />
+          <img src="assets/libros/volumenes/libro-sin-fondo.png" alt="Las Crónicas de Sasha Volumen 1" />
         </a>
       </div>
     </div>
@@ -957,7 +957,7 @@
 
         <article class="card">
           <div class="card-media">
-            <a href="party-girls.html"><img src="assets/galerias/party-girls/monet.png" alt="Party Girls" /></a>
+            <a href="party-girls.html"><img src="assets/galerias/party-girls/party-girls.jpeg" alt="Party Girls" /></a>
           </div>
           <div class="card-body">
             <div class="eyebrow">Núcleo social</div>
@@ -972,7 +972,7 @@
 
         <article class="card">
           <div class="card-media">
-            <a href="aliados.html"><img src="assets/galerias/aliados/asterisco.png" alt="Aliados" /></a>
+            <a href="aliados.html"><img src="assets/galerias/aliados/aliados.jpeg" alt="Aliados" /></a>
           </div>
           <div class="card-body">
             <div class="eyebrow">Compañeros</div>
@@ -980,14 +980,14 @@
             <p>La ayuda adopta muchas formas. A veces es amable, otras severa y otras insufrible, pero nadie puede seguir adelante solo.</p>
             <div class="card-actions">
               <a class="mini-btn primary" href="aliados.html">Ver ficha</a>
-              <a class="mini-btn secondary" href="aliados.html">Ver galería</a>
+              <a class="mini-btn secondary" href="aliados.html#videos">Ver vídeos</a>
             </div>
           </div>
         </article>
 
         <article class="card">
           <div class="card-media">
-            <a href="enemigos.html"><img src="assets/galerias/enemigos/Akalys.png" alt="Enemigos" /></a>
+            <a href="enemigos.html"><img src="assets/galerias/enemigos/enemigos.jpeg" alt="Enemigos" /></a>
           </div>
           <div class="card-body">
             <div class="eyebrow">Amenaza</div>
@@ -1162,31 +1162,6 @@
         Object.values(panels).forEach(panel => panel.classList.remove('active'));
         panels[tab.dataset.tab].classList.add('active');
       });
-    });
-
-    function makePlaceholder(top, bottom){
-      const topText = encodeURIComponent(top || 'Las Crónicas de Sasha');
-      const bottomText = encodeURIComponent(bottom || 'Imagen');
-      return `data:image/svg+xml;charset=UTF-8,
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'>
-        <defs>
-          <linearGradient id='g' x1='0' x2='0' y1='0' y2='1'>
-            <stop offset='0%' stop-color='%23253048'/>
-            <stop offset='100%' stop-color='%23101827'/>
-          </linearGradient>
-        </defs>
-        <rect width='1200' height='800' fill='url(%23g)'/>
-        <rect x='30' y='30' width='1140' height='740' rx='30' fill='none' stroke='rgba(216,177,96,.42)' stroke-width='3'/>
-        <text x='50%' y='38%' text-anchor='middle' fill='%23d6b06a' font-family='Georgia, serif' font-size='44'>${topText}</text>
-        <text x='50%' y='54%' text-anchor='middle' fill='%23f7eedc' font-family='Georgia, serif' font-size='62'>${bottomText}</text>
-      </svg>`.replace(/\n/g, '');
-    }
-
-    document.querySelectorAll('img').forEach(img => {
-      img.addEventListener('error', () => {
-        const alt = img.getAttribute('alt') || 'Imagen';
-        img.src = makePlaceholder('Las Crónicas de Sasha', alt);
-      }, { once:true });
     });
   </script>
 </body>
