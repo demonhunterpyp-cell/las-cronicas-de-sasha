@@ -15,7 +15,6 @@
       --gold-soft:rgba(216,177,96,.25);
       --text:#f7eedc;
       --text-soft:#ddd2b7;
-      --muted:#cbb891;
       --shadow:0 22px 50px rgba(0,0,0,.33);
       --maxw:1180px;
     }
@@ -46,8 +45,7 @@
       flex-wrap:wrap;
     }
 
-    .topbar-left,
-    .topbar-right{
+    .topbar-left, .topbar-right{
       display:flex;
       gap:10px;
       flex-wrap:wrap;
@@ -511,42 +509,27 @@
       <div class="gallery-grid" id="galleryGrid">
         <article class="gallery-card" data-src="assets/galerias/sasha/sasha-01.png" data-title="Sasha" data-role="Protagonista" data-text="Sasha es el avatar de Margaret, una mujer de 53 años que encuentra en este nuevo mundo una segunda oportunidad para redescubrirse, luchar y volver a sentirse dueña de su propia historia.">
           <img src="assets/galerias/sasha/sasha-01.png" alt="Sasha 1">
-          <div class="caption">
-            <h3>Sasha</h3>
-            <p>Protagonista</p>
-          </div>
+          <div class="caption"><h3>Sasha</h3><p>Protagonista</p></div>
         </article>
 
         <article class="gallery-card" data-src="assets/galerias/sasha/sasha-02.png" data-title="Sasha" data-role="Protagonista" data-text="Otra escena visual del personaje dentro del universo de Las Crónicas de Sasha.">
           <img src="assets/galerias/sasha/sasha-02.png" alt="Sasha 2">
-          <div class="caption">
-            <h3>Sasha</h3>
-            <p>Protagonista</p>
-          </div>
+          <div class="caption"><h3>Sasha</h3><p>Protagonista</p></div>
         </article>
 
         <article class="gallery-card" data-src="assets/galerias/sasha/sasha-03.png" data-title="Sasha" data-role="Protagonista" data-text="Instantánea visual de Sasha preparada para la galería.">
           <img src="assets/galerias/sasha/sasha-03.png" alt="Sasha 3">
-          <div class="caption">
-            <h3>Sasha</h3>
-            <p>Protagonista</p>
-          </div>
+          <div class="caption"><h3>Sasha</h3><p>Protagonista</p></div>
         </article>
 
         <article class="gallery-card" data-src="assets/galerias/sasha/sasha-04.png" data-title="Sasha" data-role="Protagonista" data-text="Otra escena del personaje pensada para ampliar la galería visual.">
           <img src="assets/galerias/sasha/sasha-04.png" alt="Sasha 4">
-          <div class="caption">
-            <h3>Sasha</h3>
-            <p>Protagonista</p>
-          </div>
+          <div class="caption"><h3>Sasha</h3><p>Protagonista</p></div>
         </article>
 
         <article class="gallery-card" data-src="assets/galerias/sasha/sasha-05.png" data-title="Sasha" data-role="Protagonista" data-text="Imagen adicional de Sasha lista para mostrarse en la parrilla.">
           <img src="assets/galerias/sasha/sasha-05.png" alt="Sasha 5">
-          <div class="caption">
-            <h3>Sasha</h3>
-            <p>Protagonista</p>
-          </div>
+          <div class="caption"><h3>Sasha</h3><p>Protagonista</p></div>
         </article>
       </div>
     </section>
@@ -562,8 +545,8 @@
 
           <div class="video-stage">
             <div class="video-head">
-              <h3 id="videoTitle">Sasha tier 2</h3>
-              <p id="videoDesc">Primera escena en movimiento de Sasha.</p>
+              <h3 id="videoTitle"></h3>
+              <p id="videoDesc"></p>
             </div>
             <div class="video-box" id="videoBox"></div>
           </div>
@@ -626,14 +609,29 @@
 
     const videos = [
       {
-        src: 'assets/galerias/sasha/sasha-tier2.mp4',
-        title: 'Sasha tier 2',
-        desc: 'Primera escena en movimiento de Sasha.'
+        src: 'assets/videos/sasha/espejo.mp4',
+        title: 'Espejo',
+        desc: 'Escena de Sasha frente al espejo.'
       },
       {
-        src: 'assets/galerias/sasha/sasha-viaje.mp4',
+        src: 'assets/videos/sasha/gallinas.mp4',
+        title: 'Gallinas',
+        desc: 'Escena de Sasha con las gallinas.'
+      },
+      {
+        src: 'assets/videos/sasha/sasha-tier2.mp4',
+        title: 'Sasha tier 2',
+        desc: 'Escena de Sasha en su versión tier 2.'
+      },
+      {
+        src: 'assets/videos/sasha/sasha-transformacion.mp4',
+        title: 'Sasha transformación',
+        desc: 'Escena de transformación de Sasha.'
+      },
+      {
+        src: 'assets/videos/sasha/sasha-viaje.mp4',
         title: 'Sasha viaje',
-        desc: 'Segunda escena en movimiento de Sasha.'
+        desc: 'Escena de viaje de Sasha.'
       }
     ];
 
@@ -673,31 +671,6 @@
         currentVideoIndex++;
         renderVideo();
       }
-    });
-
-    function makePlaceholder(top, bottom){
-      const topText = encodeURIComponent(top || 'Las Crónicas de Sasha');
-      const bottomText = encodeURIComponent(bottom || 'Imagen');
-      return `data:image/svg+xml;charset=UTF-8,
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'>
-        <defs>
-          <linearGradient id='g' x1='0' x2='0' y1='0' y2='1'>
-            <stop offset='0%' stop-color='%23253048'/>
-            <stop offset='100%' stop-color='%23101827'/>
-          </linearGradient>
-        </defs>
-        <rect width='1200' height='800' fill='url(%23g)'/>
-        <rect x='30' y='30' width='1140' height='740' rx='30' fill='none' stroke='rgba(216,177,96,.42)' stroke-width='3'/>
-        <text x='50%' y='38%' text-anchor='middle' fill='%23d6b06a' font-family='Georgia, serif' font-size='44'>${topText}</text>
-        <text x='50%' y='54%' text-anchor='middle' fill='%23f7eedc' font-family='Georgia, serif' font-size='62'>${bottomText}</text>
-      </svg>`.replace(/\n/g, '');
-    }
-
-    document.querySelectorAll('img').forEach(img => {
-      img.addEventListener('error', () => {
-        const alt = img.getAttribute('alt') || 'Imagen';
-        img.src = makePlaceholder('Las Crónicas de Sasha', alt);
-      }, { once:true });
     });
 
     renderVideo();
