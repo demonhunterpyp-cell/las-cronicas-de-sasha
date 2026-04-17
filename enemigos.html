@@ -4,556 +4,491 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Enemigos | Las Crónicas de Sasha</title>
+  <meta name="description" content="Galería y vídeos de los enemigos de Sasha." />
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    :root{
+      --bg-1:#0f1728;
+      --bg-2:#1a2337;
+      --bg-3:#24304a;
+      --gold:#d8b160;
+      --gold-2:#b78537;
+      --gold-soft:rgba(216,177,96,.25);
+      --text:#f7eedc;
+      --text-soft:#ddd2b7;
+      --muted:#cbb891;
+      --panel:rgba(20,25,39,.95);
+      --panel-2:rgba(35,44,65,.97);
+      --shadow:0 22px 50px rgba(0,0,0,.33);
+      --maxw:1180px;
     }
 
-    :root {
-      --bg: #0b0f16;
-      --panel: #121826;
-      --panel-2: #1a2233;
-      --text: #f3f5f8;
-      --muted: #aab3c2;
-      --accent: #d6a85f;
-      --border: rgba(255,255,255,0.08);
-      --shadow: 0 12px 35px rgba(0,0,0,0.45);
-      --radius: 18px;
-    }
-
-    body {
-      font-family: Arial, Helvetica, sans-serif;
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--text);
+      font-family:Georgia, "Times New Roman", serif;
       background:
-        linear-gradient(rgba(7,10,16,0.9), rgba(7,10,16,0.95)),
-        url("assets/fondo-sasha-panorama.png") center/cover no-repeat fixed;
-      background-color: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
+        radial-gradient(circle at 80% 12%, rgba(216,177,96,.10), transparent 20%),
+        radial-gradient(circle at 20% 82%, rgba(216,177,96,.08), transparent 20%),
+        linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 45%, var(--bg-3) 100%);
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    a{color:inherit;text-decoration:none}
+    img, video{display:block;max-width:100%}
 
-    .topbar {
-      width: min(1200px, 92%);
-      margin: 0 auto;
-      padding: 28px 0 10px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
+    .shell{width:min(var(--maxw), 92%); margin:0 auto}
+
+    .topbar{
+      width:min(var(--maxw), 92%);
+      margin:0 auto;
+      padding:22px 0 10px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
     }
 
     .topbar-left,
-    .topbar-right {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
+    .topbar-right{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
     }
 
-    .back-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 16px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      transition: 0.25s ease;
+    .nav-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid var(--gold-soft);
+      background:rgba(255,255,255,.04);
+      color:#f2e2c3;
+      transition:.2s ease;
+      box-shadow:0 10px 24px rgba(0,0,0,.12);
     }
 
-    .back-link:hover {
-      background: rgba(255,255,255,0.12);
-      transform: translateY(-1px);
+    .nav-btn:hover{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,.08);
     }
 
-    .hero {
-      width: min(1200px, 92%);
-      margin: 0 auto;
-      padding: 24px 0 34px;
+    .hero{
+      position:relative;
+      overflow:hidden;
+      border-top:1px solid rgba(216,177,96,.16);
+      border-bottom:1px solid rgba(216,177,96,.20);
+      background:
+        linear-gradient(90deg, rgba(8,12,20,.82) 0%, rgba(8,12,20,.55) 48%, rgba(8,12,20,.18) 100%),
+        url("assets/fondo-sasha-panorama.png") center center / cover no-repeat;
     }
 
-    .hero h1 {
-      font-size: clamp(2rem, 4vw, 3.6rem);
-      line-height: 1.05;
-      margin-bottom: 14px;
-      color: #fff;
+    .hero::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 76% 18%, rgba(216,177,96,.15), transparent 18%),
+        linear-gradient(180deg, rgba(0,0,0,.06), rgba(0,0,0,.24));
+      pointer-events:none;
     }
 
-    .hero p {
-      max-width: 760px;
-      color: var(--muted);
-      font-size: 1.05rem;
-      line-height: 1.6;
+    .hero-inner{
+      position:relative;
+      z-index:1;
+      width:min(var(--maxw), 92%);
+      margin:0 auto;
+      padding:56px 0 52px;
+      display:grid;
+      grid-template-columns:320px 1fr;
+      gap:28px;
+      align-items:center;
     }
 
-    .gallery-section {
-      width: min(1200px, 92%);
-      margin: 0 auto 60px;
+    .hero-card{
+      border-radius:24px;
+      padding:14px;
+      background:
+        radial-gradient(circle at 50% 18%, rgba(255,225,160,.12), transparent 18%),
+        linear-gradient(180deg, rgba(53,64,92,.96), rgba(24,31,47,.98));
+      border:1px solid rgba(216,177,96,.20);
+      box-shadow:var(--shadow);
     }
 
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 22px;
+    .hero-card img{
+      width:100%;
+      aspect-ratio:2/3;
+      object-fit:cover;
+      border-radius:16px;
+      box-shadow:0 22px 36px rgba(0,0,0,.28);
     }
 
-    .card {
-      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
-      cursor: pointer;
-      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-      box-shadow: var(--shadow);
+    .eyebrow{
+      display:inline-flex;
+      padding:7px 12px;
+      margin-bottom:16px;
+      border-radius:999px;
+      border:1px solid rgba(216,177,96,.24);
+      color:#e5c787;
+      font-size:.82rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      background:rgba(255,255,255,.03);
     }
 
-    .card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(214,168,95,0.45);
-      box-shadow: 0 18px 40px rgba(0,0,0,0.55);
+    h1{
+      margin:0 0 10px;
+      color:#f0c86f;
+      font-size:clamp(2.2rem, 4.8vw, 4rem);
+      line-height:.98;
     }
 
-    .card-image {
-      aspect-ratio: 4 / 5;
-      overflow: hidden;
-      background: #0f1420;
+    .hero-copy{
+      max-width:780px;
+      color:var(--text-soft);
+      line-height:1.8;
+      font-size:1rem;
     }
 
-    .card-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.35s ease;
+    .page{
+      width:min(var(--maxw), 92%);
+      margin:0 auto;
+      padding:28px 0 44px;
     }
 
-    .card:hover .card-image img {
-      transform: scale(1.05);
+    .panel{
+      margin-top:28px;
+      padding:30px 26px;
+      border:1px solid rgba(216,177,96,.18);
+      border-radius:26px;
+      background:
+        radial-gradient(circle at 86% 12%, rgba(216,177,96,.08), transparent 18%),
+        linear-gradient(180deg, rgba(28,34,53,.96), rgba(18,24,38,.98));
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
     }
 
-    .card-content {
-      padding: 16px;
+    .panel::before{
+      content:"";
+      position:absolute;
+      inset:12px;
+      border:1px solid rgba(216,177,96,.10);
+      border-radius:18px;
+      pointer-events:none;
     }
 
-    .card-content h3 {
-      font-size: 1.1rem;
-      margin-bottom: 6px;
-      color: #fff;
+    .ornament{
+      width:240px;
+      height:20px;
+      margin:0 auto 18px;
+      position:relative;
+      z-index:1;
     }
 
-    .card-content .subtitle {
-      color: var(--accent);
-      font-size: 0.95rem;
-      margin-bottom: 10px;
+    .ornament::before,
+    .ornament::after{
+      content:"";
+      position:absolute;
+      top:50%;
+      left:0;
+      right:0;
     }
 
-    .card-content .mini-text {
-      color: var(--muted);
-      font-size: 0.92rem;
-      line-height: 1.5;
+    .ornament::before{
+      height:1px;
+      background:linear-gradient(90deg, transparent, rgba(216,177,96,.55), transparent);
     }
 
-    .video-carousel-section {
-      width: min(1200px, 92%);
-      margin: 0 auto 80px;
+    .ornament::after{
+      width:14px;
+      height:14px;
+      left:50%;
+      right:auto;
+      transform:translate(-50%, -50%);
+      border-radius:50%;
+      border:1px solid rgba(216,177,96,.45);
+      background:rgba(20,25,39,.92);
     }
 
-    #videos {
-      scroll-margin-top: 18px;
+    .section-title{
+      position:relative;
+      z-index:1;
+      margin:0;
+      text-align:center;
+      color:#f0dbaf;
+      font-size:clamp(1.9rem, 3vw, 3rem);
+      line-height:1.06;
+      text-transform:uppercase;
     }
 
-    .video-carousel-header {
-      margin-bottom: 22px;
+    .section-lead{
+      position:relative;
+      z-index:1;
+      max-width:880px;
+      margin:14px auto 0;
+      text-align:center;
+      color:var(--text-soft);
+      font-size:1.02rem;
+      line-height:1.8;
     }
 
-    .video-carousel-header h2 {
-      font-size: clamp(1.8rem, 3vw, 2.8rem);
-      color: #fff;
-      margin-bottom: 10px;
+    .gallery-grid{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:18px;
+      margin-top:22px;
+      position:relative;
+      z-index:1;
     }
 
-    .video-carousel-header p {
-      max-width: 760px;
-      color: var(--muted);
-      font-size: 1rem;
-      line-height: 1.6;
+    .gallery-card{
+      border:1px solid rgba(216,177,96,.16);
+      border-radius:22px;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at 84% 14%, rgba(216,177,96,.08), transparent 18%),
+        linear-gradient(180deg, rgba(43,53,78,.95), rgba(21,27,42,.98));
+      box-shadow:0 14px 28px rgba(0,0,0,.18);
+      cursor:pointer;
+      transition:.22s ease;
     }
 
-    .video-carousel-shell {
-      display: grid;
-      grid-template-columns: 62px 1fr 62px;
-      align-items: center;
-      gap: 12px;
+    .gallery-card:hover{transform:translateY(-4px)}
+
+    .gallery-card img{
+      width:100%;
+      aspect-ratio:16/11;
+      object-fit:cover;
+      border-bottom:1px solid rgba(216,177,96,.14);
+      transition:transform .28s ease;
     }
 
-    .video-arrow {
-      width: 62px;
-      height: 62px;
-      border: 1px solid var(--border);
-      border-radius: 50%;
-      background: rgba(255,255,255,0.06);
-      color: #fff;
-      font-size: 1.5rem;
-      cursor: pointer;
-      transition: 0.25s ease;
-      z-index: 20;
+    .gallery-card:hover img{transform:scale(1.04)}
+
+    .gallery-card .caption{
+      padding:14px 16px 16px;
     }
 
-    .video-arrow:hover {
-      background: rgba(255,255,255,0.14);
-      transform: scale(1.05);
+    .gallery-card h3{
+      margin:0 0 6px;
+      color:#f0dbaf;
+      font-size:1.12rem;
     }
 
-    .video-carousel-stage {
-      position: relative;
-      height: 500px;
-      overflow: hidden;
-      perspective: 1400px;
+    .gallery-card p{
+      margin:0;
+      color:#d4ccb9;
+      font-size:.94rem;
+      line-height:1.7;
     }
 
-    .video-card {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: min(560px, 78vw);
-      transform-style: preserve-3d;
-      transition:
-        transform 0.55s ease,
-        opacity 0.55s ease,
-        filter 0.55s ease;
-      opacity: 0;
-      pointer-events: none;
+    .video-wrap{
+      position:relative;
+      z-index:1;
+      margin-top:22px;
     }
 
-    .video-card.is-active,
-    .video-card.is-left,
-    .video-card.is-right,
-    .video-card.is-left-far,
-    .video-card.is-right-far {
-      pointer-events: auto;
+    .video-carousel{
+      display:grid;
+      grid-template-columns:auto 1fr auto;
+      gap:12px;
+      align-items:center;
     }
 
-    .video-card.is-active {
-      transform: translate(-50%, -50%) translateX(0) scale(1);
-      opacity: 1;
-      z-index: 5;
-      filter: none;
+    .video-nav{
+      width:48px;
+      height:48px;
+      border-radius:999px;
+      border:1px solid rgba(216,177,96,.22);
+      background:rgba(255,255,255,.04);
+      color:#f2e2c3;
+      cursor:pointer;
+      font-size:1.3rem;
+      transition:.2s ease;
     }
 
-    .video-card.is-left {
-      transform: translate(-50%, -50%) translateX(-280px) scale(0.8) rotateY(22deg);
-      opacity: 0.52;
-      z-index: 4;
-      filter: blur(2px) saturate(0.8);
+    .video-nav:hover{transform:translateY(-2px)}
+    .video-nav:disabled{opacity:.35; cursor:default; transform:none}
+
+    .video-stage{
+      min-height:420px;
+      border:1px solid rgba(216,177,96,.16);
+      border-radius:24px;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at 84% 14%, rgba(216,177,96,.08), transparent 18%),
+        linear-gradient(180deg, rgba(43,53,78,.95), rgba(21,27,42,.98));
+      box-shadow:0 14px 28px rgba(0,0,0,.18);
+      display:grid;
+      grid-template-rows:auto 1fr;
     }
 
-    .video-card.is-right {
-      transform: translate(-50%, -50%) translateX(280px) scale(0.8) rotateY(-22deg);
-      opacity: 0.52;
-      z-index: 4;
-      filter: blur(2px) saturate(0.8);
+    .video-head{
+      padding:16px 18px 12px;
+      border-bottom:1px solid rgba(216,177,96,.12);
     }
 
-    .video-card.is-left-far {
-      transform: translate(-50%, -50%) translateX(-470px) scale(0.62) rotateY(28deg);
-      opacity: 0.18;
-      z-index: 3;
-      filter: blur(4px) saturate(0.55);
+    .video-head h3{
+      margin:0 0 6px;
+      color:#f0dbaf;
+      font-size:1.2rem;
     }
 
-    .video-card.is-right-far {
-      transform: translate(-50%, -50%) translateX(470px) scale(0.62) rotateY(-28deg);
-      opacity: 0.18;
-      z-index: 3;
-      filter: blur(4px) saturate(0.55);
+    .video-head p{
+      margin:0;
+      color:#d4ccb9;
+      font-size:.95rem;
+      line-height:1.7;
     }
 
-    .video-card.is-hidden {
-      transform: translate(-50%, -50%) scale(0.45);
-      opacity: 0;
-      z-index: 1;
-      filter: blur(6px);
+    .video-box{
+      padding:18px;
+      display:grid;
+      place-items:center;
     }
 
-    .video-frame {
-      aspect-ratio: 16 / 9;
-      border-radius: 22px;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: #000;
-      box-shadow: 0 24px 50px rgba(0,0,0,0.45);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .video-box video{
+      width:100%;
+      max-height:560px;
+      border-radius:18px;
+      background:#0a0e16;
     }
 
-    .video-frame video {
-      width: 100%;
-      height: 100%;
-      display: block;
-      object-fit: contain;
-      background: #000;
+    .empty-state{
+      width:100%;
+      min-height:240px;
+      display:grid;
+      place-items:center;
+      text-align:center;
+      color:#d4ccb9;
+      line-height:1.8;
+      padding:24px;
+      border-radius:18px;
+      border:1px dashed rgba(216,177,96,.18);
+      background:rgba(255,255,255,.02);
     }
 
-    .video-meta {
-      text-align: center;
-      padding-top: 12px;
+    .lightbox{
+      position:fixed;
+      inset:0;
+      z-index:2000;
+      background:rgba(0,0,0,.72);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
     }
 
-    .video-meta h3 {
-      color: #fff;
-      font-size: 1.1rem;
-      margin-bottom: 6px;
+    .lightbox.open{display:flex}
+
+    .lightbox-card{
+      width:min(1100px, 96vw);
+      max-height:90vh;
+      overflow:auto;
+      border-radius:26px;
+      background:
+        radial-gradient(circle at 84% 14%, rgba(216,177,96,.10), transparent 18%),
+        linear-gradient(180deg, rgba(35,44,65,.98), rgba(18,24,38,.99));
+      border:1px solid rgba(216,177,96,.20);
+      box-shadow:var(--shadow);
+      padding:20px;
+      display:grid;
+      grid-template-columns:1fr 340px;
+      gap:20px;
+      position:relative;
     }
 
-    .video-meta p {
-      color: var(--muted);
-      font-size: 0.94rem;
-      line-height: 1.5;
+    .lightbox-close{
+      position:absolute;
+      top:12px;
+      right:12px;
+      width:42px;
+      height:42px;
+      border-radius:999px;
+      border:1px solid rgba(216,177,96,.22);
+      background:rgba(255,255,255,.05);
+      color:#f2e2c3;
+      font-size:1.2rem;
+      cursor:pointer;
     }
 
-    .video-empty {
-      display: grid;
-      place-items: center;
-      min-height: 320px;
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
-      color: var(--muted);
-      text-align: center;
-      padding: 30px;
+    .lightbox-media img{
+      width:100%;
+      border-radius:18px;
+      object-fit:cover;
     }
 
-    .modal {
-      position: fixed;
-      inset: 0;
-      background: rgba(3, 6, 12, 0.84);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      z-index: 999;
+    .lightbox-info{
+      border:1px solid rgba(216,177,96,.14);
+      border-radius:20px;
+      background:rgba(255,255,255,.03);
+      padding:18px;
+      align-self:start;
     }
 
-    .modal.active {
-      display: flex;
+    .lightbox-info .tag{
+      display:inline-flex;
+      padding:7px 12px;
+      border-radius:999px;
+      border:1px solid rgba(216,177,96,.22);
+      background:rgba(255,255,255,.04);
+      color:#e5c787;
+      font-size:.8rem;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      margin-bottom:12px;
     }
 
-    .modal-box {
-      width: min(1100px, 100%);
-      max-height: 90vh;
-      overflow: auto;
-      background: linear-gradient(180deg, #121826, #0d131f);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      box-shadow: 0 24px 60px rgba(0,0,0,0.6);
-      position: relative;
+    .lightbox-info h3{
+      margin:0 0 10px;
+      color:#f0dbaf;
+      font-size:1.45rem;
     }
 
-    .modal-close {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      width: 42px;
-      height: 42px;
-      border: none;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.08);
-      color: #fff;
-      font-size: 1.4rem;
-      cursor: pointer;
-      z-index: 10;
+    .lightbox-info h4{
+      margin:18px 0 8px;
+      color:#e5c787;
+      font-size:.92rem;
+      text-transform:uppercase;
+      letter-spacing:.08em;
     }
 
-    .modal-close:hover {
-      background: rgba(255,255,255,0.16);
+    .lightbox-info p{
+      margin:0;
+      color:#d4ccb9;
+      line-height:1.8;
+      font-size:.96rem;
     }
 
-    .modal-content {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 0;
-      min-height: 560px;
+    .footer{
+      width:min(var(--maxw), 92%);
+      margin:0 auto;
+      padding:0 0 36px;
+      text-align:center;
+      color:#d7c5a7;
+      font-size:.95rem;
+      line-height:1.7;
     }
 
-    .modal-image {
-      background: #0a0f18;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      border-right: 1px solid var(--border);
+    @media (max-width: 980px){
+      .hero-inner{grid-template-columns:1fr}
+      .hero-card{max-width:320px}
+      .gallery-grid{grid-template-columns:repeat(2, 1fr)}
+      .lightbox-card{grid-template-columns:1fr}
     }
 
-    .modal-image img {
-      max-width: 100%;
-      max-height: 78vh;
-      object-fit: contain;
-      border-radius: 16px;
-    }
-
-    .modal-info {
-      padding: 34px 28px 28px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .modal-info h2 {
-      font-size: 2rem;
-      color: #fff;
-    }
-
-    .modal-role {
-      color: var(--accent);
-      font-weight: bold;
-      font-size: 1rem;
-    }
-
-    .modal-description {
-      color: var(--muted);
-      line-height: 1.7;
-      font-size: 1rem;
-    }
-
-    .info-box {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 16px;
-    }
-
-    .info-box h4 {
-      color: #fff;
-      margin-bottom: 10px;
-      font-size: 1rem;
-    }
-
-    .info-box ul {
-      list-style: none;
-      display: grid;
-      gap: 8px;
-    }
-
-    .info-box li {
-      color: var(--muted);
-      line-height: 1.5;
-    }
-
-    .info-box strong {
-      color: #fff;
-    }
-
-    .modal-controls {
-      display: flex;
-      gap: 12px;
-      margin-top: auto;
-      padding-top: 8px;
-    }
-
-    .modal-btn {
-      border: none;
-      background: rgba(255,255,255,0.08);
-      color: #fff;
-      padding: 12px 16px;
-      border-radius: 12px;
-      cursor: pointer;
-      font-size: 0.96rem;
-      transition: 0.2s ease;
-    }
-
-    .modal-btn:hover {
-      background: rgba(255,255,255,0.14);
-    }
-
-    @media (max-width: 1000px) {
-      .video-carousel-stage {
-        height: 430px;
-      }
-
-      .video-card.is-left {
-        transform: translate(-50%, -50%) translateX(-210px) scale(0.78) rotateY(16deg);
-      }
-
-      .video-card.is-right {
-        transform: translate(-50%, -50%) translateX(210px) scale(0.78) rotateY(-16deg);
-      }
-
-      .video-card.is-left-far {
-        transform: translate(-50%, -50%) translateX(-340px) scale(0.6) rotateY(20deg);
-      }
-
-      .video-card.is-right-far {
-        transform: translate(-50%, -50%) translateX(340px) scale(0.6) rotateY(-20deg);
-      }
-    }
-
-    @media (max-width: 900px) {
-      .modal-content {
-        grid-template-columns: 1fr;
-      }
-
-      .modal-image {
-        border-right: none;
-        border-bottom: 1px solid var(--border);
-      }
-    }
-
-    @media (max-width: 700px) {
-      .video-carousel-shell {
-        grid-template-columns: 50px 1fr 50px;
-      }
-
-      .video-arrow {
-        width: 50px;
-        height: 50px;
-        font-size: 1.2rem;
-      }
-
-      .video-carousel-stage {
-        height: 360px;
-      }
-
-      .video-card {
-        width: min(92vw, 520px);
-      }
-
-      .video-card.is-left {
-        transform: translate(-50%, -50%) translateX(-120px) scale(0.72);
-      }
-
-      .video-card.is-right {
-        transform: translate(-50%, -50%) translateX(120px) scale(0.72);
-      }
-
-      .video-card.is-left-far,
-      .video-card.is-right-far {
-        opacity: 0;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .hero h1 {
-        font-size: 2.2rem;
-      }
-
-      .card-content {
-        padding: 14px;
-      }
-
-      .modal-info {
-        padding: 24px 18px 20px;
-      }
-
-      .modal-info h2 {
-        font-size: 1.6rem;
-      }
+    @media (max-width: 760px){
+      .shell, .page, .topbar, .footer{width:min(var(--maxw), 94%)}
+      .panel{padding:24px 16px}
+      .gallery-grid{grid-template-columns:1fr}
+      .video-carousel{grid-template-columns:1fr}
+      .video-nav{width:100%; border-radius:14px}
+      .video-stage{min-height:unset}
+      .video-box video{max-height:380px}
     }
   </style>
 </head>
@@ -561,366 +496,388 @@
 
   <header class="topbar">
     <div class="topbar-left">
-      <a href="./index.html" class="back-link">← Volver al inicio</a>
-      <a href="./index.html#lore" class="back-link">Personajes</a>
+      <a class="nav-btn" href="index.html">← Volver al inicio</a>
+      <a class="nav-btn" href="index.html#personajes">Personajes</a>
     </div>
     <div class="topbar-right">
-      <a href="./aliados.html" class="back-link">← Aliados</a>
-      <a href="./sasha.html" class="back-link">Sasha →</a>
+      <a class="nav-btn" href="aliados.html">← Aliados</a>
+      <a class="nav-btn" href="sasha.html">Sasha →</a>
     </div>
   </header>
 
   <section class="hero">
-    <h1>Galería de Enemigos</h1>
-    <p>
-      Una colección visual de las amenazas que se alzan frente a Sasha. Aquí puedes recorrer
-      distintos enemigos, abrir cada imagen y consultar su ficha descriptiva individual.
-    </p>
+    <div class="hero-inner">
+      <div class="hero-card">
+        <img id="heroEnemiesImage" alt="Enemigos" />
+      </div>
+
+      <div>
+        <div class="eyebrow">Galería de amenaza</div>
+        <h1>Enemigos</h1>
+        <p class="hero-copy">
+          Cada enemigo deja algo tras de sí: miedo, cicatrices o aprendizaje. Porque a veces sobrevivir no te hace más fuerte, sino más lista. Aquí se reúnen las imágenes y vídeos del bloque de enemigos en una sola página.
+        </p>
+      </div>
+    </div>
   </section>
 
-  <main class="gallery-section">
-    <div class="gallery-grid" id="galleryGrid"></div>
+  <main class="page">
+    <section class="panel">
+      <div class="ornament"></div>
+      <h2 class="section-title">Imágenes</h2>
+      <p class="section-lead">Criaturas, amenazas y presencias hostiles que ponen a prueba el avance de Sasha.</p>
+
+      <div class="gallery-grid" id="galleryGrid"></div>
+    </section>
+
+    <section class="panel" id="videos">
+      <div class="ornament"></div>
+      <h2 class="section-title">Vídeos de Enemigos</h2>
+      <p class="section-lead">Escenas en movimiento del bloque de enemigos reunidas en un carrusel único.</p>
+
+      <div class="video-wrap">
+        <div class="video-carousel">
+          <button class="video-nav" id="prevVideo" aria-label="Vídeo anterior">‹</button>
+
+          <div class="video-stage">
+            <div class="video-head">
+              <h3 id="videoTitle">Vídeos de Enemigos</h3>
+              <p id="videoDesc">Escenas en movimiento del bloque de enemigos.</p>
+            </div>
+            <div class="video-box" id="videoBox"></div>
+          </div>
+
+          <button class="video-nav" id="nextVideo" aria-label="Vídeo siguiente">›</button>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <section class="video-carousel-section" id="videos">
-    <div class="video-carousel-header">
-      <h2>Vídeos de Enemigos</h2>
-      <p>
-        Escenas en movimiento de las amenazas del mundo de Sasha. El carrusel ya queda listo para poblarlo después.
-      </p>
-    </div>
+  <div class="footer">
+    Enemigos
+  </div>
 
-    <div class="video-carousel-shell">
-      <button class="video-arrow" id="videoPrev" aria-label="Vídeo anterior">‹</button>
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-card">
+      <button class="lightbox-close" id="lightboxClose" aria-label="Cerrar">×</button>
 
-      <div class="video-carousel-stage" id="videoCarouselStage">
-        <div class="video-empty">
-          Aún no hay vídeos cargados para Enemigos.
-        </div>
+      <div class="lightbox-media">
+        <img id="lightboxImage" alt="Enemigos ampliada" />
       </div>
 
-      <button class="video-arrow" id="videoNext" aria-label="Vídeo siguiente">›</button>
-    </div>
-  </section>
-
-  <div class="modal" id="imageModal">
-    <div class="modal-box">
-      <button class="modal-close" id="closeModal" aria-label="Cerrar">×</button>
-
-      <div class="modal-content">
-        <div class="modal-image">
-          <img id="modalImg" src="" alt="" />
-        </div>
-
-        <div class="modal-info">
-          <h2 id="modalTitle">Título</h2>
-          <div class="modal-role" id="modalRole">Rol</div>
-          <p class="modal-description" id="modalDescription"></p>
-
-          <div class="info-box">
-            <h4>Ficha</h4>
-            <ul id="modalData"></ul>
-          </div>
-
-          <div class="modal-controls">
-            <button class="modal-btn" id="prevBtn">← Anterior</button>
-            <button class="modal-btn" id="nextBtn">Siguiente →</button>
-          </div>
-        </div>
-      </div>
+      <aside class="lightbox-info">
+        <div class="tag" id="lightboxRole">Enemigos</div>
+        <h3 id="lightboxTitle">Enemigos</h3>
+        <h4>Ficha</h4>
+        <p id="lightboxText"></p>
+      </aside>
     </div>
   </div>
 
   <script>
-    const enemigosGallery = [
+    function svgPlaceholder(top, bottom){
+      const topText = encodeURIComponent(top || 'Las Crónicas de Sasha');
+      const bottomText = encodeURIComponent(bottom || 'Enemigos');
+      return `data:image/svg+xml;charset=UTF-8,
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'>
+        <defs>
+          <linearGradient id='g' x1='0' x2='0' y1='0' y2='1'>
+            <stop offset='0%' stop-color='%23253048'/>
+            <stop offset='100%' stop-color='%23101827'/>
+          </linearGradient>
+        </defs>
+        <rect width='1200' height='800' fill='url(%23g)'/>
+        <rect x='30' y='30' width='1140' height='740' rx='30' fill='none' stroke='rgba(216,177,96,.42)' stroke-width='3'/>
+        <text x='50%' y='38%' text-anchor='middle' fill='%23d6b06a' font-family='Georgia, serif' font-size='44'>${topText}</text>
+        <text x='50%' y='54%' text-anchor='middle' fill='%23f7eedc' font-family='Georgia, serif' font-size='62'>${bottomText}</text>
+      </svg>`.replace(/\n/g, '');
+    }
+
+    async function exists(path){
+      try{
+        const res = await fetch(path, { method:'HEAD' });
+        return res.ok;
+      }catch(e){
+        return false;
+      }
+    }
+
+    async function firstExisting(paths){
+      for(const path of paths){
+        if(await exists(path)) return path;
+      }
+      return null;
+    }
+
+    /*
+      ==========================
+      CONFIGURA AQUÍ TUS ARCHIVOS
+      ==========================
+      Si tus nombres reales no coinciden, cambia SOLO estas rutas.
+    */
+
+    const enemiesImagesConfig = [
       {
-        image: "assets/galerias/enemigos/Akalys.png",
-        title: "Akalys",
-        subtitle: "Amenaza principal",
-        preview: "Figura hostil con fuerte presencia visual y peso dentro del bloque de enemigos.",
-        role: "Enemigo | Amenaza destacada",
-        description: "Akalys representa una amenaza de gran presencia dentro del universo de Sasha. Su figura transmite peligro, tensión y una identidad propia dentro del conflicto.",
-        details: [
-          { label: "Tipo", value: "Enemigo destacado" },
-          { label: "Valor narrativo", value: "Amenaza de peso" },
-          { label: "Rasgos", value: "Presencia, peligro, intensidad" },
-          { label: "Uso en web", value: "Galería, lore y presentación" }
-        ]
+        paths: [
+          'assets/personajes/enemigos/01.jpg',
+          'assets/personajes/enemigos/01.png',
+          'assets/personajes/enemigos/1.jpg',
+          'assets/personajes/enemigos/1.png',
+          'assets/personajes/enemigos.jpg',
+          'assets/personajes/enemigos.png',
+          'assets/enemigos/01.jpg',
+          'assets/enemigos/1.jpg'
+        ],
+        title: 'Enemigos',
+        role: 'Amenaza',
+        text: 'Cada enemigo deja algo tras de sí: miedo, cicatrices o aprendizaje. Porque a veces sobrevivir no te hace más fuerte, sino más lista.'
       },
       {
-        image: "assets/galerias/enemigos/Arpia.png",
-        title: "Arpía",
-        subtitle: "Amenaza aérea",
-        preview: "Criatura hostil de ataque rápido y presencia agresiva.",
-        role: "Enemigo | Criatura voladora",
-        description: "La arpía añade velocidad, verticalidad y agresividad al repertorio de amenazas. Su aparición obliga a replantear la estrategia y rompe la seguridad del terreno.",
-        details: [
-          { label: "Tipo", value: "Criatura aérea" },
-          { label: "Fortaleza", value: "Movilidad y ataque rápido" },
-          { label: "Riesgo", value: "Presión desde el aire" },
-          { label: "Función", value: "Caos y desborde táctico" }
-        ]
+        paths: [
+          'assets/personajes/enemigos/02.jpg',
+          'assets/personajes/enemigos/02.png',
+          'assets/personajes/enemigos/2.jpg',
+          'assets/personajes/enemigos/2.png',
+          'assets/enemigos/02.jpg',
+          'assets/enemigos/2.jpg'
+        ],
+        title: 'Enemigos',
+        role: 'Amenaza',
+        text: 'Escena adicional del bloque de enemigos dentro del universo de Sasha.'
       },
       {
-        image: "assets/galerias/enemigos/Croide.png",
-        title: "Croide",
-        subtitle: "Entidad hostil",
-        preview: "Enemigo con identidad propia y un papel singular dentro de las amenazas del mundo.",
-        role: "Enemigo | Entidad peligrosa",
-        description: "Croide aporta variedad y profundidad al bloque de enemigos. Su presencia ayuda a ampliar el abanico de peligros y a reforzar la sensación de un mundo hostil.",
-        details: [
-          { label: "Tipo", value: "Entidad hostil" },
-          { label: "Función narrativa", value: "Ampliar el repertorio de amenazas" },
-          { label: "Rasgos", value: "Extrañeza, peligro, identidad" },
-          { label: "Valor", value: "Diversidad de enemigos" }
-        ]
+        paths: [
+          'assets/personajes/enemigos/03.jpg',
+          'assets/personajes/enemigos/03.png',
+          'assets/personajes/enemigos/3.jpg',
+          'assets/personajes/enemigos/3.png',
+          'assets/enemigos/03.jpg',
+          'assets/enemigos/3.jpg'
+        ],
+        title: 'Enemigos',
+        role: 'Amenaza',
+        text: 'Otra imagen preparada para ampliar la galería del bloque.'
       },
       {
-        image: "assets/galerias/enemigos/Cucaracho.png",
-        title: "Cucaracho",
-        subtitle: "Bestia repulsiva",
-        preview: "Criatura inquietante asociada a agresividad, incomodidad y peligro físico.",
-        role: "Enemigo | Bestia monstruosa",
-        description: "Cucaracho introduce una amenaza de carácter más visceral y perturbador. Su presencia puede reforzar el tono hostil, grotesco o salvaje de determinadas escenas.",
-        details: [
-          { label: "Tipo", value: "Bestia monstruosa" },
-          { label: "Rasgos", value: "Agresividad, inquietud, brutalidad" },
-          { label: "Impacto", value: "Amenaza física inmediata" },
-          { label: "Uso", value: "Galería y atmósfera de peligro" }
-        ]
+        paths: [
+          'assets/personajes/enemigos/04.jpg',
+          'assets/personajes/enemigos/04.png',
+          'assets/personajes/enemigos/4.jpg',
+          'assets/personajes/enemigos/4.png',
+          'assets/enemigos/04.jpg',
+          'assets/enemigos/4.jpg'
+        ],
+        title: 'Enemigos',
+        role: 'Amenaza',
+        text: 'Instantánea visual del bloque de enemigos.'
       },
       {
-        image: "assets/galerias/enemigos/Furia.png",
-        title: "Furia",
-        subtitle: "Poder desatado",
-        preview: "Figura enemiga ligada a violencia, intensidad y escalada del conflicto.",
-        role: "Enemigo | Amenaza de alto impacto",
-        description: "Furia encarna una amenaza impulsiva y devastadora. Su presencia puede asociarse a enfrentamientos intensos, poder ofensivo y momentos de máxima tensión.",
-        details: [
-          { label: "Tipo", value: "Enemigo de alto impacto" },
-          { label: "Nivel de amenaza", value: "Elevado" },
-          { label: "Rasgos", value: "Violencia, intensidad, poder" },
-          { label: "Valor narrativo", value: "Escalada del conflicto" }
-        ]
+        paths: [
+          'assets/personajes/enemigos/05.jpg',
+          'assets/personajes/enemigos/05.png',
+          'assets/personajes/enemigos/5.jpg',
+          'assets/personajes/enemigos/5.png',
+          'assets/enemigos/05.jpg',
+          'assets/enemigos/5.jpg'
+        ],
+        title: 'Enemigos',
+        role: 'Amenaza',
+        text: 'Imagen extra para seguir haciendo crecer la galería de enemigos.'
       }
     ];
 
-    const enemigosVideos = [];
+    const enemiesVideosConfig = [
+      {
+        paths: [
+          'assets/personajes/enemigos/videos/video-1.mp4',
+          'assets/personajes/enemigos/videos/01.mp4',
+          'assets/personajes/enemigos/videos/1.mp4',
+          'assets/enemigos/videos/video-1.mp4',
+          'assets/enemigos/videos/01.mp4',
+          'assets/enemigos/videos/1.mp4'
+        ],
+        posterPaths: [
+          'assets/personajes/enemigos/01.jpg',
+          'assets/personajes/enemigos/01.png',
+          'assets/personajes/enemigos/1.jpg',
+          'assets/personajes/enemigos/1.png'
+        ],
+        title: 'Vídeo 1',
+        desc: 'Primera escena en movimiento del bloque de enemigos.'
+      },
+      {
+        paths: [
+          'assets/personajes/enemigos/videos/video-2.mp4',
+          'assets/personajes/enemigos/videos/02.mp4',
+          'assets/personajes/enemigos/videos/2.mp4',
+          'assets/enemigos/videos/video-2.mp4',
+          'assets/enemigos/videos/02.mp4',
+          'assets/enemigos/videos/2.mp4'
+        ],
+        posterPaths: [
+          'assets/personajes/enemigos/02.jpg',
+          'assets/personajes/enemigos/02.png',
+          'assets/personajes/enemigos/2.jpg',
+          'assets/personajes/enemigos/2.png'
+        ],
+        title: 'Vídeo 2',
+        desc: 'Segunda escena en movimiento del bloque de enemigos.'
+      }
+    ];
 
-    const galleryGrid = document.getElementById("galleryGrid");
-    const modal = document.getElementById("imageModal");
-    const closeModal = document.getElementById("closeModal");
+    const galleryGrid = document.getElementById('galleryGrid');
+    const heroEnemiesImage = document.getElementById('heroEnemiesImage');
 
-    const modalImg = document.getElementById("modalImg");
-    const modalTitle = document.getElementById("modalTitle");
-    const modalRole = document.getElementById("modalRole");
-    const modalDescription = document.getElementById("modalDescription");
-    const modalData = document.getElementById("modalData");
+    const lightbox = document.getElementById('lightbox');
+    const lightboxClose = document.getElementById('lightboxClose');
+    const lightboxImage = document.getElementById('lightboxImage');
+    const lightboxRole = document.getElementById('lightboxRole');
+    const lightboxTitle = document.getElementById('lightboxTitle');
+    const lightboxText = document.getElementById('lightboxText');
 
-    const prevBtn = document.getElementById("prevBtn");
-    const nextBtn = document.getElementById("nextBtn");
+    const prevVideo = document.getElementById('prevVideo');
+    const nextVideo = document.getElementById('nextVideo');
+    const videoTitle = document.getElementById('videoTitle');
+    const videoDesc = document.getElementById('videoDesc');
+    const videoBox = document.getElementById('videoBox');
 
-    const videoStage = document.getElementById("videoCarouselStage");
-    const videoPrev = document.getElementById("videoPrev");
-    const videoNext = document.getElementById("videoNext");
-
-    let currentIndex = 0;
+    let resolvedGallery = [];
+    let resolvedVideos = [];
     let currentVideoIndex = 0;
 
-    function renderGallery() {
-      galleryGrid.innerHTML = "";
+    async function buildGallery(){
+      resolvedGallery = [];
 
-      enemigosGallery.forEach((item, index) => {
-        const card = document.createElement("article");
-        card.className = "card";
+      for(const item of enemiesImagesConfig){
+        const found = await firstExisting(item.paths);
+        if(found){
+          resolvedGallery.push({
+            src: found,
+            title: item.title,
+            role: item.role,
+            text: item.text
+          });
+        }
+      }
+
+      if(!resolvedGallery.length){
+        resolvedGallery.push({
+          src: svgPlaceholder('Las Crónicas de Sasha', 'Enemigos'),
+          title: 'Enemigos',
+          role: 'Amenaza',
+          text: 'Añade aquí las rutas reales de tus imágenes de enemigos si todavía no coinciden con las del bloque de configuración.'
+        });
+      }
+
+      heroEnemiesImage.src = resolvedGallery[0].src;
+      heroEnemiesImage.onerror = () => {
+        heroEnemiesImage.src = svgPlaceholder('Las Crónicas de Sasha', 'Enemigos');
+      };
+
+      galleryGrid.innerHTML = '';
+
+      resolvedGallery.forEach((item, index) => {
+        const card = document.createElement('article');
+        card.className = 'gallery-card';
         card.innerHTML = `
-          <div class="card-image">
-            <img src="${item.image}" alt="${item.title} - ${item.subtitle}">
-          </div>
-          <div class="card-content">
+          <img src="${item.src}" alt="${item.title} ${index + 1}">
+          <div class="caption">
             <h3>${item.title}</h3>
-            <div class="subtitle">${item.subtitle}</div>
-            <p class="mini-text">${item.preview}</p>
+            <p>${item.role}</p>
           </div>
         `;
-
-        card.addEventListener("click", () => openModal(index));
+        card.addEventListener('click', () => openLightbox(item));
         galleryGrid.appendChild(card);
       });
     }
 
-    function openModal(index) {
-      currentIndex = index;
-      const item = enemigosGallery[index];
-
-      modalImg.src = item.image;
-      modalImg.alt = item.title + " - " + item.subtitle;
-      modalTitle.textContent = item.title + " | " + item.subtitle;
-      modalRole.textContent = item.role;
-      modalDescription.textContent = item.description;
-
-      modalData.innerHTML = item.details
-        .map(detail => `<li><strong>${detail.label}:</strong> ${detail.value}</li>`)
-        .join("");
-
-      modal.classList.add("active");
-      document.body.style.overflow = "hidden";
+    function openLightbox(item){
+      lightboxImage.src = item.src;
+      lightboxImage.onerror = () => {
+        lightboxImage.src = svgPlaceholder('Las Crónicas de Sasha', item.title);
+      };
+      lightboxRole.textContent = item.role;
+      lightboxTitle.textContent = item.title;
+      lightboxText.textContent = item.text;
+      lightbox.classList.add('open');
     }
 
-    function closeModalWindow() {
-      modal.classList.remove("active");
-      document.body.style.overflow = "";
+    function closeLightbox(){
+      lightbox.classList.remove('open');
     }
 
-    function showPrev() {
-      currentIndex = (currentIndex - 1 + enemigosGallery.length) % enemigosGallery.length;
-      openModal(currentIndex);
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => {
+      if(e.target === lightbox) closeLightbox();
+    });
+
+    async function buildVideos(){
+      resolvedVideos = [];
+
+      for(const item of enemiesVideosConfig){
+        const videoSrc = await firstExisting(item.paths);
+        if(videoSrc){
+          const posterSrc = await firstExisting(item.posterPaths || []);
+          resolvedVideos.push({
+            src: videoSrc,
+            poster: posterSrc || '',
+            title: item.title,
+            desc: item.desc
+          });
+        }
+      }
+
+      renderVideo();
     }
 
-    function showNext() {
-      currentIndex = (currentIndex + 1) % enemigosGallery.length;
-      openModal(currentIndex);
-    }
-
-    function getCircularDistance(index, activeIndex, total) {
-      let diff = index - activeIndex;
-
-      if (diff > total / 2) diff -= total;
-      if (diff < -total / 2) diff += total;
-
-      return diff;
-    }
-
-    function renderVideoCarousel() {
-      videoStage.innerHTML = "";
-
-      if (!enemigosVideos.length) {
-        videoStage.innerHTML = `
-          <div class="video-empty">
-            Aún no hay vídeos cargados para Enemigos.
+    function renderVideo(){
+      if(!resolvedVideos.length){
+        prevVideo.disabled = true;
+        nextVideo.disabled = true;
+        videoTitle.textContent = 'Vídeos de Enemigos';
+        videoDesc.textContent = 'Escenas en movimiento del bloque de enemigos.';
+        videoBox.innerHTML = `
+          <div class="empty-state">
+            <div>
+              <strong>Aún no hay vídeos cargados para Enemigos.</strong><br>
+              Revisa únicamente el bloque de configuración del final del HTML y sustituye las rutas por los nombres reales de tus archivos.
+            </div>
           </div>
         `;
         return;
       }
 
-      enemigosVideos.forEach((item, index) => {
-        const card = document.createElement("article");
-        card.className = "video-card";
+      prevVideo.disabled = currentVideoIndex === 0;
+      nextVideo.disabled = currentVideoIndex === resolvedVideos.length - 1;
 
-        card.innerHTML = `
-          <div class="video-frame">
-            <video muted loop playsinline preload="auto" controlslist="nodownload">
-              <source src="${item.src}" type="video/mp4">
-              Tu navegador no puede reproducir este vídeo.
-            </video>
-          </div>
-          <div class="video-meta">
-            <h3>${item.title}</h3>
-            <p>${item.caption}</p>
-          </div>
-        `;
+      const current = resolvedVideos[currentVideoIndex];
+      videoTitle.textContent = current.title;
+      videoDesc.textContent = current.desc;
 
-        card.addEventListener("click", () => {
-          if (index !== currentVideoIndex) {
-            currentVideoIndex = index;
-            updateVideoCarousel();
-          }
-        });
-
-        videoStage.appendChild(card);
-      });
-
-      updateVideoCarousel();
+      videoBox.innerHTML = `
+        <video controls preload="metadata" ${current.poster ? `poster="${current.poster}"` : ''}>
+          <source src="${current.src}" type="video/mp4">
+          Tu navegador no puede reproducir este vídeo.
+        </video>
+      `;
     }
 
-    function updateVideoCarousel() {
-      const cards = [...videoStage.querySelectorAll(".video-card")];
-
-      cards.forEach((card, index) => {
-        const distance = getCircularDistance(index, currentVideoIndex, cards.length);
-
-        card.className = "video-card";
-
-        if (distance === 0) {
-          card.classList.add("is-active");
-        } else if (distance === -1) {
-          card.classList.add("is-left");
-        } else if (distance === 1) {
-          card.classList.add("is-right");
-        } else if (distance === -2) {
-          card.classList.add("is-left-far");
-        } else if (distance === 2) {
-          card.classList.add("is-right-far");
-        } else {
-          card.classList.add("is-hidden");
-        }
-
-        const video = card.querySelector("video");
-
-        video.addEventListener("error", () => {
-          const meta = card.querySelector(".video-meta p");
-          if (meta) {
-            meta.textContent = "Este vídeo no se ha podido reproducir.";
-          }
-        });
-
-        if (distance === 0) {
-          video.controls = true;
-          video.play().catch(() => {});
-        } else {
-          video.controls = false;
-          video.pause();
-          video.currentTime = 0;
-        }
-      });
-    }
-
-    function showPrevVideo() {
-      currentVideoIndex =
-        (currentVideoIndex - 1 + enemigosVideos.length) % enemigosVideos.length;
-      updateVideoCarousel();
-    }
-
-    function showNextVideo() {
-      currentVideoIndex = (currentVideoIndex + 1) % enemigosVideos.length;
-      updateVideoCarousel();
-    }
-
-    closeModal.addEventListener("click", closeModalWindow);
-    prevBtn.addEventListener("click", showPrev);
-    nextBtn.addEventListener("click", showNext);
-
-    modal.addEventListener("click", (e) => {
-      if (e.target === modal) {
-        closeModalWindow();
+    prevVideo.addEventListener('click', () => {
+      if(currentVideoIndex > 0){
+        currentVideoIndex--;
+        renderVideo();
       }
     });
 
-    document.addEventListener("keydown", (e) => {
-      if (!modal.classList.contains("active")) return;
-
-      if (e.key === "Escape") closeModalWindow();
-      if (e.key === "ArrowLeft") showPrev();
-      if (e.key === "ArrowRight") showNext();
-    });
-
-    videoPrev.addEventListener("click", showPrevVideo);
-    videoNext.addEventListener("click", showNextVideo);
-
-    renderVideoCarousel();
-    renderGallery();
-  </script>
-
-  <script>
-    window.addEventListener("load", () => {
-      if (window.location.hash === "#videos") {
-        const target = document.getElementById("videos");
-        if (target) {
-          target.scrollIntoView({ behavior: "auto", block: "start" });
-        }
+    nextVideo.addEventListener('click', () => {
+      if(currentVideoIndex < resolvedVideos.length - 1){
+        currentVideoIndex++;
+        renderVideo();
       }
     });
-  </script>
 
+    buildGallery();
+    buildVideos();
+  </script>
 </body>
 </html>
