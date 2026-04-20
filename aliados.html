@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aliados | Las Crónicas de Sasha</title>
-  <meta name="description" content="Galería y vídeos de los aliados de Sasha." />
+  <title>Enemigos | Las Crónicas de Sasha</title>
+  <meta name="description" content="Galería de enemigos." />
   <style>
     :root{
       --bg-1:#0f1728;
@@ -32,7 +32,7 @@
     }
 
     a{color:inherit;text-decoration:none}
-    img, video{display:block;max-width:100%}
+    img{display:block;max-width:100%}
 
     .topbar{
       width:min(var(--maxw), 92%);
@@ -45,7 +45,7 @@
       flex-wrap:wrap;
     }
 
-    .topbar-left, .topbar-right{
+    .topbar-left,.topbar-right{
       display:flex;
       gap:10px;
       flex-wrap:wrap;
@@ -280,78 +280,6 @@
       line-height:1.7;
     }
 
-    .video-wrap{
-      position:relative;
-      z-index:1;
-      margin-top:22px;
-    }
-
-    .video-carousel{
-      display:grid;
-      grid-template-columns:auto 1fr auto;
-      gap:12px;
-      align-items:center;
-    }
-
-    .video-nav{
-      width:48px;
-      height:48px;
-      border-radius:999px;
-      border:1px solid rgba(216,177,96,.22);
-      background:rgba(255,255,255,.04);
-      color:#f2e2c3;
-      cursor:pointer;
-      font-size:1.3rem;
-      transition:.2s ease;
-    }
-
-    .video-nav:hover{transform:translateY(-2px)}
-    .video-nav:disabled{opacity:.35; cursor:default; transform:none}
-
-    .video-stage{
-      min-height:420px;
-      border:1px solid rgba(216,177,96,.16);
-      border-radius:24px;
-      overflow:hidden;
-      background:
-        radial-gradient(circle at 84% 14%, rgba(216,177,96,.08), transparent 18%),
-        linear-gradient(180deg, rgba(43,53,78,.95), rgba(21,27,42,.98));
-      box-shadow:0 14px 28px rgba(0,0,0,.18);
-      display:grid;
-      grid-template-rows:auto 1fr;
-    }
-
-    .video-head{
-      padding:16px 18px 12px;
-      border-bottom:1px solid rgba(216,177,96,.12);
-    }
-
-    .video-head h3{
-      margin:0 0 6px;
-      color:#f0dbaf;
-      font-size:1.2rem;
-    }
-
-    .video-head p{
-      margin:0;
-      color:#d4ccb9;
-      font-size:.95rem;
-      line-height:1.7;
-    }
-
-    .video-box{
-      padding:18px;
-      display:grid;
-      place-items:center;
-    }
-
-    .video-box video{
-      width:100%;
-      max-height:560px;
-      border-radius:18px;
-      background:#0a0e16;
-    }
-
     .lightbox{
       position:fixed;
       inset:0;
@@ -465,10 +393,6 @@
       .topbar, .page, .footer{width:min(var(--maxw), 94%)}
       .panel{padding:24px 16px}
       .gallery-grid{grid-template-columns:1fr}
-      .video-carousel{grid-template-columns:1fr}
-      .video-nav{width:100%; border-radius:14px}
-      .video-stage{min-height:unset}
-      .video-box video{max-height:380px}
     }
   </style>
 </head>
@@ -480,22 +404,22 @@
       <a class="nav-btn" href="index.html#personajes">Personajes</a>
     </div>
     <div class="topbar-right">
-      <a class="nav-btn" href="party-girls.html">← Party Girls</a>
-      <a class="nav-btn" href="enemigos.html">Enemigos →</a>
+      <a class="nav-btn" href="aliados.html">← Aliados</a>
+      <a class="nav-btn" href="sasha.html">Sasha →</a>
     </div>
   </header>
 
   <section class="hero">
     <div class="hero-inner">
       <div class="hero-card">
-        <img src="assets/galerias/aliados/aliados.jpeg" alt="Aliados" />
+        <img src="assets/galerias/enemigos/enemigos.png" alt="Enemigos" />
       </div>
 
       <div>
-        <div class="eyebrow">Galería de bloque</div>
-        <h1>Aliados</h1>
+        <div class="eyebrow">Galería de amenaza</div>
+        <h1>Enemigos</h1>
         <p class="hero-copy">
-          La ayuda adopta muchas formas. A veces es amable, otras severa y otras insufrible, pero nadie puede seguir adelante solo. Aquí se reúnen las imágenes y vídeos del bloque de aliados en una sola página.
+          Cada enemigo deja algo tras de sí: miedo, cicatrices o aprendizaje. Porque a veces sobrevivir no te hace más fuerte, sino más lista. Aquí se reúnen sus imágenes en una sola página.
         </p>
       </div>
     </div>
@@ -505,66 +429,44 @@
     <section class="panel" id="galeria">
       <div class="ornament"></div>
       <h2 class="section-title">Imágenes</h2>
-      <p class="section-lead">Rostros, escenas y presencias que acompañan a Sasha en su camino.</p>
+      <p class="section-lead">Criaturas, amenazas y presencias hostiles que ponen a prueba el avance de Sasha.</p>
 
       <div class="gallery-grid" id="galleryGrid">
-        <article class="gallery-card" data-src="assets/galerias/aliados/aliados.jpeg" data-title="Aliados" data-role="Grupo" data-text="Imagen principal del bloque de aliados.">
-          <img src="assets/galerias/aliados/aliados.jpeg" alt="Aliados grupo">
-          <div class="caption"><h3>Aliados</h3><p>Grupo</p></div>
+        <article class="gallery-card" data-src="assets/galerias/enemigos/enemigos.png" data-title="Enemigos" data-role="Grupo" data-text="Imagen principal del bloque de enemigos.">
+          <img src="assets/galerias/enemigos/enemigos.png" alt="Enemigos grupo">
+          <div class="caption"><h3>Enemigos</h3><p>Grupo</p></div>
         </article>
 
-        <article class="gallery-card" data-src="assets/galerias/aliados/asterisco.png" data-title="Asterisco" data-role="Aliado" data-text="Una de las presencias aliadas dentro del universo de Sasha.">
-          <img src="assets/galerias/aliados/asterisco.png" alt="Asterisco">
-          <div class="caption"><h3>Asterisco</h3><p>Aliado</p></div>
+        <article class="gallery-card" data-src="assets/galerias/enemigos/Akalys.png" data-title="Akalys" data-role="Enemigo" data-text="Presencia hostil dentro del universo de Sasha.">
+          <img src="assets/galerias/enemigos/Akalys.png" alt="Akalys">
+          <div class="caption"><h3>Akalys</h3><p>Enemigo</p></div>
         </article>
 
-        <article class="gallery-card" data-src="assets/galerias/aliados/garreth.png" data-title="Garreth" data-role="Aliado" data-text="Figura aliada dentro del recorrido de Sasha.">
-          <img src="assets/galerias/aliados/garreth.png" alt="Garreth">
-          <div class="caption"><h3>Garreth</h3><p>Aliado</p></div>
+        <article class="gallery-card" data-src="assets/galerias/enemigos/Arpia.png" data-title="Arpia" data-role="Enemigo" data-text="Criatura enemiga dentro del universo de Sasha.">
+          <img src="assets/galerias/enemigos/Arpia.png" alt="Arpia">
+          <div class="caption"><h3>Arpia</h3><p>Enemigo</p></div>
         </article>
 
-        <article class="gallery-card" data-src="assets/galerias/aliados/mapaches.png" data-title="Mapaches" data-role="Aliados" data-text="Grupo aliado con identidad propia dentro del universo de Sasha.">
-          <img src="assets/galerias/aliados/mapaches.png" alt="Mapaches">
-          <div class="caption"><h3>Mapaches</h3><p>Aliados</p></div>
+        <article class="gallery-card" data-src="assets/galerias/enemigos/Croide.png" data-title="Croide" data-role="Enemigo" data-text="Amenaza del bloque de enemigos.">
+          <img src="assets/galerias/enemigos/Croide.png" alt="Croide">
+          <div class="caption"><h3>Croide</h3><p>Enemigo</p></div>
         </article>
 
-        <article class="gallery-card" data-src="assets/galerias/aliados/mar-tabanne-tabanne.png" data-title="Mar-Tabanne-Tabanne" data-role="Aliada" data-text="Otra figura aliada que amplía el bloque de compañeros.">
-          <img src="assets/galerias/aliados/mar-tabanne-tabanne.png" alt="Mar-Tabanne-Tabanne">
-          <div class="caption"><h3>Mar-Tabanne-Tabanne</h3><p>Aliada</p></div>
+        <article class="gallery-card" data-src="assets/galerias/enemigos/Cucaracho.png" data-title="Cucaracho" data-role="Enemigo" data-text="Figura hostil dentro del recorrido de Sasha.">
+          <img src="assets/galerias/enemigos/Cucaracho.png" alt="Cucaracho">
+          <div class="caption"><h3>Cucaracho</h3><p>Enemigo</p></div>
         </article>
 
-        <article class="gallery-card" data-src="assets/galerias/aliados/senora-de-inverse.png" data-title="Señora de Inverse" data-role="Aliada" data-text="Presencia central y poderosa dentro del universo expandido de la saga.">
-          <img src="assets/galerias/aliados/senora-de-inverse.png" alt="Señora de Inverse">
-          <div class="caption"><h3>Señora de Inverse</h3><p>Aliada</p></div>
+        <article class="gallery-card" data-src="assets/galerias/enemigos/Furia.png" data-title="Furia" data-role="Enemigo" data-text="Otra amenaza dentro del bloque de enemigos.">
+          <img src="assets/galerias/enemigos/Furia.png" alt="Furia">
+          <div class="caption"><h3>Furia</h3><p>Enemigo</p></div>
         </article>
-      </div>
-    </section>
-
-    <section class="panel" id="videos">
-      <div class="ornament"></div>
-      <h2 class="section-title">Vídeos de Aliados</h2>
-      <p class="section-lead">Escenas en movimiento del bloque de aliados reunidas en un carrusel único.</p>
-
-      <div class="video-wrap">
-        <div class="video-carousel">
-          <button class="video-nav" id="prevVideo" aria-label="Vídeo anterior">‹</button>
-
-          <div class="video-stage">
-            <div class="video-head">
-              <h3 id="videoTitle"></h3>
-              <p id="videoDesc"></p>
-            </div>
-            <div class="video-box" id="videoBox"></div>
-          </div>
-
-          <button class="video-nav" id="nextVideo" aria-label="Vídeo siguiente">›</button>
-        </div>
       </div>
     </section>
   </main>
 
   <div class="footer">
-    Aliados
+    Enemigos
   </div>
 
   <div class="lightbox" id="lightbox">
@@ -572,12 +474,17 @@
       <button class="lightbox-close" id="lightboxClose" aria-label="Cerrar">×</button>
 
       <div class="lightbox-media">
-        <img id="lightboxImage" alt="Aliados ampliada" />
+        <img id="lightboxImage" alt="Enemigos ampliada" />
       </div>
 
       <aside class="lightbox-info">
-        <div class="tag" id="lightboxRole">Aliados</div>
-        <h3 id="lightboxTitle">Aliados</h3>
+        <div class="tag" id="lightboxRole">Enemigos</div>
+        <h="Enemigos ampliada" />
+      </div>
+
+      <aside class="lightbox-info">
+        <div class="tag" id="lightboxRole">Enemigos</div>
+        <h3 id="lightboxTitle">Enemigos</h3>
         <h4>Ficha</h4>
         <p id="lightboxText"></p>
       </aside>
@@ -620,59 +527,6 @@
         closeLightbox();
       }
     });
-
-    const videos = [
-      {
-        src: 'assets/videos/aliados/Mapaches-presentación.mp4',
-        title: 'Mapaches presentación',
-        desc: 'Vídeo de presentación de los mapaches.'
-      },
-      {
-        src: 'assets/videos/aliados/Senora-de-Inverse-transformacion.mp4',
-        title: 'Señora de Inverse transformación',
-        desc: 'Vídeo de transformación de la Señora de Inverse.'
-      }
-    ];
-
-    let currentVideoIndex = 0;
-
-    const prevVideo = document.getElementById('prevVideo');
-    const nextVideo = document.getElementById('nextVideo');
-    const videoTitle = document.getElementById('videoTitle');
-    const videoDesc = document.getElementById('videoDesc');
-    const videoBox = document.getElementById('videoBox');
-
-    function renderVideo() {
-      const current = videos[currentVideoIndex];
-      videoTitle.textContent = current.title;
-      videoDesc.textContent = current.desc;
-
-      videoBox.innerHTML = `
-        <video controls preload="metadata">
-          <source src="${current.src}" type="video/mp4">
-          Tu navegador no puede reproducir este vídeo.
-        </video>
-      `;
-
-      prevVideo.disabled = currentVideoIndex === 0;
-      nextVideo.disabled = currentVideoIndex === videos.length - 1;
-    }
-
-    prevVideo.addEventListener('click', () => {
-      if (currentVideoIndex > 0) {
-        currentVideoIndex--;
-        renderVideo();
-      }
-    });
-
-    nextVideo.addEventListener('click', () => {
-      if (currentVideoIndex < videos.length - 1) {
-        currentVideoIndex++;
-        renderVideo();
-      }
-    });
-
-    renderVideo();
   </script>
 </body>
 </html>
