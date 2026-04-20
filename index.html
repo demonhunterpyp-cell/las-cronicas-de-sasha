@@ -177,15 +177,15 @@
       position:relative;
       overflow:hidden;
       border-bottom:1px solid rgba(216,177,96,.18);
-      margin-bottom:24px;
+      margin-bottom:18px;
     }
 
     .hero-banner{
       position:relative;
-      min-height:clamp(360px, 62vh, 620px);
+      min-height:clamp(320px, 50vh, 520px);
       background:
-        linear-gradient(180deg, rgba(8,12,20,.42) 0%, rgba(8,12,20,.52) 55%, rgba(8,12,20,.74) 100%),
-        linear-gradient(90deg, rgba(8,12,20,.72) 0%, rgba(8,12,20,.32) 52%, rgba(8,12,20,.18) 100%),
+        linear-gradient(180deg, rgba(8,12,20,.14) 0%, rgba(8,12,20,.28) 58%, rgba(8,12,20,.46) 100%),
+        linear-gradient(90deg, rgba(8,12,20,.40) 0%, rgba(8,12,20,.16) 52%, rgba(8,12,20,.08) 100%),
         url("assets/fondo-sasha-panorama.png") center center / cover no-repeat;
     }
 
@@ -194,8 +194,9 @@
       position:absolute;
       inset:0;
       background:
-        radial-gradient(circle at 78% 16%, rgba(216,177,96,.16), transparent 18%),
-        linear-gradient(180deg, rgba(0,0,0,.02), rgba(0,0,0,.18));
+        radial-gradient(circle at 78% 16%, rgba(255,210,120,.20), transparent 18%),
+        radial-gradient(circle at 22% 12%, rgba(216,177,96,.10), transparent 20%),
+        linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.08));
       pointer-events:none;
     }
 
@@ -204,7 +205,7 @@
       z-index:2;
       width:min(var(--maxw), 92%);
       margin:0 auto;
-      padding:108px 0 118px;
+      padding:104px 0 74px;
     }
 
     .hero-title-block{
@@ -214,23 +215,23 @@
     .hero-copy h1{
       margin:0 0 12px;
       color:#f0c86f;
-      font-size:clamp(3rem, 8vw, 6.2rem);
+      font-size:clamp(3rem, 8vw, 6rem);
       line-height:.92;
       letter-spacing:.01em;
-      text-shadow:0 4px 22px rgba(0,0,0,.28);
+      text-shadow:0 4px 22px rgba(0,0,0,.24);
     }
 
     .subtitle{
       margin:0;
       font-size:clamp(1.1rem, 2vw, 1.55rem);
       color:#f5e6c7;
-      text-shadow:0 2px 10px rgba(0,0,0,.22);
+      text-shadow:0 2px 10px rgba(0,0,0,.18);
     }
 
     .scroll-cue{
       position:absolute;
       left:50%;
-      bottom:22px;
+      bottom:16px;
       transform:translateX(-50%);
       z-index:2;
       display:inline-flex;
@@ -240,7 +241,7 @@
       color:#f3e6cb;
       font-size:.92rem;
       letter-spacing:.04em;
-      opacity:.92;
+      opacity:.95;
     }
 
     .scroll-cue .arrow{
@@ -250,7 +251,7 @@
       place-items:center;
       border-radius:999px;
       border:1px solid rgba(216,177,96,.32);
-      background:rgba(10,14,24,.36);
+      background:rgba(10,14,24,.30);
       font-size:1rem;
     }
 
@@ -258,15 +259,8 @@
       position:relative;
       z-index:3;
       width:min(var(--maxw), 92%);
-      margin:-64px auto 0;
-      padding-bottom:18px;
-    }
-
-    .hero-feature{
-      display:grid;
-      grid-template-columns:1.25fr .75fr;
-      gap:34px;
-      align-items:center;
+      margin:-18px auto 0;
+      padding-bottom:14px;
     }
 
     .hero-paper{
@@ -278,7 +272,7 @@
       border:1px solid rgba(121,82,29,.28);
       border-radius:24px;
       box-shadow:0 24px 50px rgba(0,0,0,.24);
-      padding:34px 28px 28px;
+      padding:30px 26px 24px;
     }
 
     .hero-paper::before{
@@ -290,9 +284,20 @@
       pointer-events:none;
     }
 
-    .paper-hook{
+    .hero-paper-layout{
       position:relative;
       z-index:1;
+      display:grid;
+      grid-template-columns:minmax(0, 1.22fr) minmax(220px, .78fr);
+      gap:24px;
+      align-items:center;
+    }
+
+    .hero-paper-copy{
+      min-width:0;
+    }
+
+    .paper-hook{
       margin:0 0 16px;
       font-size:clamp(1.3rem, 2.3vw, 1.8rem);
       line-height:1.32;
@@ -301,16 +306,12 @@
     }
 
     .paper-synopsis{
-      position:relative;
-      z-index:1;
       margin:0 0 14px;
       font-size:1rem;
       line-height:1.8;
     }
 
     .paper-closing{
-      position:relative;
-      z-index:1;
       margin:0;
       font-size:1.05rem;
       line-height:1.7;
@@ -322,9 +323,7 @@
       display:flex;
       gap:12px;
       flex-wrap:wrap;
-      margin-top:24px;
-      position:relative;
-      z-index:1;
+      margin-top:22px;
     }
 
     .btn{
@@ -354,32 +353,37 @@
       border-color:rgba(216,177,96,.24);
     }
 
-    .hero-book{
-      justify-self:center;
-      width:min(320px, 100%);
+    .hero-paper-book{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
       text-align:center;
+      padding:4px 4px 0;
     }
 
-    .hero-book a{
-      display:inline-block;
+    .hero-paper-book a{
+      display:block;
+      width:min(255px, 100%);
       transition:.25s ease;
     }
 
-    .hero-book a:hover{
+    .hero-paper-book a:hover{
       transform:translateY(-6px) scale(1.01);
     }
 
-    .hero-book img{
+    .hero-paper-book img{
       width:100%;
       object-fit:contain;
-      filter:drop-shadow(0 28px 34px rgba(0,0,0,.34));
+      filter:drop-shadow(0 24px 28px rgba(0,0,0,.28));
     }
 
     .hero-book-note{
-      margin-top:12px;
-      color:var(--text-soft);
-      font-size:.94rem;
-      line-height:1.7;
+      margin:10px 0 0;
+      color:#4d3a26;
+      font-size:.95rem;
+      line-height:1.6;
+      font-weight:700;
     }
 
     section{scroll-margin-top:92px}
@@ -729,13 +733,19 @@
     }
 
     @media (max-width: 1080px){
-      .hero-banner-inner{padding:102px 0 110px}
-      .hero-feature{
-        grid-template-columns:1fr;
-        gap:22px;
+      .hero-banner{
+        min-height:clamp(300px, 44vh, 460px);
       }
-      .hero-book{
-        max-width:260px;
+      .hero-banner-inner{
+        padding:100px 0 66px;
+      }
+      .hero-paper-layout{
+        grid-template-columns:1fr;
+        gap:20px;
+      }
+      .hero-paper-book{
+        max-width:240px;
+        margin:0 auto;
       }
       .books-grid,
       .characters-grid,
@@ -748,16 +758,16 @@
       .shell{width:min(var(--maxw), 94%)}
       .panel{padding:24px 16px}
       .hero-banner{
-        min-height:420px;
+        min-height:380px;
       }
       .hero-banner-inner{
-        padding:94px 0 108px;
-      }
-      .hero-paper{
-        padding:24px 18px;
+        padding:92px 0 64px;
       }
       .hero-feature-wrap{
-        margin:-44px auto 0;
+        margin:-10px auto 0;
+      }
+      .hero-paper{
+        padding:24px 18px 20px;
       }
       .books-grid,
       .characters-grid,
@@ -829,31 +839,33 @@
         </div>
       </div>
 
-      <a class="scroll-cue" href="#libros" aria-label="Bajar hacia el contenido">
+      <a class="scroll-cue" href="#historia" aria-label="Bajar hacia la sinopsis">
         <span>Explorar la saga</span>
         <span class="arrow">↓</span>
       </a>
     </div>
 
     <div class="hero-feature-wrap" id="historia">
-      <div class="hero-feature">
-        <div class="hero-paper">
-          <p class="paper-hook">El mundo olvidó la magia. La magia no olvidó al mundo.</p>
-          <p class="paper-synopsis">Durante siglos, la humanidad persiguió y erradicó aquello que no comprendía. Ahora, lo que fue olvidado comienza a reclamar su lugar.</p>
-          <p class="paper-synopsis">Lo que empieza como una decisión sin importancia abre para Sasha una puerta que ya no se cierra. En un entorno que al principio parece un simple juego, descubrirá que el dolor se siente como real, que cada paso cuenta y que nada se regala.</p>
-          <p class="paper-closing">Porque no todas las heroínas nacen señaladas. Algunas se construyen golpe a golpe.</p>
+      <div class="hero-paper">
+        <div class="hero-paper-layout">
+          <div class="hero-paper-copy">
+            <p class="paper-hook">El mundo olvidó la magia. La magia no olvidó al mundo.</p>
+            <p class="paper-synopsis">Durante siglos, la humanidad persiguió y erradicó aquello que no comprendía. Ahora, lo que fue olvidado comienza a reclamar su lugar.</p>
+            <p class="paper-synopsis">Lo que empieza como una decisión sin importancia abre para Sasha una puerta que ya no se cierra. En un entorno que al principio parece un simple juego, descubrirá que el dolor se siente como real, que cada paso cuenta y que nada se regala.</p>
+            <p class="paper-closing">Porque no todas las heroínas nacen señaladas. Algunas se construyen golpe a golpe.</p>
 
-          <div class="hero-actions">
-            <a class="btn primary" href="#libros">Explora el catálogo de la saga</a>
-            <a class="btn secondary" href="tienda.html#producto-volumen-1">Comprar Volumen 1</a>
+            <div class="hero-actions">
+              <a class="btn primary" href="#libros">Explora el catálogo de la saga</a>
+              <a class="btn secondary" href="tienda.html#producto-volumen-1">Comprar Volumen 1</a>
+            </div>
           </div>
-        </div>
 
-        <div class="hero-book">
-          <a href="volumen-1.html" aria-label="Abrir ficha del Volumen 1">
-            <img src="assets/libros/volumenes/libro-sin-fondo.png" alt="Las Crónicas de Sasha Volumen 1" />
-          </a>
-          <p class="hero-book-note">La puerta de entrada al viaje de Sasha comienza aquí.</p>
+          <div class="hero-paper-book">
+            <a href="volumen-1.html" aria-label="Abrir ficha del Volumen 1">
+              <img src="assets/libros/volumenes/libro-sin-fondo.png" alt="Las Crónicas de Sasha Volumen 1" />
+            </a>
+            <p class="hero-book-note">La puerta de entrada al viaje de Sasha comienza aquí.</p>
+          </div>
         </div>
       </div>
     </div>
