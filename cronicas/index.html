@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Las Crónicas de Sasha</title>
+  <meta name="description" content="Web oficial de Las Crónicas de Sasha. Historia, libros, personajes, lore, novedades y tienda." />
+  <style>
+    :root{
+      --bg-1:#0f1728;
+      --bg-2:#1a2337;
+      --bg-3:#24304a;
+      --paper:#efe1c9;
+      --paper-2:#e4d2b2;
+      --ink:#352719;
+      --gold:#d8b160;
+      --gold-2:#b78537;
+      --gold-soft:rgba(216,177,96,.25);
+      --text:#f7eedc;
+      --text-soft:#ddd2b7;
+      --muted:#cbb891;
+      --shadow:0 22px 50px rgba(0,0,0,.33);
+      --maxw:1180px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--text);
+      font-family:Georgia, "Times New Roman", serif;
+      background:
+        radial-gradient(circle at 80% 12%, rgba(216,177,96,.10), transparent 20%),
+        radial-gradient(circle at 20% 82%, rgba(216,177,96,.08), transparent 20%),
+        linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 45%, var(--bg-3) 100%);
+    }
+
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%}
+    button{font:inherit}
+
+    .shell{width:min(var(--maxw), 92%); margin:0 auto}
+
+    .side-menu-toggle{
+      position:fixed;
+      top:18px;
+      left:18px;
+      z-index:1200;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid var(--gold-soft);
+      background:rgba(10,14,24,.85);
+      color:#f2e2c3;
+      backdrop-filter:blur(8px);
+      box-shadow:var(--shadow);
+      cursor:pointer;
+    }
+
+    .side-menu{
+      position:fixed;
+      top:0;
+      left:0;
+      width:min(340px, 88vw);
+      height:100vh;
+      z-index:1300;
+      transform:translateX(-103%);
+      transition:transform .28s ease;
+      background:
+        radial-gradient(circle at 80% 10%, rgba(216,177,96,.12), transparent 18%),
+        linear-gradient(180deg, rgba(18,24,38,.98), rgba(10,14,24,.99));
+      border-right:1px solid rgba(216,177,96,.18);
+      box-shadow:var(--shadow);
+      overflow:auto;
+      padding:22px 18px 28px;
+    }
+
+    .side-menu.open{transform:translateX(0)}
+
+    .menu-backdrop{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.5);
+      z-index:1250;
+      display:none;
+    }
+
+    .menu-backdrop.show{display:block}
+
+    .menu-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:20px;
+    }
+
+    .menu-brand{
+      font-size:1.4rem;
+      color:#f0dbaf;
+      line-height:1.1;
+      font-weight:700;
+    }
+
+    .menu-close{
+      border:1px solid var(--gold-soft);
+      background:rgba(255,255,255,.04);
+      color:#f2e2c3;
+      border-radius:999px;
+      padding:8px 12px;
+      cursor:pointer;
+    }
+
+    .menu-group{
+      border:1px solid rgba(216,177,96,.12);
+      background:rgba(255,255,255,.03);
+      border-radius:18px;
+      padding:14px 14px 10px;
+      margin-bottom:14px;
+    }
+
+    .menu-group h3{
+      margin:0 0 10px;
+      font-size:.92rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:#e3c785;
+    }
+
+    .menu-links{
+      display:grid;
+      gap:8px;
+    }
+
+    .menu-link{
+      display:block;
+      padding:10px 12px;
+      border-radius:12px;
+      color:var(--text-soft);
+      transition:.2s ease;
+      border:1px solid transparent;
+    }
+
+    .menu-link:hover{
+      background:rgba(255,255,255,.05);
+      border-color:rgba(216,177,96,.14);
+      color:#f6ebd5;
+    }
+
+    .submenu{
+      padding-left:10px;
+      display:grid;
+      gap:6px;
+      margin-top:4px;
+    }
+
+    .top-social{
+      display:flex;
+      gap:10px;
+      margin-top:8px;
+    }
+
+    .top-social a{
+      width:38px;
+      height:38px;
+      display:grid;
+      place-items:center;
+      border-radius:999px;
+      border:1px solid var(--gold-soft);
+      background:rgba(255,255,255,.04);
+      color:#f2e2c3;
+    }
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      border-bottom:1px solid rgba(216,177,96,.18);
+      margin-bottom:18px;
+    }
+
+    .hero-banner{
+      position:relative;
+      min-height:clamp(290px, 42vh, 440px);
+      background:
+        linear-gradient(180deg, rgba(8,12,20,.08) 0%, rgba(8,12,20,.18) 52%, rgba(8,12,20,.34) 100%),
+        linear-gradient(90deg, rgba(8,12,20,.30) 0%, rgba(8,12,20,.10) 52%, rgba(8,12,20,.04) 100%),
+        url("assets/fondo-sasha-panorama.png") center center / cover no-repeat;
+    }
+
+    .hero-banner::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 78% 16%, rgba(255,210,120,.24), transparent 18%),
+        radial-gradient(circle at 22% 12%, rgba(216,177,96,.12), transparent 20%),
+        linear-gradient(180deg, rgba(255,255,255,.03), rgba(0,0,0,.05));
+      pointer-events:none;
+    }
+
+    .hero-banner-inner{
+      position:relative;
+      z-index:2;
+      width:min(var(--maxw), 92%);
+      margin:0 auto;
+      padding:100px 0 42px;
+    }
+
+    .hero-title-block{
+      max-width:780px;
+    }
+
+    .hero-copy h1{
+      margin:0 0 12px;
+      color:#f0c86f;
+      font-size:clamp(3rem, 8vw, 6rem);
+      line-height:.92;
+      letter-spacing:.01em;
+      text-shadow:0 4px 22px rgba(0,0,0,.22);
+    }
+
+    .subtitle{
+      margin:0;
+      font-size:clamp(1.1rem, 2vw, 1.55rem);
+      color:#f5e6c7;
+      text-shadow:0 2px 10px rgba(0,0,0,.14);
+    }
+
+    .hero-feature-wrap{
+      position:relative;
+      z-index:3;
+      width:min(var(--maxw), 92%);
+      margin:-56px auto 0;
+      padding-bottom:14px;
+    }
+
+    .hero-paper{
+      position:relative;
+      overflow:visible;
+      background:
+        radial-gradient(circle at 88% 16%, rgba(255,255,255,.12), transparent 16%),
+        linear-gradient(180deg, rgba(239,225,201,.98), rgba(228,210,178,.98));
+      color:var(--ink);
+      border:1px solid rgba(121,82,29,.28);
+      border-radius:24px;
+      box-shadow:0 24px 50px rgba(0,0,0,.24);
+      padding:28px 24px 24px;
+    }
+
+    .hero-paper::before{
+      content:"";
+      position:absolute;
+      inset:12px;
+      border:1px solid rgba(121,82,29,.15);
+      border-radius:18px;
+      pointer-events:none;
+    }
+
+    .hero-paper-layout{
+      position:relative;
+      z-index:1;
+      display:grid;
+      grid-template-columns:minmax(0, 1.08fr) minmax(280px, .92fr);
+      gap:6px;
+      align-items:center;
+    }
+
+    .hero-paper-copy{
+      min-width:0;
+    }
+
+    .paper-hook{
+      margin:0 0 16px;
+      font-size:clamp(1.3rem, 2.3vw, 1.8rem);
+      line-height:1.32;
+      color:#302116;
+      font-weight:700;
+    }
+
+    .paper-synopsis{
+      margin:0 0 14px;
+      font-size:1rem;
+      line-height:1.8;
+    }
+
+    .paper-closing{
+      margin:0;
+      font-size:1.05rem;
+      line-height:1.7;
+      font-weight:700;
+      color:#2f2218;
+    }
+
+    .hero-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:22px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:12px 18px;
+      border-radius:12px;
+      font-weight:700;
+      transition:.22s ease;
+      border:1px solid transparent;
+      text-align:center;
+    }
+
+    .btn:hover{transform:translateY(-2px)}
+
+    .btn.primary{
+      color:#4a2f12;
+      background:linear-gradient(180deg, var(--gold) 0%, var(--gold-2) 100%);
+      border-color:#8b6327;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.34);
+    }
+
+    .btn.secondary{
+      color:#f2e2c3;
+      background:rgba(255,255,255,.05);
+      border-color:rgba(216,177,96,.24);
+    }
+
+    .hero-paper .btn.secondary{
+      color:#4a2f12;
+      background:rgba(255,255,255,.42);
+      border-color:rgba(121,82,29,.34);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.32);
+    }
+
+    .hero-paper-book{
+      position:relative;
+      display:flex;
+      align-items:flex-end;
+      justify-content:center;
+      text-align:center;
+      padding:0;
+      margin-right:-56px;
+      margin-top:-88px;
+      margin-bottom:-28px;
+      z-index:3;
+    }
+
+    .hero-paper-book a{
+      display:block;
+      width:min(360px, 100%);
+      transition:.25s ease;
+    }
+
+    .hero-paper-book a:hover{
+      transform:translateY(-8px) scale(1.02);
+    }
+
+    .hero-paper-book img{
+      width:100%;
+      object-fit:contain;
+      filter:drop-shadow(0 30px 34px rgba(0,0,0,.30));
+    }
+
+    section{scroll-margin-top:92px}
+
+    .panel{
+      margin:30px auto 0;
+      padding:32px 28px;
+      border:1px solid rgba(216,177,96,.18);
+      border-radius:26px;
+      background:
+        radial-gradient(circle at 86% 12%, rgba(216,177,96,.08), transparent 18%),
+        linear-gradient(180deg, rgba(28,34,53,.96), rgba(18,24,38,.98));
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .panel::before{
+      content:"";
+      position:absolute;
+      inset:12px;
+      border:1px solid rgba(216,177,96,.10);
+      border-radius:18px;
+      pointer-events:none;
+    }
+
+    .section-title{
+      position:relative;
+      z-index:1;
+      margin:0;
+      text-align:center;
+      color:#f0dbaf;
+      font-size:clamp(1.95rem, 3vw, 3.1rem);
+      line-height:1.06;
+      text-transform:uppercase;
+    }
+
+    .section-lead{
+      position:relative;
+      z-index:1;
+      max-width:880px;
+      margin:14px auto 0;
+      text-align:center;
+      color:var(--text-soft);
+      font-size:1.02rem;
+      line-height:1.8;
+    }
+
+    .ornament{
+      width:240px;
+      height:20px;
+      margin:0 auto 18px;
+      position:relative;
+      z-index:1;
+    }
+
+    .ornament::before,
+    .ornament::after{
+      content:"";
+      position:absolute;
+      top:50%;
+      left:0;
+      right:0;
+    }
+
+    .ornament::before{
+      height:1px;
+      background:linear-gradient(90deg, transparent, rgba(216,177,96,.55), transparent);
+    }
+
+    .ornament::after{
+      width:14px;
+      height:14px;
+      left:50%;
+      right:auto;
+      transform:translate(-50%, -50%);
+      border-radius:50%;
+      border:1px solid rgba(216,177,96,.45);
+      background:rgba(20,25,39,.92);
+    }
+
+    .tabs{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:14px;
+      margin:24px 0 14px;
+      position:relative;
+      z-index:1;
+    }
+
+    .tab{
+      min-width:240px;
+      border-radius:18px;
+      border:1px solid rgba(216,177,96,.22);
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      color:#f2e2c3;
+      padding:14px 16px;
+      cursor:pointer;
+      transition:.22s ease;
+      box-shadow:0 10px 24px rgba(0,0,0,.12);
+    }
+
+    .tab:hover{transform:translateY(-2px)}
+
+    .tab.active{
+      color:#4a2f12;
+      background:linear-gradient(180deg, #e5c682 0%, #c28a39 100%);
+      border-color:#8b6327;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.36), 0 12px 26px rgba(0,0,0,.14);
+    }
+
+    .tab strong{
+      display:block;
+      font-size:1rem;
+      margin-bottom:4px;
+    }
+
+    .tab small{
+      display:block;
+      opacity:.9;
+      font-size:.82rem;
+    }
+
+    .tab-panels{position:relative; z-index:1}
+    .tab-panel{display:none}
+    .tab-panel.active{display:block}
+
+    .panel-subhead{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
+      margin:18px 0 8px;
+    }
+
+    .panel-subtitle{
+      color:#e5c787;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      font-size:.9rem;
+    }
+
+    .panel-count{
+      color:var(--muted);
+      font-size:.95rem;
+    }
+
+    .books-grid,
+    .characters-grid,
+    .lore-grid,
+    .news-grid,
+    .shop-grid{
+      display:grid;
+      gap:18px;
+      margin-top:18px;
+      position:relative;
+      z-index:1;
+    }
+
+    .books-grid{grid-template-columns:repeat(3, 1fr)}
+    .characters-grid{grid-template-columns:repeat(4, 1fr)}
+    .lore-grid{grid-template-columns:repeat(3, 1fr)}
+    .news-grid{grid-template-columns:1.5fr 1fr}
+    .shop-grid{grid-template-columns:repeat(3, 1fr)}
+
+    .card{
+      border:1px solid rgba(216,177,96,.16);
+      background:
+        radial-gradient(circle at 84% 14%, rgba(216,177,96,.08), transparent 18%),
+        linear-gradient(180deg, rgba(43,53,78,.95), rgba(21,27,42,.98));
+      border-radius:22px;
+      overflow:hidden;
+      box-shadow:0 14px 28px rgba(0,0,0,.18);
+      display:flex;
+      flex-direction:column;
+      min-height:100%;
+    }
+
+    .card-media{
+      aspect-ratio:16/11;
+      background:
+        radial-gradient(circle at 50% 18%, rgba(255,225,160,.12), transparent 18%),
+        linear-gradient(180deg, rgba(53,64,92,.96), rgba(24,31,47,.98));
+      border-bottom:1px solid rgba(216,177,96,.14);
+      overflow:hidden;
+    }
+
+    .card-media img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transition:transform .28s ease;
+    }
+
+    .card:hover .card-media img{transform:scale(1.04)}
+
+    .card-body{
+      padding:18px;
+      display:flex;
+      flex-direction:column;
+      flex:1;
+      gap:12px;
+    }
+
+    .eyebrow{
+      color:#e5c787;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      font-size:.8rem;
+    }
+
+    .card h3{
+      margin:0;
+      color:#f0dbaf;
+      font-size:1.25rem;
+      line-height:1.18;
+    }
+
+    .card p{
+      margin:0;
+      color:#d4ccb9;
+      font-size:.96rem;
+      line-height:1.75;
+    }
+
+    .card-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:auto;
+      padding-top:6px;
+    }
+
+    .mini-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:10px 12px;
+      border-radius:10px;
+      font-weight:700;
+      font-size:.92rem;
+      transition:.2s ease;
+      text-align:center;
+    }
+
+    .mini-btn:hover{transform:translateY(-2px)}
+
+    .mini-btn.primary{
+      color:#4a2f12;
+      background:linear-gradient(180deg, var(--gold) 0%, var(--gold-2) 100%);
+      border:1px solid #8b6327;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.34);
+    }
+
+    .mini-btn.secondary{
+      color:#f2e2c3;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(216,177,96,.22);
+    }
+
+    .mini-btn.disabled{
+      opacity:.48;
+      pointer-events:none;
+    }
+
+    .news-feature{
+      border:1px solid rgba(216,177,96,.20);
+      border-radius:24px;
+      padding:24px 22px;
+      background:
+        radial-gradient(circle at 84% 14%, rgba(216,177,96,.12), transparent 18%),
+        linear-gradient(180deg, rgba(49,59,88,.98), rgba(23,29,44,.98));
+      box-shadow:0 18px 36px rgba(0,0,0,.18);
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      min-height:100%;
+    }
+
+    .news-tag{
+      align-self:flex-start;
+      padding:7px 12px;
+      border-radius:999px;
+      border:1px solid rgba(216,177,96,.24);
+      background:rgba(255,255,255,.03);
+      color:#e5c787;
+      font-size:.82rem;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+    }
+
+    .news-feature h3{
+      margin:0;
+      color:#f0dbaf;
+      font-size:clamp(1.5rem, 2.2vw, 2rem);
+      line-height:1.12;
+    }
+
+    .news-feature p{
+      margin:0;
+      color:#d4ccb9;
+      line-height:1.8;
+      font-size:.98rem;
+    }
+
+    .news-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:auto;
+      padding-top:8px;
+    }
+
+    .news-side{
+      display:grid;
+      gap:18px;
+    }
+
+    .news-mini{
+      border:1px solid rgba(216,177,96,.16);
+      border-radius:22px;
+      background:
+        radial-gradient(circle at 84% 14%, rgba(216,177,96,.08), transparent 18%),
+        linear-gradient(180deg, rgba(43,53,78,.95), rgba(21,27,42,.98));
+      padding:20px 18px;
+      box-shadow:0 14px 28px rgba(0,0,0,.18);
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .news-mini h4{
+      margin:0;
+      color:#f0dbaf;
+      font-size:1.15rem;
+      line-height:1.35;
+    }
+
+    .footer{
+      padding:34px 0 42px;
+      color:#d7c5a7;
+      text-align:center;
+      line-height:1.7;
+      font-size:.95rem;
+    }
+
+    @media (max-width: 1080px){
+      .hero-banner{
+        min-height:clamp(270px, 38vh, 400px);
+      }
+      .hero-banner-inner{
+        padding:96px 0 38px;
+      }
+      .hero-feature-wrap{
+        margin:-42px auto 0;
+      }
+      .hero-paper-layout{
+        grid-template-columns:1fr;
+        gap:18px;
+      }
+      .hero-paper-book{
+        max-width:260px;
+        margin:0 auto -14px;
+      }
+      .books-grid,
+      .characters-grid,
+      .shop-grid{grid-template-columns:repeat(2, 1fr)}
+      .lore-grid{grid-template-columns:1fr}
+      .news-grid{grid-template-columns:1fr}
+    }
+
+    @media (max-width: 760px){
+      .shell{width:min(var(--maxw), 94%)}
+      .panel{padding:24px 16px}
+      .hero-banner{
+        min-height:340px;
+      }
+      .hero-banner-inner{
+        padding:88px 0 34px;
+      }
+      .hero-feature-wrap{
+        margin:-30px auto 0;
+      }
+      .hero-paper{
+        padding:24px 18px 20px;
+      }
+      .hero-paper-book{
+        margin:0 auto -10px;
+      }
+      .hero-paper-book a{
+        width:min(255px, 100%);
+      }
+      .books-grid,
+      .characters-grid,
+      .shop-grid{grid-template-columns:1fr}
+      .tab{min-width:100%}
+      .hero-actions,
+      .news-actions,
+      .card-actions{flex-direction:column}
+      .btn,
+      .mini-btn{width:100%}
+      .side-menu-toggle{left:10px; top:10px}
+    }
+  </style>
+</head>
+<body>
+
+  <button class="side-menu-toggle" id="menuToggle" aria-label="Abrir menú de navegación">☰ Menú</button>
+  <div class="menu-backdrop" id="menuBackdrop"></div>
+
+  <aside class="side-menu" id="sideMenu" aria-label="Menú lateral">
+    <div class="menu-head">
+      <div class="menu-brand">Las Crónicas<br>de Sasha</div>
+      <button class="menu-close" id="menuClose">✕</button>
+    </div>
+
+    <div class="menu-group">
+      <h3>Portada</h3>
+      <div class="menu-links">
+        <a class="menu-link" href="#inicio">⌂ Inicio</a>
+        <a class="menu-link" href="#historia">✒ Historia</a>
+        <a class="menu-link" href="#libros">▤ Libros</a>
+      </div>
+    </div>
+
+    <div class="menu-group">
+      <h3>Universo</h3>
+      <div class="menu-links">
+        <a class="menu-link" href="#personajes">⚔ Personajes</a>
+        <div class="submenu">
+          <a class="menu-link" href="sasha.html">• Sasha</a>
+          <a class="menu-link" href="party-girls.html">• Party Girls</a>
+          <a class="menu-link" href="aliados.html">• Aliados</a>
+          <a class="menu-link" href="enemigos.html">• Enemigos</a>
+        </div>
+        <a class="menu-link" href="#lore">⌘ Lore</a>
+      </div>
+    </div>
+
+    <div class="menu-group">
+      <h3>Actualidad</h3>
+      <div class="menu-links">
+        <a class="menu-link" href="#novedades">✦ Novedades</a>
+        <a class="menu-link" href="#tienda">▣ Tienda</a>
+      </div>
+      <div class="top-social">
+        <a href="#" aria-label="Facebook">f</a>
+        <a href="#" aria-label="X">x</a>
+        <a href="#" aria-label="Instagram">◎</a>
+      </div>
+    </div>
+  </aside>
+
+  <header class="hero" id="inicio">
+    <div class="hero-banner">
+      <div class="hero-banner-inner">
+        <div class="hero-title-block hero-copy">
+          <h1>Las Crónicas de Sasha</h1>
+          <p class="subtitle">Descubre el universo de Sasha</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-feature-wrap" id="historia">
+      <div class="hero-paper">
+        <div class="hero-paper-layout">
+          <div class="hero-paper-copy">
+            <p class="paper-hook">El mundo olvidó la magia. La magia no olvidó al mundo.</p>
+            <p class="paper-synopsis">Durante siglos, la humanidad persiguió y erradicó aquello que no comprendía. Ahora, lo que fue olvidado comienza a reclamar su lugar.</p>
+            <p class="paper-synopsis">Lo que empieza como una decisión sin importancia abre para Sasha una puerta que ya no se cierra. En un entorno que al principio parece un simple juego, descubrirá que el dolor se siente como real, que cada paso cuenta y que nada se regala.</p>
+            <p class="paper-closing">Porque no todas las heroínas nacen señaladas. Algunas se construyen golpe a golpe.</p>
+
+            <div class="hero-actions">
+              <a class="btn primary" href="tienda.html#producto-volumen-1">Comprar Volumen 1</a>
+              <a class="btn secondary" href="volumen-1.html">Ver ficha del libro</a>
+            </div>
+          </div>
+
+          <div class="hero-paper-book">
+            <a href="volumen-1.html" aria-label="Abrir ficha del Volumen 1">
+              <img src="assets/libros/volumenes/libro-sin-fondo.png" alt="Las Crónicas de Sasha Volumen 1" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="panel" id="libros">
+      <div class="ornament"></div>
+      <h2 class="section-title">Libros</h2>
+      <p class="section-lead">La saga principal marca el eje del viaje. Los anexos amplían el mundo desde sus márgenes, añadiendo nuevas capas, nuevas perspectivas y una respiración más amplia al universo de Sasha.</p>
+
+      <div class="tabs">
+        <button class="tab active" data-tab="principal">
+          <strong>Saga principal</strong>
+          <small>Eje principal de la saga</small>
+        </button>
+        <button class="tab" data-tab="annexes">
+          <strong>Anexos y expansiones</strong>
+          <small>Expansión del universo</small>
+        </button>
+      </div>
+
+      <div class="tab-panels">
+        <div class="tab-panel active" id="panel-principal">
+          <div class="panel-subhead">
+            <div class="panel-subtitle">Saga principal · 3 títulos</div>
+            <div class="panel-count">3 ✦</div>
+          </div>
+
+          <div class="books-grid">
+            <article class="card">
+              <div class="card-media">
+                <a href="volumen-1.html"><img src="assets/libros/volumenes/libro-sin-fondo.png" alt="Las Crónicas de Sasha Volumen 1" /></a>
+              </div>
+              <div class="card-body">
+                <div class="eyebrow">Volumen 1</div>
+                <h3><a href="volumen-1.html">Mis inicios</a></h3>
+                <p>La obra que abre la saga. El primer paso de Sasha, el primer choque con un mundo desconocido y la base sobre la que crecerá todo lo demás.</p>
+                <div class="card-actions">
+                  <a class="mini-btn primary" href="volumen-1.html">Ver ficha</a>
+                  <a class="mini-btn secondary" href="tienda.html#producto-volumen-1">Comprar</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="card-media">
+                <img src="assets/libros/volumenes/volumen-2.png" alt="Las Crónicas de Sasha Volumen 2" />
+              </div>
+              <div class="card-body">
+                <div class="eyebrow">Las Crónicas de Sasha Volumen 2</div>
+                <h3>Ya no soy una noob</h3>
+                <p>Sasha ya no es una noob. El mundo crece, ella empieza a habitarlo con más naturalidad y la conexión con la realidad exterior se vuelve más evidente. A la vez, empieza a revelarse un conflicto global a corto plazo.</p>
+                <div class="card-actions">
+                  <span class="mini-btn primary disabled">Próximamente</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="card-media">
+                <img src="assets/libros/volumenes/volumen-3.png" alt="Las Crónicas de Sasha Volumen 3" />
+              </div>
+              <div class="card-body">
+                <div class="eyebrow">Las Crónicas de Sasha Volumen 3</div>
+                <h3>Guerra</h3>
+                <p>La amenaza deja de ser un rumor y se convierte en guerra. Sasha se ve involucrada de lleno en un conflicto que cambia por completo la escala de su mundo.</p>
+                <div class="card-actions">
+                  <span class="mini-btn primary disabled">Próximamente</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="tab-panel" id="panel-annexes">
+          <div class="panel-subhead">
+            <div class="panel-subtitle">Anexos y expansiones · 3 títulos</div>
+            <div class="panel-count">3 ✦</div>
+          </div>
+
+          <div class="books-grid">
+            <article class="card">
+              <div class="card-media">
+                <a href="anexo-entrevista.html"><img src="assets/libros/anexos/Portada-entrevista.png" alt="Entrevista con una diosa" /></a>
+              </div>
+              <div class="card-body">
+                <div class="eyebrow">Anexo</div>
+                <h3><a href="anexo-entrevista.html">Entrevista con una diosa</a></h3>
+                <p>¿Qué se le pregunta a una diosa? La Señora de Inverse responde sin filtros a las dudas y rumores que envuelven el mundo de Demon Hunter y la llegada de las Inverse.</p>
+                <div class="card-actions">
+                  <a class="mini-btn primary" href="anexo-entrevista.html">Ver ficha</a>
+                  <a class="mini-btn secondary" href="tienda.html#producto-entrevista">Ver en tienda</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="card-media">
+                <a href="anexo-dvni.html"><img src="assets/libros/anexos/Portada-DVNI.png" alt="DVNI" /></a>
+              </div>
+              <div class="card-body">
+                <div class="eyebrow">Anexo</div>
+                <h3><a href="anexo-dvni.html">DVNI</a></h3>
+                <p>¿Qué ocurre cuando la magia se presenta ante el poder mundial? Desde el asedio de un dragón a la sede de Naciones Unidas hasta una charla diplomática sin precedentes, este anexo explora el choque entre política y magia.</p>
+                <div class="card-actions">
+                  <a class="mini-btn primary" href="anexo-dvni.html">Ver ficha</a>
+                  <a class="mini-btn secondary" href="tienda.html#producto-dvni">Ver en tienda</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="card-media">
+                <a href="anexo-cinco-dones.html"><img src="assets/libros/anexos/Portada-cinco-dones.png" alt="Cinco dones" /></a>
+              </div>
+              <div class="card-body">
+                <div class="eyebrow">Anexo</div>
+                <h3><a href="anexo-cinco-dones.html">Cinco dones</a></h3>
+                <p>Las Inverse emprenden una gira mundial. Cada una de sus paradas dejará una huella mágica imposible de ignorar.</p>
+                <div class="card-actions">
+                  <a class="mini-btn primary" href="anexo-cinco-dones.html">Ver ficha</a>
+                  <a class="mini-btn secondary" href="tienda.html#producto-cinco-dones">Ver en tienda</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="personajes">
+      <div class="ornament"></div>
+      <h2 class="section-title">Personajes</h2>
+      <p class="section-lead">Cada grupo ocupa un lugar distinto en la historia. Algunos sostienen a Sasha, otros la empujan a crecer y otros la obligan a mirar de frente aquello que preferiría evitar.</p>
+
+      <div class="characters-grid">
+        <article class="card">
+          <div class="card-media">
+            <a href="sasha.html"><img src="assets/galerias/sasha/sasha-01.png" alt="Sasha" /></a>
+          </div>
+          <div class="card-body">
+            <div class="eyebrow">Protagonista</div>
+            <h3><a href="sasha.html">Sasha</a></h3>
+            <p>Sasha es el avatar de Margaret, una mujer de 53 años que encuentra en este nuevo mundo una segunda oportunidad para redescubrirse, luchar y volver a sentirse dueña de su propia historia.</p>
+            <div class="card-actions">
+              <a class="mini-btn primary" href="sasha.html">Ver ficha</a>
+              <a class="mini-btn secondary" href="sasha.html#videos">Ver vídeos</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-media">
+            <a href="party-girls.html"><img src="assets/galerias/party-girls/party-girls.png" alt="Party Girls" /></a>
+          </div>
+          <div class="card-body">
+            <div class="eyebrow">Núcleo social</div>
+            <h3><a href="party-girls.html">Party Girls</a></h3>
+            <p>Los lazos de una verdadera party se construyen sobre amistad, lealtad, respeto, dedicación y confianza. No son solo acompañantes: son un eje emocional del viaje.</p>
+            <div class="card-actions">
+              <a class="mini-btn primary" href="party-girls.html">Ver ficha</a>
+              <a class="mini-btn secondary" href="party-girls.html#galeria">Ver galería</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-media">
+            <a href="aliados.html"><img src="assets/galerias/aliados/aliados.jpeg" alt="Aliados" /></a>
+          </div>
+          <div class="card-body">
+            <div class="eyebrow">Compañeros</div>
+            <h3><a href="aliados.html">Aliados</a></h3>
+            <p>La ayuda adopta muchas formas. A veces es amable, otras severa y otras insufrible, pero nadie puede seguir adelante solo. Cada aliado altera el camino de Sasha.</p>
+            <div class="card-actions">
+              <a class="mini-btn primary" href="aliados.html">Ver ficha</a>
+              <a class="mini-btn secondary" href="aliados.html#videos">Ver vídeos</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-media">
+            <a href="enemigos.html"><img src="assets/galerias/enemigos/enemigos.png" alt="Enemigos" /></a>
+          </div>
+          <div class="card-body">
+            <div class="eyebrow">Amenaza</div>
+            <h3><a href="enemigos.html">Enemigos</a></h3>
+            <p>Cada enemigo deja algo tras de sí: miedo, cicatrices o aprendizaje. Porque a veces sobrevivir no te hace más fuerte, sino más lista para la próxima emboscada.</p>
+            <div class="card-actions">
+              <a class="mini-btn primary" href="enemigos.html">Ver ficha</a>
+              <a class="mini-btn secondary" href="enemigos.html#galeria">Ver galería</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel" id="lore">
+      <div class="ornament"></div>
+      <h2 class="section-title">Lore</h2>
+      <p class="section-lead">Más allá de sus personajes, la saga se alza sobre un mundo lleno de magia, misterio y peligros. Un mundo que se abre poco a poco ante Sasha y ante el lector.</p>
+
+      <div class="lore-grid">
+        <article class="card">
+          <div class="card-body">
+            <div class="eyebrow">Mundo</div>
+            <h3>Demon Hunter</h3>
+            <p>Un nuevo mundo oculto tras la apariencia de un juego. En Demon Hunter, la magia se aprende de verdad, el dolor se siente de verdad y cada paso tiene consecuencias.</p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <div class="eyebrow">Magia</div>
+            <h3>Poder y transformación</h3>
+            <p>La magia despierta, se entrena y deja huella. No solo cambia lo que una puede hacer, sino también quién llega a ser.</p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <div class="eyebrow">Conflicto</div>
+            <h3>Facciones y amenazas</h3>
+            <p>Bajo la superficie del viaje de Sasha, asoman diosas, demonios, clanes y criaturas que insinúan un conflicto mayor todavía por revelarse.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel" id="novedades">
+      <div class="ornament"></div>
+      <h2 class="section-title">Novedades</h2>
+      <p class="section-lead">Anuncios, avances y todo lo que está por venir.</p>
+
+      <div class="news-grid">
+        <article class="news-feature">
+          <div class="news-tag">Zona destacada</div>
+          <h3>Volumen 1 · Publicación prevista en 2026</h3>
+          <p>La primera gran puerta al universo de Sasha ya tiene horizonte. La saga empieza aquí: con el primer libro, la primera entrada en Demon Hunter y el comienzo del viaje.</p>
+          <div class="news-actions">
+            <a class="btn primary" href="tienda.html">Ir a la tienda</a>
+            <a class="btn secondary" href="#libros">Explorar catálogo</a>
+          </div>
+        </article>
+
+        <div class="news-side">
+          <article class="news-mini">
+            <div class="news-tag">Próximamente</div>
+            <h4>Nuevas escenas, vídeos y material visual para ampliar la experiencia de la saga.</h4>
+          </article>
+
+          <article class="news-mini">
+            <div class="news-tag">Próximamente</div>
+            <h4>Más entregas de la saga principal y nuevos anexos para expandir Demon Hunter.</h4>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="tienda">
+      <div class="ornament"></div>
+      <h2 class="section-title">Tienda</h2>
+      <p class="section-lead">Libros, anexos y futuros objetos de colección reunidos en un mismo punto de acceso.</p>
+
+      <div class="shop-grid">
+        <article class="card">
+          <div class="card-body">
+            <div class="eyebrow">Saga principal</div>
+            <h3>Volumen 1</h3>
+            <p>La obra central de la saga y la puerta principal de entrada al universo de Sasha.</p>
+            <div class="card-actions">
+              <a class="mini-btn primary" href="tienda.html#producto-volumen-1">Comprar Volumen 1</a>
+              <a class="mini-btn secondary" href="volumen-1.html">Ver ficha</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <div class="eyebrow">Anexos</div>
+            <h3>Expansiones</h3>
+            <p>Historias y materiales complementarios que amplían el universo de Sasha desde nuevas perspectivas.</p>
+            <div class="card-actions">
+              <a class="mini-btn primary" href="tienda.html#producto-entrevista">Ver anexos en tienda</a>
+              <a class="mini-btn secondary" href="anexo-entrevista.html">Ver primer anexo</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-body">
+            <div class="eyebrow">Merchandising</div>
+            <h3>Objetos de la saga</h3>
+            <p>Ilustraciones, piezas visuales y futuros productos pensados para quienes quieran llevarse un fragmento del mundo de Sasha.</p>
+            <div class="card-actions">
+              <a class="mini-btn primary" href="tienda.html#producto-poster-sasha">Ver merchandising</a>
+              <a class="mini-btn secondary" href="tienda.html">Tienda completa</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <div class="footer">
+      Las Crónicas de Sasha
+    </div>
+  </main>
+
+  <script>
+    const menu = document.getElementById('sideMenu');
+    const menuToggle = document.getElementById('menuToggle');
+    const menuClose = document.getElementById('menuClose');
+    const menuBackdrop = document.getElementById('menuBackdrop');
+
+    function openMenu(){
+      menu.classList.add('open');
+      menuBackdrop.classList.add('show');
+    }
+
+    function closeMenu(){
+      menu.classList.remove('open');
+      menuBackdrop.classList.remove('show');
+    }
+
+    menuToggle.addEventListener('click', openMenu);
+    menuClose.addEventListener('click', closeMenu);
+    menuBackdrop.addEventListener('click', closeMenu);
+
+    document.querySelectorAll('.menu-link').forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+
+    const tabs = document.querySelectorAll('.tab');
+    const panels = {
+      principal: document.getElementById('panel-principal'),
+      annexes: document.getElementById('panel-annexes')
+    };
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        Object.values(panels).forEach(panel => panel.classList.remove('active'));
+        panels[tab.dataset.tab].classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
