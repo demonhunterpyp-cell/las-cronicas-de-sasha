@@ -7,14 +7,14 @@
   <meta name="description" content="Portal de acceso al universo DemonHunter: novela, lore expandido y sistema de juego." />
   <style>
     :root{
-      --bg:#05070c;
-      --bg-2:#0b1120;
+      --bg:#08111f;
+      --bg-2:#101b2e;
       --gold:#d8b160;
       --gold-2:#b78537;
-      --gold-soft:rgba(216,177,96,.24);
+      --line:rgba(240, 200, 111, .36);
       --text:#f7eedc;
-      --text-soft:#e8dcc0;
-      --shadow:0 20px 55px rgba(0,0,0,.48);
+      --text-soft:#e6d8b7;
+      --shadow:0 20px 45px rgba(0,0,0,.35);
     }
 
     *{box-sizing:border-box}
@@ -22,12 +22,13 @@
 
     body{
       min-height:100vh;
-      background:
-        radial-gradient(circle at top, rgba(28,38,64,.35), transparent 40%),
-        linear-gradient(180deg, #06080e 0%, #08101d 100%);
-      color:var(--text);
       font-family:Georgia, "Times New Roman", serif;
-      overflow-x:hidden;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(216,177,96,.10), transparent 18%),
+        radial-gradient(circle at 80% 15%, rgba(216,177,96,.08), transparent 20%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+      color:var(--text);
+      overflow:hidden;
     }
 
     a{
@@ -35,78 +36,24 @@
       text-decoration:none;
     }
 
-    .page{
-      min-height:100vh;
-      padding:14px;
-    }
-
-    .portal-wrap{
+    .portal{
       position:relative;
-      width:min(100%, 1700px);
-      height:min(95vh, 980px);
-      margin:0 auto;
-      border:1px solid rgba(216,177,96,.18);
-      border-radius:24px;
+      width:100%;
+      height:100vh;
       overflow:hidden;
-      background:
-        radial-gradient(circle at 50% 42%, rgba(255,215,130,.06), transparent 18%),
-        linear-gradient(180deg, #081019 0%, #091120 100%);
-      box-shadow:var(--shadow);
       isolation:isolate;
+      background:#091120;
     }
 
-    .top-label{
-      position:absolute;
-      z-index:30;
-      top:16px;
-      left:50%;
-      transform:translateX(-50%);
-      padding:9px 18px;
-      border-radius:999px;
-      border:1px solid rgba(216,177,96,.3);
-      background:rgba(10,14,24,.68);
-      backdrop-filter:blur(8px);
-      font-size:15px;
-      font-weight:700;
-      letter-spacing:.06em;
-      text-transform:uppercase;
-      color:#f1dfbb;
-    }
-
-    .portal-wrap::before,
-    .portal-wrap::after{
+    .portal::before{
       content:"";
       position:absolute;
-      z-index:12;
-      left:50%;
-      top:58%;
-      width:1px;
-      height:140%;
-      background:linear-gradient(to bottom, rgba(216,177,96,.85), rgba(216,177,96,.08));
-      transform-origin:top center;
+      inset:0;
+      background:
+        radial-gradient(circle at 50% 55%, rgba(255,220,150,.06), transparent 16%),
+        linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.08));
       pointer-events:none;
-    }
-
-    .portal-wrap::before{
-      transform:translateX(-50%) rotate(58deg);
-    }
-
-    .portal-wrap::after{
-      transform:translateX(-50%) rotate(-58deg);
-    }
-
-    .center-node{
-      position:absolute;
-      z-index:13;
-      left:50%;
-      top:58%;
-      width:16px;
-      height:16px;
-      transform:translate(-50%, -50%);
-      border-radius:50%;
-      background:radial-gradient(circle, #ffd78d 0%, #d8b160 55%, #8a6424 100%);
-      box-shadow:0 0 18px rgba(216,177,96,.5);
-      pointer-events:none;
+      z-index:1;
     }
 
     .panel{
@@ -114,310 +61,355 @@
       inset:0;
       display:block;
       overflow:hidden;
-      transition:transform .35s ease, filter .35s ease;
-      will-change:transform;
-      backface-visibility:hidden;
-    }
-
-    .panel:hover{
-      transform:scale(1.012);
-      filter:brightness(1.04);
-      z-index:8;
+      transition:
+        transform .35s ease,
+        filter .35s ease,
+        opacity .35s ease;
+      cursor:pointer;
+      will-change:transform, filter;
     }
 
     .panel::before{
       content:"";
       position:absolute;
       inset:0;
-      background-position:center;
       background-size:cover;
-      background-repeat:no-repeat;
-      transition:transform .45s ease, filter .35s ease;
-    }
-
-    .panel:hover::before{
+      background-position:center center;
       transform:scale(1.03);
+      transition:
+        transform .6s ease,
+        filter .35s ease,
+        opacity .35s ease;
     }
 
     .panel::after{
       content:"";
       position:absolute;
       inset:0;
+      opacity:0;
+      transition:opacity .35s ease;
       pointer-events:none;
+      background:
+        radial-gradient(circle at 50% 45%, rgba(255,226,159,.20), transparent 35%),
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,0));
+      mix-blend-mode:screen;
+    }
+
+    .panel:hover,
+    .panel:focus-visible{
+      filter:brightness(1.08) saturate(1.08);
+      z-index:5;
+      outline:none;
+      animation:latido 1.05s ease-in-out infinite;
+    }
+
+    .panel:hover::before,
+    .panel:focus-visible::before{
+      transform:scale(1.06);
+      filter:brightness(1.08);
+    }
+
+    .panel:hover::after,
+    .panel:focus-visible::after{
+      opacity:1;
+    }
+
+    @keyframes latido{
+      0%{transform:scale(1)}
+      50%{transform:scale(1.015)}
+      100%{transform:scale(1)}
     }
 
     .panel-top{
       clip-path:polygon(0 0, 100% 0, 50% 58%);
-      z-index:3;
-    }
-
-    .panel-left{
-      clip-path:polygon(0 0, 50% 58%, 50% 100%, 0 100%);
-      z-index:4;
-    }
-
-    .panel-right{
-      clip-path:polygon(100% 0, 50% 58%, 50% 100%, 100% 100%);
-      z-index:4;
+      z-index:2;
     }
 
     .panel-top::before{
       background-image:
-        linear-gradient(rgba(5,7,12,.18), rgba(5,7,12,.44)),
+        linear-gradient(180deg, rgba(7,11,19,.16) 0%, rgba(7,11,19,.40) 60%, rgba(7,11,19,.66) 100%),
+        linear-gradient(90deg, rgba(7,11,19,.28) 0%, rgba(7,11,19,.10) 50%, rgba(7,11,19,.22) 100%),
         url("assets/portal/portal-mundo.jpg");
-      filter:brightness(.94) saturate(.95);
     }
 
-    .panel-top::after{
-      background:
-        linear-gradient(180deg, rgba(4,7,12,.14) 0%, rgba(6,10,18,.20) 50%, rgba(4,7,12,.42) 100%);
+    .panel-left{
+      clip-path:polygon(0 0, 50% 58%, 50% 100%, 0 100%);
+      z-index:3;
     }
 
     .panel-left::before{
       background-image:
-        linear-gradient(rgba(5,7,12,.08), rgba(5,7,12,.24)),
+        radial-gradient(circle at 24% 46%, rgba(255,222,163,.18) 0%, rgba(255,222,163,.08) 18%, transparent 34%),
+        linear-gradient(180deg, rgba(20,11,7,.06) 0%, rgba(20,11,7,.18) 100%),
+        linear-gradient(90deg, rgba(7,11,19,.10) 0%, rgba(7,11,19,.03) 100%),
         url("assets/portal/portal-sasha.jpg");
-      background-position:left center;
-      filter:brightness(1.04) saturate(1.02);
+      background-repeat:no-repeat, no-repeat, no-repeat, no-repeat;
+      background-size:cover, cover, cover, 82%;
+      background-position:center center, center center, center center, left 2% bottom 6%;
+      transform:scale(1);
+      filter:brightness(1.18) saturate(1.08) contrast(1.04);
     }
 
-    .panel-left::after{
-      background:
-        linear-gradient(90deg, rgba(3,5,9,.14) 0%, rgba(3,5,9,.10) 28%, rgba(3,5,9,.30) 62%, rgba(3,5,9,.56) 100%),
-        linear-gradient(180deg, rgba(3,5,9,.08) 0%, rgba(3,5,9,.14) 40%, rgba(3,5,9,.42) 100%);
+    .panel-left:hover,
+    .panel-left:focus-visible{
+      filter:brightness(1.03) saturate(1.03);
+    }
+
+    .panel-left:hover::before,
+    .panel-left:focus-visible::before{
+      transform:scale(1.02);
+      filter:brightness(1.30) saturate(1.12) contrast(1.06);
     }
 
     .panel-right{
-      background:
-        radial-gradient(circle at 70% 30%, rgba(255,211,125,.04), transparent 18%),
-        linear-gradient(180deg, #050506 0%, #090909 100%);
+      clip-path:polygon(100% 0, 50% 58%, 50% 100%, 100% 100%);
+      z-index:3;
     }
 
     .panel-right::before{
-      content:"";
+      background-image:
+        linear-gradient(180deg, rgba(10,14,32,.22) 0%, rgba(10,14,32,.48) 100%),
+        linear-gradient(90deg, rgba(7,11,19,.08) 0%, rgba(7,11,19,.30) 100%),
+        url("assets/portal/portal-payplay.jpg");
+      background-position:center center;
+    }
+
+    .panel-content{
       position:absolute;
-      inset:0;
-      background:
-        linear-gradient(180deg, rgba(0,0,0,.02) 0%, rgba(0,0,0,.08) 100%);
-      transform:none !important;
+      z-index:6;
+      max-width:420px;
+      padding:22px 26px;
+      border-radius:22px;
+      border:1px solid rgba(216,177,96,.16);
+      background:rgba(7,11,19,.24);
+      backdrop-filter:blur(4px);
+      box-shadow:var(--shadow);
+      transition:
+        background .35s ease,
+        border-color .35s ease,
+        transform .35s ease;
     }
 
-    .card{
-      position:absolute;
-      z-index:20;
-      background:linear-gradient(180deg, rgba(8,13,22,.40), rgba(8,13,22,.62));
-      border:1px solid rgba(216,177,96,.18);
-      border-radius:26px;
-      backdrop-filter:blur(10px);
-      -webkit-backdrop-filter:blur(10px);
-      box-shadow:0 15px 35px rgba(0,0,0,.22);
-      padding:22px 24px;
-      max-width:min(92%, 460px);
-      transition:transform .25s ease, background .25s ease, border-color .25s ease;
-      pointer-events:none;
+    .panel:hover .panel-content,
+    .panel:focus-visible .panel-content{
+      background:rgba(7,11,19,.34);
+      border-color:rgba(216,177,96,.30);
+      transform:translateY(-4px);
     }
 
-    .panel:hover .card{
-      transform:translateY(-2px);
-      background:linear-gradient(180deg, rgba(8,13,22,.48), rgba(8,13,22,.68));
-      border-color:rgba(216,177,96,.28);
-    }
-
-    .badge{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      margin-bottom:12px;
-      padding:7px 14px;
-      border-radius:999px;
-      border:1px solid rgba(216,177,96,.26);
-      background:rgba(216,177,96,.08);
-      color:var(--gold);
-      font-size:13px;
-      font-weight:700;
-      letter-spacing:.06em;
-      text-transform:uppercase;
-    }
-
-    .card h2{
-      margin:0;
-      font-size:clamp(34px, 4.2vw, 72px);
-      line-height:.95;
-      color:#efc96f;
-      text-shadow:0 4px 14px rgba(0,0,0,.2);
-    }
-
-    .card p{
-      margin:16px 0 0;
-      font-size:clamp(18px, 1.2vw, 24px);
-      line-height:1.45;
-      color:#f3e3bf;
-      max-width:32ch;
-    }
-
-    .card .cta{
-      margin-top:18px;
-      display:inline-block;
-      font-size:15px;
-      font-weight:700;
-      color:#f0deb7;
-      border-bottom:1px solid rgba(216,177,96,.32);
-      padding-bottom:2px;
-    }
-
-    .card-top{
-      top:76px;
+    .panel-top .panel-content{
+      top:7vh;
       left:50%;
       transform:translateX(-50%);
       text-align:center;
-      width:min(90%, 720px);
-      padding:28px 34px 26px;
+      width:min(720px, 88vw);
+      max-width:720px;
     }
 
-    .card-top p{
-      max-width:none;
+    .panel-top:hover .panel-content,
+    .panel-top:focus-visible .panel-content{
+      transform:translateX(-50%) translateY(-4px);
     }
 
-    .card-left{
-      left:82px;
-      bottom:62px;
-      width:min(90%, 430px);
+    .panel-left .panel-content{
+      left:3.2vw;
+      right:auto;
+      bottom:5.8vh;
+      width:min(250px, 22vw);
+      text-align:left;
+      padding:14px 16px;
     }
 
-    .card-right{
-      right:54px;
-      bottom:52px;
-      width:min(90%, 380px);
+    .panel-right .panel-content{
+      right:4.5vw;
+      bottom:9vh;
+      width:min(390px, 34vw);
       text-align:right;
     }
 
-    .card-right p,
-    .card-right .cta{
-      margin-left:auto;
+    .panel h1,
+    .panel h2{
+      margin:0 0 10px;
+      color:#f0c86f;
+      line-height:.95;
+      font-weight:700;
+      text-shadow:0 3px 16px rgba(0,0,0,.26);
     }
 
-    @media (max-width: 1180px){
-      .portal-wrap{
-        height:auto;
+    .panel-top h1{
+      font-size:clamp(2.8rem, 6vw, 5rem);
+    }
+
+    .panel-left h2,
+    .panel-right h2{
+      font-size:clamp(2rem, 3.6vw, 3.2rem);
+    }
+
+    .panel p{
+      margin:0;
+      color:var(--text-soft);
+      line-height:1.55;
+      font-size:1.02rem;
+    }
+
+    .portal-lines{
+      position:absolute;
+      inset:0;
+      z-index:4;
+      pointer-events:none;
+    }
+
+    .portal-lines svg{
+      width:100%;
+      height:100%;
+      display:block;
+    }
+
+    .portal-center{
+      position:absolute;
+      left:50%;
+      top:58%;
+      transform:translate(-50%, -50%);
+      z-index:7;
+      width:18px;
+      height:18px;
+      border-radius:50%;
+      background:radial-gradient(circle, #f0c86f 0%, #c28a39 60%, rgba(194,138,57,0) 100%);
+      box-shadow:0 0 18px rgba(240,200,111,.55);
+      pointer-events:none;
+    }
+
+    .portal-title{
+      position:absolute;
+      left:50%;
+      top:16px;
+      transform:translateX(-50%);
+      z-index:8;
+      text-align:center;
+      padding:8px 18px;
+      border-radius:999px;
+      background:rgba(7,11,19,.40);
+      border:1px solid rgba(216,177,96,.18);
+      color:#f4e7cb;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      font-size:.82rem;
+      backdrop-filter:blur(4px);
+    }
+
+    @media (max-width: 980px){
+      body{overflow:auto}
+
+      .portal{
         min-height:100vh;
-        border-radius:0;
+        height:auto;
+        display:grid;
+        grid-template-columns:1fr;
       }
 
-      .portal-wrap::before,
-      .portal-wrap::after,
-      .center-node{
+      .portal-lines,
+      .portal-center{
         display:none;
       }
 
-      .top-label{
+      .portal-title{
         top:12px;
       }
 
-      .panel,
-      .panel-top,
-      .panel-left,
-      .panel-right{
+      .panel{
         position:relative;
-        clip-path:none;
         inset:auto;
-        min-height:34vh;
+        min-height:33.333vh;
+        clip-path:none !important;
+        animation:none !important;
       }
 
-      .panel-top{border-bottom:1px solid rgba(216,177,96,.14)}
-      .panel-left{border-bottom:1px solid rgba(216,177,96,.14)}
+      .panel::before{
+        transform:scale(1);
+      }
 
-      .card-top,
-      .card-left,
-      .card-right{
+      .panel-top .panel-content,
+      .panel-left .panel-content,
+      .panel-right .panel-content{
         position:relative;
+        top:auto;
         left:auto;
         right:auto;
-        top:auto;
         bottom:auto;
         transform:none;
-        margin:92px auto 32px;
+        width:min(92vw, 760px);
+        max-width:none;
+        margin:0 auto;
         text-align:left;
-        width:min(92%, 760px);
       }
 
-      .card-right p,
-      .card-right .cta{
-        margin-left:0;
-      }
-    }
-
-    @media (max-width: 760px){
-      .page{padding:0}
-      .portal-wrap{border:none}
-
-      .card{
-        padding:20px 20px 22px;
-        border-radius:22px;
+      .panel-top:hover .panel-content,
+      .panel-top:focus-visible .panel-content,
+      .panel-left:hover .panel-content,
+      .panel-left:focus-visible .panel-content,
+      .panel-right:hover .panel-content,
+      .panel-right:focus-visible .panel-content{
+        transform:translateY(-4px);
       }
 
-      .card h2{
-        font-size:clamp(34px, 10vw, 54px);
+      .panel-inner-mobile{
+        min-height:33.333vh;
+        display:flex;
+        align-items:center;
+        padding:72px 0 32px;
       }
 
-      .card p{
-        font-size:17px;
-      }
-
-      .card-top,
-      .card-left,
-      .card-right{
-        margin:82px auto 24px;
+      .panel-top h1,
+      .panel-left h2,
+      .panel-right h2{
+        font-size:clamp(2.2rem, 7vw, 3.4rem);
       }
     }
   </style>
 </head>
 <body>
-  <div class="page">
-    <main class="portal-wrap">
-      <div class="top-label">Portal de acceso</div>
-      <div class="center-node"></div>
 
-      <a
-        class="panel panel-top"
-        href="https://www.worldanvil.com/w/demon-hunter-tabanne"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Entrar en World Anvil"
-      >
-        <div class="card card-top">
-          <div class="badge">Lore</div>
-          <h2>Descubre el<br>mundo</h2>
-          <p>Explora el lore, las facciones<br>y la historia del universo.</p>
-          <span class="cta">Entrar en World Anvil</span>
+  <main class="portal">
+
+    <div class="portal-title">Portal de acceso</div>
+    <div class="portal-center"></div>
+
+    <div class="portal-lines" aria-hidden="true">
+      <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+        <line x1="0" y1="0" x2="50" y2="58" stroke="rgba(240,200,111,.38)" stroke-width="0.22"/>
+        <line x1="100" y1="0" x2="50" y2="58" stroke="rgba(240,200,111,.38)" stroke-width="0.22"/>
+        <line x1="50" y1="58" x2="50" y2="100" stroke="rgba(240,200,111,.38)" stroke-width="0.22"/>
+      </svg>
+    </div>
+
+    <a class="panel panel-top" href="https://www.worldanvil.com/w/demon-hunter-tabanne" target="_blank" rel="noopener noreferrer" aria-label="Ir a World Anvil">
+      <div class="panel-inner-mobile">
+        <div class="panel-content">
+          <h1>Descubre el mundo</h1>
+          <p>Lore expandido</p>
         </div>
-      </a>
+      </div>
+    </a>
 
-      <a
-        class="panel panel-left"
-        href="cronicas/index.html"
-        aria-label="Entrar en Las Crónicas de Sasha"
-      >
-        <div class="card card-left">
-          <div class="badge">Novela</div>
+    <a class="panel panel-left" href="cronicas/index.html" aria-label="Ir a Las Crónicas de Sasha">
+      <div class="panel-inner-mobile">
+        <div class="panel-content">
           <h2>Las Crónicas<br>de Sasha</h2>
-          <p>Libros, personajes y<br>contenido de la saga.</p>
-          <span class="cta">Entrar en la web de la saga</span>
+          <p>Saga principal</p>
         </div>
-      </a>
+      </div>
+    </a>
 
-      <a
-        class="panel panel-right"
-        href="systempyp/index.html"
-        aria-label="Entrar en Pay and Play Rol System"
-      >
-        <div class="card card-right">
-          <div class="badge">Rol</div>
-          <h2>Pay &amp; Play<br>Rol System</h2>
-          <p>Normas, fichas y campañas<br>para jugar en este mundo.</p>
-          <span class="cta">Entrar en el sistema</span>
+    <a class="panel panel-right" href="systempyp/index.html" aria-label="Ir a Pay and Play Role System">
+      <div class="panel-inner-mobile">
+        <div class="panel-content">
+          <h2>Pay &amp; Play<br>Role System</h2>
+          <p>Reglas y juego</p>
         </div>
-      </a>
-    </main>
-  </div>
+      </div>
+    </a>
+
+  </main>
+
 </body>
 </html>
