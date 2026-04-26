@@ -73,9 +73,6 @@
       content:"";
       position:absolute;
       inset:0;
-      background-size:cover;
-      background-position:center center;
-      transform:scale(1.03);
       transition:
         transform .6s ease,
         filter .35s ease,
@@ -90,34 +87,26 @@
       transition:opacity .35s ease;
       pointer-events:none;
       background:
-        radial-gradient(circle at 50% 45%, rgba(255,226,159,.20), transparent 35%),
-        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,0));
+        radial-gradient(circle at 50% 45%, rgba(255,226,159,.16), transparent 35%),
+        linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,0));
       mix-blend-mode:screen;
     }
 
     .panel:hover,
     .panel:focus-visible{
-      filter:brightness(1.08) saturate(1.08);
+      filter:brightness(1.04) saturate(1.04);
       z-index:5;
       outline:none;
-      animation:latido 1.05s ease-in-out infinite;
     }
 
     .panel:hover::before,
     .panel:focus-visible::before{
-      transform:scale(1.06);
-      filter:brightness(1.08);
+      transform:scale(1.03);
     }
 
     .panel:hover::after,
     .panel:focus-visible::after{
       opacity:1;
-    }
-
-    @keyframes latido{
-      0%{transform:scale(1)}
-      50%{transform:scale(1.015)}
-      100%{transform:scale(1)}
     }
 
     .panel-top{
@@ -130,6 +119,9 @@
         linear-gradient(180deg, rgba(7,11,19,.16) 0%, rgba(7,11,19,.40) 60%, rgba(7,11,19,.66) 100%),
         linear-gradient(90deg, rgba(7,11,19,.28) 0%, rgba(7,11,19,.10) 50%, rgba(7,11,19,.22) 100%),
         url("assets/portal/portal-mundo.jpg");
+      background-repeat:no-repeat,no-repeat,no-repeat;
+      background-size:cover,cover,cover;
+      background-position:center center,center center,center center;
     }
 
     .panel-left{
@@ -139,23 +131,33 @@
 
     .panel-left::before{
       background-image:
-        linear-gradient(180deg, rgba(20,11,7,.22) 0%, rgba(20,11,7,.44) 100%),
-        linear-gradient(90deg, rgba(7,11,19,.30) 0%, rgba(7,11,19,.08) 100%),
+        linear-gradient(180deg, rgba(20,11,7,.08) 0%, rgba(20,11,7,.24) 100%),
+        linear-gradient(90deg, rgba(7,11,19,.16) 0%, rgba(7,11,19,.05) 100%),
         url("assets/portal/portal-sasha.jpg");
-      background-position:center center;
+      background-repeat:no-repeat,no-repeat,no-repeat;
+      background-size:cover,cover,88%;
+      background-position:center center,center center,left 2% bottom 8%;
+      filter:brightness(1.05) saturate(1.02);
+      transform:scale(1);
     }
 
     .panel-right{
       clip-path:polygon(100% 0, 50% 58%, 50% 100%, 100% 100%);
       z-index:3;
+      background:
+        radial-gradient(circle at 68% 30%, rgba(255,214,130,.07), transparent 20%),
+        linear-gradient(180deg, #050506 0%, #090909 100%);
     }
 
     .panel-right::before{
       background-image:
-        linear-gradient(180deg, rgba(10,14,32,.22) 0%, rgba(10,14,32,.48) 100%),
-        linear-gradient(90deg, rgba(7,11,19,.08) 0%, rgba(7,11,19,.30) 100%),
-        url("assets/portal/portal-payplay.jpg");
-      background-position:center center;
+        radial-gradient(circle at 70% 34%, rgba(255,214,130,.10) 0%, rgba(255,214,130,.05) 16%, rgba(255,214,130,0) 28%),
+        linear-gradient(180deg, rgba(10,14,32,.04) 0%, rgba(10,14,32,.14) 100%),
+        url("assets/portal/portal-payplay.png");
+      background-repeat:no-repeat,no-repeat,no-repeat;
+      background-size:cover,cover,52%;
+      background-position:center center,center center,72% 34%;
+      transform:scale(1);
     }
 
     .panel-content{
@@ -205,7 +207,7 @@
     .panel-right .panel-content{
       right:4.5vw;
       bottom:9vh;
-      width:min(410px, 36vw);
+      width:min(390px, 34vw);
       text-align:right;
     }
 
@@ -324,7 +326,6 @@
         inset:auto;
         min-height:33.333vh;
         clip-path:none !important;
-        animation:none !important;
       }
 
       .panel::before{
@@ -407,12 +408,12 @@
       </div>
     </a>
 
-    <a class="panel panel-right" href="systempyp/index.html" aria-label="Ir a Pay and Play System">
+    <a class="panel panel-right" href="systempyp/index.html" aria-label="Ir a Pay and Play Rol System">
       <div class="panel-inner-mobile">
         <div class="panel-content">
-          <span class="eyebrow">Sistema de juego</span>
-          <h2>Pay &amp; Play<br>System</h2>
-          <p>Normas, reglas, hechizos, fichas, enemigos, campañas y toda la estructura jugable del sistema.</p>
+          <span class="eyebrow">Rol</span>
+          <h2>Pay &amp; Play<br>Rol System</h2>
+          <p>Normas, fichas y campañas para jugar en este mundo.</p>
           <small>Entrar en el sistema</small>
         </div>
       </div>
