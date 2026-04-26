@@ -4,10 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Portal | DemonHunter</title>
-  <meta
-    name="description"
-    content="Portal de acceso al universo DemonHunter: novela, lore expandido y sistema de juego."
-  />
+  <meta name="description" content="Portal de acceso al universo DemonHunter: novela, lore expandido y sistema de juego." />
   <style>
     :root{
       --bg:#05070c;
@@ -26,7 +23,7 @@
     body{
       min-height:100vh;
       background:
-        radial-gradient(circle at top, rgba(28,38,64,.45), transparent 40%),
+        radial-gradient(circle at top, rgba(28,38,64,.35), transparent 40%),
         linear-gradient(180deg, #06080e 0%, #08101d 100%);
       color:var(--text);
       font-family:Georgia, "Times New Roman", serif;
@@ -52,7 +49,7 @@
       border-radius:24px;
       overflow:hidden;
       background:
-        radial-gradient(circle at 50% 42%, rgba(255,215,130,.08), transparent 18%),
+        radial-gradient(circle at 50% 42%, rgba(255,215,130,.06), transparent 18%),
         linear-gradient(180deg, #081019 0%, #091120 100%);
       box-shadow:var(--shadow);
       isolation:isolate;
@@ -82,20 +79,19 @@
       position:absolute;
       z-index:12;
       left:50%;
-      bottom:38%;
+      top:58%;
       width:1px;
-      background:linear-gradient(to bottom, rgba(216,177,96,.85), rgba(216,177,96,.1));
-      transform-origin:bottom center;
+      height:140%;
+      background:linear-gradient(to bottom, rgba(216,177,96,.85), rgba(216,177,96,.08));
+      transform-origin:top center;
       pointer-events:none;
     }
 
     .portal-wrap::before{
-      height:125%;
       transform:translateX(-50%) rotate(58deg);
     }
 
     .portal-wrap::after{
-      height:125%;
       transform:translateX(-50%) rotate(-58deg);
     }
 
@@ -103,10 +99,10 @@
       position:absolute;
       z-index:13;
       left:50%;
-      bottom:38%;
+      top:58%;
       width:16px;
       height:16px;
-      transform:translate(-50%, 50%);
+      transform:translate(-50%, -50%);
       border-radius:50%;
       background:radial-gradient(circle, #ffd78d 0%, #d8b160 55%, #8a6424 100%);
       box-shadow:0 0 18px rgba(216,177,96,.5);
@@ -124,7 +120,7 @@
     }
 
     .panel:hover{
-      transform:scale(1.015);
+      transform:scale(1.012);
       filter:brightness(1.04);
       z-index:8;
     }
@@ -150,36 +146,38 @@
       pointer-events:none;
     }
 
+    /* ZONAS CORRECTAS */
     .panel-top{
       clip-path:polygon(0 0, 100% 0, 50% 58%);
       z-index:3;
     }
 
     .panel-left{
-      clip-path:polygon(0 0, 50% 58%, 0 100%);
+      clip-path:polygon(0 0, 50% 58%, 50% 100%, 0 100%);
       z-index:4;
     }
 
     .panel-right{
-      clip-path:polygon(100% 0, 50% 58%, 100% 100%);
+      clip-path:polygon(100% 0, 50% 58%, 50% 100%, 100% 100%);
       z-index:4;
     }
 
+    /* FONDOS */
     .panel-top::before{
       background-image:
-        linear-gradient(rgba(5,7,12,.18), rgba(5,7,12,.42)),
+        linear-gradient(rgba(5,7,12,.18), rgba(5,7,12,.44)),
         url("assets/portal/portal-mundo.jpg");
-      filter:brightness(.95) saturate(.95);
+      filter:brightness(.94) saturate(.95);
     }
 
     .panel-top::after{
       background:
-        linear-gradient(180deg, rgba(4,7,12,.16) 0%, rgba(6,10,18,.18) 50%, rgba(4,7,12,.42) 100%);
+        linear-gradient(180deg, rgba(4,7,12,.14) 0%, rgba(6,10,18,.20) 50%, rgba(4,7,12,.42) 100%);
     }
 
     .panel-left::before{
       background-image:
-        linear-gradient(rgba(5,7,12,.06), rgba(5,7,12,.22)),
+        linear-gradient(rgba(5,7,12,.08), rgba(5,7,12,.24)),
         url("assets/portal/portal-sasha.jpg");
       background-position:left center;
       filter:brightness(1.04) saturate(1.02);
@@ -187,14 +185,14 @@
 
     .panel-left::after{
       background:
-        linear-gradient(90deg, rgba(3,5,9,.18) 0%, rgba(3,5,9,.10) 28%, rgba(3,5,9,.36) 62%, rgba(3,5,9,.66) 100%),
-        linear-gradient(180deg, rgba(3,5,9,.12) 0%, rgba(3,5,9,.15) 40%, rgba(3,5,9,.5) 100%);
+        linear-gradient(90deg, rgba(3,5,9,.14) 0%, rgba(3,5,9,.10) 28%, rgba(3,5,9,.30) 62%, rgba(3,5,9,.56) 100%),
+        linear-gradient(180deg, rgba(3,5,9,.08) 0%, rgba(3,5,9,.14) 40%, rgba(3,5,9,.42) 100%);
     }
 
     .panel-right{
       background:
-        radial-gradient(circle at 62% 32%, rgba(255,211,125,.08), transparent 18%),
-        linear-gradient(180deg, #050506 0%, #090909 100%);
+        radial-gradient(circle at 68% 32%, rgba(255,211,125,.06), transparent 18%),
+        linear-gradient(180deg, #040404 0%, #090909 100%);
     }
 
     .panel-right::before{
@@ -202,9 +200,11 @@
       position:absolute;
       inset:0;
       background:
-        linear-gradient(90deg, rgba(0,0,0,.22) 0%, rgba(0,0,0,.10) 28%, rgba(0,0,0,.06) 60%, rgba(0,0,0,.16) 100%);
+        linear-gradient(90deg, rgba(0,0,0,.18) 0%, rgba(0,0,0,.08) 26%, rgba(0,0,0,.06) 58%, rgba(0,0,0,.12) 100%);
+      transform:none !important;
     }
 
+    /* TARJETAS */
     .card{
       position:absolute;
       z-index:20;
@@ -286,9 +286,9 @@
     }
 
     .card-right{
-      right:62px;
-      bottom:58px;
-      width:min(90%, 430px);
+      right:54px;
+      bottom:52px;
+      width:min(90%, 370px);
       text-align:right;
     }
 
@@ -297,15 +297,16 @@
       margin-left:auto;
     }
 
+    /* LOGO PAY & PLAY */
     .pp-logo-wrap{
       position:absolute;
       z-index:18;
-      top:39%;
+      top:37%;
       left:74%;
       transform:translate(-50%, -50%);
-      width:min(40vw, 560px);
-      max-width:560px;
-      min-width:240px;
+      width:min(34vw, 500px);
+      max-width:500px;
+      min-width:230px;
       aspect-ratio:16/9;
       display:flex;
       align-items:center;
@@ -319,8 +320,8 @@
       inset:10% 8%;
       border-radius:50%;
       background:
-        radial-gradient(circle, rgba(255,223,155,.34) 0%, rgba(255,223,155,.18) 28%, rgba(255,223,155,.08) 48%, rgba(255,223,155,0) 72%);
-      filter:blur(28px);
+        radial-gradient(circle, rgba(255,223,155,.30) 0%, rgba(255,223,155,.14) 28%, rgba(255,223,155,.05) 48%, rgba(255,223,155,0) 72%);
+      filter:blur(26px);
       opacity:.95;
     }
 
@@ -397,6 +398,7 @@
     @media (max-width: 760px){
       .page{padding:0}
       .portal-wrap{border:none}
+
       .card{
         padding:20px 20px 22px;
         border-radius:22px;
@@ -428,6 +430,7 @@
       <div class="top-label">Portal de acceso</div>
       <div class="center-node"></div>
 
+      <!-- LORE -->
       <a
         class="panel panel-top"
         href="https://www.worldanvil.com/w/demon-hunter-tabanne"
@@ -443,6 +446,7 @@
         </div>
       </a>
 
+      <!-- CRÓNICAS -->
       <a
         class="panel panel-left"
         href="cronicas/index.html"
@@ -456,6 +460,7 @@
         </div>
       </a>
 
+      <!-- PAY & PLAY -->
       <a
         class="panel panel-right"
         href="systempyp/index.html"
