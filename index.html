@@ -12,27 +12,24 @@
     :root{
       --bg:#05070c;
       --bg-2:#0b1120;
-      --panel:#0f1728;
       --gold:#d8b160;
       --gold-2:#b78537;
       --gold-soft:rgba(216,177,96,.24);
-      --line:rgba(216,177,96,.42);
       --text:#f7eedc;
       --text-soft:#e8dcc0;
       --shadow:0 20px 55px rgba(0,0,0,.48);
-      --glass:rgba(8,12,20,.46);
-      --glass-2:rgba(8,12,20,.62);
     }
 
     *{box-sizing:border-box}
     html,body{margin:0;padding:0}
+
     body{
       min-height:100vh;
       background:
         radial-gradient(circle at top, rgba(28,38,64,.45), transparent 40%),
         linear-gradient(180deg, #06080e 0%, #08101d 100%);
       color:var(--text);
-      font-family: Georgia, "Times New Roman", serif;
+      font-family:Georgia, "Times New Roman", serif;
       overflow-x:hidden;
     }
 
@@ -109,7 +106,7 @@
       bottom:38%;
       width:16px;
       height:16px;
-      transform:translate( -50%, 50%);
+      transform:translate(-50%, 50%);
       border-radius:50%;
       background:radial-gradient(circle, #ffd78d 0%, #d8b160 55%, #8a6424 100%);
       box-shadow:0 0 18px rgba(216,177,96,.5);
@@ -139,7 +136,7 @@
       background-position:center;
       background-size:cover;
       background-repeat:no-repeat;
-      transition:transform .45s ease, filter .35s ease, opacity .35s ease;
+      transition:transform .45s ease, filter .35s ease;
     }
 
     .panel:hover::before{
@@ -153,27 +150,28 @@
       pointer-events:none;
     }
 
-    /* --- ZONAS --- */
     .panel-top{
       clip-path:polygon(0 0, 100% 0, 50% 58%);
       z-index:3;
     }
+
     .panel-left{
       clip-path:polygon(0 0, 50% 58%, 0 100%);
       z-index:4;
     }
+
     .panel-right{
       clip-path:polygon(100% 0, 50% 58%, 100% 100%);
       z-index:4;
     }
 
-    /* --- FONDOS --- */
     .panel-top::before{
       background-image:
         linear-gradient(rgba(5,7,12,.18), rgba(5,7,12,.42)),
         url("assets/portal/portal-mundo.jpg");
       filter:brightness(.95) saturate(.95);
     }
+
     .panel-top::after{
       background:
         linear-gradient(180deg, rgba(4,7,12,.16) 0%, rgba(6,10,18,.18) 50%, rgba(4,7,12,.42) 100%);
@@ -186,6 +184,7 @@
       background-position:left center;
       filter:brightness(1.04) saturate(1.02);
     }
+
     .panel-left::after{
       background:
         linear-gradient(90deg, rgba(3,5,9,.18) 0%, rgba(3,5,9,.10) 28%, rgba(3,5,9,.36) 62%, rgba(3,5,9,.66) 100%),
@@ -194,22 +193,18 @@
 
     .panel-right{
       background:
-        radial-gradient(circle at 62% 38%, rgba(255,211,125,.08), transparent 18%),
+        radial-gradient(circle at 62% 32%, rgba(255,211,125,.08), transparent 18%),
         linear-gradient(180deg, #050506 0%, #090909 100%);
     }
+
     .panel-right::before{
+      content:"";
+      position:absolute;
+      inset:0;
       background:
-        linear-gradient(90deg, rgba(0,0,0,.28) 0%, rgba(0,0,0,.08) 24%, rgba(0,0,0,.05) 60%, rgba(0,0,0,.24) 100%);
-      opacity:1;
-      transform:none !important;
-    }
-    .panel-right::after{
-      background:
-        radial-gradient(circle at 62% 38%, rgba(255,220,145,.08), transparent 16%),
-        linear-gradient(180deg, rgba(2,2,2,.04), rgba(0,0,0,.1));
+        linear-gradient(90deg, rgba(0,0,0,.22) 0%, rgba(0,0,0,.10) 28%, rgba(0,0,0,.06) 60%, rgba(0,0,0,.16) 100%);
     }
 
-    /* --- CAJAS --- */
     .card{
       position:absolute;
       z-index:20;
@@ -281,6 +276,7 @@
       width:min(90%, 720px);
       padding:28px 34px 26px;
     }
+
     .card-top p{max-width:none}
 
     .card-left{
@@ -295,24 +291,22 @@
       width:min(90%, 430px);
       text-align:right;
     }
-    .card-right p{
-      margin-left:auto;
-    }
+
+    .card-right p,
     .card-right .cta{
       margin-left:auto;
     }
 
-    /* --- LOGO DERECHA --- */
     .pp-logo-wrap{
       position:absolute;
       z-index:18;
-      top:38%;
+      top:39%;
       left:74%;
       transform:translate(-50%, -50%);
-      width:min(38vw, 560px);
+      width:min(40vw, 560px);
       max-width:560px;
       min-width:240px;
-      aspect-ratio:1.55/1;
+      aspect-ratio:16/9;
       display:flex;
       align-items:center;
       justify-content:center;
@@ -322,11 +316,11 @@
     .pp-logo-wrap::before{
       content:"";
       position:absolute;
-      inset:16% 10%;
+      inset:10% 8%;
       border-radius:50%;
       background:
         radial-gradient(circle, rgba(255,223,155,.34) 0%, rgba(255,223,155,.18) 28%, rgba(255,223,155,.08) 48%, rgba(255,223,155,0) 72%);
-      filter:blur(26px);
+      filter:blur(28px);
       opacity:.95;
     }
 
@@ -341,19 +335,6 @@
         drop-shadow(0 0 18px rgba(255,217,125,.10));
     }
 
-    /* --- HOVERS ESPECÍFICOS --- */
-    .panel-left:hover::before{
-      filter:brightness(1.12) saturate(1.04);
-    }
-    .panel-top:hover::before{
-      filter:brightness(1.03) saturate(.98);
-    }
-    .panel-right:hover .pp-logo-wrap::before{
-      opacity:1;
-      filter:blur(24px);
-    }
-
-    /* --- RESPONSIVE --- */
     @media (max-width: 1180px){
       .portal-wrap{
         height:auto;
@@ -380,10 +361,6 @@
         inset:auto;
         min-height:34vh;
       }
-
-      .panel-top{z-index:1}
-      .panel-left{z-index:1}
-      .panel-right{z-index:1}
 
       .panel-top{border-bottom:1px solid rgba(216,177,96,.14)}
       .panel-left{border-bottom:1px solid rgba(216,177,96,.14)}
@@ -424,17 +401,21 @@
         padding:20px 20px 22px;
         border-radius:22px;
       }
+
       .card h2{
         font-size:clamp(34px, 10vw, 54px);
       }
+
       .card p{
         font-size:17px;
       }
+
       .card-top,
       .card-left,
       .card-right{
         margin:82px auto 24px;
       }
+
       .pp-logo-wrap{
         margin:78px auto 18px;
       }
@@ -447,7 +428,6 @@
       <div class="top-label">Portal de acceso</div>
       <div class="center-node"></div>
 
-      <!-- LORE -->
       <a
         class="panel panel-top"
         href="https://www.worldanvil.com/w/demon-hunter-tabanne"
@@ -463,7 +443,6 @@
         </div>
       </a>
 
-      <!-- CRÓNICAS -->
       <a
         class="panel panel-left"
         href="cronicas/index.html"
@@ -477,7 +456,6 @@
         </div>
       </a>
 
-      <!-- PAY & PLAY -->
       <a
         class="panel panel-right"
         href="systempyp/index.html"
