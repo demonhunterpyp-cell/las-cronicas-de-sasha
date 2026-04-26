@@ -11,7 +11,6 @@
       --bg-2:#101b2e;
       --gold:#d8b160;
       --gold-2:#b78537;
-      --line:rgba(240, 200, 111, .36);
       --text:#f7eedc;
       --text-soft:#e6d8b7;
       --shadow:0 20px 45px rgba(0,0,0,.35);
@@ -74,7 +73,7 @@
       position:absolute;
       inset:0;
       transition:
-        transform .6s ease,
+        transform .55s ease,
         filter .35s ease,
         opacity .35s ease;
     }
@@ -114,49 +113,56 @@
       z-index:2;
     }
 
-    .panel-top::before{
-      background-image:
-        linear-gradient(180deg, rgba(7,11,19,.16) 0%, rgba(7,11,19,.40) 60%, rgba(7,11,19,.66) 100%),
-        linear-gradient(90deg, rgba(7,11,19,.28) 0%, rgba(7,11,19,.10) 50%, rgba(7,11,19,.22) 100%),
-        url("assets/portal/portal-mundo.jpg");
-      background-repeat:no-repeat,no-repeat,no-repeat;
-      background-size:cover,cover,cover;
-      background-position:center center,center center,center center;
-    }
-
     .panel-left{
       clip-path:polygon(0 0, 50% 58%, 50% 100%, 0 100%);
       z-index:3;
     }
 
+    .panel-right{
+      clip-path:polygon(100% 0, 50% 58%, 50% 100%, 100% 100%);
+      z-index:3;
+    }
+
+    /* ARRIBA: SISTEMA */
+    .panel-top{
+      background:
+        radial-gradient(circle at 50% 44%, rgba(255,214,130,.08), transparent 14%),
+        linear-gradient(180deg, #050506 0%, #090909 100%);
+    }
+
+    .panel-top::before{
+      background-image:
+        radial-gradient(circle at 50% 46%, rgba(255,214,130,.16) 0%, rgba(255,214,130,.07) 12%, rgba(255,214,130,0) 24%),
+        linear-gradient(180deg, rgba(0,0,0,.10) 0%, rgba(0,0,0,.24) 100%),
+        url("assets/portal/portal-payplay.png");
+      background-repeat:no-repeat,no-repeat,no-repeat;
+      background-size:cover,cover,26%;
+      background-position:center center,center center,50% 49%;
+      transform:scale(1);
+    }
+
+    /* IZQUIERDA: CRÓNICAS */
     .panel-left::before{
       background-image:
         linear-gradient(180deg, rgba(20,11,7,.08) 0%, rgba(20,11,7,.24) 100%),
-        linear-gradient(90deg, rgba(7,11,19,.16) 0%, rgba(7,11,19,.05) 100%),
+        linear-gradient(90deg, rgba(7,11,19,.14) 0%, rgba(7,11,19,.05) 100%),
         url("assets/portal/portal-sasha.jpg");
       background-repeat:no-repeat,no-repeat,no-repeat;
-      background-size:cover,cover,81%;
-      background-position:center center,center center,left -1% bottom -1%;
+      background-size:cover,cover,92%;
+      background-position:center center,center center,left -10% bottom -1%;
       filter:brightness(1.04) saturate(1.02);
       transform:scale(1);
     }
 
-    .panel-right{
-      clip-path:polygon(100% 0, 50% 58%, 50% 100%, 100% 100%);
-      z-index:3;
-      background:
-        radial-gradient(circle at 82% 50%, rgba(255,214,130,.035), transparent 14%),
-        linear-gradient(180deg, #050506 0%, #090909 100%);
-    }
-
+    /* DERECHA: LORE */
     .panel-right::before{
       background-image:
-        radial-gradient(circle at 82% 50%, rgba(255,214,130,.08) 0%, rgba(255,214,130,.035) 11%, rgba(255,214,130,0) 21%),
-        linear-gradient(180deg, rgba(10,14,32,.04) 0%, rgba(10,14,32,.14) 100%),
-        url("assets/portal/portal-payplay.png");
+        linear-gradient(180deg, rgba(7,11,19,.18) 0%, rgba(7,11,19,.44) 100%),
+        linear-gradient(90deg, rgba(7,11,19,.18) 0%, rgba(7,11,19,.30) 100%),
+        url("assets/portal/portal-mundo.jpg");
       background-repeat:no-repeat,no-repeat,no-repeat;
-      background-size:cover,cover,34%;
-      background-position:center center,center center,81% 51%;
+      background-size:cover,cover,cover;
+      background-position:center center,center center,center center;
       transform:scale(1);
     }
 
@@ -184,12 +190,12 @@
     }
 
     .panel-top .panel-content{
-      top:7vh;
+      top:6.6vh;
       left:50%;
       transform:translateX(-50%);
       text-align:center;
-      width:min(720px, 88vw);
-      max-width:720px;
+      width:min(760px, 90vw);
+      max-width:760px;
     }
 
     .panel-top:hover .panel-content,
@@ -200,14 +206,14 @@
     .panel-left .panel-content{
       left:4.5vw;
       bottom:9vh;
-      width:min(410px, 36vw);
+      width:min(420px, 36vw);
       text-align:left;
     }
 
     .panel-right .panel-content{
-      right:4.2vw;
-      bottom:8vh;
-      width:min(350px, 31vw);
+      right:4.3vw;
+      bottom:8.5vh;
+      width:min(360px, 31vw);
       text-align:right;
     }
 
@@ -234,7 +240,7 @@
     }
 
     .panel-top h1{
-      font-size:clamp(2.8rem, 6vw, 5rem);
+      font-size:clamp(2.6rem, 5.8vw, 4.8rem);
     }
 
     .panel-left h2,
@@ -356,13 +362,6 @@
         transform:translateY(-4px);
       }
 
-      .panel-inner-mobile{
-        min-height:33.333vh;
-        display:flex;
-        align-items:center;
-        padding:72px 0 32px;
-      }
-
       .panel-top h1,
       .panel-left h2,
       .panel-right h2{
@@ -386,36 +385,30 @@
       </svg>
     </div>
 
-    <a class="panel panel-top" href="https://www.worldanvil.com/w/demon-hunter-tabanne" target="_blank" rel="noopener noreferrer" aria-label="Ir a World Anvil">
-      <div class="panel-inner-mobile">
-        <div class="panel-content">
-          <span class="eyebrow">Lore</span>
-          <h1>Descubre el mundo</h1>
-          <p>Explora el lore expandido, las facciones, los lugares y la historia viva del universo.</p>
-          <small>Entrar en World Anvil</small>
-        </div>
+    <a class="panel panel-top" href="systempyp/index.html" aria-label="Ir a Pay and Play Rol System">
+      <div class="panel-content">
+        <span class="eyebrow">Sistema</span>
+        <h1>Pay &amp; Play<br>Rol System</h1>
+        <p>Reglas, fichas y campañas para jugar en este mundo.</p>
+        <small>Entrar en el sistema</small>
       </div>
     </a>
 
     <a class="panel panel-left" href="cronicas/index.html" aria-label="Ir a Las Crónicas de Sasha">
-      <div class="panel-inner-mobile">
-        <div class="panel-content">
-          <span class="eyebrow">Novela</span>
-          <h2>Las Crónicas<br>de Sasha</h2>
-          <p>La puerta narrativa al universo. Libro, personajes, presentación de la saga y contenido principal de la novela.</p>
-          <small>Entrar en la web de la saga</small>
-        </div>
+      <div class="panel-content">
+        <span class="eyebrow">Novela</span>
+        <h2>Las Crónicas<br>de Sasha</h2>
+        <p>La puerta narrativa al universo. Libro, personajes, presentación de la saga y contenido principal de la novela.</p>
+        <small>Entrar en la web de la saga</small>
       </div>
     </a>
 
-    <a class="panel panel-right" href="systempyp/index.html" aria-label="Ir a Pay and Play Rol System">
-      <div class="panel-inner-mobile">
-        <div class="panel-content">
-          <span class="eyebrow">Rol</span>
-          <h2>Pay &amp; Play<br>Rol System</h2>
-          <p>Normas, fichas y campañas para jugar en este mundo.</p>
-          <small>Entrar en el sistema</small>
-        </div>
+    <a class="panel panel-right" href="https://www.worldanvil.com/w/demon-hunter-tabanne" target="_blank" rel="noopener noreferrer" aria-label="Ir a World Anvil">
+      <div class="panel-content">
+        <span class="eyebrow">Lore</span>
+        <h2>Descubre el<br>mundo</h2>
+        <p>Explora el lore, las facciones y la historia del universo.</p>
+        <small>Entrar en World Anvil</small>
       </div>
     </a>
 
