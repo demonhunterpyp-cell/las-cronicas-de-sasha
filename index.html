@@ -146,7 +146,6 @@
       pointer-events:none;
     }
 
-    /* ZONAS CORRECTAS */
     .panel-top{
       clip-path:polygon(0 0, 100% 0, 50% 58%);
       z-index:3;
@@ -162,7 +161,6 @@
       z-index:4;
     }
 
-    /* FONDOS */
     .panel-top::before{
       background-image:
         linear-gradient(rgba(5,7,12,.18), rgba(5,7,12,.44)),
@@ -191,8 +189,8 @@
 
     .panel-right{
       background:
-        radial-gradient(circle at 68% 32%, rgba(255,211,125,.06), transparent 18%),
-        linear-gradient(180deg, #040404 0%, #090909 100%);
+        radial-gradient(circle at 70% 30%, rgba(255,211,125,.04), transparent 18%),
+        linear-gradient(180deg, #050506 0%, #090909 100%);
     }
 
     .panel-right::before{
@@ -200,11 +198,10 @@
       position:absolute;
       inset:0;
       background:
-        linear-gradient(90deg, rgba(0,0,0,.18) 0%, rgba(0,0,0,.08) 26%, rgba(0,0,0,.06) 58%, rgba(0,0,0,.12) 100%);
+        linear-gradient(180deg, rgba(0,0,0,.02) 0%, rgba(0,0,0,.08) 100%);
       transform:none !important;
     }
 
-    /* TARJETAS */
     .card{
       position:absolute;
       z-index:20;
@@ -277,7 +274,9 @@
       padding:28px 34px 26px;
     }
 
-    .card-top p{max-width:none}
+    .card-top p{
+      max-width:none;
+    }
 
     .card-left{
       left:82px;
@@ -288,52 +287,13 @@
     .card-right{
       right:54px;
       bottom:52px;
-      width:min(90%, 370px);
+      width:min(90%, 380px);
       text-align:right;
     }
 
     .card-right p,
     .card-right .cta{
       margin-left:auto;
-    }
-
-    /* LOGO PAY & PLAY */
-    .pp-logo-wrap{
-      position:absolute;
-      z-index:18;
-      top:37%;
-      left:74%;
-      transform:translate(-50%, -50%);
-      width:min(34vw, 500px);
-      max-width:500px;
-      min-width:230px;
-      aspect-ratio:16/9;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      pointer-events:none;
-    }
-
-    .pp-logo-wrap::before{
-      content:"";
-      position:absolute;
-      inset:10% 8%;
-      border-radius:50%;
-      background:
-        radial-gradient(circle, rgba(255,223,155,.30) 0%, rgba(255,223,155,.14) 28%, rgba(255,223,155,.05) 48%, rgba(255,223,155,0) 72%);
-      filter:blur(26px);
-      opacity:.95;
-    }
-
-    .pp-logo{
-      position:relative;
-      z-index:2;
-      width:100%;
-      height:100%;
-      object-fit:contain;
-      filter:
-        drop-shadow(0 0 8px rgba(255,217,125,.14))
-        drop-shadow(0 0 18px rgba(255,217,125,.10));
     }
 
     @media (max-width: 1180px){
@@ -384,15 +344,6 @@
       .card-right .cta{
         margin-left:0;
       }
-
-      .pp-logo-wrap{
-        position:relative;
-        top:auto;
-        left:auto;
-        transform:none;
-        width:min(86%, 560px);
-        margin:88px auto 24px;
-      }
     }
 
     @media (max-width: 760px){
@@ -417,10 +368,6 @@
       .card-right{
         margin:82px auto 24px;
       }
-
-      .pp-logo-wrap{
-        margin:78px auto 18px;
-      }
     }
   </style>
 </head>
@@ -430,7 +377,6 @@
       <div class="top-label">Portal de acceso</div>
       <div class="center-node"></div>
 
-      <!-- LORE -->
       <a
         class="panel panel-top"
         href="https://www.worldanvil.com/w/demon-hunter-tabanne"
@@ -446,7 +392,6 @@
         </div>
       </a>
 
-      <!-- CRÓNICAS -->
       <a
         class="panel panel-left"
         href="cronicas/index.html"
@@ -460,20 +405,11 @@
         </div>
       </a>
 
-      <!-- PAY & PLAY -->
       <a
         class="panel panel-right"
         href="systempyp/index.html"
         aria-label="Entrar en Pay and Play Rol System"
       >
-        <div class="pp-logo-wrap">
-          <img
-            class="pp-logo"
-            src="assets/portal/portal-payplay-logo.png"
-            alt="Logo Pay and Play Rol System"
-          />
-        </div>
-
         <div class="card card-right">
           <div class="badge">Rol</div>
           <h2>Pay &amp; Play<br>Rol System</h2>
