@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Portal | DemonHunter</title>
   <meta name="description" content="Portal de acceso al universo DemonHunter: novela, lore expandido y sistema de juego." />
+
   <style>
     :root{
       --bg:#050912;
@@ -20,7 +22,11 @@
     }
 
     *{box-sizing:border-box}
-    html,body{margin:0;padding:0}
+
+    html,body{
+      margin:0;
+      padding:0;
+    }
 
     body{
       min-height:100vh;
@@ -145,13 +151,15 @@
     .panel-left::before{
       background-image:
         linear-gradient(180deg, rgba(20,11,7,.03) 0%, rgba(20,11,7,.12) 100%),
-        url("portal/portal-sasha.png");
+        url("assets/portal/portal-sasha.png");
+
       background-size:
         cover,
-        auto 112%;
+        auto 104%;
+
       background-position:
         center center,
-        20% 62%;
+        24% 60%;
     }
 
     .panel-left::after{
@@ -169,7 +177,7 @@
     .panel-right::before{
       background-image:
         linear-gradient(180deg, rgba(6,10,18,.08) 0%, rgba(6,10,18,.18) 100%),
-        url("portal/portal-mundo.jpg");
+        url("assets/portal/portal-mundo.jpg");
       background-size:cover, cover;
       background-position:center center, center center;
     }
@@ -305,10 +313,11 @@
       .panel-left::before{
         background-size:
           cover,
-          auto 108%;
+          auto 102%;
+
         background-position:
           center center,
-          18% 60%;
+          23% 60%;
       }
 
       .card-left{
@@ -384,10 +393,11 @@
     }
   </style>
 </head>
-<body>
 
+<body>
   <main class="portal">
     <div class="portal-title">Portal de acceso</div>
+
     <div class="portal-center"></div>
 
     <div class="portal-lines" aria-hidden="true">
@@ -423,9 +433,8 @@
     </a>
 
     <div class="system-logo" aria-hidden="true">
-      <img src="portal/portal-payplay.png" alt="">
+      <img src="assets/portal/portal-payplay.png" alt="">
     </div>
   </main>
-
 </body>
 </html>
