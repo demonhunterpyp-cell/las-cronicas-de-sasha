@@ -114,6 +114,12 @@
       display:block;
       overflow:hidden;
       cursor:pointer;
+      transition:filter .25s ease;
+    }
+
+    .panel:hover,
+    .panel:focus-visible{
+      filter:brightness(1.06);
     }
 
     .panel::before{
@@ -150,16 +156,16 @@
     /* IZQUIERDA */
     .panel-left::before{
       background-image:
-        linear-gradient(180deg, rgba(20,11,7,.02) 0%, rgba(20,11,7,.10) 100%),
+        linear-gradient(180deg, rgba(20,11,7,.015) 0%, rgba(20,11,7,.09) 100%),
         url("assets/portal/portal-sasha.png");
 
       background-size:
         cover,
-        auto 111%;
+        auto 115%;
 
       background-position:
         center center,
-        6% 60%;
+        0% 60%;
     }
 
     .panel-left::after{
@@ -168,7 +174,7 @@
       inset:0;
       background:
         linear-gradient(180deg, rgba(0,0,0,.02), rgba(0,0,0,.07)),
-        linear-gradient(90deg, rgba(0,0,0,.02), rgba(0,0,0,.015) 42%, rgba(0,0,0,.06) 100%);
+        linear-gradient(90deg, rgba(0,0,0,.015), rgba(0,0,0,.012) 42%, rgba(0,0,0,.06) 100%);
       pointer-events:none;
       z-index:2;
     }
@@ -271,11 +277,11 @@
       .panel-left::before{
         background-size:
           cover,
-          auto 109%;
+          auto 112%;
 
         background-position:
           center center,
-          8% 60%;
+          2% 60%;
       }
 
       .label-left{
