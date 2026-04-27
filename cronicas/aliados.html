@@ -4,585 +4,528 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aliados | Las Crónicas de Sasha</title>
-  <meta name="description" content="Galería de aliados." />
+  <meta name="description" content="Galería, imágenes y vídeos de Aliados dentro de Las Crónicas de Sasha." />
   <style>
-    :root{
-      --bg-1:#0f1728;
-      --bg-2:#1a2337;
-      --bg-3:#24304a;
-      --gold:#d8b160;
-      --gold-2:#b78537;
-      --gold-soft:rgba(216,177,96,.25);
-      --text:#f7eedc;
-      --text-soft:#ddd2b7;
-      --shadow:0 22px 50px rgba(0,0,0,.33);
-      --maxw:1180px;
-    }
 
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      color:var(--text);
-      font-family:Georgia, "Times New Roman", serif;
-      background:
-        radial-gradient(circle at 80% 12%, rgba(216,177,96,.10), transparent 20%),
-        radial-gradient(circle at 20% 82%, rgba(216,177,96,.08), transparent 20%),
-        linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 45%, var(--bg-3) 100%);
-    }
+:root{
+  --bg-1:#0f1728;
+  --bg-2:#1a2337;
+  --bg-3:#24304a;
+  --gold:#d8b160;
+  --gold-2:#b78537;
+  --gold-soft:rgba(216,177,96,.25);
+  --text:#f7eedc;
+  --text-soft:#ddd2b7;
+  --shadow:0 22px 50px rgba(0,0,0,.33);
+  --maxw:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  color:var(--text);
+  font-family:Georgia, "Times New Roman", serif;
+  background:
+    radial-gradient(circle at 80% 12%, rgba(216,177,96,.10), transparent 20%),
+    radial-gradient(circle at 20% 82%, rgba(216,177,96,.08), transparent 20%),
+    linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 45%, var(--bg-3) 100%);
+}
+a{color:inherit;text-decoration:none}
+img,video{display:block;max-width:100%}
 
-    a{color:inherit;text-decoration:none}
-    img,video{display:block;max-width:100%}
+/* FIX PRINCIPAL: las dos barras quedan dentro de una pila sticky */
+.nav-stack{
+  position:sticky;
+  top:0;
+  z-index:1600;
+  background:rgba(9,13,24,.88);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(216,177,96,.16);
+  box-shadow:0 10px 26px rgba(0,0,0,.18);
+}
+.interworld-bar{
+  position:relative;
+  z-index:2;
+  background:rgba(9,13,24,.74);
+  border-bottom:1px solid rgba(216,177,96,.12);
+}
+.interworld-inner{
+  width:min(var(--maxw), 92%);
+  margin:0 auto;
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:12px 0;
+}
+.interworld-group{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+.interworld-link{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:9px 14px;
+  border-radius:999px;
+  border:1px solid rgba(216,177,96,.18);
+  background:rgba(255,255,255,.04);
+  color:#f2e2c3;
+  font-size:.95rem;
+  line-height:1;
+  transition:.22s ease;
+}
+.interworld-link:hover{
+  transform:translateY(-1px);
+  background:rgba(255,255,255,.07);
+  border-color:rgba(216,177,96,.32);
+  color:#fff2d2;
+}
+.interworld-link.primary{
+  color:#4a2f12;
+  background:linear-gradient(180deg, #d8b160 0%, #b78537 100%);
+  border-color:#8b6327;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.34);
+}
+.topbar{
+  position:relative;
+  z-index:1;
+  width:min(var(--maxw), 92%);
+  margin:0 auto;
+  padding:10px 0 12px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.topbar-left,.topbar-right{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.nav-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:9px 13px;
+  border-radius:999px;
+  border:1px solid var(--gold-soft);
+  background:rgba(255,255,255,.04);
+  color:#f2e2c3;
+  transition:.2s ease;
+  box-shadow:0 10px 24px rgba(0,0,0,.12);
+}
+.nav-btn:hover{
+  transform:translateY(-2px);
+  background:rgba(255,255,255,.08);
+}
+.hero{
+  position:relative;
+  overflow:hidden;
+  border-top:1px solid rgba(216,177,96,.16);
+  border-bottom:1px solid rgba(216,177,96,.20);
+  background:
+    linear-gradient(90deg, rgba(8,12,20,.82) 0%, rgba(8,12,20,.55) 48%, rgba(8,12,20,.18) 100%),
+    url("assets/fondo-sasha-panorama.png") center center / cover no-repeat;
+}
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 76% 18%, rgba(216,177,96,.15), transparent 18%),
+    linear-gradient(180deg, rgba(0,0,0,.06), rgba(0,0,0,.24));
+  pointer-events:none;
+}
+.hero-inner{
+  position:relative;
+  z-index:1;
+  width:min(var(--maxw), 92%);
+  margin:0 auto;
+  padding:56px 0 52px;
+  display:grid;
+  grid-template-columns:320px 1fr;
+  gap:28px;
+  align-items:center;
+}
+.hero-card{
+  border-radius:24px;
+  padding:14px;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(255,225,160,.12), transparent 18%),
+    linear-gradient(180deg, rgba(53,64,92,.96), rgba(24,31,47,.98));
+  border:1px solid rgba(216,177,96,.20);
+  box-shadow:var(--shadow);
+}
+.hero-card img{
+  width:100%;
+  aspect-ratio:2/3;
+  object-fit:cover;
+  border-radius:16px;
+  box-shadow:0 22px 36px rgba(0,0,0,.28);
+}
+.eyebrow{
+  display:inline-flex;
+  padding:7px 12px;
+  margin-bottom:16px;
+  border-radius:999px;
+  border:1px solid rgba(216,177,96,.24);
+  color:#e5c787;
+  font-size:.82rem;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  background:rgba(255,255,255,.03);
+}
+h1{
+  margin:0 0 10px;
+  color:#f0c86f;
+  font-size:clamp(2.2rem, 4.8vw, 4rem);
+  line-height:.98;
+}
+.hero-copy{
+  max-width:780px;
+  color:var(--text-soft);
+  line-height:1.8;
+  font-size:1rem;
+}
+.page{
+  width:min(var(--maxw), 92%);
+  margin:0 auto;
+  padding:28px 0 44px;
+}
+section{scroll-margin-top:145px}
+.panel{
+  margin-top:28px;
+  padding:30px 26px;
+  border:1px solid rgba(216,177,96,.18);
+  border-radius:26px;
+  background:
+    radial-gradient(circle at 86% 12%, rgba(216,177,96,.08), transparent 18%),
+    linear-gradient(180deg, rgba(28,34,53,.96), rgba(18,24,38,.98));
+  box-shadow:var(--shadow);
+  position:relative;
+  overflow:hidden;
+}
+.panel::before{
+  content:"";
+  position:absolute;
+  inset:12px;
+  border:1px solid rgba(216,177,96,.10);
+  border-radius:18px;
+  pointer-events:none;
+}
+.ornament{
+  width:240px;
+  height:20px;
+  margin:0 auto 18px;
+  position:relative;
+  z-index:1;
+}
+.ornament::before,.ornament::after{
+  content:"";
+  position:absolute;
+  top:50%;
+  left:0;
+  right:0;
+}
+.ornament::before{
+  height:1px;
+  background:linear-gradient(90deg, transparent, rgba(216,177,96,.55), transparent);
+}
+.ornament::after{
+  width:14px;
+  height:14px;
+  left:50%;
+  right:auto;
+  transform:translate(-50%, -50%);
+  border-radius:50%;
+  border:1px solid rgba(216,177,96,.45);
+  background:rgba(20,25,39,.92);
+}
+.section-title{
+  position:relative;
+  z-index:1;
+  margin:0;
+  text-align:center;
+  color:#f0dbaf;
+  font-size:clamp(1.9rem, 3vw, 3rem);
+  line-height:1.06;
+  text-transform:uppercase;
+}
+.section-lead{
+  position:relative;
+  z-index:1;
+  max-width:880px;
+  margin:14px auto 0;
+  text-align:center;
+  color:var(--text-soft);
+  font-size:1.02rem;
+  line-height:1.8;
+}
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:18px;
+  margin-top:22px;
+  position:relative;
+  z-index:1;
+}
+.gallery-card{
+  border:1px solid rgba(216,177,96,.16);
+  border-radius:22px;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 84% 14%, rgba(216,177,96,.08), transparent 18%),
+    linear-gradient(180deg, rgba(43,53,78,.95), rgba(21,27,42,.98));
+  box-shadow:0 14px 28px rgba(0,0,0,.18);
+  cursor:pointer;
+  transition:.22s ease;
+}
+.gallery-card:hover{transform:translateY(-4px)}
+.gallery-card img{
+  width:100%;
+  aspect-ratio:16/11;
+  object-fit:cover;
+  border-bottom:1px solid rgba(216,177,96,.14);
+  transition:transform .28s ease;
+}
+.gallery-card:hover img{transform:scale(1.04)}
+.gallery-card .caption{padding:14px 16px 16px}
+.gallery-card h3{
+  margin:0 0 6px;
+  color:#f0dbaf;
+  font-size:1.12rem;
+}
+.gallery-card p{
+  margin:0;
+  color:#d4ccb9;
+  font-size:.94rem;
+  line-height:1.7;
+}
+.video-wrap{
+  position:relative;
+  z-index:1;
+  margin-top:22px;
+  display:grid;
+  gap:18px;
+}
+.video-box{
+  border:1px solid rgba(216,177,96,.16);
+  border-radius:22px;
+  overflow:hidden;
+  background:rgba(255,255,255,.04);
+  padding:16px;
+}
+.video-box video{
+  width:100%;
+  max-height:430px;
+  border-radius:16px;
+  background:#05070c;
+}
+.video-box h3{
+  color:#f0dbaf;
+  margin:14px 0 6px;
+}
+.video-box p{
+  margin:0;
+  color:#d4ccb9;
+  line-height:1.7;
+}
+.placeholder{
+  border:1px solid rgba(216,177,96,.16);
+  border-radius:22px;
+  padding:24px;
+  background:rgba(255,255,255,.04);
+  color:#d4ccb9;
+  text-align:center;
+  line-height:1.7;
+}
+.lightbox{
+  position:fixed;
+  inset:0;
+  display:none;
+  z-index:3000;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  background:rgba(0,0,0,.76);
+  backdrop-filter:blur(6px);
+}
+.lightbox.open{display:flex}
+.lightbox-inner{
+  width:min(1120px, 96vw);
+  max-height:90vh;
+  border-radius:24px;
+  background:linear-gradient(180deg, rgba(35,44,65,.98), rgba(18,24,38,.99));
+  border:1px solid rgba(216,177,96,.20);
+  box-shadow:var(--shadow);
+  padding:20px;
+  display:grid;
+  grid-template-columns:1fr 340px;
+  gap:20px;
+  position:relative;
+}
+.lightbox-close{
+  position:absolute;
+  top:12px;
+  right:12px;
+  width:42px;
+  height:42px;
+  border-radius:999px;
+  border:1px solid rgba(216,177,96,.22);
+  background:rgba(255,255,255,.05);
+  color:#f2e2c3;
+  font-size:1.2rem;
+  cursor:pointer;
+  z-index:2;
+}
+.lightbox-image-wrap{
+  display:grid;
+  place-items:center;
+  min-height:300px;
+  overflow:hidden;
+  border-radius:18px;
+  background:rgba(0,0,0,.22);
+}
+.lightbox-image{
+  max-height:78vh;
+  width:auto;
+  object-fit:contain;
+}
+.lightbox-info{
+  border-left:1px solid rgba(216,177,96,.14);
+  padding:34px 14px 14px 20px;
+  overflow:auto;
+}
+.lightbox-info .role{
+  color:#e5c787;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  font-size:.82rem;
+}
+.lightbox-info h3{
+  color:#f0dbaf;
+  font-size:1.8rem;
+  margin:10px 0;
+}
+.lightbox-info p{
+  color:#d4ccb9;
+  line-height:1.75;
+  margin:0;
+}
+@media (max-width:1080px){
+  .hero-inner{grid-template-columns:1fr}
+  .hero-card{max-width:320px}
+  .gallery-grid{grid-template-columns:repeat(2, 1fr)}
+  .lightbox-inner{grid-template-columns:1fr}
+  .lightbox-info{border-left:0;border-top:1px solid rgba(216,177,96,.14)}
+}
+@media (max-width:760px){
+  .interworld-inner{align-items:flex-start}
+  .interworld-group{width:100%}
+  .interworld-link{flex:1 1 calc(50% - 10px); text-align:center}
+  .topbar{align-items:flex-start}
+  .topbar-left,.topbar-right{width:100%}
+  .nav-btn{flex:1 1 calc(50% - 10px)}
+  .gallery-grid{grid-template-columns:1fr}
+  .panel{padding:24px 16px}
+}
 
-    .interworld-bar{
-      position:relative;
-      z-index:40;
-      background:rgba(9,13,24,.86);
-      border-bottom:1px solid rgba(216,177,96,.16);
-      backdrop-filter:blur(10px);
-    }
-
-    .interworld-inner{
-      width:min(1180px, 92%);
-      margin:0 auto;
-      display:flex;
-      flex-wrap:wrap;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      padding:12px 0;
-    }
-
-    .interworld-group{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-    }
-
-    .interworld-link{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding:9px 14px;
-      border-radius:999px;
-      border:1px solid rgba(216,177,96,.18);
-      background:rgba(255,255,255,.04);
-      color:#f2e2c3;
-      font-size:.95rem;
-      line-height:1;
-      text-decoration:none;
-      transition:.22s ease;
-    }
-
-    .interworld-link:hover{
-      transform:translateY(-1px);
-      background:rgba(255,255,255,.07);
-      border-color:rgba(216,177,96,.32);
-      color:#fff2d2;
-    }
-
-    .interworld-link.primary{
-      color:#4a2f12;
-      background:linear-gradient(180deg, #d8b160 0%, #b78537 100%);
-      border-color:#8b6327;
-      box-shadow:inset 0 1px 0 rgba(255,255,255,.34);
-    }
-
-    .topbar{
-      width:min(var(--maxw), 92%);
-      margin:0 auto;
-      padding:22px 0 10px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      flex-wrap:wrap;
-    }
-
-    .topbar-left,.topbar-right{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-
-    .nav-btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-      padding:10px 14px;
-      border-radius:999px;
-      border:1px solid var(--gold-soft);
-      background:rgba(255,255,255,.04);
-      color:#f2e2c3;
-      transition:.2s ease;
-      box-shadow:0 10px 24px rgba(0,0,0,.12);
-    }
-
-    .nav-btn:hover{
-      transform:translateY(-2px);
-      background:rgba(255,255,255,.08);
-    }
-
-    .hero{
-      position:relative;
-      overflow:hidden;
-      border-top:1px solid rgba(216,177,96,.16);
-      border-bottom:1px solid rgba(216,177,96,.20);
-      background:
-        linear-gradient(90deg, rgba(8,12,20,.82) 0%, rgba(8,12,20,.55) 48%, rgba(8,12,20,.18) 100%),
-        url("assets/fondo-sasha-panorama.png") center center / cover no-repeat;
-    }
-
-    .hero::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        radial-gradient(circle at 76% 18%, rgba(216,177,96,.15), transparent 18%),
-        linear-gradient(180deg, rgba(0,0,0,.06), rgba(0,0,0,.24));
-      pointer-events:none;
-    }
-
-    .hero-inner{
-      position:relative;
-      z-index:1;
-      width:min(var(--maxw), 92%);
-      margin:0 auto;
-      padding:56px 0 52px;
-      display:grid;
-      grid-template-columns:320px 1fr;
-      gap:28px;
-      align-items:center;
-    }
-
-    .hero-card{
-      border-radius:24px;
-      padding:14px;
-      background:
-        radial-gradient(circle at 50% 18%, rgba(255,225,160,.12), transparent 18%),
-        linear-gradient(180deg, rgba(53,64,92,.96), rgba(24,31,47,.98));
-      border:1px solid rgba(216,177,96,.20);
-      box-shadow:var(--shadow);
-    }
-
-    .hero-card img{
-      width:100%;
-      aspect-ratio:2/3;
-      object-fit:cover;
-      border-radius:16px;
-      box-shadow:0 22px 36px rgba(0,0,0,.28);
-    }
-
-    .eyebrow{
-      display:inline-flex;
-      padding:7px 12px;
-      margin-bottom:16px;
-      border-radius:999px;
-      border:1px solid rgba(216,177,96,.24);
-      color:#e5c787;
-      font-size:.82rem;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      background:rgba(255,255,255,.03);
-    }
-
-    h1{
-      margin:0 0 10px;
-      color:#f0c86f;
-      font-size:clamp(2.2rem, 4.8vw, 4rem);
-      line-height:.98;
-    }
-
-    .hero-copy{
-      max-width:780px;
-      color:var(--text-soft);
-      line-height:1.8;
-      font-size:1rem;
-    }
-
-    .page{
-      width:min(var(--maxw), 92%);
-      margin:0 auto;
-      padding:28px 0 44px;
-    }
-
-    .panel{
-      margin-top:28px;
-      padding:30px 26px;
-      border:1px solid rgba(216,177,96,.18);
-      border-radius:26px;
-      background:
-        radial-gradient(circle at 86% 12%, rgba(216,177,96,.08), transparent 18%),
-        linear-gradient(180deg, rgba(28,34,53,.96), rgba(18,24,38,.98));
-      box-shadow:var(--shadow);
-      position:relative;
-      overflow:hidden;
-    }
-
-    .panel::before{
-      content:"";
-      position:absolute;
-      inset:12px;
-      border:1px solid rgba(216,177,96,.10);
-      border-radius:18px;
-      pointer-events:none;
-    }
-
-    .ornament{
-      width:240px;
-      height:20px;
-      margin:0 auto 18px;
-      position:relative;
-      z-index:1;
-    }
-
-    .ornament::before,
-    .ornament::after{
-      content:"";
-      position:absolute;
-      top:50%;
-      left:0;
-      right:0;
-    }
-
-    .ornament::before{
-      height:1px;
-      background:linear-gradient(90deg, transparent, rgba(216,177,96,.55), transparent);
-    }
-
-    .ornament::after{
-      width:14px;
-      height:14px;
-      left:50%;
-      right:auto;
-      transform:translate(-50%, -50%);
-      border-radius:50%;
-      border:1px solid rgba(216,177,96,.45);
-      background:rgba(20,25,39,.92);
-    }
-
-    .section-title{
-      position:relative;
-      z-index:1;
-      margin:0;
-      text-align:center;
-      color:#f0dbaf;
-      font-size:clamp(1.9rem, 3vw, 3rem);
-      line-height:1.06;
-      text-transform:uppercase;
-    }
-
-    .section-lead{
-      position:relative;
-      z-index:1;
-      max-width:880px;
-      margin:14px auto 0;
-      text-align:center;
-      color:var(--text-soft);
-      font-size:1.02rem;
-      line-height:1.8;
-    }
-
-    .gallery-grid{
-      display:grid;
-      grid-template-columns:repeat(3, 1fr);
-      gap:18px;
-      margin-top:22px;
-      position:relative;
-      z-index:1;
-    }
-
-    .gallery-card{
-      border:1px solid rgba(216,177,96,.16);
-      border-radius:22px;
-      overflow:hidden;
-      background:
-        radial-gradient(circle at 84% 14%, rgba(216,177,96,.08), transparent 18%),
-        linear-gradient(180deg, rgba(43,53,78,.95), rgba(21,27,42,.98));
-      box-shadow:0 14px 28px rgba(0,0,0,.18);
-      cursor:pointer;
-      transition:.22s ease;
-    }
-
-    .gallery-card:hover{transform:translateY(-4px)}
-
-    .gallery-card img{
-      width:100%;
-      aspect-ratio:16/11;
-      object-fit:cover;
-      border-bottom:1px solid rgba(216,177,96,.14);
-      transition:transform .28s ease;
-    }
-
-    .gallery-card:hover img{transform:scale(1.04)}
-
-    .gallery-card .caption{
-      padding:14px 16px 16px;
-    }
-
-    .gallery-card h3{
-      margin:0 0 6px;
-      color:#f0dbaf;
-      font-size:1.12rem;
-    }
-
-    .gallery-card p{
-      margin:0;
-      color:#d4ccb9;
-      font-size:.94rem;
-      line-height:1.7;
-    }
-
-    .video-grid{
-      display:grid;
-      grid-template-columns:repeat(2, 1fr);
-      gap:18px;
-      margin-top:22px;
-      position:relative;
-      z-index:1;
-    }
-
-    .video-card{
-      border:1px solid rgba(216,177,96,.16);
-      border-radius:22px;
-      overflow:hidden;
-      background:
-        radial-gradient(circle at 84% 14%, rgba(216,177,96,.08), transparent 18%),
-        linear-gradient(180deg, rgba(43,53,78,.95), rgba(21,27,42,.98));
-      box-shadow:0 14px 28px rgba(0,0,0,.18);
-    }
-
-    .video-card video{
-      width:100%;
-      aspect-ratio:16/9;
-      object-fit:cover;
-      background:#0d1422;
-      border-bottom:1px solid rgba(216,177,96,.14);
-    }
-
-    .video-card .caption{
-      padding:14px 16px 16px;
-    }
-
-    .video-card h3{
-      margin:0 0 6px;
-      color:#f0dbaf;
-      font-size:1.12rem;
-    }
-
-    .video-card p{
-      margin:0;
-      color:#d4ccb9;
-      font-size:.94rem;
-      line-height:1.7;
-    }
-
-    .lightbox{
-      position:fixed;
-      inset:0;
-      z-index:2000;
-      background:rgba(0,0,0,.72);
-      display:none;
-      align-items:center;
-      justify-content:center;
-      padding:24px;
-    }
-
-    .lightbox.open{display:flex}
-
-    .lightbox-card{
-      width:min(1100px, 96vw);
-      max-height:90vh;
-      overflow:auto;
-      border-radius:26px;
-      background:
-        radial-gradient(circle at 84% 14%, rgba(216,177,96,.10), transparent 18%),
-        linear-gradient(180deg, rgba(35,44,65,.98), rgba(18,24,38,.99));
-      border:1px solid rgba(216,177,96,.20);
-      box-shadow:var(--shadow);
-      padding:20px;
-      display:grid;
-      grid-template-columns:1fr 340px;
-      gap:20px;
-      position:relative;
-    }
-
-    .lightbox-close{
-      position:absolute;
-      top:12px;
-      right:12px;
-      width:42px;
-      height:42px;
-      border-radius:999px;
-      border:1px solid rgba(216,177,96,.22);
-      background:rgba(255,255,255,.05);
-      color:#f2e2c3;
-      font-size:1.2rem;
-      cursor:pointer;
-    }
-
-    .lightbox-media img{
-      width:100%;
-      border-radius:18px;
-      object-fit:cover;
-    }
-
-    .lightbox-info{
-      border:1px solid rgba(216,177,96,.14);
-      border-radius:20px;
-      background:rgba(255,255,255,.03);
-      padding:18px;
-      align-self:start;
-    }
-
-    .lightbox-info .tag{
-      display:inline-flex;
-      padding:7px 12px;
-      border-radius:999px;
-      border:1px solid rgba(216,177,96,.22);
-      background:rgba(255,255,255,.04);
-      color:#e5c787;
-      font-size:.8rem;
-      letter-spacing:.06em;
-      text-transform:uppercase;
-      margin-bottom:12px;
-    }
-
-    .lightbox-info h3{
-      margin:0 0 10px;
-      color:#f0dbaf;
-      font-size:1.45rem;
-    }
-
-    .lightbox-info h4{
-      margin:18px 0 8px;
-      color:#e5c787;
-      font-size:.92rem;
-      text-transform:uppercase;
-      letter-spacing:.08em;
-    }
-
-    .lightbox-info p{
-      margin:0;
-      color:#d4ccb9;
-      line-height:1.8;
-      font-size:.96rem;
-    }
-
-    .footer{
-      width:min(var(--maxw), 92%);
-      margin:0 auto;
-      padding:0 0 36px;
-      text-align:center;
-      color:#d7c5a7;
-      font-size:.95rem;
-      line-height:1.7;
-    }
-
-    @media (max-width: 980px){
-      .hero-inner{grid-template-columns:1fr}
-      .hero-card{max-width:320px}
-      .gallery-grid{grid-template-columns:repeat(2, 1fr)}
-      .video-grid{grid-template-columns:1fr}
-      .lightbox-card{grid-template-columns:1fr}
-    }
-
-    @media (max-width: 760px){
-      .topbar, .page, .footer{width:min(var(--maxw), 94%)}
-
-      .interworld-inner{
-        align-items:flex-start;
-      }
-
-      .interworld-group{
-        width:100%;
-      }
-
-      .interworld-link{
-        flex:1 1 calc(50% - 10px);
-        text-align:center;
-      }
-
-      .gallery-grid{grid-template-columns:1fr}
-    }
   </style>
 </head>
 <body>
 
-  <div class="interworld-bar">
-    <div class="interworld-inner">
-      <div class="interworld-group">
-        <a class="interworld-link primary" href="../index.html">Portal principal</a>
-        <a class="interworld-link" href="index.html">Inicio Crónicas</a>
-        <a class="interworld-link" href="../systempyp/index.html">Pay &amp; Play System</a>
-      </div>
-      <div class="interworld-group">
-        <a class="interworld-link" href="sasha.html">Sasha</a>
-        <a class="interworld-link" href="party-girls.html">Party Girls</a>
-        <a class="interworld-link" href="aliados.html">Aliados</a>
-        <a class="interworld-link" href="enemigos.html">Enemigos</a>
+  <div class="nav-stack">
+    <div class="interworld-bar">
+      <div class="interworld-inner">
+        <div class="interworld-group">
+          <a class="interworld-link primary" href="../index.html">Portal principal</a>
+          <a class="interworld-link" href="https://www.worldanvil.com/w/demon-hunter-tabanne" target="_blank" rel="noopener noreferrer">Lore expandido</a>
+          <a class="interworld-link" href="../systempyp/index.html">Pay &amp; Play System</a>
+        </div>
+        <div class="interworld-group">
+          <a class="interworld-link" href="sasha.html">Sasha</a>
+          <a class="interworld-link" href="party-girls.html">Party Girls</a>
+          <a class="interworld-link primary" href="aliados.html">Aliados</a>
+          <a class="interworld-link" href="enemigos.html">Enemigos</a>
+        </div>
       </div>
     </div>
+    <nav class="topbar" aria-label="Navegación de página">
+      <div class="topbar-left">
+        <a class="nav-btn" href="index.html">← Volver al inicio</a>
+        <a class="nav-btn" href="index.html#personajes">Personajes</a>
+        <a class="nav-btn" href="#galeria">Galería</a>
+        <a class="nav-btn" href="#videos">Vídeos</a>
+      </div>
+      <div class="topbar-right"><a class="nav-btn" href="party-girls.html">← Party Girls</a><a class="nav-btn" href="enemigos.html">Enemigos →</a></div>
+    </nav>
   </div>
 
-  <header class="topbar">
-    <div class="topbar-left">
-      <a class="nav-btn" href="index.html">← Volver al inicio</a>
-      <a class="nav-btn" href="index.html#personajes">Personajes</a>
-    </div>
-    <div class="topbar-right">
-      <a class="nav-btn" href="party-girls.html">← Party Girls</a>
-      <a class="nav-btn" href="enemigos.html">Enemigos →</a>
-    </div>
-  </header>
 
-  <section class="hero">
+  <header class="hero">
     <div class="hero-inner">
       <div class="hero-card">
-        <img src="assets/galerias/aliados/aliados.jpeg" alt="Aliados" />
+        <img src="assets/galerias/aliados/aliados.jpeg" alt="Aliados">
       </div>
-
       <div>
         <div class="eyebrow">Galería de apoyo</div>
         <h1>Aliados</h1>
-        <p class="hero-copy">
-          La ayuda adopta muchas formas. A veces llega como guía, otras como fuerza, otras como rareza útil. Aquí se reúnen los rostros y presencias que sostienen, amplían o enriquecen el camino de Sasha.
-        </p>
+        <p class="hero-copy">La ayuda adopta muchas formas. A veces llega como guía, otras como fuerza, otras como rareza útil. Aquí se reúnen los rostros y presencias que sostienen, amplían o enriquecen el camino de Sasha.</p>
       </div>
     </div>
-  </section>
+  </header>
 
   <main class="page">
-    <section class="panel">
+    <section class="panel" id="galeria">
       <div class="ornament"></div>
       <h2 class="section-title">Imágenes</h2>
       <p class="section-lead">Figuras, apoyos y presencias que acompañan a Sasha desde distintos lugares del universo de la saga.</p>
+      <div class="gallery-grid">
 
-      <div class="gallery-grid" id="galleryGrid">
-        <article class="gallery-card" data-src="assets/galerias/aliados/asterisco.png" data-title="Asterisco" data-role="Aliado" data-text="Presencia singular dentro del universo de Sasha.">
+        <article class="gallery-card" data-title="Asterisco" data-role="Aliado" data-desc="Figura aliada dentro del universo de Sasha." data-src="assets/galerias/aliados/asterisco.png">
           <img src="assets/galerias/aliados/asterisco.png" alt="Asterisco">
-          <div class="caption"><h3>Asterisco</h3><p>Aliado</p></div>
+          <div class="caption">
+            <h3>Asterisco</h3>
+            <p>Aliado</p>
+          </div>
         </article>
 
-        <article class="gallery-card" data-src="assets/galerias/aliados/garreth.png" data-title="Garreth" data-role="Aliado" data-text="Figura de apoyo dentro del recorrido de Sasha.">
+        <article class="gallery-card" data-title="Garreth" data-role="Aliado" data-desc="Presencia aliada en el camino de Sasha." data-src="assets/galerias/aliados/garreth.png">
           <img src="assets/galerias/aliados/garreth.png" alt="Garreth">
-          <div class="caption"><h3>Garreth</h3><p>Aliado</p></div>
+          <div class="caption">
+            <h3>Garreth</h3>
+            <p>Aliado</p>
+          </div>
         </article>
 
-        <article class="gallery-card" data-src="assets/galerias/aliados/mapaches.png" data-title="Mapaches" data-role="Aliados" data-text="Grupo con identidad propia dentro del universo ampliado.">
+        <article class="gallery-card" data-title="Mapaches" data-role="Aliados" data-desc="Grupo de mapaches dentro del universo de Demon Hunter." data-src="assets/galerias/aliados/mapaches.png">
           <img src="assets/galerias/aliados/mapaches.png" alt="Mapaches">
-          <div class="caption"><h3>Mapaches</h3><p>Aliados</p></div>
+          <div class="caption">
+            <h3>Mapaches</h3>
+            <p>Aliados</p>
+          </div>
         </article>
 
-        <article class="gallery-card" data-src="assets/galerias/aliados/mar-tabanne-tabanne.png" data-title="Mar Tabanne Tabanne" data-role="Aliado" data-text="Presencia reconocible dentro del bloque de aliados.">
+        <article class="gallery-card" data-title="Mar Tabanne Tabanne" data-role="Aliado" data-desc="Personaje aliado del bloque de apoyo." data-src="assets/galerias/aliados/mar-tabanne-tabanne.png">
           <img src="assets/galerias/aliados/mar-tabanne-tabanne.png" alt="Mar Tabanne Tabanne">
-          <div class="caption"><h3>Mar Tabanne Tabanne</h3><p>Aliado</p></div>
+          <div class="caption">
+            <h3>Mar Tabanne Tabanne</h3>
+            <p>Aliado</p>
+          </div>
         </article>
 
-        <article class="gallery-card" data-src="assets/galerias/aliados/senora-de-inverse.png" data-title="Señora de Inverse" data-role="Aliada" data-text="Figura poderosa y memorable dentro del universo ampliado.">
+        <article class="gallery-card" data-title="Señora de Inverse" data-role="Aliada" data-desc="Una de las figuras más poderosas dentro del bloque de aliados." data-src="assets/galerias/aliados/senora-de-inverse.png">
           <img src="assets/galerias/aliados/senora-de-inverse.png" alt="Señora de Inverse">
-          <div class="caption"><h3>Señora de Inverse</h3><p>Aliada</p></div>
+          <div class="caption">
+            <h3>Señora de Inverse</h3>
+            <p>Aliada</p>
+          </div>
         </article>
       </div>
     </section>
@@ -590,80 +533,76 @@
     <section class="panel" id="videos">
       <div class="ornament"></div>
       <h2 class="section-title">Vídeos</h2>
-      <p class="section-lead">Escenas en movimiento del bloque de aliados ya disponibles dentro de la web.</p>
+      <p class="section-lead">Escenas en movimiento reunidas en un bloque visual único.</p>
+      <div class="video-wrap">
 
-      <div class="video-grid">
-        <article class="video-card">
+        <article class="video-box">
           <video controls preload="metadata">
-            <source src="assets/videos/aliados/Mapaches-presentación.mp4" type="video/mp4" />
+            <source src="assets/videos/aliados/Mapaches-presentación.mp4" type="video/mp4">
+            Tu navegador no puede reproducir este vídeo.
           </video>
-          <div class="caption">
-            <h3>Mapaches</h3>
-            <p>Presentación visual del grupo de mapaches.</p>
-          </div>
+          <h3>Mapaches</h3>
+          <p>Presentación visual del grupo de mapaches.</p>
         </article>
 
-        <article class="video-card">
+        <article class="video-box">
           <video controls preload="metadata">
-            <source src="assets/videos/aliados/Senora-de-Inverse-transformacion.mp4" type="video/mp4" />
+            <source src="assets/videos/aliados/Senora-de-Inverse-transformacion.mp4" type="video/mp4">
+            Tu navegador no puede reproducir este vídeo.
           </video>
-          <div class="caption">
-            <h3>Señora de Inverse</h3>
-            <p>Transformación y presencia visual de una de las figuras más poderosas del bloque de aliados.</p>
-          </div>
+          <h3>Señora de Inverse</h3>
+          <p>Transformación y presencia visual de la Señora de Inverse.</p>
         </article>
       </div>
     </section>
   </main>
 
-  <div class="footer">
-    Aliados
-  </div>
-
-  <div class="lightbox" id="lightbox">
-    <div class="lightbox-card">
-      <button class="lightbox-close" id="lightboxClose" aria-label="Cerrar">×</button>
-
-      <div class="lightbox-media">
-        <img id="lightboxImage" alt="Aliados ampliada" />
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <div class="lightbox-inner">
+      <button class="lightbox-close" type="button" aria-label="Cerrar">×</button>
+      <div class="lightbox-image-wrap">
+        <img class="lightbox-image" id="lightboxImage" src="" alt="">
       </div>
-
       <aside class="lightbox-info">
-        <div class="tag" id="lightboxRole">Aliados</div>
-        <h3 id="lightboxTitle">Aliados</h3>
-        <h4>Ficha</h4>
-        <p id="lightboxText"></p>
+        <div class="role" id="lightboxRole"></div>
+        <h3 id="lightboxTitle"></h3>
+        <p id="lightboxDesc"></p>
       </aside>
     </div>
   </div>
 
   <script>
-    const galleryCards = document.querySelectorAll('.gallery-card');
     const lightbox = document.getElementById('lightbox');
-    const lightboxClose = document.getElementById('lightboxClose');
     const lightboxImage = document.getElementById('lightboxImage');
-    const lightboxRole = document.getElementById('lightboxRole');
     const lightboxTitle = document.getElementById('lightboxTitle');
-    const lightboxText = document.getElementById('lightboxText');
+    const lightboxRole = document.getElementById('lightboxRole');
+    const lightboxDesc = document.getElementById('lightboxDesc');
+    const closeBtn = document.querySelector('.lightbox-close');
 
-    galleryCards.forEach(card => {
+    document.querySelectorAll('.gallery-card').forEach(card => {
       card.addEventListener('click', () => {
         lightboxImage.src = card.dataset.src;
-        lightboxRole.textContent = card.dataset.role;
+        lightboxImage.alt = card.dataset.title;
         lightboxTitle.textContent = card.dataset.title;
-        lightboxText.textContent = card.dataset.text;
+        lightboxRole.textContent = card.dataset.role;
+        lightboxDesc.textContent = card.dataset.desc;
         lightbox.classList.add('open');
+        lightbox.setAttribute('aria-hidden', 'false');
       });
     });
 
-    lightboxClose.addEventListener('click', () => {
+    function closeLightbox(){
       lightbox.classList.remove('open');
-    });
+      lightbox.setAttribute('aria-hidden', 'true');
+      lightboxImage.src = '';
+    }
 
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox) {
-        lightbox.classList.remove('open');
-      }
+    closeBtn.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', event => {
+      if(event.target === lightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', event => {
+      if(event.key === 'Escape') closeLightbox();
     });
   </script>
 </body>
