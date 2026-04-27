@@ -3,1761 +3,1031 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Tienda | Las Crónicas de Sasha</title>
-  <meta name="description" content="Tienda oficial de Las Crónicas de Sasha. Libros, anexos y merchandising del universo." />
+  <meta name="description" content="Tienda oficial de Las Crónicas de Sasha: volumen principal, anexos y futuro merchandising." />
+
   <style>
-    :root {
-      --gold: #d6b06a;
-      --gold-2: #a97a34;
-      --bg-top: #1b2033;
-      --bg-bottom: #28334c;
-      --panel-top: rgba(28,34,53,.95);
-      --panel-bottom: rgba(20,25,39,.98);
-      --text: #f7eedc;
-      --text-soft: #ddd2b7;
-      --text-muted: #cdb892;
-      --border-gold: rgba(214,176,106,.24);
-      --border-soft: rgba(255,255,255,.08);
-      --shadow: 0 20px 50px rgba(0,0,0,.35);
-      --focus-ring: rgba(214,176,106,.30);
-      --focus-ring-strong: rgba(214,176,106,.58);
+    :root{
+      --bg-0:#070b14;
+      --bg-1:#101828;
+      --bg-2:#172235;
+      --panel:#111827;
+      --panel-soft:rgba(17,24,39,.78);
+      --panel-dark:rgba(7,11,20,.86);
+      --gold:#d8b160;
+      --gold-2:#b78537;
+      --gold-soft:rgba(216,177,96,.18);
+      --text:#f7eedc;
+      --muted:#d7c9aa;
+      --muted-2:#9f9277;
+      --line:rgba(216,177,96,.22);
+      --shadow:0 22px 55px rgba(0,0,0,.34);
+      --radius:24px;
     }
 
-    * {
-      box-sizing: border-box;
+    *{
+      box-sizing:border-box;
     }
 
-    html {
-      scroll-behavior: smooth;
+    html{
+      scroll-behavior:smooth;
     }
 
-    body {
-      margin: 0;
-      font-family: Georgia, "Times New Roman", serif;
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family:Georgia, "Times New Roman", serif;
+      color:var(--text);
       background:
-        radial-gradient(circle at 70% 18%, rgba(255,193,95,.10), transparent 18%),
-        radial-gradient(circle at 20% 75%, rgba(214,176,106,.08), transparent 24%),
-        linear-gradient(180deg, var(--bg-top) 0%, var(--bg-bottom) 100%);
-      color: var(--text);
+        radial-gradient(circle at 16% 10%, rgba(216,177,96,.11), transparent 25%),
+        radial-gradient(circle at 88% 14%, rgba(128,82,28,.18), transparent 28%),
+        linear-gradient(180deg, var(--bg-0) 0%, var(--bg-1) 48%, #080d18 100%);
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    img {
-      display: block;
-      max-width: 100%;
-    }
-
-    button {
-      font: inherit;
-    }
-
-    .topbar {
-      width: min(1180px, 92%);
-      margin: 0 auto;
-      padding: 24px 0 10px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .topbar-left,
-    .topbar-right {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .nav-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 10px 16px;
-      border-radius: 999px;
-      border: 1px solid var(--border-gold);
-      background: rgba(255,255,255,.04);
-      color: #f2e2c3;
-      transition: .22s ease;
-    }
-
-    .nav-btn:hover {
-      transform: translateY(-1px);
-      background: rgba(255,255,255,.08);
-    }
-
-    .hero {
-      position: relative;
-      overflow: hidden;
-      border-top: 1px solid rgba(214,176,106,.16);
-      border-bottom: 1px solid rgba(214,176,106,.22);
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
       background:
-        linear-gradient(90deg, rgba(15,20,34,.76) 0%, rgba(15,20,34,.42) 52%, rgba(15,20,34,.18) 100%),
-        url("assets/fondo-sasha-panorama.png") center 38% / cover no-repeat;
+        linear-gradient(90deg, rgba(216,177,96,.045) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(216,177,96,.035) 1px, transparent 1px);
+      background-size:48px 48px;
+      mask-image:linear-gradient(180deg, rgba(0,0,0,.6), transparent 75%);
+      z-index:-1;
     }
 
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    img{
+      max-width:100%;
+      display:block;
+    }
+
+    .page{
+      width:min(1180px, calc(100% - 36px));
+      margin:0 auto;
+      padding:26px 0 56px;
+    }
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter:blur(12px);
+      -webkit-backdrop-filter:blur(12px);
+      background:linear-gradient(180deg, rgba(7,11,20,.94), rgba(7,11,20,.74));
+      border-bottom:1px solid rgba(216,177,96,.16);
+    }
+
+    .topbar-inner{
+      width:min(1180px, calc(100% - 36px));
+      margin:0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      padding:13px 0;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:max-content;
+    }
+
+    .brand-mark{
+      width:38px;
+      height:38px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      color:var(--gold);
+      border:1px solid var(--line);
+      background:radial-gradient(circle, rgba(216,177,96,.15), rgba(0,0,0,.18));
+      box-shadow:0 0 18px rgba(216,177,96,.12);
+      font-weight:700;
+    }
+
+    .brand-text{
+      line-height:1;
+    }
+
+    .brand-text strong{
+      display:block;
+      color:#f4d99d;
+      letter-spacing:.04em;
+      text-transform:uppercase;
+      font-size:.86rem;
+    }
+
+    .brand-text span{
+      display:block;
+      margin-top:4px;
+      color:var(--muted-2);
+      font-size:.78rem;
+    }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+
+    .nav a{
+      padding:8px 11px;
+      border-radius:999px;
+      color:var(--muted);
+      font-size:.86rem;
+      border:1px solid transparent;
+      transition:background .2s ease, color .2s ease, border-color .2s ease;
+    }
+
+    .nav a:hover,
+    .nav a:focus-visible{
+      color:#ffe7aa;
+      background:rgba(216,177,96,.08);
+      border-color:rgba(216,177,96,.18);
+      outline:none;
+    }
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      border:1px solid rgba(216,177,96,.18);
+      border-radius:32px;
       background:
-        radial-gradient(circle at 78% 22%, rgba(214,176,106,.12), transparent 16%),
-        linear-gradient(180deg, rgba(10,14,26,.08), rgba(10,14,26,.24));
-      pointer-events: none;
+        linear-gradient(135deg, rgba(216,177,96,.12), transparent 34%),
+        linear-gradient(180deg, rgba(17,24,39,.78), rgba(7,11,20,.86));
+      box-shadow:var(--shadow);
+      padding:42px;
+      margin-top:28px;
     }
 
-    .hero-inner {
-      width: min(1180px, 92%);
-      margin: 0 auto;
-      padding: 58px 0 62px;
-      position: relative;
-      z-index: 1;
+    .hero::after{
+      content:"";
+      position:absolute;
+      right:-80px;
+      top:-100px;
+      width:360px;
+      height:360px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(216,177,96,.14), transparent 62%);
+      pointer-events:none;
     }
 
-    .eyebrow {
-      display: inline-flex;
-      padding: 7px 12px;
-      margin-bottom: 16px;
-      border-radius: 999px;
-      border: 1px solid rgba(214,176,106,.24);
-      color: #e5c787;
-      font-size: .82rem;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      background: rgba(255,255,255,.03);
+    .hero-kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 14px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(216,177,96,.08);
+      color:var(--gold);
+      font-size:.82rem;
+      text-transform:uppercase;
+      letter-spacing:.09em;
+      font-weight:700;
     }
 
-    h1 {
-      margin: 0 0 12px;
-      color: #efc665;
-      font-size: clamp(2.3rem, 4.8vw, 4.4rem);
-      line-height: .98;
-      text-shadow: 0 3px 10px rgba(0,0,0,.28);
-      max-width: 820px;
+    h1{
+      margin:18px 0 12px;
+      max-width:820px;
+      color:#f7d889;
+      font-size:clamp(2.1rem, 5vw, 4.4rem);
+      line-height:.95;
+      letter-spacing:-.04em;
+      text-shadow:0 8px 28px rgba(0,0,0,.32);
     }
 
-    .hero-subtitle {
-      max-width: 840px;
-      color: #f0debb;
-      font-size: clamp(1.08rem, 1.9vw, 1.34rem);
-      line-height: 1.72;
-      text-shadow: 0 2px 8px rgba(0,0,0,.2);
+    .hero p{
+      max-width:830px;
+      margin:0;
+      color:var(--muted);
+      font-size:1.08rem;
+      line-height:1.68;
     }
 
-    .content-shell {
-      width: min(1180px, 92%);
-      margin: 0 auto;
-      padding: 28px 0 48px;
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:26px;
     }
 
-    .panel {
-      margin-top: 28px;
-      padding: 30px 28px;
-      border: 1px solid var(--border-gold);
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      min-height:42px;
+      padding:10px 16px;
+      border-radius:999px;
+      border:1px solid rgba(216,177,96,.28);
+      background:rgba(216,177,96,.1);
+      color:#f7d889;
+      font-weight:700;
+      font-size:.92rem;
+      transition:transform .2s ease, background .2s ease, border-color .2s ease;
+    }
+
+    .btn:hover,
+    .btn:focus-visible{
+      transform:translateY(-2px);
+      background:rgba(216,177,96,.16);
+      border-color:rgba(216,177,96,.44);
+      outline:none;
+    }
+
+    .btn.secondary{
+      background:rgba(255,255,255,.035);
+      color:var(--muted);
+    }
+
+    .section{
+      margin-top:34px;
+      scroll-margin-top:95px;
+    }
+
+    .section-head{
+      display:flex;
+      align-items:end;
+      justify-content:space-between;
+      gap:18px;
+      margin-bottom:18px;
+    }
+
+    .section-head h2{
+      margin:0;
+      color:#f4d99d;
+      font-size:clamp(1.55rem, 3vw, 2.5rem);
+      line-height:1;
+      letter-spacing:-.025em;
+    }
+
+    .section-head p{
+      margin:8px 0 0;
+      max-width:760px;
+      color:var(--muted);
+      line-height:1.58;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      white-space:nowrap;
+      padding:8px 13px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      color:var(--gold);
+      background:rgba(216,177,96,.07);
+      font-size:.82rem;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+    }
+
+    .featured{
+      display:grid;
+      grid-template-columns:minmax(260px, .88fr) minmax(0, 1.12fr);
+      gap:26px;
+      align-items:center;
+      padding:26px;
+      border-radius:var(--radius);
+      border:1px solid rgba(216,177,96,.2);
       background:
-        radial-gradient(circle at 50% 12%, rgba(255,188,109,.08), transparent 18%),
-        linear-gradient(180deg, var(--panel-top), var(--panel-bottom));
-      box-shadow: var(--shadow);
-      position: relative;
-      overflow: hidden;
+        radial-gradient(circle at 20% 18%, rgba(216,177,96,.13), transparent 34%),
+        linear-gradient(180deg, rgba(17,24,39,.82), rgba(7,11,20,.82));
+      box-shadow:var(--shadow);
     }
 
-    .panel::before {
-      content: "";
-      position: absolute;
-      inset: 12px;
-      border: 1px solid rgba(214,176,106,.12);
-      pointer-events: none;
-    }
-
-    .ornament {
-      width: 240px;
-      height: 22px;
-      margin: 0 auto 18px;
-      position: relative;
-    }
-
-    .ornament::before,
-    .ornament::after {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: 0;
-      right: 0;
-    }
-
-    .ornament::before {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(214,176,106,.55), transparent);
-    }
-
-    .ornament::after {
-      left: 50%;
-      right: auto;
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      border: 1px solid rgba(214,176,106,.45);
-      background: rgba(20,25,39,.9);
-      transform: translate(-50%, -50%);
-    }
-
-    .section-title {
-      margin: 0 0 8px;
-      font-size: clamp(1.9rem, 3vw, 3rem);
-      color: #f0dbaf;
-      text-align: center;
-      text-transform: uppercase;
-      position: relative;
-      z-index: 1;
-    }
-
-    .section-lead {
-      max-width: 860px;
-      margin: 0 auto;
-      text-align: center;
-      color: var(--text-soft);
-      line-height: 1.76;
-      font-size: 1.03rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    .pill,
-    .group-pill,
-    .product-tag,
-    .featured-tag {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 7px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(214,176,106,.24);
-      background: rgba(255,255,255,.03);
-      color: #e5c787;
-      font-size: .82rem;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-    }
-
-    .focus-panel {
-      display: none;
-      scroll-margin-top: 24px;
-    }
-
-    .focus-panel.show {
-      display: block;
-    }
-
-    .focus-layout {
-      display: grid;
-      grid-template-columns: 290px 1fr;
-      gap: 28px;
-      align-items: start;
-      position: relative;
-      z-index: 1;
-    }
-
-    .focus-cover {
-      border: 1px solid rgba(214,176,106,.20);
+    .book-frame{
+      min-height:360px;
+      display:grid;
+      place-items:center;
+      border-radius:22px;
       background:
-        radial-gradient(circle at 50% 20%, rgba(255,210,138,.12), transparent 18%),
-        linear-gradient(180deg, rgba(53,64,92,.96), rgba(24,31,47,.98));
-      padding: 14px;
-      box-shadow: 0 18px 34px rgba(0,0,0,.24);
+        radial-gradient(circle at 50% 62%, rgba(216,177,96,.2), transparent 34%),
+        linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,.34));
+      border:1px solid rgba(216,177,96,.13);
+      overflow:hidden;
     }
 
-    .focus-cover img {
-      width: 100%;
-      aspect-ratio: 2 / 3;
-      object-fit: cover;
-      box-shadow: 0 18px 28px rgba(0,0,0,.28);
+    .book-frame img{
+      max-height:355px;
+      width:auto;
+      filter:drop-shadow(0 26px 34px rgba(0,0,0,.5));
     }
 
-    .focus-body {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
+    .featured-copy h3{
+      margin:8px 0 8px;
+      color:#f7d889;
+      font-size:clamp(2rem, 4vw, 3.5rem);
+      line-height:.95;
+      letter-spacing:-.04em;
     }
 
-    .focus-row {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      align-items: center;
+    .featured-copy .series{
+      color:var(--muted-2);
+      text-transform:uppercase;
+      letter-spacing:.1em;
+      font-size:.82rem;
+      font-weight:700;
     }
 
-    .focus-title {
-      margin: 0;
-      color: #f0dbaf;
-      font-size: clamp(2rem, 3vw, 3.15rem);
-      line-height: 1.02;
+    .featured-copy p{
+      color:var(--muted);
+      line-height:1.68;
+      font-size:1.02rem;
     }
 
-    .focus-text {
-      margin: 0;
-      color: #d4ccb9;
-      line-height: 1.8;
-      font-size: 1rem;
-      max-width: 760px;
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:18px;
     }
 
-    .focus-price-line {
-      display: flex;
-      gap: 18px;
-      flex-wrap: wrap;
-      align-items: baseline;
-    }
-
-    .focus-price {
-      color: #f0dbaf;
-      font-size: 1.35rem;
-      font-weight: 700;
-    }
-
-    .focus-note {
-      color: var(--text-muted);
-      font-size: .95rem;
-      line-height: 1.5;
-    }
-
-    .focus-actions,
-    .featured-actions,
-    .info-actions {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .focus-btn,
-    .featured-btn,
-    .product-btn,
-    .info-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 11px 14px;
-      border-radius: 10px;
-      font-size: .94rem;
-      font-weight: 700;
-      transition: transform .2s ease, background .2s ease;
-    }
-
-    .focus-btn:hover,
-    .featured-btn:hover,
-    .product-btn:hover,
-    .info-btn:hover {
-      transform: translateY(-2px);
-    }
-
-    .focus-btn.primary,
-    .featured-btn.primary,
-    .product-btn.primary,
-    .info-btn.primary {
-      color: #4a2f12;
-      background: linear-gradient(180deg, #d8b160 0%, #b78537 100%);
-      border: 1px solid #8b6327;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.35);
-    }
-
-    .focus-btn.secondary,
-    .featured-btn.secondary,
-    .product-btn.secondary,
-    .info-btn.secondary {
-      color: #f2e2c3;
-      background: rgba(255,255,255,.05);
-      border: 1px solid rgba(214,176,106,.24);
-    }
-
-    .focus-btn.disabled,
-    .featured-btn.disabled,
-    .product-btn.disabled {
-      opacity: .46;
-      pointer-events: none;
-      cursor: default;
-      transform: none;
-    }
-
-    .featured-shell {
-      margin-top: 26px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .featured-main-card {
-      display: grid;
-      grid-template-columns: 280px 1fr;
-      gap: 26px;
-      padding: 24px;
-      border: 1px solid rgba(214,176,106,.30);
+    .product-card{
+      position:relative;
+      display:flex;
+      flex-direction:column;
+      min-height:100%;
+      border-radius:22px;
+      border:1px solid rgba(216,177,96,.16);
       background:
-        radial-gradient(circle at 78% 18%, rgba(214,176,106,.12), transparent 18%),
-        radial-gradient(circle at 16% 12%, rgba(255,255,255,.08), transparent 18%),
-        linear-gradient(180deg, rgba(53,64,92,.98), rgba(24,31,47,.98));
-      box-shadow: 0 20px 36px rgba(0,0,0,.24);
-      overflow: hidden;
-      position: relative;
+        linear-gradient(180deg, rgba(17,24,39,.78), rgba(7,11,20,.82));
+      box-shadow:0 18px 40px rgba(0,0,0,.24);
+      overflow:hidden;
+      scroll-margin-top:95px;
+      transition:transform .22s ease, border-color .22s ease, box-shadow .22s ease;
     }
 
-    .featured-main-card::before {
-      content: "";
-      position: absolute;
-      inset: 12px;
-      border: 1px solid rgba(214,176,106,.14);
-      pointer-events: none;
-    }
-
-    .featured-cover {
-      position: relative;
-      z-index: 1;
-      border: 1px solid rgba(214,176,106,.18);
-      background: rgba(255,255,255,.03);
-      padding: 12px;
-    }
-
-    .featured-cover img {
-      width: 100%;
-      aspect-ratio: 2 / 3;
-      object-fit: cover;
-      box-shadow: 0 20px 30px rgba(0,0,0,.24);
-    }
-
-    .featured-body {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      justify-content: center;
-    }
-
-    .featured-kicker {
-      color: var(--text-muted);
-      font-size: .9rem;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-
-    .featured-title {
-      margin: 0;
-      color: #f0dbaf;
-      font-size: clamp(2rem, 3vw, 3rem);
-      line-height: 1.02;
-    }
-
-    .featured-text {
-      margin: 0;
-      color: #d4ccb9;
-      line-height: 1.82;
-      font-size: 1rem;
-      max-width: 760px;
-    }
-
-    .featured-meta {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .shop-topline {
-      margin-top: 26px;
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 18px;
-      flex-wrap: wrap;
-      position: relative;
-      z-index: 1;
-    }
-
-    .shop-tabs {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      width: 100%;
-      max-width: 900px;
-    }
-
-    .shop-tab {
-      appearance: none;
-      border: 1px solid rgba(214,176,106,.28);
-      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
-      color: #f2e2c3;
-      padding: 14px 18px;
-      border-radius: 18px;
-      cursor: pointer;
-      transition: transform .2s ease, background .2s ease, border-color .2s ease, color .2s ease, box-shadow .2s ease;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 1rem;
-      min-width: 210px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      box-shadow: 0 10px 24px rgba(0,0,0,.12);
-    }
-
-    .shop-tab:hover {
-      background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.05));
-      transform: translateY(-2px);
-      border-color: rgba(214,176,106,.4);
-    }
-
-    .shop-tab.active {
-      color: #4a2f12;
-      background: linear-gradient(180deg, #e5c682 0%, #c28a39 100%);
-      border-color: #8b6327;
+    .product-card:hover,
+    .product-card:focus-within,
+    .product-card:target{
+      transform:translateY(-4px);
+      border-color:rgba(216,177,96,.42);
       box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.38),
-        0 14px 28px rgba(0,0,0,.16);
-      font-weight: 700;
+        0 20px 45px rgba(0,0,0,.34),
+        0 0 0 1px rgba(216,177,96,.12),
+        0 0 28px rgba(216,177,96,.12);
     }
 
-    .tab-main {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-align: left;
+    .product-card:target::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      background:radial-gradient(circle at 50% 20%, rgba(216,177,96,.16), transparent 36%);
+      z-index:2;
     }
 
-    .tab-icon {
-      width: 40px;
-      height: 40px;
-      display: grid;
-      place-items: center;
-      border-radius: 12px;
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(214,176,106,.2);
-      font-size: 1.1rem;
-      flex-shrink: 0;
-    }
-
-    .shop-tab.active .tab-icon {
-      background: rgba(255,255,255,.22);
-      border-color: rgba(75,49,19,.18);
-    }
-
-    .tab-text-wrap {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      line-height: 1.2;
-    }
-
-    .tab-text-wrap strong {
-      font-size: 1.02rem;
-      font-weight: 700;
-    }
-
-    .tab-text-wrap small {
-      font-size: .8rem;
-      opacity: .85;
-    }
-
-    .tab-count {
-      min-width: 38px;
-      height: 38px;
-      padding: 0 10px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 999px;
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(214,176,106,.2);
-      font-size: .92rem;
-      font-weight: 700;
-      flex-shrink: 0;
-    }
-
-    .shop-tab.active .tab-count {
-      background: rgba(255,255,255,.24);
-      border-color: rgba(75,49,19,.18);
-    }
-
-    .shop-current-label {
-      color: #e5c787;
-      font-size: .96rem;
-      line-height: 1.5;
-      text-align: right;
-      padding-top: 4px;
-    }
-
-    .catalog-group {
-      margin-top: 24px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .catalog-group.hidden,
-    .featured-shell.hidden {
-      display: none;
-    }
-
-    .group-frame {
-      padding: 20px;
-      border: 1px solid rgba(214,176,106,.18);
-      background: rgba(255,255,255,.02);
-      box-shadow: 0 14px 28px rgba(0,0,0,.14);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .group-frame::before {
-      content: "";
-      position: absolute;
-      inset: 10px;
-      border: 1px solid rgba(214,176,106,.10);
-      pointer-events: none;
-    }
-
-    .annex-frame {
+    .cover{
+      height:260px;
+      display:grid;
+      place-items:center;
+      padding:22px;
       background:
-        radial-gradient(circle at 82% 14%, rgba(214,176,106,.10), transparent 18%),
-        radial-gradient(circle at 18% 18%, rgba(255,255,255,.05), transparent 18%),
-        linear-gradient(180deg, rgba(46,54,79,.98), rgba(23,29,44,.98));
-      border-color: rgba(214,176,106,.26);
+        radial-gradient(circle at 50% 62%, rgba(216,177,96,.16), transparent 34%),
+        linear-gradient(180deg, rgba(216,177,96,.045), rgba(0,0,0,.18));
+      border-bottom:1px solid rgba(216,177,96,.12);
     }
 
-    .merch-frame {
+    .cover img{
+      max-height:225px;
+      width:auto;
+      filter:drop-shadow(0 18px 24px rgba(0,0,0,.5));
+    }
+
+    .placeholder-cover{
+      width:150px;
+      aspect-ratio:2/3;
+      border-radius:12px;
+      display:grid;
+      place-items:center;
+      text-align:center;
+      color:#f7d889;
+      padding:16px;
+      border:1px solid rgba(216,177,96,.26);
       background:
-        radial-gradient(circle at 82% 14%, rgba(214,176,106,.06), transparent 18%),
-        linear-gradient(180deg, rgba(38,44,66,.96), rgba(20,25,39,.98));
+        linear-gradient(135deg, rgba(216,177,96,.16), rgba(255,255,255,.035)),
+        linear-gradient(180deg, #202837, #0e1422);
+      box-shadow:0 18px 28px rgba(0,0,0,.34);
+      font-weight:700;
+      letter-spacing:.03em;
     }
 
-    .group-head {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-bottom: 18px;
+    .product-body{
+      position:relative;
+      z-index:3;
+      display:flex;
+      flex-direction:column;
+      flex:1;
+      padding:20px;
     }
 
-    .group-text {
-      max-width: 760px;
+    .meta{
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      gap:8px;
+      margin-bottom:12px;
     }
 
-    .group-title {
-      margin: 10px 0 8px;
-      color: #f0dbaf;
-      font-size: clamp(1.45rem, 2vw, 2rem);
-      line-height: 1.1;
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      min-height:26px;
+      padding:5px 10px;
+      border-radius:999px;
+      border:1px solid rgba(216,177,96,.18);
+      background:rgba(216,177,96,.06);
+      color:var(--gold);
+      font-size:.72rem;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:.08em;
     }
 
-    .group-desc {
-      margin: 0;
-      color: #d4ccb9;
-      line-height: 1.72;
-      font-size: .97rem;
+    .tag.muted{
+      color:var(--muted-2);
+      background:rgba(255,255,255,.035);
     }
 
-    .group-count {
-      color: var(--text-muted);
-      font-size: .9rem;
-      text-transform: uppercase;
-      letter-spacing: .06em;
-      padding-top: 8px;
-      white-space: nowrap;
+    .product-body h3{
+      margin:0 0 10px;
+      color:#f4d99d;
+      font-size:1.55rem;
+      line-height:1.05;
     }
 
-    .product-grid {
-      display: grid;
-      gap: 18px;
-      position: relative;
-      z-index: 1;
+    .product-body p{
+      margin:0 0 14px;
+      color:var(--muted);
+      line-height:1.55;
+      font-size:.97rem;
     }
 
-    .product-grid.in-group {
-      margin-top: 0;
+    .price{
+      margin-top:auto;
+      padding-top:10px;
+      color:#f7d889;
+      font-weight:700;
     }
 
-    .product-grid.single-grid {
-      grid-template-columns: minmax(0, 720px);
-      justify-content: start;
-      margin-top: 18px;
+    .product-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:16px;
     }
 
-    .product-grid.annex-grid {
-      grid-template-columns: repeat(3, 1fr);
+    .mini-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:36px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(216,177,96,.24);
+      background:rgba(216,177,96,.09);
+      color:#f7d889;
+      font-weight:700;
+      font-size:.85rem;
+      transition:transform .2s ease, background .2s ease, border-color .2s ease;
     }
 
-    .product-grid.merch-grid {
-      grid-template-columns: repeat(2, 1fr);
+    .mini-btn:hover,
+    .mini-btn:focus-visible{
+      transform:translateY(-2px);
+      background:rgba(216,177,96,.15);
+      border-color:rgba(216,177,96,.42);
+      outline:none;
     }
 
-    .product-card {
-      display: flex;
-      flex-direction: column;
-      border: 1px solid rgba(214,176,106,.18);
-      background:
-        radial-gradient(circle at 50% 10%, rgba(255,188,109,.07), transparent 18%),
-        linear-gradient(180deg, rgba(42,51,77,.95), rgba(22,28,44,.98));
-      box-shadow: 0 14px 28px rgba(0,0,0,.20);
-      overflow: hidden;
-      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease, background .2s ease;
-      scroll-margin-top: 26px;
+    .mini-btn.disabled{
+      pointer-events:none;
+      opacity:.58;
+      color:var(--muted-2);
+      background:rgba(255,255,255,.035);
     }
 
-    .product-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 22px 32px rgba(0,0,0,.24);
-      border-color: rgba(214,176,106,.28);
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0, 1fr));
+      gap:12px;
+      margin:24px 0;
     }
 
-    .product-card.hidden {
-      display: none;
+    .stat{
+      padding:16px;
+      border-radius:18px;
+      border:1px solid rgba(216,177,96,.14);
+      background:rgba(7,11,20,.52);
     }
 
-    .product-card.is-target {
-      border-color: var(--focus-ring-strong);
-      background:
-        radial-gradient(circle at 50% 10%, rgba(255,188,109,.16), transparent 18%),
-        linear-gradient(180deg, rgba(58,69,100,.98), rgba(27,34,52,.98));
-      box-shadow:
-        0 0 0 3px var(--focus-ring),
-        0 22px 32px rgba(0,0,0,.24);
+    .stat strong{
+      display:block;
+      color:#f4d99d;
+      font-size:1.5rem;
+      line-height:1;
     }
 
-    .product-card.featured-main {
-      background:
-        radial-gradient(circle at 82% 18%, rgba(214,176,106,.12), transparent 18%),
-        linear-gradient(180deg, rgba(58,69,100,.98), rgba(27,34,52,.98));
-      border-color: rgba(214,176,106,.34);
+    .stat span{
+      display:block;
+      margin-top:6px;
+      color:var(--muted-2);
+      font-size:.84rem;
     }
 
-    .product-card.featured-main .product-body h3 {
-      font-size: 1.55rem;
+    .info-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:16px;
     }
 
-    .product-cover {
-      aspect-ratio: 2 / 3;
-      overflow: hidden;
-      border-bottom: 1px solid rgba(214,176,106,.16);
-      background:
-        radial-gradient(circle at 50% 20%, rgba(255,210,138,.14), transparent 18%),
-        linear-gradient(180deg, rgba(53,64,92,.96), rgba(24,31,47,.98));
+    .info-box{
+      padding:20px;
+      border-radius:20px;
+      border:1px solid rgba(216,177,96,.14);
+      background:rgba(7,11,20,.54);
     }
 
-    .product-cover a,
-    .product-cover span {
-      display: block;
-      width: 100%;
-      height: 100%;
+    .info-box h3{
+      margin:0 0 8px;
+      color:#f4d99d;
+      font-size:1.22rem;
     }
 
-    .product-cover img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      transition: transform .3s ease;
+    .info-box p{
+      margin:0 0 14px;
+      color:var(--muted);
+      line-height:1.58;
     }
 
-    .product-card:hover .product-cover img {
-      transform: scale(1.04);
+    .breadcrumb-cards{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:14px;
+      margin-top:18px;
     }
 
-    .product-body {
-      padding: 18px 18px 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      flex: 1;
+    .route-card{
+      padding:18px;
+      border-radius:20px;
+      border:1px solid rgba(216,177,96,.14);
+      background:rgba(7,11,20,.58);
+      transition:transform .2s ease, border-color .2s ease, background .2s ease;
     }
 
-    .product-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      flex-wrap: wrap;
+    .route-card:hover,
+    .route-card:focus-visible{
+      transform:translateY(-3px);
+      border-color:rgba(216,177,96,.36);
+      background:rgba(17,24,39,.72);
+      outline:none;
     }
 
-    .product-status {
-      color: var(--text-muted);
-      font-size: .82rem;
-      text-transform: uppercase;
-      letter-spacing: .06em;
+    .route-card strong{
+      display:block;
+      color:#f7d889;
+      margin-bottom:6px;
     }
 
-    .product-body h3 {
-      margin: 0;
-      color: #f0dbaf;
-      font-size: 1.3rem;
-      line-height: 1.18;
+    .route-card span{
+      display:block;
+      color:var(--muted);
+      line-height:1.45;
+      font-size:.94rem;
     }
 
-    .product-body h3 a {
-      color: inherit;
-      transition: color .2s ease;
+    .footer-note{
+      margin-top:36px;
+      padding:18px 20px;
+      border-radius:20px;
+      border:1px solid rgba(216,177,96,.12);
+      color:var(--muted-2);
+      background:rgba(0,0,0,.18);
+      text-align:center;
+      font-size:.9rem;
     }
 
-    .product-body h3 a:hover {
-      color: #ffe7b0;
-    }
-
-    .product-body p {
-      margin: 0;
-      color: #d4ccb9;
-      line-height: 1.72;
-      font-size: .96rem;
-    }
-
-    .price-line {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-top: auto;
-      padding-top: 6px;
-    }
-
-    .price {
-      color: #f0dbaf;
-      font-size: 1.16rem;
-      font-weight: 700;
-    }
-
-    .price-note {
-      color: var(--text-muted);
-      font-size: .86rem;
-      text-align: right;
-    }
-
-    .product-actions {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-
-    .info-grid {
-      margin-top: 18px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .info-card {
-      padding: 22px 18px;
-      border: 1px solid rgba(214,176,106,.16);
-      background: rgba(255,255,255,.02);
-      min-height: 170px;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .info-card h3 {
-      margin: 0 0 10px;
-      color: #f0dbaf;
-      font-size: 1.32rem;
-    }
-
-    .info-card p {
-      margin: 0;
-      color: #d4ccb9;
-      line-height: 1.75;
-      font-size: .98rem;
-    }
-
-    .info-actions {
-      margin-top: auto;
-      padding-top: 18px;
-    }
-
-    .related-links {
-      margin-top: 18px;
-      display: grid;
-      gap: 14px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .related-link {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      padding: 14px 16px;
-      border: 1px solid rgba(214,176,106,.18);
-      background: rgba(255,255,255,.03);
-      color: #f2e2c3;
-      transition: .22s ease;
-    }
-
-    .related-link:hover {
-      transform: translateY(-2px);
-      background: rgba(255,255,255,.06);
-      border-color: rgba(214,176,106,.28);
-    }
-
-    .related-link strong {
-      color: #f0dbaf;
-      display: block;
-      margin-bottom: 4px;
-      font-size: 1rem;
-    }
-
-    .related-link span {
-      color: var(--text-soft);
-      font-size: .92rem;
-    }
-
-    .footer-note {
-      width: min(1180px, 92%);
-      margin: 0 auto;
-      padding: 0 0 42px;
-      color: #d7c5a7;
-      font-size: .95rem;
-      line-height: 1.65;
-      text-align: center;
-    }
-
-    @media (max-width: 980px) {
-      .focus-layout,
-      .featured-main-card,
-      .info-grid {
-        grid-template-columns: 1fr;
+    @media (max-width: 940px){
+      .topbar-inner{
+        align-items:flex-start;
+        flex-direction:column;
       }
 
-      .focus-cover,
-      .featured-cover {
-        max-width: 340px;
+      .nav{
+        justify-content:flex-start;
       }
 
-      .product-grid.single-grid,
-      .product-grid.annex-grid,
-      .product-grid.merch-grid {
-        grid-template-columns: 1fr 1fr;
+      .hero{
+        padding:30px 24px;
       }
 
-      .shop-tabs {
-        max-width: 100%;
+      .featured{
+        grid-template-columns:1fr;
+      }
+
+      .cards,
+      .info-grid,
+      .breadcrumb-cards{
+        grid-template-columns:1fr;
+      }
+
+      .stats{
+        grid-template-columns:repeat(2, minmax(0, 1fr));
       }
     }
 
-    @media (max-width: 700px) {
-      .hero-inner,
-      .content-shell,
-      .topbar,
-      .footer-note {
-        width: min(1180px, 94%);
+    @media (max-width: 560px){
+      .page,
+      .topbar-inner{
+        width:min(100% - 24px, 1180px);
       }
 
-      .hero-inner {
-        padding: 44px 0 48px;
+      .hero{
+        border-radius:24px;
       }
 
-      .panel {
-        padding: 22px 16px;
+      .stats{
+        grid-template-columns:1fr;
       }
 
-      .shop-tab {
-        min-width: 100%;
+      .book-frame{
+        min-height:280px;
       }
 
-      .product-grid.single-grid,
-      .product-grid.annex-grid,
-      .product-grid.merch-grid,
-      .info-grid {
-        grid-template-columns: 1fr;
+      .book-frame img{
+        max-height:275px;
       }
 
-      .focus-actions,
-      .featured-actions,
-      .info-actions {
-        flex-direction: column;
+      .cover{
+        height:225px;
       }
 
-      .product-actions {
-        grid-template-columns: 1fr;
-      }
-
-      .shop-current-label {
-        text-align: left;
-      }
-
-      .focus-btn,
-      .featured-btn,
-      .product-btn,
-      .info-btn {
-        width: 100%;
+      .cover img{
+        max-height:195px;
       }
     }
-  
-.interworld-bar{
-  position:relative;
-  z-index:40;
-  background:rgba(9,13,24,.86);
-  border-bottom:1px solid rgba(216,177,96,.16);
-  backdrop-filter:blur(10px);
-}
-
-.interworld-inner{
-  width:min(1180px, 92%);
-  margin:0 auto;
-  display:flex;
-  flex-wrap:wrap;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  padding:12px 0;
-}
-
-.interworld-group{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-}
-
-.interworld-link{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  padding:9px 14px;
-  border-radius:999px;
-  border:1px solid rgba(216,177,96,.18);
-  background:rgba(255,255,255,.04);
-  color:#f2e2c3;
-  font-size:.95rem;
-  line-height:1;
-  text-decoration:none;
-  transition:.22s ease;
-}
-
-.interworld-link:hover{
-  transform:translateY(-1px);
-  background:rgba(255,255,255,.07);
-  border-color:rgba(216,177,96,.32);
-  color:#fff2d2;
-}
-
-.interworld-link.primary{
-  color:#4a2f12;
-  background:linear-gradient(180deg, #d8b160 0%, #b78537 100%);
-  border-color:#8b6327;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.34);
-}
-
-@media (max-width: 760px){
-  .interworld-inner{
-    align-items:flex-start;
-  }
-
-  .interworld-group{
-    width:100%;
-  }
-
-  .interworld-link{
-    flex:1 1 calc(50% - 10px);
-    text-align:center;
-  }
-}
-
-</style>
+  </style>
 </head>
+
 <body>
-
-
-<div class="interworld-bar">
-  <div class="interworld-inner">
-    <div class="interworld-group">
-      <a class="interworld-link primary" href="../index.html">Portal principal</a>
-      <a class="interworld-link" href="index.html">Inicio Crónicas</a>
-      <a class="interworld-link" href="../systempyp/index.html">Pay &amp; Play System</a>
-    </div>
-    <div class="interworld-group">
-      <a class="interworld-link" href="sasha.html">Sasha</a>
-      <a class="interworld-link" href="party-girls.html">Party Girls</a>
-      <a class="interworld-link" href="aliados.html">Aliados</a>
-      <a class="interworld-link" href="enemigos.html">Enemigos</a>
-    </div>
-  </div>
-</div>
-
-
   <header class="topbar">
-    <div class="topbar-left">
-      <a href="./index.html" class="nav-btn">← Volver al inicio</a>
-      <a href="./index.html#libros" class="nav-btn">Libros</a>
-    </div>
+    <div class="topbar-inner">
+      <a class="brand" href="index.html" aria-label="Volver al inicio de Las Crónicas de Sasha">
+        <span class="brand-mark">S</span>
+        <span class="brand-text">
+          <strong>Las Crónicas de Sasha</strong>
+          <span>Tienda oficial</span>
+        </span>
+      </a>
 
-    <div class="topbar-right">
-      <a href="./volumen-1.html" class="nav-btn">Volumen principal</a>
-      <a href="./anexo-entrevista.html" class="nav-btn">Primer anexo</a>
-      <a href="./tienda.html" class="nav-btn">Tienda general</a>
+      <nav class="nav" aria-label="Navegación principal">
+        <a href="../index.html">Portal principal</a>
+        <a href="index.html">Inicio Crónicas</a>
+        <a href="../systempyp/index.html">Pay &amp; Play System</a>
+        <a href="sasha.html">Sasha</a>
+        <a href="party-girls.html">Party Girls</a>
+        <a href="aliados.html">Aliados</a>
+        <a href="enemigos.html">Enemigos</a>
+      </nav>
     </div>
   </header>
 
-  <section class="hero">
-    <div class="hero-inner">
-      <div class="eyebrow">Tienda oficial</div>
+  <main class="page">
+    <section class="hero">
+      <span class="hero-kicker">Tienda oficial</span>
       <h1>Tienda de Las Crónicas de Sasha</h1>
-      <p class="hero-subtitle">
-        Aquí conviven la saga principal, los anexos y el futuro merchandising. El volumen 1 ocupa el centro, los anexos forman un bloque propio y todo el catálogo queda orientado con la misma brújula que usan las fichas.
-      </p>
-    </div>
-  </section>
-
-  <main class="content-shell">
-    <section class="panel focus-panel" id="focusPanel">
-      <div class="ornament"></div>
-      <h2 class="section-title">Producto seleccionado</h2>
-      <p class="section-lead" id="focusLead">
-        Has llegado a un artículo concreto dentro de la tienda.
+      <p>
+        Aquí conviven la saga principal, los anexos y el futuro merchandising. El volumen 1 ocupa el centro,
+        los anexos forman un bloque propio y todo el catálogo queda orientado con la misma brújula que usan las fichas.
       </p>
 
-      <div class="focus-layout">
-        <div class="focus-cover">
-          <img id="focusImage" src="" alt="" />
+      <div class="hero-actions">
+        <a class="btn" href="#producto-volumen-1">Volumen principal</a>
+        <a class="btn secondary" href="#anexos">Primer anexo</a>
+        <a class="btn secondary" href="#catalogo">Tienda general</a>
+      </div>
+    </section>
+
+    <section class="section" id="producto-seleccionado">
+      <div class="section-head">
+        <div>
+          <h2>Producto seleccionado</h2>
+          <p>Has llegado a un artículo concreto dentro de la tienda. Si venías desde una ficha, aquí tienes el acceso al producto y a su página de detalle.</p>
+        </div>
+        <span class="pill">Catálogo</span>
+      </div>
+
+      <article class="featured">
+        <div class="book-frame">
+          <img src="../assets/libros/volumenes/libro-sin-fondo.png" alt="Volumen 1 Mis inicios">
         </div>
 
-        <div class="focus-body">
-          <div class="focus-row">
-            <span class="pill" id="focusType">Producto</span>
-            <span class="pill" id="focusCategory">Categoría</span>
+        <div class="featured-copy">
+          <div class="series">Las Crónicas de Sasha · Volumen 1</div>
+          <h3>Mis inicios</h3>
+          <p>
+            El corazón comercial y narrativo del catálogo. Este es el libro que abre la saga, presenta el universo y funciona como primera puerta para quien entra por primera vez.
+          </p>
+          <p>
+            La compra directa se activará aquí cuando lo decidas. De momento, la tienda queda preparada con ficha, producto y rutas internas coherentes.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn" href="volumen-1.html">Ver ficha</a>
+            <a class="btn secondary" href="#catalogo">Ver tienda general</a>
+            <span class="btn secondary" aria-disabled="true">Compra directa próximamente</span>
           </div>
+        </div>
+      </article>
+    </section>
 
-          <h3 class="focus-title" id="focusTitle">Título del producto</h3>
+    <section class="section" id="catalogo">
+      <div class="section-head">
+        <div>
+          <h2>Catálogo</h2>
+          <p>
+            La saga principal ocupa el centro. Los anexos aparecen como familia visual común. El merchandising queda visible,
+            pero en una zona aparte.
+          </p>
+        </div>
+        <span class="pill">Catálogo completo</span>
+      </div>
 
-          <p class="focus-text" id="focusDescription"></p>
+      <article class="featured" id="producto-volumen-1">
+        <div class="book-frame">
+          <img src="../assets/libros/volumenes/libro-sin-fondo.png" alt="Las Crónicas de Sasha Volumen 1">
+        </div>
 
-          <div class="focus-price-line">
-            <div class="focus-price" id="focusPrice">Precio pendiente</div>
-            <div class="focus-note" id="focusPriceNote">La compra directa se activará aquí cuando lo decidas.</div>
+        <div class="featured-copy">
+          <div class="series">Saga principal destacada · Puerta de entrada</div>
+          <h3>Mis inicios</h3>
+          <p>
+            El arranque real de la saga. La primera puerta, el primer gran cambio y el punto desde el que todo empieza a tensarse.
+          </p>
+          <p>
+            Precio pendiente. La compra directa aún no está activa, pero el producto ya queda enlazado con su ficha y con las rutas internas de la web.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn" href="volumen-1.html">Ver ficha</a>
+            <span class="btn secondary" aria-disabled="true">Comprar pronto</span>
           </div>
+        </div>
+      </article>
 
-          <div class="focus-actions">
-            <a class="focus-btn primary" id="focusPrimaryBtn" href="#">Ver ficha</a>
-            <a class="focus-btn secondary" id="focusSecondaryBtn" href="./tienda.html">Ver tienda general</a>
-            <span class="focus-btn secondary disabled" id="focusDisabledBtn">Compra directa próximamente</span>
-          </div>
+      <div class="stats" aria-label="Resumen del catálogo">
+        <div class="stat">
+          <strong>6</strong>
+          <span>Catálogo completo</span>
+        </div>
+        <div class="stat">
+          <strong>1</strong>
+          <span>Saga principal activa</span>
+        </div>
+        <div class="stat">
+          <strong>3</strong>
+          <span>Anexos</span>
+        </div>
+        <div class="stat">
+          <strong>2</strong>
+          <span>Merchandising futuro</span>
         </div>
       </div>
     </section>
 
-    <section class="panel" id="catalogo">
-      <div class="ornament"></div>
-      <h2 class="section-title">Catálogo</h2>
-      <p class="section-lead">
-        La saga principal ocupa el centro. Los anexos aparecen como familia visual común. El merchandising queda visible, pero en una zona aparte.
-      </p>
+    <section class="section" id="anexos">
+      <div class="section-head">
+        <div>
+          <h2>Expansión del universo</h2>
+          <p>
+            Estas piezas funcionan como una familia propia dentro de la tienda. No son libros aislados,
+            sino puertas laterales que amplían la respiración del mundo de Sasha.
+          </p>
+        </div>
+        <span class="pill">3 anexos activos</span>
+      </div>
 
-      <div class="featured-shell" id="mainGroup">
-        <article class="featured-main-card">
-          <div class="featured-cover">
-            <img id="featuredVol1" src="assets/libros/volumenes/libro-sin-fondo.png" alt="Volumen 1 Mis inicios" />
+      <div class="cards">
+        <article class="product-card" id="producto-anexo-entrevista">
+          <div class="cover">
+            <img src="../assets/libros/anexos/Portada-entrevista.png" alt="Anexo Entrevista">
           </div>
-
-          <div class="featured-body">
-            <div class="featured-meta">
-              <span class="featured-tag">Saga principal destacada</span>
-              <span class="featured-tag">Puerta de entrada</span>
+          <div class="product-body">
+            <div class="meta">
+              <span class="tag">Anexo</span>
+              <span class="tag muted">Activo</span>
             </div>
-
-            <div class="featured-kicker">Las Crónicas de Sasha · Volumen 1</div>
-            <h3 class="featured-title">Mis inicios</h3>
-
-            <p class="featured-text">
-              El corazón comercial y narrativo del catálogo. Este es el libro que abre la saga, presenta el universo y funciona como primera puerta para quien entra por primera vez.
+            <h3>Entrevista</h3>
+            <p>
+              Una pieza lateral del universo, útil para ampliar tono, perspectiva y sensación de mundo expandido.
             </p>
-
-            <div class="featured-actions">
-              <a class="featured-btn primary" href="./volumen-1.html">Ver ficha</a>
-              <a class="featured-btn secondary" href="./tienda.html#producto-volumen-1">Ir al producto</a>
+            <div class="price">Precio pendiente</div>
+            <div class="product-actions">
+              <a class="mini-btn" href="anexo-entrevista.html">Ver ficha</a>
+              <span class="mini-btn disabled">Comprar pronto</span>
             </div>
           </div>
         </article>
 
-        <div class="product-grid single-grid">
-          <article
-            class="product-card featured-main"
-            id="producto-volumen-1"
-            data-category="main"
-            data-type="Saga principal"
-            data-category-label="Saga principal"
-            data-title="Mis inicios"
-            data-desc="El arranque real de la saga. La primera puerta, el primer gran cambio y el punto desde el que todo empieza a tensarse."
-            data-price="Precio pendiente"
-            data-price-note="La compra directa aún no está activada."
-            data-page="./volumen-1.html"
-            data-cover="assets/libros/volumenes/libro-sin-fondo.png"
-          >
-            <div class="product-cover">
-              <a href="./volumen-1.html" aria-label="Abrir ficha de Mis inicios">
-                <img id="coverVol1" src="assets/libros/volumenes/libro-sin-fondo.png" alt="Volumen 1 Mis inicios" />
-              </a>
+        <article class="product-card" id="producto-anexo-dvni">
+          <div class="cover">
+            <img src="../assets/libros/anexos/Portada-DVNI.png" alt="Anexo DVNI">
+          </div>
+          <div class="product-body">
+            <div class="meta">
+              <span class="tag">Anexo</span>
+              <span class="tag muted">Activo</span>
             </div>
-            <div class="product-body">
-              <div class="product-head">
-                <span class="product-tag">Saga principal</span>
-                <span class="product-status">Producto faro</span>
-              </div>
-              <h3><a href="./volumen-1.html">Mis inicios</a></h3>
-              <p>
-                El arranque real de la saga. La primera puerta, el primer gran cambio y el punto desde el que todo empieza a tensarse.
-              </p>
-              <div class="price-line">
-                <div class="price">Precio pendiente</div>
-                <div class="price-note">Compra directa aún no activa</div>
-              </div>
-              <div class="product-actions">
-                <a class="product-btn primary" href="./volumen-1.html">Ver ficha</a>
-                <span class="product-btn secondary disabled">Comprar pronto</span>
-              </div>
+            <h3>DVNI</h3>
+            <p>
+              Un anexo con entidad propia que añade otra cámara lateral al edificio narrativo de la saga.
+            </p>
+            <div class="price">Precio pendiente</div>
+            <div class="product-actions">
+              <a class="mini-btn" href="anexo-dvni.html">Ver ficha</a>
+              <span class="mini-btn disabled">Comprar pronto</span>
             </div>
-          </article>
-        </div>
+          </div>
+        </article>
+
+        <article class="product-card" id="producto-anexo-cinco-dones">
+          <div class="cover">
+            <img src="../assets/libros/anexos/Portada-cinco-dones.png" alt="Anexo Cinco dones">
+          </div>
+          <div class="product-body">
+            <div class="meta">
+              <span class="tag">Anexo</span>
+              <span class="tag muted">Activo</span>
+            </div>
+            <h3>Cinco dones</h3>
+            <p>
+              Una pieza complementaria que aporta relieve simbólico y ayuda a que el universo gane espesor.
+            </p>
+            <div class="price">Precio pendiente</div>
+            <div class="product-actions">
+              <a class="mini-btn" href="anexo-cinco-dones.html">Ver ficha</a>
+              <span class="mini-btn disabled">Comprar pronto</span>
+            </div>
+          </div>
+        </article>
       </div>
-
-      <div class="shop-topline">
-        <div class="shop-tabs" role="tablist" aria-label="Filtros de tienda">
-          <button class="shop-tab active" type="button" data-filter="all" aria-selected="true">
-            <span class="tab-main">
-              <span class="tab-icon">✦</span>
-              <span class="tab-text-wrap">
-                <strong>Todo</strong>
-                <small>Catálogo completo</small>
-              </span>
-            </span>
-            <span class="tab-count">6</span>
-          </button>
-
-          <button class="shop-tab" type="button" data-filter="main" aria-selected="false">
-            <span class="tab-main">
-              <span class="tab-icon">📚</span>
-              <span class="tab-text-wrap">
-                <strong>Saga principal</strong>
-                <small>Libro troncal</small>
-              </span>
-            </span>
-            <span class="tab-count">1</span>
-          </button>
-
-          <button class="shop-tab" type="button" data-filter="annexes" aria-selected="false">
-            <span class="tab-main">
-              <span class="tab-icon">✧</span>
-              <span class="tab-text-wrap">
-                <strong>Anexos</strong>
-                <small>Expansión del universo</small>
-              </span>
-            </span>
-            <span class="tab-count">3</span>
-          </button>
-
-          <button class="shop-tab" type="button" data-filter="merch" aria-selected="false">
-            <span class="tab-main">
-              <span class="tab-icon">⚑</span>
-              <span class="tab-text-wrap">
-                <strong>Merchandising</strong>
-                <small>Futuro escaparate</small>
-              </span>
-            </span>
-            <span class="tab-count">2</span>
-          </button>
-        </div>
-
-        <div class="shop-current-label" id="shopCurrentLabel">
-          Catálogo completo · 6 artículos
-        </div>
-      </div>
-
-      <section class="catalog-group" id="annexGroup">
-        <div class="group-frame annex-frame">
-          <div class="group-head">
-            <div class="group-text">
-              <span class="group-pill">Bloque de anexos</span>
-              <h3 class="group-title">Expansión del universo</h3>
-              <p class="group-desc">
-                Estas piezas funcionan como una familia propia dentro de la tienda. No son libros aislados, sino puertas laterales que amplían la respiración del mundo de Sasha.
-              </p>
-            </div>
-            <div class="group-count">3 anexos activos</div>
-          </div>
-
-          <div class="product-grid in-group annex-grid">
-            <article
-              class="product-card"
-              id="producto-entrevista"
-              data-category="annexes"
-              data-type="Anexo"
-              data-category-label="Expansión del universo"
-              data-title="Entrevista"
-              data-desc="Una pieza lateral del universo, útil para ampliar tono, perspectiva y sensación de mundo expandido."
-              data-price="Precio pendiente"
-              data-price-note="La compra directa aún no está activada."
-              data-page="./anexo-entrevista.html"
-              data-cover="assets/libros/anexos/Portada-entrevista.png"
-            >
-              <div class="product-cover">
-                <a href="./anexo-entrevista.html" aria-label="Abrir ficha de Entrevista">
-                  <img id="coverEntrevista" src="assets/libros/anexos/Portada-entrevista.png" alt="Anexo Entrevista" />
-                </a>
-              </div>
-              <div class="product-body">
-                <div class="product-head">
-                  <span class="product-tag">Anexo</span>
-                  <span class="product-status">Activo</span>
-                </div>
-                <h3><a href="./anexo-entrevista.html">Entrevista</a></h3>
-                <p>
-                  Una pieza lateral del universo, útil para ampliar tono, perspectiva y sensación de mundo expandido.
-                </p>
-                <div class="price-line">
-                  <div class="price">Precio pendiente</div>
-                  <div class="price-note">Compra directa aún no activa</div>
-                </div>
-                <div class="product-actions">
-                  <a class="product-btn primary" href="./anexo-entrevista.html">Ver ficha</a>
-                  <span class="product-btn secondary disabled">Comprar pronto</span>
-                </div>
-              </div>
-            </article>
-
-            <article
-              class="product-card"
-              id="producto-dvni"
-              data-category="annexes"
-              data-type="Anexo"
-              data-category-label="Expansión del universo"
-              data-title="DVNI"
-              data-desc="Un anexo con entidad propia que añade otra cámara lateral al edificio narrativo de la saga."
-              data-price="Precio pendiente"
-              data-price-note="La compra directa aún no está activada."
-              data-page="./anexo-dvni.html"
-              data-cover="assets/libros/anexos/Portada-DVNI.png"
-            >
-              <div class="product-cover">
-                <a href="./anexo-dvni.html" aria-label="Abrir ficha de DVNI">
-                  <img id="coverDVNI" src="assets/libros/anexos/Portada-DVNI.png" alt="Anexo DVNI" />
-                </a>
-              </div>
-              <div class="product-body">
-                <div class="product-head">
-                  <span class="product-tag">Anexo</span>
-                  <span class="product-status">Activo</span>
-                </div>
-                <h3><a href="./anexo-dvni.html">DVNI</a></h3>
-                <p>
-                  Un anexo con entidad propia que añade otra cámara lateral al edificio narrativo de la saga.
-                </p>
-                <div class="price-line">
-                  <div class="price">Precio pendiente</div>
-                  <div class="price-note">Compra directa aún no activa</div>
-                </div>
-                <div class="product-actions">
-                  <a class="product-btn primary" href="./anexo-dvni.html">Ver ficha</a>
-                  <span class="product-btn secondary disabled">Comprar pronto</span>
-                </div>
-              </div>
-            </article>
-
-            <article
-              class="product-card"
-              id="producto-cinco-dones"
-              data-category="annexes"
-              data-type="Anexo"
-              data-category-label="Expansión del universo"
-              data-title="Cinco dones"
-              data-desc="Una pieza complementaria que aporta relieve simbólico y ayuda a que el universo gane espesor."
-              data-price="Precio pendiente"
-              data-price-note="La compra directa aún no está activada."
-              data-page="./anexo-cinco-dones.html"
-              data-cover="assets/libros/anexos/Portada-cinco-dones.png"
-            >
-              <div class="product-cover">
-                <a href="./anexo-cinco-dones.html" aria-label="Abrir ficha de Cinco dones">
-                  <img id="coverCincoDones" src="assets/libros/anexos/Portada-cinco-dones.png" alt="Anexo Cinco dones" />
-                </a>
-              </div>
-              <div class="product-body">
-                <div class="product-head">
-                  <span class="product-tag">Anexo</span>
-                  <span class="product-status">Activo</span>
-                </div>
-                <h3><a href="./anexo-cinco-dones.html">Cinco dones</a></h3>
-                <p>
-                  Una pieza complementaria que aporta relieve simbólico y ayuda a que el universo gane espesor.
-                </p>
-                <div class="price-line">
-                  <div class="price">Precio pendiente</div>
-                  <div class="price-note">Compra directa aún no activa</div>
-                </div>
-                <div class="product-actions">
-                  <a class="product-btn primary" href="./anexo-cinco-dones.html">Ver ficha</a>
-                  <span class="product-btn secondary disabled">Comprar pronto</span>
-                </div>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="catalog-group" id="merchGroup">
-        <div class="group-frame merch-frame">
-          <div class="group-head">
-            <div class="group-text">
-              <span class="group-pill">Escaparate futuro</span>
-              <h3 class="group-title">Merchandising</h3>
-              <p class="group-desc">
-                Esta zona queda visible, pero apartada del foco principal. Está lista para crecer con láminas, pósters, marcapáginas y otros objetos del universo.
-              </p>
-            </div>
-            <div class="group-count">2 productos reservados</div>
-          </div>
-
-          <div class="product-grid in-group merch-grid">
-            <article
-              class="product-card"
-              id="producto-poster-sasha"
-              data-category="merch"
-              data-type="Merchandising"
-              data-category-label="Objetos de la saga"
-              data-title="Póster de Sasha"
-              data-desc="Espacio reservado para una futura línea visual de láminas, pósters o arte promocional del universo."
-              data-price="Pendiente"
-              data-price-note="Producto aún no activado."
-              data-page=""
-              data-cover="assets/merch/poster-sasha.png"
-            >
-              <div class="product-cover">
-                <span>
-                  <img id="coverPoster" src="assets/merch/poster-sasha.png" alt="Póster de Sasha" />
-                </span>
-              </div>
-              <div class="product-body">
-                <div class="product-head">
-                  <span class="product-tag">Merchandising</span>
-                  <span class="product-status">Próximamente</span>
-                </div>
-                <h3>Póster de Sasha</h3>
-                <p>
-                  Espacio reservado para una futura línea visual de láminas, pósters o arte promocional del universo.
-                </p>
-                <div class="price-line">
-                  <div class="price">Pendiente</div>
-                  <div class="price-note">Producto aún no activado</div>
-                </div>
-                <div class="product-actions">
-                  <span class="product-btn primary disabled">Ver producto</span>
-                  <span class="product-btn secondary disabled">Comprar</span>
-                </div>
-              </div>
-            </article>
-
-            <article
-              class="product-card"
-              id="producto-marcapaginas-sasha"
-              data-category="merch"
-              data-type="Merchandising"
-              data-category-label="Objetos de la saga"
-              data-title="Marcapáginas de la saga"
-              data-desc="Placeholder elegante para futuros objetos físicos del universo, pensados para acompañar la lectura."
-              data-price="Pendiente"
-              data-price-note="Producto aún no activado."
-              data-page=""
-              data-cover="assets/merch/marcapaginas-sasha.png"
-            >
-              <div class="product-cover">
-                <span>
-                  <img id="coverMarcapaginas" src="assets/merch/marcapaginas-sasha.png" alt="Marcapáginas de la saga" />
-                </span>
-              </div>
-              <div class="product-body">
-                <div class="product-head">
-                  <span class="product-tag">Merchandising</span>
-                  <span class="product-status">Próximamente</span>
-                </div>
-                <h3>Marcapáginas de la saga</h3>
-                <p>
-                  Placeholder elegante para futuros objetos físicos del universo, pensados para acompañar la lectura.
-                </p>
-                <div class="price-line">
-                  <div class="price">Pendiente</div>
-                  <div class="price-note">Producto aún no activado</div>
-                </div>
-                <div class="product-actions">
-                  <span class="product-btn primary disabled">Ver producto</span>
-                  <span class="product-btn secondary disabled">Comprar</span>
-                </div>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
     </section>
 
-    <section class="panel">
-      <div class="ornament"></div>
-      <h2 class="section-title">Cómo se lee esta tienda</h2>
-      <p class="section-lead">
-        La estructura ya marca una jerarquía limpia para que el catálogo no parezca una mesa con todo mezclado.
-      </p>
+    <section class="section" id="merchandising">
+      <div class="section-head">
+        <div>
+          <h2>Merchandising</h2>
+          <p>
+            Esta zona queda visible, pero apartada del foco principal. Está lista para crecer con láminas,
+            pósters, marcapáginas y otros objetos del universo.
+          </p>
+        </div>
+        <span class="pill">2 productos reservados</span>
+      </div>
+
+      <div class="cards">
+        <article class="product-card" id="producto-poster-sasha">
+          <div class="cover">
+            <div class="placeholder-cover">Póster<br>de Sasha</div>
+          </div>
+          <div class="product-body">
+            <div class="meta">
+              <span class="tag">Merchandising</span>
+              <span class="tag muted">Próximamente</span>
+            </div>
+            <h3>Póster de Sasha</h3>
+            <p>
+              Espacio reservado para una futura línea visual de láminas, pósters o arte promocional del universo.
+            </p>
+            <div class="price">Pendiente</div>
+            <div class="product-actions">
+              <span class="mini-btn disabled">Ver producto</span>
+              <span class="mini-btn disabled">Comprar</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" id="producto-marcapaginas">
+          <div class="cover">
+            <div class="placeholder-cover">Marcapáginas<br>de la saga</div>
+          </div>
+          <div class="product-body">
+            <div class="meta">
+              <span class="tag">Merchandising</span>
+              <span class="tag muted">Próximamente</span>
+            </div>
+            <h3>Marcapáginas de la saga</h3>
+            <p>
+              Placeholder elegante para futuros objetos físicos del universo, pensados para acompañar la lectura.
+            </p>
+            <div class="price">Pendiente</div>
+            <div class="product-actions">
+              <span class="mini-btn disabled">Ver producto</span>
+              <span class="mini-btn disabled">Comprar</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <div class="cover">
+            <div class="placeholder-cover">Futuro<br>producto</div>
+          </div>
+          <div class="product-body">
+            <div class="meta">
+              <span class="tag">Reserva</span>
+              <span class="tag muted">Futuro</span>
+            </div>
+            <h3>Nuevo objeto</h3>
+            <p>
+              Hueco preparado para ampliar la tienda sin tener que rehacer la estructura cuando llegue el siguiente producto.
+            </p>
+            <div class="price">Pendiente</div>
+            <div class="product-actions">
+              <span class="mini-btn disabled">Activar más adelante</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="lectura">
+      <div class="section-head">
+        <div>
+          <h2>Cómo se lee esta tienda</h2>
+          <p>
+            La estructura ya marca una jerarquía limpia para que el catálogo no parezca una mesa con todo mezclado.
+          </p>
+        </div>
+      </div>
 
       <div class="info-grid">
-        <article class="info-card">
+        <article class="info-box">
           <h3>Núcleo principal</h3>
-          <p>
-            El volumen 1 aparece como puerta central del catálogo y como la primera apuesta para nuevos lectores.
-          </p>
-          <div class="info-actions">
-            <a class="info-btn primary" href="./tienda.html#producto-volumen-1">Ir al volumen 1</a>
-          </div>
+          <p>El volumen 1 aparece como puerta central del catálogo y como la primera apuesta para nuevos lectores.</p>
+          <a class="mini-btn" href="#producto-volumen-1">Ir al volumen 1</a>
         </article>
 
-        <article class="info-card">
+        <article class="info-box">
           <h3>Familia de anexos</h3>
-          <p>
-            Los anexos ya no se ven como tres piezas sueltas. Forman un bloque común, con identidad de grupo y lectura compartida.
-          </p>
-          <div class="info-actions">
-            <a class="info-btn secondary" href="./tienda.html#producto-entrevista">Ver bloque de anexos</a>
-          </div>
+          <p>Los anexos ya no se ven como tres piezas sueltas. Forman un bloque común, con identidad de grupo y lectura compartida.</p>
+          <a class="mini-btn" href="#anexos">Ver bloque de anexos</a>
         </article>
 
-        <article class="info-card">
+        <article class="info-box">
           <h3>Escaparate futuro</h3>
-          <p>
-            El merchandising queda visible, pero en tercer plano, como un ala preparada para crecer cuando toque.
-          </p>
-          <div class="info-actions">
-            <a class="info-btn secondary" href="./tienda.html#producto-poster-sasha">Ver merchandising</a>
-          </div>
+          <p>El merchandising queda visible, pero en tercer plano, como un ala preparada para crecer cuando toque.</p>
+          <a class="mini-btn" href="#merchandising">Ver merchandising</a>
         </article>
       </div>
     </section>
 
-    <section class="panel">
-      <div class="ornament"></div>
-      <h2 class="section-title">Brújula del catálogo</h2>
-      <p class="section-lead">
-        Desde la tienda puedes mantener siempre la orientación general del sistema: volumen principal, primera expansión complementaria y regreso al bloque central de la web.
-      </p>
+    <section class="section" id="brujula">
+      <div class="section-head">
+        <div>
+          <h2>Brújula del catálogo</h2>
+          <p>
+            Desde la tienda puedes mantener siempre la orientación general del sistema: volumen principal,
+            primera expansión complementaria y regreso al bloque central de la web.
+          </p>
+        </div>
+      </div>
 
-      <div class="related-links">
-        <a class="related-link" href="./volumen-1.html">
-          <div>
-            <strong>Volumen principal</strong>
-            <span>Abrir la ficha de la obra troncal de la saga.</span>
-          </div>
-          <div>→</div>
+      <div class="breadcrumb-cards">
+        <a class="route-card" href="volumen-1.html">
+          <strong>Volumen principal</strong>
+          <span>Abrir la ficha de la obra troncal de la saga. →</span>
         </a>
 
-        <a class="related-link" href="./anexo-entrevista.html">
-          <div>
-            <strong>Primer anexo</strong>
-            <span>Entrar en la primera expansión complementaria del universo.</span>
-          </div>
-          <div>→</div>
+        <a class="route-card" href="anexo-entrevista.html">
+          <strong>Primer anexo</strong>
+          <span>Entrar en la primera expansión complementaria del universo. →</span>
         </a>
 
-        <a class="related-link" href="./index.html#libros">
-          <div>
-            <strong>Inicio del catálogo</strong>
-            <span>Volver al bloque de libros de la portada principal.</span>
-          </div>
-          <div>→</div>
+        <a class="route-card" href="index.html#libros">
+          <strong>Inicio del catálogo</strong>
+          <span>Volver al bloque de libros de la portada principal. →</span>
         </a>
       </div>
     </section>
+
+    <div class="footer-note">
+      Página de tienda.html con rutas de imágenes corregidas para la nueva estructura de assets/libros/volumenes y assets/libros/anexos.
+    </div>
   </main>
-
-  <div class="footer-note">
-    Página de <strong>tienda.html</strong> con brújula final unificada para que portada, fichas y tienda hablen el mismo idioma.
-  </div>
-
-  <script>
-    function makePlaceholder(top, bottom) {
-      const topText = encodeURIComponent(top || "Las Crónicas de Sasha");
-      const bottomText = encodeURIComponent(bottom || "Producto");
-      return `data:image/svg+xml;charset=UTF-8,
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 1200'>
-        <defs>
-          <linearGradient id='g' x1='0' x2='0' y1='0' y2='1'>
-            <stop offset='0%' stop-color='%23253048'/>
-            <stop offset='100%' stop-color='%23101827'/>
-          </linearGradient>
-        </defs>
-        <rect width='800' height='1200' fill='url(%23g)'/>
-        <rect x='36' y='36' width='728' height='1128' rx='30' fill='none' stroke='rgba(214,176,106,.42)' stroke-width='3'/>
-        <text x='50%' y='34%' text-anchor='middle' fill='%23d6b06a' font-family='Georgia, serif' font-size='36'>${topText}</text>
-        <text x='50%' y='50%' text-anchor='middle' fill='%23f7eedc' font-family='Georgia, serif' font-size='54'>${bottomText}</text>
-      </svg>`.replace(/\n/g, "");
-    }
-
-    const fallbackCovers = [
-      { id: "featuredVol1", top: "Las Crónicas de Sasha", bottom: "Volumen 1" },
-      { id: "coverVol1", top: "Las Crónicas de Sasha", bottom: "Volumen 1" },
-      { id: "coverEntrevista", top: "Las Crónicas de Sasha", bottom: "Entrevista" },
-      { id: "coverDVNI", top: "Las Crónicas de Sasha", bottom: "DVNI" },
-      { id: "coverCincoDones", top: "Las Crónicas de Sasha", bottom: "Cinco dones" },
-      { id: "coverPoster", top: "Las Crónicas de Sasha", bottom: "Póster" },
-      { id: "coverMarcapaginas", top: "Las Crónicas de Sasha", bottom: "Marcapáginas" }
-    ];
-
-    fallbackCovers.forEach((item) => {
-      const img = document.getElementById(item.id);
-      if (!img) return;
-      img.addEventListener("error", () => {
-        img.src = makePlaceholder(item.top, item.bottom);
-      });
-    });
-
-    const shopTabs = [...document.querySelectorAll(".shop-tab")];
-    const productCards = [...document.querySelectorAll(".product-card")];
-    const shopCurrentLabel = document.getElementById("shopCurrentLabel");
-
-    const mainGroup = document.getElementById("mainGroup");
-    const annexGroup = document.getElementById("annexGroup");
-    const merchGroup = document.getElementById("merchGroup");
-
-    const focusPanel = document.getElementById("focusPanel");
-    const focusLead = document.getElementById("focusLead");
-    const focusImage = document.getElementById("focusImage");
-    const focusType = document.getElementById("focusType");
-    const focusCategory = document.getElementById("focusCategory");
-    const focusTitle = document.getElementById("focusTitle");
-    const focusDescription = document.getElementById("focusDescription");
-    const focusPrice = document.getElementById("focusPrice");
-    const focusPriceNote = document.getElementById("focusPriceNote");
-    const focusPrimaryBtn = document.getElementById("focusPrimaryBtn");
-    const focusSecondaryBtn = document.getElementById("focusSecondaryBtn");
-    const focusDisabledBtn = document.getElementById("focusDisabledBtn");
-
-    const filterLabels = {
-      all: "Catálogo completo",
-      main: "Saga principal",
-      annexes: "Anexos",
-      merch: "Merchandising"
-    };
-
-    function clearTarget() {
-      productCards.forEach((card) => card.classList.remove("is-target"));
-    }
-
-    function updateGroups(filter) {
-      mainGroup.classList.toggle("hidden", !(filter === "all" || filter === "main"));
-      annexGroup.classList.toggle("hidden", !(filter === "all" || filter === "annexes"));
-      merchGroup.classList.toggle("hidden", !(filter === "all" || filter === "merch"));
-    }
-
-    function updateShop(filter) {
-      let visibleCount = 0;
-
-      productCards.forEach((card) => {
-        const matches = filter === "all" || card.dataset.category === filter;
-        card.classList.toggle("hidden", !matches);
-        if (matches) visibleCount++;
-      });
-
-      updateGroups(filter);
-
-      shopTabs.forEach((tab) => {
-        const isActive = tab.dataset.filter === filter;
-        tab.classList.toggle("active", isActive);
-        tab.setAttribute("aria-selected", isActive ? "true" : "false");
-      });
-
-      shopCurrentLabel.textContent = `${filterLabels[filter]} · ${visibleCount} artículo${visibleCount === 1 ? "" : "s"}`;
-    }
-
-    function setFocusFromCard(card) {
-      const page = card.dataset.page || "";
-      const cover = card.dataset.cover || "";
-      const title = card.dataset.title || "Producto";
-      const description = card.dataset.desc || "";
-      const type = card.dataset.type || "Producto";
-      const categoryLabel = card.dataset.categoryLabel || "Catálogo";
-      const price = card.dataset.price || "Precio pendiente";
-      const priceNote = card.dataset.priceNote || "La compra directa se activará aquí cuando lo decidas.";
-
-      focusPanel.classList.add("show");
-      focusLead.textContent = "Has llegado a un artículo concreto dentro de la tienda. Aquí lo tienes en primer plano.";
-      focusType.textContent = type;
-      focusCategory.textContent = categoryLabel;
-      focusTitle.textContent = title;
-      focusDescription.textContent = description;
-      focusPrice.textContent = price;
-      focusPriceNote.textContent = priceNote;
-      focusImage.src = cover || makePlaceholder("Las Crónicas de Sasha", title);
-      focusImage.alt = title;
-
-      focusImage.onerror = () => {
-        focusImage.src = makePlaceholder("Las Crónicas de Sasha", title);
-      };
-
-      if (page) {
-        focusPrimaryBtn.style.display = "inline-flex";
-        focusPrimaryBtn.href = page;
-        focusPrimaryBtn.textContent = "Ver ficha";
-      } else {
-        focusPrimaryBtn.style.display = "none";
-      }
-
-      focusSecondaryBtn.href = "./tienda.html";
-      focusSecondaryBtn.textContent = "Ver tienda general";
-      focusDisabledBtn.style.display = "inline-flex";
-    }
-
-    function hideFocusPanel() {
-      focusPanel.classList.remove("show");
-    }
-
-    function revealHashTarget() {
-      const hash = window.location.hash;
-
-      if (!hash) {
-        clearTarget();
-        hideFocusPanel();
-        updateShop("all");
-        return;
-      }
-
-      const target = document.querySelector(hash);
-
-      if (!target || !target.classList.contains("product-card")) {
-        clearTarget();
-        hideFocusPanel();
-        updateShop("all");
-        return;
-      }
-
-      const targetCategory = target.dataset.category || "all";
-
-      updateShop(targetCategory);
-      clearTarget();
-      target.classList.add("is-target");
-      setFocusFromCard(target);
-
-      setTimeout(() => {
-        focusPanel.scrollIntoView({ behavior: "smooth", block: "start" });
-      }, 80);
-    }
-
-    shopTabs.forEach((tab) => {
-      tab.addEventListener("click", () => {
-        const filter = tab.dataset.filter;
-        clearTarget();
-        hideFocusPanel();
-        history.replaceState(null, "", "./tienda.html");
-        updateShop(filter);
-      });
-    });
-
-    window.addEventListener("hashchange", revealHashTarget);
-
-    updateShop("all");
-    revealHashTarget();
-  </script>
-
 </body>
 </html>
