@@ -9,20 +9,22 @@
 
   <style>
     :root{
-      --bg-0:#070b14;
-      --bg-1:#101828;
-      --bg-2:#172235;
-      --panel:#111827;
-      --panel-soft:rgba(17,24,39,.78);
-      --panel-dark:rgba(7,11,20,.86);
+      --bg:#080b12;
+      --bg-2:#111827;
+      --bg-3:#1b2434;
+      --panel:#121824;
+      --panel-2:#171f2d;
+      --panel-soft:rgba(18,24,36,.86);
       --gold:#d8b160;
       --gold-2:#b78537;
-      --gold-soft:rgba(216,177,96,.18);
+      --gold-3:#f0d28a;
       --text:#f7eedc;
-      --muted:#d7c9aa;
+      --muted:#d6c7a5;
       --muted-2:#9f9277;
       --line:rgba(216,177,96,.22);
-      --shadow:0 22px 55px rgba(0,0,0,.34);
+      --line-strong:rgba(216,177,96,.38);
+      --shadow:0 22px 60px rgba(0,0,0,.36);
+      --sidebar:286px;
       --radius:24px;
     }
 
@@ -40,9 +42,10 @@
       font-family:Georgia, "Times New Roman", serif;
       color:var(--text);
       background:
-        radial-gradient(circle at 16% 10%, rgba(216,177,96,.11), transparent 25%),
-        radial-gradient(circle at 88% 14%, rgba(128,82,28,.18), transparent 28%),
-        linear-gradient(180deg, var(--bg-0) 0%, var(--bg-1) 48%, #080d18 100%);
+        radial-gradient(circle at 20% 0%, rgba(216,177,96,.10), transparent 28%),
+        radial-gradient(circle at 92% 8%, rgba(110,55,25,.18), transparent 30%),
+        linear-gradient(180deg, #070a11 0%, #101725 48%, #070a11 100%);
+      overflow-x:hidden;
     }
 
     body::before{
@@ -51,10 +54,21 @@
       inset:0;
       pointer-events:none;
       background:
-        linear-gradient(90deg, rgba(216,177,96,.045) 1px, transparent 1px),
-        linear-gradient(180deg, rgba(216,177,96,.035) 1px, transparent 1px);
+        linear-gradient(90deg, rgba(216,177,96,.035) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(216,177,96,.025) 1px, transparent 1px);
       background-size:48px 48px;
-      mask-image:linear-gradient(180deg, rgba(0,0,0,.6), transparent 75%);
+      mask-image:linear-gradient(180deg, rgba(0,0,0,.55), transparent 72%);
+      z-index:-2;
+    }
+
+    body::after{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background:
+        radial-gradient(circle at 52% 22%, rgba(216,177,96,.08), transparent 34%),
+        linear-gradient(90deg, rgba(0,0,0,.30), transparent 30%, transparent 70%, rgba(0,0,0,.26));
       z-index:-1;
     }
 
@@ -64,218 +78,355 @@
     }
 
     img{
-      max-width:100%;
       display:block;
+      max-width:100%;
     }
 
-    .page{
-      width:min(1180px, calc(100% - 36px));
-      margin:0 auto;
-      padding:26px 0 56px;
-    }
-
-    .topbar{
-      position:sticky;
-      top:0;
-      z-index:50;
-      backdrop-filter:blur(12px);
-      -webkit-backdrop-filter:blur(12px);
-      background:linear-gradient(180deg, rgba(7,11,20,.94), rgba(7,11,20,.74));
-      border-bottom:1px solid rgba(216,177,96,.16);
-    }
-
-    .topbar-inner{
-      width:min(1180px, calc(100% - 36px));
-      margin:0 auto;
-      display:flex;
+    .mobile-toggle{
+      display:none;
+      position:fixed;
+      left:16px;
+      top:14px;
+      z-index:110;
       align-items:center;
-      justify-content:space-between;
-      gap:18px;
-      padding:13px 0;
+      gap:8px;
+      min-height:42px;
+      padding:9px 14px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background:rgba(8,11,18,.88);
+      color:var(--gold-3);
+      font-family:Georgia, "Times New Roman", serif;
+      font-weight:700;
+      cursor:pointer;
+      box-shadow:0 12px 30px rgba(0,0,0,.28);
+      backdrop-filter:blur(10px);
+    }
+
+    .sidebar{
+      position:fixed;
+      left:0;
+      top:0;
+      bottom:0;
+      width:var(--sidebar);
+      z-index:100;
+      padding:26px 22px;
+      border-right:1px solid rgba(216,177,96,.18);
+      background:
+        radial-gradient(circle at 50% 0%, rgba(216,177,96,.12), transparent 34%),
+        linear-gradient(180deg, rgba(12,17,28,.96), rgba(8,11,18,.98));
+      box-shadow:16px 0 46px rgba(0,0,0,.28);
+      overflow-y:auto;
     }
 
     .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      min-width:max-content;
+      display:block;
+      padding:18px 16px 20px;
+      border-radius:22px;
+      border:1px solid rgba(216,177,96,.18);
+      background:
+        linear-gradient(180deg, rgba(216,177,96,.08), rgba(255,255,255,.025)),
+        rgba(0,0,0,.16);
+      box-shadow:0 16px 34px rgba(0,0,0,.24);
+      text-align:center;
     }
 
-    .brand-mark{
-      width:38px;
-      height:38px;
-      border-radius:50%;
+    .brand .mark{
+      width:48px;
+      height:48px;
+      margin:0 auto 12px;
       display:grid;
       place-items:center;
-      color:var(--gold);
-      border:1px solid var(--line);
-      background:radial-gradient(circle, rgba(216,177,96,.15), rgba(0,0,0,.18));
-      box-shadow:0 0 18px rgba(216,177,96,.12);
+      border-radius:50%;
+      border:1px solid rgba(216,177,96,.30);
+      color:var(--gold-3);
+      background:
+        radial-gradient(circle, rgba(216,177,96,.18), rgba(0,0,0,.18));
+      font-size:1.25rem;
       font-weight:700;
+      box-shadow:0 0 22px rgba(216,177,96,.13);
     }
 
-    .brand-text{
-      line-height:1;
-    }
-
-    .brand-text strong{
+    .brand strong{
       display:block;
-      color:#f4d99d;
-      letter-spacing:.04em;
-      text-transform:uppercase;
-      font-size:.86rem;
+      color:#f7d889;
+      font-size:1.4rem;
+      line-height:.98;
+      letter-spacing:-.02em;
     }
 
-    .brand-text span{
+    .brand span{
       display:block;
-      margin-top:4px;
+      margin-top:8px;
       color:var(--muted-2);
-      font-size:.78rem;
+      font-size:.82rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
     }
 
-    .nav{
+    .side-section{
+      margin-top:24px;
+    }
+
+    .side-section h3{
+      margin:0 0 10px;
+      padding:0 8px;
+      color:var(--gold);
+      font-size:.78rem;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+
+    .side-nav{
+      display:grid;
+      gap:7px;
+    }
+
+    .side-nav a{
       display:flex;
       align-items:center;
-      justify-content:flex-end;
-      gap:8px;
-      flex-wrap:wrap;
+      gap:10px;
+      min-height:38px;
+      padding:9px 12px;
+      border-radius:14px;
+      color:var(--muted);
+      border:1px solid transparent;
+      background:rgba(255,255,255,.018);
+      transition:background .2s ease, border-color .2s ease, color .2s ease, transform .2s ease;
     }
 
-    .nav a{
-      padding:8px 11px;
+    .side-nav a:hover,
+    .side-nav a:focus-visible,
+    .side-nav a.active{
+      color:#ffe7aa;
+      background:rgba(216,177,96,.08);
+      border-color:rgba(216,177,96,.22);
+      transform:translateX(2px);
+      outline:none;
+    }
+
+    .side-footer{
+      margin-top:28px;
+      color:var(--muted-2);
+      font-size:.82rem;
+      text-align:center;
+      opacity:.8;
+    }
+
+    .toplinks{
+      margin-left:var(--sidebar);
+      position:sticky;
+      top:0;
+      z-index:70;
+      padding:12px 28px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+      border-bottom:1px solid rgba(216,177,96,.14);
+      background:linear-gradient(180deg, rgba(7,10,17,.92), rgba(7,10,17,.68));
+      backdrop-filter:blur(12px);
+    }
+
+    .toplinks-group{
+      display:flex;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+
+    .toplinks a{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:32px;
+      padding:7px 11px;
       border-radius:999px;
       color:var(--muted);
       font-size:.86rem;
       border:1px solid transparent;
-      transition:background .2s ease, color .2s ease, border-color .2s ease;
+      transition:background .2s ease, border-color .2s ease, color .2s ease;
     }
 
-    .nav a:hover,
-    .nav a:focus-visible{
+    .toplinks a:hover,
+    .toplinks a:focus-visible{
       color:#ffe7aa;
       background:rgba(216,177,96,.08);
       border-color:rgba(216,177,96,.18);
       outline:none;
     }
 
+    .page{
+      margin-left:var(--sidebar);
+      width:calc(100% - var(--sidebar));
+      padding:30px 28px 64px;
+    }
+
+    .wrap{
+      width:min(1180px, 100%);
+      margin:0 auto;
+    }
+
     .hero{
       position:relative;
+      display:grid;
+      grid-template-columns:minmax(0, 1.08fr) minmax(260px, .72fr);
+      gap:28px;
+      align-items:center;
       overflow:hidden;
-      border:1px solid rgba(216,177,96,.18);
-      border-radius:32px;
-      background:
-        linear-gradient(135deg, rgba(216,177,96,.12), transparent 34%),
-        linear-gradient(180deg, rgba(17,24,39,.78), rgba(7,11,20,.86));
-      box-shadow:var(--shadow);
+      min-height:470px;
       padding:42px;
-      margin-top:28px;
+      border-radius:34px;
+      border:1px solid rgba(216,177,96,.20);
+      background:
+        radial-gradient(circle at 82% 28%, rgba(216,177,96,.18), transparent 28%),
+        radial-gradient(circle at 14% 12%, rgba(128,70,34,.22), transparent 30%),
+        linear-gradient(135deg, rgba(24,31,45,.92), rgba(9,13,22,.94));
+      box-shadow:var(--shadow);
     }
 
-    .hero::after{
+    .hero::before{
       content:"";
       position:absolute;
-      right:-80px;
-      top:-100px;
-      width:360px;
-      height:360px;
-      border-radius:50%;
-      background:radial-gradient(circle, rgba(216,177,96,.14), transparent 62%);
+      inset:0;
       pointer-events:none;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,.16), transparent 48%, rgba(0,0,0,.20)),
+        radial-gradient(circle at 50% 100%, rgba(216,177,96,.10), transparent 38%);
     }
 
-    .hero-kicker{
+    .hero-content,
+    .hero-book{
+      position:relative;
+      z-index:2;
+    }
+
+    .kicker{
       display:inline-flex;
       align-items:center;
       gap:8px;
-      padding:8px 14px;
+      min-height:32px;
+      padding:8px 13px;
       border-radius:999px;
       border:1px solid var(--line);
-      background:rgba(216,177,96,.08);
       color:var(--gold);
-      font-size:.82rem;
-      text-transform:uppercase;
-      letter-spacing:.09em;
+      background:rgba(216,177,96,.08);
+      font-size:.78rem;
       font-weight:700;
+      letter-spacing:.10em;
+      text-transform:uppercase;
     }
 
     h1{
       margin:18px 0 12px;
-      max-width:820px;
       color:#f7d889;
-      font-size:clamp(2.1rem, 5vw, 4.4rem);
-      line-height:.95;
-      letter-spacing:-.04em;
-      text-shadow:0 8px 28px rgba(0,0,0,.32);
+      font-size:clamp(2.4rem, 5vw, 5rem);
+      line-height:.88;
+      letter-spacing:-.055em;
+      text-shadow:0 10px 30px rgba(0,0,0,.36);
     }
 
-    .hero p{
-      max-width:830px;
+    .lead{
+      max-width:760px;
       margin:0;
       color:var(--muted);
       font-size:1.08rem;
       line-height:1.68;
     }
 
-    .hero-actions{
+    .hero-actions,
+    .actions{
       display:flex;
       flex-wrap:wrap;
-      gap:12px;
-      margin-top:26px;
+      gap:10px;
+      margin-top:24px;
     }
 
-    .btn{
+    .btn,
+    .mini-btn{
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      gap:8px;
-      min-height:42px;
-      padding:10px 16px;
+      min-height:40px;
+      padding:10px 15px;
       border-radius:999px;
       border:1px solid rgba(216,177,96,.28);
-      background:rgba(216,177,96,.1);
+      background:rgba(216,177,96,.10);
       color:#f7d889;
       font-weight:700;
-      font-size:.92rem;
-      transition:transform .2s ease, background .2s ease, border-color .2s ease;
+      font-size:.9rem;
+      transition:transform .2s ease, background .2s ease, border-color .2s ease, color .2s ease;
     }
 
     .btn:hover,
-    .btn:focus-visible{
+    .btn:focus-visible,
+    .mini-btn:hover,
+    .mini-btn:focus-visible{
       transform:translateY(-2px);
-      background:rgba(216,177,96,.16);
       border-color:rgba(216,177,96,.44);
+      background:rgba(216,177,96,.16);
       outline:none;
     }
 
-    .btn.secondary{
+    .btn.secondary,
+    .mini-btn.secondary{
       background:rgba(255,255,255,.035);
       color:var(--muted);
     }
 
+    .btn.disabled,
+    .mini-btn.disabled{
+      pointer-events:none;
+      opacity:.58;
+      color:var(--muted-2);
+      background:rgba(255,255,255,.03);
+    }
+
+    .hero-book{
+      display:grid;
+      place-items:center;
+      min-height:380px;
+      border-radius:28px;
+      border:1px solid rgba(216,177,96,.13);
+      background:
+        radial-gradient(circle at 50% 68%, rgba(216,177,96,.22), transparent 34%),
+        linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.34));
+      overflow:hidden;
+    }
+
+    .hero-book img{
+      max-height:360px;
+      width:auto;
+      filter:drop-shadow(0 30px 38px rgba(0,0,0,.58));
+    }
+
+    section{
+      scroll-margin-top:96px;
+    }
+
     .section{
-      margin-top:34px;
-      scroll-margin-top:95px;
+      margin-top:38px;
     }
 
     .section-head{
       display:flex;
       align-items:end;
       justify-content:space-between;
-      gap:18px;
+      gap:20px;
       margin-bottom:18px;
     }
 
     .section-head h2{
       margin:0;
       color:#f4d99d;
-      font-size:clamp(1.55rem, 3vw, 2.5rem);
-      line-height:1;
-      letter-spacing:-.025em;
+      font-size:clamp(1.6rem, 3vw, 2.65rem);
+      line-height:.95;
+      letter-spacing:-.03em;
     }
 
     .section-head p{
+      max-width:820px;
       margin:8px 0 0;
-      max-width:760px;
       color:var(--muted);
       line-height:1.58;
     }
@@ -284,71 +435,99 @@
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      gap:8px;
       white-space:nowrap;
+      min-height:32px;
       padding:8px 13px;
       border-radius:999px;
       border:1px solid var(--line);
-      color:var(--gold);
       background:rgba(216,177,96,.07);
-      font-size:.82rem;
+      color:var(--gold);
+      font-size:.78rem;
       font-weight:700;
+      letter-spacing:.09em;
       text-transform:uppercase;
-      letter-spacing:.08em;
     }
 
     .featured{
       display:grid;
-      grid-template-columns:minmax(260px, .88fr) minmax(0, 1.12fr);
-      gap:26px;
+      grid-template-columns:minmax(240px, .72fr) minmax(0, 1.28fr);
+      gap:24px;
       align-items:center;
-      padding:26px;
+      padding:24px;
       border-radius:var(--radius);
-      border:1px solid rgba(216,177,96,.2);
+      border:1px solid rgba(216,177,96,.18);
       background:
-        radial-gradient(circle at 20% 18%, rgba(216,177,96,.13), transparent 34%),
-        linear-gradient(180deg, rgba(17,24,39,.82), rgba(7,11,20,.82));
-      box-shadow:var(--shadow);
+        radial-gradient(circle at 18% 18%, rgba(216,177,96,.14), transparent 34%),
+        linear-gradient(180deg, rgba(18,24,36,.86), rgba(8,11,18,.86));
+      box-shadow:0 18px 46px rgba(0,0,0,.28);
     }
 
     .book-frame{
-      min-height:360px;
+      min-height:330px;
       display:grid;
       place-items:center;
       border-radius:22px;
+      border:1px solid rgba(216,177,96,.12);
       background:
-        radial-gradient(circle at 50% 62%, rgba(216,177,96,.2), transparent 34%),
-        linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,.34));
-      border:1px solid rgba(216,177,96,.13);
-      overflow:hidden;
+        radial-gradient(circle at 50% 68%, rgba(216,177,96,.18), transparent 34%),
+        linear-gradient(180deg, rgba(0,0,0,.06), rgba(0,0,0,.30));
     }
 
     .book-frame img{
-      max-height:355px;
+      max-height:315px;
       width:auto;
-      filter:drop-shadow(0 26px 34px rgba(0,0,0,.5));
-    }
-
-    .featured-copy h3{
-      margin:8px 0 8px;
-      color:#f7d889;
-      font-size:clamp(2rem, 4vw, 3.5rem);
-      line-height:.95;
-      letter-spacing:-.04em;
+      filter:drop-shadow(0 24px 32px rgba(0,0,0,.55));
     }
 
     .featured-copy .series{
       color:var(--muted-2);
-      text-transform:uppercase;
-      letter-spacing:.1em;
-      font-size:.82rem;
+      font-size:.78rem;
       font-weight:700;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+    }
+
+    .featured-copy h3{
+      margin:10px 0 10px;
+      color:#f7d889;
+      font-size:clamp(2rem, 4vw, 3.55rem);
+      line-height:.92;
+      letter-spacing:-.045em;
     }
 
     .featured-copy p{
+      margin:0 0 12px;
       color:var(--muted);
-      line-height:1.68;
-      font-size:1.02rem;
+      line-height:1.65;
+      font-size:1rem;
+    }
+
+    .catalog-summary{
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0, 1fr));
+      gap:12px;
+      margin-top:18px;
+    }
+
+    .summary-item{
+      padding:16px;
+      border-radius:18px;
+      border:1px solid rgba(216,177,96,.14);
+      background:rgba(8,11,18,.56);
+    }
+
+    .summary-item strong{
+      display:block;
+      color:#f7d889;
+      font-size:1.45rem;
+      line-height:1;
+    }
+
+    .summary-item span{
+      display:block;
+      margin-top:6px;
+      color:var(--muted-2);
+      font-size:.84rem;
     }
 
     .cards{
@@ -362,14 +541,15 @@
       display:flex;
       flex-direction:column;
       min-height:100%;
+      overflow:hidden;
       border-radius:22px;
       border:1px solid rgba(216,177,96,.16);
       background:
-        linear-gradient(180deg, rgba(17,24,39,.78), rgba(7,11,20,.82));
+        radial-gradient(circle at 50% 0%, rgba(216,177,96,.075), transparent 34%),
+        linear-gradient(180deg, rgba(18,24,36,.82), rgba(8,11,18,.88));
       box-shadow:0 18px 40px rgba(0,0,0,.24);
-      overflow:hidden;
-      scroll-margin-top:95px;
       transition:transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+      scroll-margin-top:100px;
     }
 
     .product-card:hover,
@@ -378,18 +558,17 @@
       transform:translateY(-4px);
       border-color:rgba(216,177,96,.42);
       box-shadow:
-        0 20px 45px rgba(0,0,0,.34),
-        0 0 0 1px rgba(216,177,96,.12),
-        0 0 28px rgba(216,177,96,.12);
+        0 22px 50px rgba(0,0,0,.34),
+        0 0 30px rgba(216,177,96,.10);
     }
 
-    .product-card:target::before{
+    .product-card:target::after{
       content:"";
       position:absolute;
       inset:0;
       pointer-events:none;
-      background:radial-gradient(circle at 50% 20%, rgba(216,177,96,.16), transparent 36%);
-      z-index:2;
+      border-radius:22px;
+      box-shadow:inset 0 0 0 2px rgba(216,177,96,.32);
     }
 
     .cover{
@@ -397,39 +576,36 @@
       display:grid;
       place-items:center;
       padding:22px;
-      background:
-        radial-gradient(circle at 50% 62%, rgba(216,177,96,.16), transparent 34%),
-        linear-gradient(180deg, rgba(216,177,96,.045), rgba(0,0,0,.18));
       border-bottom:1px solid rgba(216,177,96,.12);
+      background:
+        radial-gradient(circle at 50% 70%, rgba(216,177,96,.18), transparent 35%),
+        linear-gradient(180deg, rgba(216,177,96,.045), rgba(0,0,0,.20));
     }
 
     .cover img{
       max-height:225px;
       width:auto;
-      filter:drop-shadow(0 18px 24px rgba(0,0,0,.5));
+      filter:drop-shadow(0 18px 26px rgba(0,0,0,.55));
     }
 
     .placeholder-cover{
       width:150px;
       aspect-ratio:2/3;
-      border-radius:12px;
       display:grid;
       place-items:center;
       text-align:center;
-      color:#f7d889;
       padding:16px;
-      border:1px solid rgba(216,177,96,.26);
+      border-radius:14px;
+      border:1px solid rgba(216,177,96,.25);
       background:
-        linear-gradient(135deg, rgba(216,177,96,.16), rgba(255,255,255,.035)),
-        linear-gradient(180deg, #202837, #0e1422);
-      box-shadow:0 18px 28px rgba(0,0,0,.34);
+        linear-gradient(135deg, rgba(216,177,96,.14), rgba(255,255,255,.035)),
+        linear-gradient(180deg, #222b3c, #101725);
+      color:#f7d889;
       font-weight:700;
-      letter-spacing:.03em;
+      box-shadow:0 18px 28px rgba(0,0,0,.34);
     }
 
     .product-body{
-      position:relative;
-      z-index:3;
       display:flex;
       flex-direction:column;
       flex:1;
@@ -439,24 +615,23 @@
     .meta{
       display:flex;
       flex-wrap:wrap;
-      align-items:center;
-      gap:8px;
+      gap:7px;
       margin-bottom:12px;
     }
 
     .tag{
       display:inline-flex;
       align-items:center;
-      min-height:26px;
-      padding:5px 10px;
+      min-height:25px;
+      padding:5px 9px;
       border-radius:999px;
       border:1px solid rgba(216,177,96,.18);
-      background:rgba(216,177,96,.06);
       color:var(--gold);
-      font-size:.72rem;
+      background:rgba(216,177,96,.06);
+      font-size:.70rem;
       font-weight:700;
-      text-transform:uppercase;
       letter-spacing:.08em;
+      text-transform:uppercase;
     }
 
     .tag.muted{
@@ -467,15 +642,15 @@
     .product-body h3{
       margin:0 0 10px;
       color:#f4d99d;
-      font-size:1.55rem;
-      line-height:1.05;
+      font-size:1.45rem;
+      line-height:1.06;
     }
 
     .product-body p{
       margin:0 0 14px;
       color:var(--muted);
       line-height:1.55;
-      font-size:.97rem;
+      font-size:.96rem;
     }
 
     .price{
@@ -485,69 +660,10 @@
       font-weight:700;
     }
 
-    .product-actions{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top:16px;
-    }
-
-    .mini-btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-height:36px;
-      padding:8px 12px;
-      border-radius:999px;
-      border:1px solid rgba(216,177,96,.24);
-      background:rgba(216,177,96,.09);
-      color:#f7d889;
-      font-weight:700;
-      font-size:.85rem;
-      transition:transform .2s ease, background .2s ease, border-color .2s ease;
-    }
-
-    .mini-btn:hover,
-    .mini-btn:focus-visible{
-      transform:translateY(-2px);
-      background:rgba(216,177,96,.15);
-      border-color:rgba(216,177,96,.42);
-      outline:none;
-    }
-
-    .mini-btn.disabled{
-      pointer-events:none;
-      opacity:.58;
-      color:var(--muted-2);
-      background:rgba(255,255,255,.035);
-    }
-
-    .stats{
-      display:grid;
-      grid-template-columns:repeat(4, minmax(0, 1fr));
-      gap:12px;
-      margin:24px 0;
-    }
-
-    .stat{
-      padding:16px;
-      border-radius:18px;
-      border:1px solid rgba(216,177,96,.14);
-      background:rgba(7,11,20,.52);
-    }
-
-    .stat strong{
-      display:block;
-      color:#f4d99d;
-      font-size:1.5rem;
-      line-height:1;
-    }
-
-    .stat span{
-      display:block;
+    .note{
       margin-top:6px;
       color:var(--muted-2);
-      font-size:.84rem;
+      font-size:.86rem;
     }
 
     .info-grid{
@@ -556,37 +672,37 @@
       gap:16px;
     }
 
-    .info-box{
+    .info-box,
+    .route-card{
       padding:20px;
       border-radius:20px;
       border:1px solid rgba(216,177,96,.14);
-      background:rgba(7,11,20,.54);
+      background:rgba(8,11,18,.56);
     }
 
-    .info-box h3{
+    .info-box h3,
+    .route-card strong{
+      display:block;
       margin:0 0 8px;
       color:#f4d99d;
-      font-size:1.22rem;
+      font-size:1.18rem;
     }
 
-    .info-box p{
-      margin:0 0 14px;
+    .info-box p,
+    .route-card span{
+      display:block;
+      margin:0;
       color:var(--muted);
-      line-height:1.58;
+      line-height:1.55;
     }
 
-    .breadcrumb-cards{
+    .route-grid{
       display:grid;
       grid-template-columns:repeat(3, minmax(0, 1fr));
       gap:14px;
-      margin-top:18px;
     }
 
     .route-card{
-      padding:18px;
-      border-radius:20px;
-      border:1px solid rgba(216,177,96,.14);
-      background:rgba(7,11,20,.58);
       transition:transform .2s ease, border-color .2s ease, background .2s ease;
     }
 
@@ -594,440 +710,562 @@
     .route-card:focus-visible{
       transform:translateY(-3px);
       border-color:rgba(216,177,96,.36);
-      background:rgba(17,24,39,.72);
+      background:rgba(18,24,36,.76);
       outline:none;
     }
 
-    .route-card strong{
-      display:block;
-      color:#f7d889;
-      margin-bottom:6px;
-    }
-
-    .route-card span{
-      display:block;
-      color:var(--muted);
-      line-height:1.45;
-      font-size:.94rem;
-    }
-
     .footer-note{
-      margin-top:36px;
+      margin-top:38px;
       padding:18px 20px;
       border-radius:20px;
       border:1px solid rgba(216,177,96,.12);
-      color:var(--muted-2);
       background:rgba(0,0,0,.18);
+      color:var(--muted-2);
       text-align:center;
       font-size:.9rem;
     }
 
-    @media (max-width: 940px){
-      .topbar-inner{
-        align-items:flex-start;
-        flex-direction:column;
-      }
+    .overlay{
+      display:none;
+      position:fixed;
+      inset:0;
+      z-index:90;
+      background:rgba(0,0,0,.55);
+      backdrop-filter:blur(2px);
+    }
 
-      .nav{
-        justify-content:flex-start;
+    body.menu-open .overlay{
+      display:block;
+    }
+
+    @media (max-width: 1060px){
+      :root{
+        --sidebar:260px;
       }
 
       .hero{
-        padding:30px 24px;
+        grid-template-columns:1fr;
+      }
+
+      .hero-book{
+        min-height:320px;
+      }
+
+      .hero-book img{
+        max-height:300px;
+      }
+
+      .catalog-summary{
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+      }
+
+      .cards,
+      .info-grid,
+      .route-grid{
+        grid-template-columns:1fr;
       }
 
       .featured{
         grid-template-columns:1fr;
       }
+    }
 
-      .cards,
-      .info-grid,
-      .breadcrumb-cards{
-        grid-template-columns:1fr;
+    @media (max-width: 860px){
+      .mobile-toggle{
+        display:inline-flex;
       }
 
-      .stats{
-        grid-template-columns:repeat(2, minmax(0, 1fr));
+      .sidebar{
+        transform:translateX(-105%);
+        transition:transform .25s ease;
+      }
+
+      body.menu-open .sidebar{
+        transform:translateX(0);
+      }
+
+      .toplinks,
+      .page{
+        margin-left:0;
+        width:100%;
+      }
+
+      .toplinks{
+        padding:66px 18px 12px;
+        align-items:flex-start;
+        flex-direction:column;
+      }
+
+      .page{
+        padding:24px 18px 50px;
+      }
+
+      .hero{
+        padding:30px 22px;
+        border-radius:26px;
+      }
+
+      h1{
+        font-size:clamp(2.2rem, 12vw, 3.8rem);
       }
     }
 
     @media (max-width: 560px){
-      .page,
-      .topbar-inner{
-        width:min(100% - 24px, 1180px);
+      .toplinks-group{
+        width:100%;
       }
 
-      .hero{
-        border-radius:24px;
+      .toplinks a{
+        flex:1 1 auto;
       }
 
-      .stats{
-        grid-template-columns:1fr;
+      .hero-book{
+        min-height:260px;
+      }
+
+      .hero-book img{
+        max-height:250px;
       }
 
       .book-frame{
-        min-height:280px;
+        min-height:270px;
       }
 
       .book-frame img{
-        max-height:275px;
+        max-height:250px;
       }
 
       .cover{
-        height:225px;
+        height:220px;
       }
 
       .cover img{
-        max-height:195px;
+        max-height:190px;
+      }
+
+      .catalog-summary{
+        grid-template-columns:1fr;
       }
     }
   </style>
 </head>
 
 <body>
-  <header class="topbar">
-    <div class="topbar-inner">
-      <a class="brand" href="index.html" aria-label="Volver al inicio de Las Crónicas de Sasha">
-        <span class="brand-mark">S</span>
-        <span class="brand-text">
-          <strong>Las Crónicas de Sasha</strong>
-          <span>Tienda oficial</span>
-        </span>
-      </a>
+  <button class="mobile-toggle" type="button" aria-label="Abrir menú" aria-controls="sidebar">
+    ☰ Menú
+  </button>
 
-      <nav class="nav" aria-label="Navegación principal">
-        <a href="../index.html">Portal principal</a>
-        <a href="index.html">Inicio Crónicas</a>
-        <a href="../systempyp/index.html">Pay &amp; Play System</a>
-        <a href="sasha.html">Sasha</a>
-        <a href="party-girls.html">Party Girls</a>
-        <a href="aliados.html">Aliados</a>
-        <a href="enemigos.html">Enemigos</a>
+  <div class="overlay" aria-hidden="true"></div>
+
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="index.html" aria-label="Inicio de Las Crónicas de Sasha">
+      <span class="mark">S</span>
+      <strong>Las Crónicas<br>de Sasha</strong>
+      <span>Tienda oficial</span>
+    </a>
+
+    <div class="side-section">
+      <h3>Portada</h3>
+      <nav class="side-nav" aria-label="Navegación de portada">
+        <a href="index.html">⌂ Inicio</a>
+        <a href="index.html#historia">✒ Historia</a>
+        <a href="index.html#libros">▤ Libros</a>
       </nav>
+    </div>
+
+    <div class="side-section">
+      <h3>Universo</h3>
+      <nav class="side-nav" aria-label="Navegación del universo">
+        <a href="sasha.html">• Sasha</a>
+        <a href="party-girls.html">• Party Girls</a>
+        <a href="aliados.html">• Aliados</a>
+        <a href="enemigos.html">• Enemigos</a>
+        <a href="index.html#lore">⌘ Lore</a>
+      </nav>
+    </div>
+
+    <div class="side-section">
+      <h3>Tienda</h3>
+      <nav class="side-nav" aria-label="Navegación de tienda">
+        <a class="active" href="tienda.html">▣ Tienda</a>
+        <a href="#producto-volumen-1">Volumen 1</a>
+        <a href="#anexos">Anexos</a>
+        <a href="#merchandising">Merchandising</a>
+      </nav>
+    </div>
+
+    <div class="side-footer">
+      f x ◎
+    </div>
+  </aside>
+
+  <header class="toplinks">
+    <div class="toplinks-group">
+      <a href="../index.html">Portal principal</a>
+      <a href="index.html">Inicio Crónicas</a>
+      <a href="../systempyp/index.html">Pay &amp; Play System</a>
+    </div>
+
+    <div class="toplinks-group">
+      <a href="index.html#libros">← Volver a libros</a>
+      <a href="#producto-volumen-1">Volumen principal</a>
+      <a href="#anexos">Anexos</a>
     </div>
   </header>
 
   <main class="page">
-    <section class="hero">
-      <span class="hero-kicker">Tienda oficial</span>
-      <h1>Tienda de Las Crónicas de Sasha</h1>
-      <p>
-        Aquí conviven la saga principal, los anexos y el futuro merchandising. El volumen 1 ocupa el centro,
-        los anexos forman un bloque propio y todo el catálogo queda orientado con la misma brújula que usan las fichas.
-      </p>
+    <div class="wrap">
 
-      <div class="hero-actions">
-        <a class="btn" href="#producto-volumen-1">Volumen principal</a>
-        <a class="btn secondary" href="#anexos">Primer anexo</a>
-        <a class="btn secondary" href="#catalogo">Tienda general</a>
-      </div>
-    </section>
-
-    <section class="section" id="producto-seleccionado">
-      <div class="section-head">
-        <div>
-          <h2>Producto seleccionado</h2>
-          <p>Has llegado a un artículo concreto dentro de la tienda. Si venías desde una ficha, aquí tienes el acceso al producto y a su página de detalle.</p>
-        </div>
-        <span class="pill">Catálogo</span>
-      </div>
-
-      <article class="featured">
-        <div class="book-frame">
-          <img src="../assets/libros/volumenes/libro-sin-fondo.png" alt="Volumen 1 Mis inicios">
-        </div>
-
-        <div class="featured-copy">
-          <div class="series">Las Crónicas de Sasha · Volumen 1</div>
-          <h3>Mis inicios</h3>
-          <p>
-            El corazón comercial y narrativo del catálogo. Este es el libro que abre la saga, presenta el universo y funciona como primera puerta para quien entra por primera vez.
-          </p>
-          <p>
-            La compra directa se activará aquí cuando lo decidas. De momento, la tienda queda preparada con ficha, producto y rutas internas coherentes.
+      <section class="hero" id="inicio">
+        <div class="hero-content">
+          <span class="kicker">Tienda oficial</span>
+          <h1>Tienda de Las Crónicas de Sasha</h1>
+          <p class="lead">
+            La saga principal ocupa el centro. Los anexos amplían el universo desde sus márgenes y el merchandising queda preparado como escaparate futuro, sin romper el tono visual de la web.
           </p>
 
           <div class="hero-actions">
-            <a class="btn" href="volumen-1.html">Ver ficha</a>
-            <a class="btn secondary" href="#catalogo">Ver tienda general</a>
-            <span class="btn secondary" aria-disabled="true">Compra directa próximamente</span>
+            <a class="btn" href="#producto-volumen-1">Ver Volumen 1</a>
+            <a class="btn secondary" href="#anexos">Ver anexos</a>
+            <a class="btn secondary" href="#merchandising">Merchandising</a>
           </div>
         </div>
-      </article>
-    </section>
 
-    <section class="section" id="catalogo">
-      <div class="section-head">
-        <div>
-          <h2>Catálogo</h2>
-          <p>
-            La saga principal ocupa el centro. Los anexos aparecen como familia visual común. El merchandising queda visible,
-            pero en una zona aparte.
-          </p>
+        <div class="hero-book">
+          <img src="../assets/libros/volumenes/libro-sin-fondo.png" alt="Las Crónicas de Sasha · Volumen 1 · Mis inicios">
         </div>
-        <span class="pill">Catálogo completo</span>
-      </div>
+      </section>
 
-      <article class="featured" id="producto-volumen-1">
-        <div class="book-frame">
-          <img src="../assets/libros/volumenes/libro-sin-fondo.png" alt="Las Crónicas de Sasha Volumen 1">
-        </div>
-
-        <div class="featured-copy">
-          <div class="series">Saga principal destacada · Puerta de entrada</div>
-          <h3>Mis inicios</h3>
-          <p>
-            El arranque real de la saga. La primera puerta, el primer gran cambio y el punto desde el que todo empieza a tensarse.
-          </p>
-          <p>
-            Precio pendiente. La compra directa aún no está activa, pero el producto ya queda enlazado con su ficha y con las rutas internas de la web.
-          </p>
-
-          <div class="hero-actions">
-            <a class="btn" href="volumen-1.html">Ver ficha</a>
-            <span class="btn secondary" aria-disabled="true">Comprar pronto</span>
-          </div>
-        </div>
-      </article>
-
-      <div class="stats" aria-label="Resumen del catálogo">
-        <div class="stat">
-          <strong>6</strong>
-          <span>Catálogo completo</span>
-        </div>
-        <div class="stat">
-          <strong>1</strong>
-          <span>Saga principal activa</span>
-        </div>
-        <div class="stat">
-          <strong>3</strong>
-          <span>Anexos</span>
-        </div>
-        <div class="stat">
-          <strong>2</strong>
-          <span>Merchandising futuro</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="anexos">
-      <div class="section-head">
-        <div>
-          <h2>Expansión del universo</h2>
-          <p>
-            Estas piezas funcionan como una familia propia dentro de la tienda. No son libros aislados,
-            sino puertas laterales que amplían la respiración del mundo de Sasha.
-          </p>
-        </div>
-        <span class="pill">3 anexos activos</span>
-      </div>
-
-      <div class="cards">
-        <article class="product-card" id="producto-anexo-entrevista">
-          <div class="cover">
-            <img src="../assets/libros/anexos/Portada-entrevista.png" alt="Anexo Entrevista">
-          </div>
-          <div class="product-body">
-            <div class="meta">
-              <span class="tag">Anexo</span>
-              <span class="tag muted">Activo</span>
-            </div>
-            <h3>Entrevista</h3>
+      <section class="section" id="producto-volumen-1">
+        <div class="section-head">
+          <div>
+            <h2>Volumen principal</h2>
             <p>
-              Una pieza lateral del universo, útil para ampliar tono, perspectiva y sensación de mundo expandido.
+              El primer volumen es la puerta de entrada a la saga. Por eso conserva la posición destacada, con imagen grande y acceso directo a su ficha.
             </p>
-            <div class="price">Precio pendiente</div>
-            <div class="product-actions">
-              <a class="mini-btn" href="anexo-entrevista.html">Ver ficha</a>
-              <span class="mini-btn disabled">Comprar pronto</span>
-            </div>
           </div>
-        </article>
-
-        <article class="product-card" id="producto-anexo-dvni">
-          <div class="cover">
-            <img src="../assets/libros/anexos/Portada-DVNI.png" alt="Anexo DVNI">
-          </div>
-          <div class="product-body">
-            <div class="meta">
-              <span class="tag">Anexo</span>
-              <span class="tag muted">Activo</span>
-            </div>
-            <h3>DVNI</h3>
-            <p>
-              Un anexo con entidad propia que añade otra cámara lateral al edificio narrativo de la saga.
-            </p>
-            <div class="price">Precio pendiente</div>
-            <div class="product-actions">
-              <a class="mini-btn" href="anexo-dvni.html">Ver ficha</a>
-              <span class="mini-btn disabled">Comprar pronto</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="product-card" id="producto-anexo-cinco-dones">
-          <div class="cover">
-            <img src="../assets/libros/anexos/Portada-cinco-dones.png" alt="Anexo Cinco dones">
-          </div>
-          <div class="product-body">
-            <div class="meta">
-              <span class="tag">Anexo</span>
-              <span class="tag muted">Activo</span>
-            </div>
-            <h3>Cinco dones</h3>
-            <p>
-              Una pieza complementaria que aporta relieve simbólico y ayuda a que el universo gane espesor.
-            </p>
-            <div class="price">Precio pendiente</div>
-            <div class="product-actions">
-              <a class="mini-btn" href="anexo-cinco-dones.html">Ver ficha</a>
-              <span class="mini-btn disabled">Comprar pronto</span>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section" id="merchandising">
-      <div class="section-head">
-        <div>
-          <h2>Merchandising</h2>
-          <p>
-            Esta zona queda visible, pero apartada del foco principal. Está lista para crecer con láminas,
-            pósters, marcapáginas y otros objetos del universo.
-          </p>
+          <span class="pill">Saga principal</span>
         </div>
-        <span class="pill">2 productos reservados</span>
-      </div>
 
-      <div class="cards">
-        <article class="product-card" id="producto-poster-sasha">
-          <div class="cover">
-            <div class="placeholder-cover">Póster<br>de Sasha</div>
+        <article class="featured">
+          <div class="book-frame">
+            <img src="../assets/libros/volumenes/libro-sin-fondo.png" alt="Volumen 1 · Mis inicios">
           </div>
-          <div class="product-body">
-            <div class="meta">
-              <span class="tag">Merchandising</span>
-              <span class="tag muted">Próximamente</span>
-            </div>
-            <h3>Póster de Sasha</h3>
+
+          <div class="featured-copy">
+            <div class="series">Las Crónicas de Sasha · Volumen 1</div>
+            <h3>Mis inicios</h3>
             <p>
-              Espacio reservado para una futura línea visual de láminas, pósters o arte promocional del universo.
+              La obra que abre la saga. El primer paso de Sasha, el primer choque con un mundo desconocido y la base sobre la que crecerá todo lo demás.
             </p>
-            <div class="price">Pendiente</div>
-            <div class="product-actions">
-              <span class="mini-btn disabled">Ver producto</span>
-              <span class="mini-btn disabled">Comprar</span>
+            <p>
+              La compra directa se activará cuando esté disponible. De momento, el producto queda preparado, enlazado y visualmente integrado con el resto de la web.
+            </p>
+
+            <div class="actions">
+              <a class="btn" href="volumen-1.html">Ver ficha</a>
+              <span class="btn disabled">Comprar pronto</span>
             </div>
           </div>
         </article>
 
-        <article class="product-card" id="producto-marcapaginas">
-          <div class="cover">
-            <div class="placeholder-cover">Marcapáginas<br>de la saga</div>
+        <div class="catalog-summary" aria-label="Resumen de catálogo">
+          <div class="summary-item">
+            <strong>1</strong>
+            <span>Libro principal activo</span>
           </div>
-          <div class="product-body">
-            <div class="meta">
-              <span class="tag">Merchandising</span>
-              <span class="tag muted">Próximamente</span>
-            </div>
-            <h3>Marcapáginas de la saga</h3>
-            <p>
-              Placeholder elegante para futuros objetos físicos del universo, pensados para acompañar la lectura.
-            </p>
-            <div class="price">Pendiente</div>
-            <div class="product-actions">
-              <span class="mini-btn disabled">Ver producto</span>
-              <span class="mini-btn disabled">Comprar</span>
-            </div>
+          <div class="summary-item">
+            <strong>3</strong>
+            <span>Anexos preparados</span>
           </div>
-        </article>
-
-        <article class="product-card">
-          <div class="cover">
-            <div class="placeholder-cover">Futuro<br>producto</div>
+          <div class="summary-item">
+            <strong>2</strong>
+            <span>Merchandising futuro</span>
           </div>
-          <div class="product-body">
-            <div class="meta">
-              <span class="tag">Reserva</span>
-              <span class="tag muted">Futuro</span>
-            </div>
-            <h3>Nuevo objeto</h3>
-            <p>
-              Hueco preparado para ampliar la tienda sin tener que rehacer la estructura cuando llegue el siguiente producto.
-            </p>
-            <div class="price">Pendiente</div>
-            <div class="product-actions">
-              <span class="mini-btn disabled">Activar más adelante</span>
-            </div>
+          <div class="summary-item">
+            <strong>6</strong>
+            <span>Huecos de catálogo</span>
           </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section" id="lectura">
-      <div class="section-head">
-        <div>
-          <h2>Cómo se lee esta tienda</h2>
-          <p>
-            La estructura ya marca una jerarquía limpia para que el catálogo no parezca una mesa con todo mezclado.
-          </p>
         </div>
-      </div>
+      </section>
 
-      <div class="info-grid">
-        <article class="info-box">
-          <h3>Núcleo principal</h3>
-          <p>El volumen 1 aparece como puerta central del catálogo y como la primera apuesta para nuevos lectores.</p>
-          <a class="mini-btn" href="#producto-volumen-1">Ir al volumen 1</a>
-        </article>
-
-        <article class="info-box">
-          <h3>Familia de anexos</h3>
-          <p>Los anexos ya no se ven como tres piezas sueltas. Forman un bloque común, con identidad de grupo y lectura compartida.</p>
-          <a class="mini-btn" href="#anexos">Ver bloque de anexos</a>
-        </article>
-
-        <article class="info-box">
-          <h3>Escaparate futuro</h3>
-          <p>El merchandising queda visible, pero en tercer plano, como un ala preparada para crecer cuando toque.</p>
-          <a class="mini-btn" href="#merchandising">Ver merchandising</a>
-        </article>
-      </div>
-    </section>
-
-    <section class="section" id="brujula">
-      <div class="section-head">
-        <div>
-          <h2>Brújula del catálogo</h2>
-          <p>
-            Desde la tienda puedes mantener siempre la orientación general del sistema: volumen principal,
-            primera expansión complementaria y regreso al bloque central de la web.
-          </p>
+      <section class="section" id="anexos">
+        <div class="section-head">
+          <div>
+            <h2>Anexos y expansiones</h2>
+            <p>
+              Estas piezas forman una familia propia dentro del catálogo: materiales laterales que amplían la respiración del mundo de Sasha.
+            </p>
+          </div>
+          <span class="pill">Expansión del universo</span>
         </div>
+
+        <div class="cards">
+          <article class="product-card" id="producto-anexo-entrevista">
+            <div class="cover">
+              <img src="../assets/libros/anexos/Portada-entrevista.png" alt="Entrevista con una diosa">
+            </div>
+
+            <div class="product-body">
+              <div class="meta">
+                <span class="tag">Anexo</span>
+                <span class="tag muted">Activo</span>
+              </div>
+
+              <h3>Entrevista con una diosa</h3>
+              <p>
+                ¿Qué se le pregunta a una diosa? Una pieza lateral para ampliar tono, perspectiva y sensación de mundo vivo.
+              </p>
+
+              <div class="price">Precio pendiente</div>
+              <div class="note">Compra directa aún no activa</div>
+
+              <div class="actions">
+                <a class="mini-btn" href="anexo-entrevista.html">Ver ficha</a>
+                <span class="mini-btn disabled">Comprar pronto</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card" id="producto-anexo-dvni">
+            <div class="cover">
+              <img src="../assets/libros/anexos/Portada-DVNI.png" alt="DVNI">
+            </div>
+
+            <div class="product-body">
+              <div class="meta">
+                <span class="tag">Anexo</span>
+                <span class="tag muted">Activo</span>
+              </div>
+
+              <h3>DVNI</h3>
+              <p>
+                Una cámara lateral del universo: política, magia y un choque de escala mundial alrededor de Demon Hunter.
+              </p>
+
+              <div class="price">Precio pendiente</div>
+              <div class="note">Compra directa aún no activa</div>
+
+              <div class="actions">
+                <a class="mini-btn" href="anexo-dvni.html">Ver ficha</a>
+                <span class="mini-btn disabled">Comprar pronto</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card" id="producto-anexo-cinco-dones">
+            <div class="cover">
+              <img src="../assets/libros/anexos/Portada-cinco-dones.png" alt="Cinco dones">
+            </div>
+
+            <div class="product-body">
+              <div class="meta">
+                <span class="tag">Anexo</span>
+                <span class="tag muted">Activo</span>
+              </div>
+
+              <h3>Cinco dones</h3>
+              <p>
+                Las Inverse emprenden una gira mundial. Cada parada deja una huella mágica imposible de ignorar.
+              </p>
+
+              <div class="price">Precio pendiente</div>
+              <div class="note">Compra directa aún no activa</div>
+
+              <div class="actions">
+                <a class="mini-btn" href="anexo-cinco-dones.html">Ver ficha</a>
+                <span class="mini-btn disabled">Comprar pronto</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="merchandising">
+        <div class="section-head">
+          <div>
+            <h2>Merchandising</h2>
+            <p>
+              Zona reservada para futuros objetos del universo: láminas, pósters, marcapáginas y piezas visuales de la saga.
+            </p>
+          </div>
+          <span class="pill">Próximamente</span>
+        </div>
+
+        <div class="cards">
+          <article class="product-card" id="producto-poster-sasha">
+            <div class="cover">
+              <div class="placeholder-cover">Póster<br>de Sasha</div>
+            </div>
+
+            <div class="product-body">
+              <div class="meta">
+                <span class="tag">Merchandising</span>
+                <span class="tag muted">Futuro</span>
+              </div>
+
+              <h3>Póster de Sasha</h3>
+              <p>
+                Espacio reservado para una futura línea de arte promocional del universo.
+              </p>
+
+              <div class="price">Pendiente</div>
+              <div class="note">Producto aún no activado</div>
+
+              <div class="actions">
+                <span class="mini-btn disabled">Ver producto</span>
+                <span class="mini-btn disabled">Comprar</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card" id="producto-marcapaginas">
+            <div class="cover">
+              <div class="placeholder-cover">Marcapáginas<br>de la saga</div>
+            </div>
+
+            <div class="product-body">
+              <div class="meta">
+                <span class="tag">Merchandising</span>
+                <span class="tag muted">Futuro</span>
+              </div>
+
+              <h3>Marcapáginas de la saga</h3>
+              <p>
+                Placeholder para futuros objetos físicos pensados para acompañar la lectura.
+              </p>
+
+              <div class="price">Pendiente</div>
+              <div class="note">Producto aún no activado</div>
+
+              <div class="actions">
+                <span class="mini-btn disabled">Ver producto</span>
+                <span class="mini-btn disabled">Comprar</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="cover">
+              <div class="placeholder-cover">Nuevo<br>producto</div>
+            </div>
+
+            <div class="product-body">
+              <div class="meta">
+                <span class="tag">Reserva</span>
+                <span class="tag muted">Futuro</span>
+              </div>
+
+              <h3>Próximo objeto</h3>
+              <p>
+                Hueco preparado para ampliar la tienda sin rehacer la estructura cuando llegue el siguiente producto.
+              </p>
+
+              <div class="price">Pendiente</div>
+              <div class="note">Espacio reservado</div>
+
+              <div class="actions">
+                <span class="mini-btn disabled">Activar más adelante</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="lectura">
+        <div class="section-head">
+          <div>
+            <h2>Cómo leer esta tienda</h2>
+            <p>
+              La estructura conserva la jerarquía narrativa de la página principal: obra troncal, expansiones y objetos futuros.
+            </p>
+          </div>
+        </div>
+
+        <div class="info-grid">
+          <article class="info-box">
+            <h3>Núcleo principal</h3>
+            <p>
+              El Volumen 1 aparece como entrada recomendada para nuevos lectores y como producto faro del catálogo.
+            </p>
+          </article>
+
+          <article class="info-box">
+            <h3>Expansión del universo</h3>
+            <p>
+              Los anexos se agrupan como una familia común, no como piezas sueltas desperdigadas por el escaparate.
+            </p>
+          </article>
+
+          <article class="info-box">
+            <h3>Escaparate futuro</h3>
+            <p>
+              El merchandising queda visible, pero en tercer plano, preparado para crecer cuando toque.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="brujula">
+        <div class="section-head">
+          <div>
+            <h2>Brújula del catálogo</h2>
+            <p>
+              Accesos rápidos para no perder orientación entre la portada, la ficha principal y los anexos.
+            </p>
+          </div>
+        </div>
+
+        <div class="route-grid">
+          <a class="route-card" href="index.html#libros">
+            <strong>Volver a Libros</strong>
+            <span>Regresar al bloque central del catálogo en la portada de Las Crónicas. →</span>
+          </a>
+
+          <a class="route-card" href="volumen-1.html">
+            <strong>Ficha del Volumen 1</strong>
+            <span>Abrir la página de detalle de Mis inicios. →</span>
+          </a>
+
+          <a class="route-card" href="anexo-entrevista.html">
+            <strong>Primer anexo</strong>
+            <span>Entrar en la primera expansión complementaria del universo. →</span>
+          </a>
+        </div>
+      </section>
+
+      <div class="footer-note">
+        Las Crónicas de Sasha · Tienda oficial
       </div>
 
-      <div class="breadcrumb-cards">
-        <a class="route-card" href="volumen-1.html">
-          <strong>Volumen principal</strong>
-          <span>Abrir la ficha de la obra troncal de la saga. →</span>
-        </a>
-
-        <a class="route-card" href="anexo-entrevista.html">
-          <strong>Primer anexo</strong>
-          <span>Entrar en la primera expansión complementaria del universo. →</span>
-        </a>
-
-        <a class="route-card" href="index.html#libros">
-          <strong>Inicio del catálogo</strong>
-          <span>Volver al bloque de libros de la portada principal. →</span>
-        </a>
-      </div>
-    </section>
-
-    <div class="footer-note">
-      Página de tienda.html con rutas de imágenes corregidas para la nueva estructura de assets/libros/volumenes y assets/libros/anexos.
     </div>
   </main>
+
+  <script>
+    const body = document.body;
+    const toggle = document.querySelector('.mobile-toggle');
+    const overlay = document.querySelector('.overlay');
+    const sidebarLinks = document.querySelectorAll('.sidebar a');
+
+    function closeMenu(){
+      body.classList.remove('menu-open');
+    }
+
+    toggle.addEventListener('click', () => {
+      body.classList.toggle('menu-open');
+    });
+
+    overlay.addEventListener('click', closeMenu);
+
+    sidebarLinks.forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+
+    document.addEventListener('keydown', event => {
+      if(event.key === 'Escape'){
+        closeMenu();
+      }
+    });
+  </script>
 </body>
 </html>
