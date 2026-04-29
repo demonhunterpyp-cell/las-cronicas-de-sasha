@@ -100,7 +100,7 @@
       position:fixed;
       top:72px;
       left:18px;
-      z-index:1200;
+      z-index:1800;
       display:inline-flex;
       align-items:center;
       gap:10px;
@@ -120,7 +120,7 @@
       left:0;
       width:min(340px, 88vw);
       height:100vh;
-      z-index:1300;
+      z-index:2000;
       transform:translateX(-103%);
       transition:transform .28s ease;
       background:
@@ -138,7 +138,7 @@
       position:fixed;
       inset:0;
       background:rgba(0,0,0,.5);
-      z-index:1250;
+      z-index:1900;
       display:none;
     }
 
@@ -583,48 +583,103 @@
     .news-grid{grid-template-columns:1.5fr 1fr}
     .shop-grid{grid-template-columns:repeat(3, 1fr)}
 
+    .lore-panel{
+      cursor:pointer;
+      transition:transform .24s ease, border-color .24s ease, box-shadow .24s ease, background .24s ease;
+    }
+
+    .lore-panel::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      opacity:0;
+      pointer-events:none;
+      background:
+        radial-gradient(circle at 50% 18%, rgba(240,200,111,.18), transparent 28%),
+        radial-gradient(circle at 18% 72%, rgba(216,177,96,.13), transparent 26%),
+        linear-gradient(180deg, rgba(255,232,180,.045), rgba(255,232,180,.015));
+      transition:opacity .24s ease;
+    }
+
+    .lore-panel:hover,
+    .lore-panel:focus-within{
+      transform:translateY(-3px);
+      border-color:rgba(216,177,96,.42);
+      box-shadow:
+        0 24px 58px rgba(0,0,0,.38),
+        0 0 0 1px rgba(216,177,96,.16),
+        0 0 34px rgba(216,177,96,.20);
+    }
+
+    .lore-panel:hover::after,
+    .lore-panel:focus-within::after{
+      opacity:1;
+    }
+
     .lore-panel-link{
       position:relative;
-      z-index:1;
+      z-index:2;
       display:block;
+      margin:-32px -28px;
+      padding:32px 28px;
       color:inherit;
       text-decoration:none;
-      cursor:pointer;
+      outline:none;
     }
 
-    .lore-panel-link .card{
-      transition:transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+    .lore-panel-link:focus-visible{
+      border-radius:22px;
+      box-shadow:inset 0 0 0 2px rgba(240,200,111,.62);
     }
 
-    .lore-panel-link:hover .card{
+    .lore-panel:hover .section-title,
+    .lore-panel:focus-within .section-title{
+      filter:drop-shadow(0 0 14px rgba(240,200,111,.30));
+    }
+
+    .lore-panel .card{
+      transition:transform .24s ease, border-color .24s ease, background .24s ease, box-shadow .24s ease;
+    }
+
+    .lore-panel:hover .card,
+    .lore-panel:focus-within .card{
       transform:translateY(-4px);
-      border-color:rgba(216,177,96,.32);
-      box-shadow:0 18px 34px rgba(0,0,0,.22);
+      border-color:rgba(216,177,96,.34);
+      background:
+        radial-gradient(circle at 84% 14%, rgba(216,177,96,.14), transparent 22%),
+        linear-gradient(180deg, rgba(55,66,96,.98), rgba(24,31,47,.99));
+      box-shadow:0 18px 34px rgba(0,0,0,.24);
     }
 
-    .lore-external-note{
+    .lore-cta{
       position:relative;
-      z-index:1;
+      z-index:2;
       display:flex;
       width:max-content;
+      max-width:100%;
       align-items:center;
       justify-content:center;
-      gap:8px;
-      margin:18px auto 0;
-      padding:10px 14px;
+      gap:10px;
+      margin:22px auto 0;
+      padding:12px 18px;
       border-radius:999px;
-      border:1px solid rgba(216,177,96,.22);
-      background:rgba(255,255,255,.04);
+      border:1px solid rgba(216,177,96,.28);
+      background:rgba(255,255,255,.055);
       color:#f2e2c3;
       font-weight:700;
-      transition:.22s ease;
+      box-shadow:0 12px 26px rgba(0,0,0,.18);
+      transition:transform .24s ease, background .24s ease, border-color .24s ease, color .24s ease, box-shadow .24s ease;
     }
 
-    .lore-panel-link:hover .lore-external-note{
+    .lore-panel:hover .lore-cta,
+    .lore-panel:focus-within .lore-cta{
       transform:translateY(-2px);
-      background:rgba(255,255,255,.07);
-      border-color:rgba(216,177,96,.34);
+      background:linear-gradient(180deg, rgba(216,177,96,.24), rgba(183,133,55,.18));
+      border-color:rgba(216,177,96,.55);
       color:#fff2d2;
+      box-shadow:
+        0 14px 30px rgba(0,0,0,.24),
+        0 0 22px rgba(240,200,111,.18);
     }
 
     .card{
@@ -1201,7 +1256,7 @@
       </div>
     </section>
 
-    <section class="panel" id="lore">
+    <section class="panel lore-panel" id="lore">
       <a class="lore-panel-link" href="https://www.worldanvil.com/w/demon-hunter-tabanne" target="_blank" rel="noopener noreferrer" aria-label="Abrir el lore expandido de Demon Hunter en World Anvil">
         <div class="ornament"></div>
         <h2 class="section-title">Lore</h2>
@@ -1233,7 +1288,7 @@
           </article>
         </div>
 
-        <span class="lore-external-note">Abrir lore expandido en World Anvil →</span>
+        <span class="lore-cta">Abrir lore expandido en World Anvil →</span>
       </a>
     </section>
 
