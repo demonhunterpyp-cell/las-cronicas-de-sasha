@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Las Crónicas de Sasha</title>
-  <meta name="description" content="Web oficial de Las Crónicas de Sasha. Historia, libros, personajes, lore expandido en World Anvil, novedades y tienda." />
+  <meta name="description" content="Web oficial de Las Crónicas de Sasha. Historia, libros, personajes, lore expandido en World Anvil, novedades, tienda y enlaces destacados." />
   <style>
     :root{
       --bg-1:#0f1728;
@@ -862,6 +862,178 @@
       line-height:1.7;
       font-size:.95rem;
     }
+
+
+    /* REFUERZO GLOBAL · Elementos clicables más visibles */
+    .interworld-link,
+    .menu-link,
+    .top-social a,
+    .btn,
+    .mini-btn,
+    .tab,
+    .hero-paper-book a,
+    .card a,
+    .news-actions a,
+    .card-actions a{
+      cursor:pointer;
+    }
+
+    .interworld-link,
+    .menu-link,
+    .top-social a,
+    .btn,
+    .mini-btn,
+    .tab,
+    .hero-paper-book a,
+    .card,
+    .news-feature,
+    .news-mini{
+      will-change:transform, box-shadow, filter;
+    }
+
+    .interworld-link:hover,
+    .interworld-link:focus-visible{
+      transform:translateY(-2px);
+      border-color:rgba(216,177,96,.46);
+      box-shadow:
+        0 10px 24px rgba(0,0,0,.24),
+        0 0 18px rgba(216,177,96,.16);
+      filter:brightness(1.08);
+    }
+
+    .interworld-link.primary:hover,
+    .interworld-link.primary:focus-visible{
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.42),
+        0 12px 26px rgba(0,0,0,.24),
+        0 0 20px rgba(216,177,96,.28);
+      filter:brightness(1.08) saturate(1.06);
+    }
+
+    .menu-link:hover,
+    .menu-link:focus-visible,
+    .menu-link.active{
+      transform:translateX(4px);
+      background:rgba(216,177,96,.10);
+      border-color:rgba(216,177,96,.28);
+      box-shadow:
+        inset 3px 0 0 rgba(216,177,96,.50),
+        0 8px 18px rgba(0,0,0,.18);
+    }
+
+    .top-social a:hover,
+    .top-social a:focus-visible{
+      transform:translateY(-3px);
+      border-color:rgba(216,177,96,.44);
+      background:rgba(216,177,96,.12);
+      box-shadow:0 0 18px rgba(216,177,96,.18);
+      outline:none;
+    }
+
+    .tab:hover,
+    .tab:focus-visible{
+      transform:translateY(-4px);
+      border-color:rgba(216,177,96,.42);
+      box-shadow:
+        0 16px 30px rgba(0,0,0,.22),
+        0 0 22px rgba(216,177,96,.13);
+      filter:brightness(1.06);
+      outline:none;
+    }
+
+    .tab.active{
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.38),
+        0 14px 28px rgba(0,0,0,.18),
+        0 0 18px rgba(216,177,96,.18);
+    }
+
+    .btn:hover,
+    .btn:focus-visible,
+    .mini-btn:hover,
+    .mini-btn:focus-visible{
+      transform:translateY(-3px);
+      box-shadow:
+        0 12px 24px rgba(0,0,0,.24),
+        0 0 18px rgba(216,177,96,.16);
+      filter:brightness(1.08);
+      outline:none;
+    }
+
+    .btn.primary:hover,
+    .btn.primary:focus-visible,
+    .mini-btn.primary:hover,
+    .mini-btn.primary:focus-visible{
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.42),
+        0 14px 28px rgba(0,0,0,.24),
+        0 0 20px rgba(216,177,96,.26);
+    }
+
+    .card{
+      transition:transform .24s ease, border-color .24s ease, box-shadow .24s ease, filter .24s ease, background .24s ease;
+    }
+
+    .card:hover,
+    .card:focus-within{
+      transform:translateY(-6px);
+      border-color:rgba(216,177,96,.36);
+      box-shadow:
+        0 22px 42px rgba(0,0,0,.26),
+        0 0 24px rgba(216,177,96,.12);
+      filter:brightness(1.04);
+    }
+
+    .card:hover .card-media img,
+    .card:focus-within .card-media img{
+      transform:scale(1.055);
+      filter:brightness(1.08) saturate(1.05);
+    }
+
+    .card:hover h3,
+    .card:focus-within h3,
+    .news-feature:hover h3,
+    .news-mini:hover h4{
+      text-shadow:0 0 14px rgba(216,177,96,.20);
+    }
+
+    .card-actions a:hover,
+    .card-actions a:focus-visible,
+    .news-actions a:hover,
+    .news-actions a:focus-visible{
+      outline:none;
+    }
+
+    .hero-paper-book a:hover,
+    .hero-paper-book a:focus-visible{
+      transform:translateY(-10px) scale(1.025);
+      filter:drop-shadow(0 0 18px rgba(216,177,96,.22));
+      outline:none;
+    }
+
+    .news-feature,
+    .news-mini{
+      transition:transform .24s ease, border-color .24s ease, box-shadow .24s ease, filter .24s ease;
+    }
+
+    .news-feature:hover,
+    .news-feature:focus-within,
+    .news-mini:hover,
+    .news-mini:focus-within{
+      transform:translateY(-5px);
+      border-color:rgba(216,177,96,.34);
+      box-shadow:
+        0 22px 42px rgba(0,0,0,.24),
+        0 0 24px rgba(216,177,96,.12);
+      filter:brightness(1.04);
+    }
+
+    a:focus-visible,
+    button:focus-visible{
+      outline:2px solid rgba(240,200,111,.72);
+      outline-offset:3px;
+    }
+
 
     @media (max-width: 1080px){
       .hero-banner{
