@@ -97,6 +97,11 @@
       text-decoration:none;
     }
 
+    img{
+      display:block;
+      max-width:100%;
+    }
+
     .page{
       min-height:100vh;
       display:grid;
@@ -378,6 +383,25 @@
         inset 0 0 54px rgba(22,217,255,.20);
     }
 
+
+    .core-logo{
+      width:min(218px, 76%);
+      margin:0 auto 10px;
+      object-fit:contain;
+      filter:
+        drop-shadow(0 0 14px rgba(22,217,255,.42))
+        drop-shadow(0 0 32px rgba(22,217,255,.18))
+        drop-shadow(0 10px 18px rgba(0,0,0,.38));
+    }
+
+    .hex-core:hover .core-logo,
+    .hex-core:focus-visible .core-logo{
+      filter:
+        drop-shadow(0 0 18px rgba(125,243,255,.62))
+        drop-shadow(0 0 38px rgba(22,217,255,.26))
+        drop-shadow(0 12px 22px rgba(0,0,0,.42));
+    }
+
     .hex-content{
       position:relative;
       z-index:2;
@@ -633,6 +657,12 @@
         font-size:3.4rem;
       }
 
+
+      .core-logo{
+        width:min(230px, 72%);
+      }
+
+
       .corner-note{
         position:relative;
         right:auto;
@@ -687,9 +717,9 @@
         <a class="hex hex-core" href="#" aria-label="Core de Pay and Play System">
           <span class="hex-content">
             <span class="hex-chip">núcleo</span>
-            <span class="hex-mark">P&amp;P</span>
+            <img class="core-logo" src="../assets/portal/portal-payplay.png" alt="Pay &amp; Play Rol System">
             <span class="hex-title">Core</span>
-            <span class="hex-sub">Pay &amp; Play Rol System</span>
+            <span class="hex-sub">Rol System</span>
           </span>
         </a>
 
