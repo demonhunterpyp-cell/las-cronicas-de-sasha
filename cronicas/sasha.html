@@ -3,443 +3,569 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Sasha | Las Crónicas de Sasha</title>
-  <meta name="description" content="Galería, imágenes y vídeos de Sasha dentro de Las Crónicas de Sasha." />
+  <meta name="description" content="Galería, ficha de personaje, imágenes y vídeos de Sasha dentro de Las Crónicas de Sasha." />
+  <link rel="canonical" href="https://demonhunterpyp-cell.github.io/las-cronicas-de-sasha/cronicas/sasha.html" />
+
   <style>
+    :root{
+      --bg-1:#0f1728;
+      --bg-2:#1a2337;
+      --bg-3:#24304a;
+      --gold:#d8b160;
+      --gold-2:#b78537;
+      --gold-soft:rgba(216,177,96,.25);
+      --text:#f7eedc;
+      --text-soft:#ddd2b7;
+      --muted:#cbb891;
+      --shadow:0 22px 50px rgba(0,0,0,.33);
+      --maxw:1180px;
+    }
 
-:root{
-  --bg-1:#0f1728;
-  --bg-2:#1a2337;
-  --bg-3:#24304a;
-  --gold:#d8b160;
-  --gold-2:#b78537;
-  --gold-soft:rgba(216,177,96,.25);
-  --text:#f7eedc;
-  --text-soft:#ddd2b7;
-  --shadow:0 22px 50px rgba(0,0,0,.33);
-  --maxw:1180px;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0;
-  color:var(--text);
-  font-family:Georgia, "Times New Roman", serif;
-  background:
-    radial-gradient(circle at 80% 12%, rgba(216,177,96,.10), transparent 20%),
-    radial-gradient(circle at 20% 82%, rgba(216,177,96,.08), transparent 20%),
-    linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 45%, var(--bg-3) 100%);
-}
-a{color:inherit;text-decoration:none}
-img,video{display:block;max-width:100%}
+    *{box-sizing:border-box}
 
-/* FIX PRINCIPAL: las dos barras quedan dentro de una pila sticky */
-.nav-stack{
-  position:sticky;
-  top:0;
-  z-index:1600;
-  background:rgba(9,13,24,.88);
-  backdrop-filter:blur(10px);
-  -webkit-backdrop-filter:blur(10px);
-  border-bottom:1px solid rgba(216,177,96,.16);
-  box-shadow:0 10px 26px rgba(0,0,0,.18);
-}
-.interworld-bar{
-  position:relative;
-  z-index:2;
-  background:rgba(9,13,24,.74);
-  border-bottom:1px solid rgba(216,177,96,.12);
-}
-.interworld-inner{
-  width:min(var(--maxw), 92%);
-  margin:0 auto;
-  display:flex;
-  flex-wrap:wrap;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  padding:12px 0;
-}
-.interworld-group{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-}
-.interworld-link{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  padding:9px 14px;
-  border-radius:999px;
-  border:1px solid rgba(216,177,96,.18);
-  background:rgba(255,255,255,.04);
-  color:#f2e2c3;
-  font-size:.95rem;
-  line-height:1;
-  transition:.22s ease;
-}
-.interworld-link:hover{
-  transform:translateY(-1px);
-  background:rgba(255,255,255,.07);
-  border-color:rgba(216,177,96,.32);
-  color:#fff2d2;
-}
-.interworld-link.primary{
-  color:#4a2f12;
-  background:linear-gradient(180deg, #d8b160 0%, #b78537 100%);
-  border-color:#8b6327;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.34);
-}
-.topbar{
-  position:relative;
-  z-index:1;
-  width:min(var(--maxw), 92%);
-  margin:0 auto;
-  padding:10px 0 12px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  flex-wrap:wrap;
-}
-.topbar-left,.topbar-right{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-}
-.nav-btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-  padding:9px 13px;
-  border-radius:999px;
-  border:1px solid var(--gold-soft);
-  background:rgba(255,255,255,.04);
-  color:#f2e2c3;
-  transition:.2s ease;
-  box-shadow:0 10px 24px rgba(0,0,0,.12);
-}
-.nav-btn:hover{
-  transform:translateY(-2px);
-  background:rgba(255,255,255,.08);
-}
-.hero{
-  position:relative;
-  overflow:hidden;
-  border-top:1px solid rgba(216,177,96,.16);
-  border-bottom:1px solid rgba(216,177,96,.20);
-  background:
-    linear-gradient(90deg, rgba(8,12,20,.82) 0%, rgba(8,12,20,.55) 48%, rgba(8,12,20,.18) 100%),
-    url("assets/fondo-sasha-panorama.png") center center / cover no-repeat;
-}
-.hero::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:
-    radial-gradient(circle at 76% 18%, rgba(216,177,96,.15), transparent 18%),
-    linear-gradient(180deg, rgba(0,0,0,.06), rgba(0,0,0,.24));
-  pointer-events:none;
-}
-.hero-inner{
-  position:relative;
-  z-index:1;
-  width:min(var(--maxw), 92%);
-  margin:0 auto;
-  padding:56px 0 52px;
-  display:grid;
-  grid-template-columns:320px 1fr;
-  gap:28px;
-  align-items:center;
-}
-.hero-card{
-  border-radius:24px;
-  padding:14px;
-  background:
-    radial-gradient(circle at 50% 18%, rgba(255,225,160,.12), transparent 18%),
-    linear-gradient(180deg, rgba(53,64,92,.96), rgba(24,31,47,.98));
-  border:1px solid rgba(216,177,96,.20);
-  box-shadow:var(--shadow);
-}
-.hero-card img{
-  width:100%;
-  aspect-ratio:2/3;
-  object-fit:cover;
-  border-radius:16px;
-  box-shadow:0 22px 36px rgba(0,0,0,.28);
-}
-.eyebrow{
-  display:inline-flex;
-  padding:7px 12px;
-  margin-bottom:16px;
-  border-radius:999px;
-  border:1px solid rgba(216,177,96,.24);
-  color:#e5c787;
-  font-size:.82rem;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-  background:rgba(255,255,255,.03);
-}
-h1{
-  margin:0 0 10px;
-  color:#f0c86f;
-  font-size:clamp(2.2rem, 4.8vw, 4rem);
-  line-height:.98;
-}
-.hero-copy{
-  max-width:780px;
-  color:var(--text-soft);
-  line-height:1.8;
-  font-size:1rem;
-}
-.page{
-  width:min(var(--maxw), 92%);
-  margin:0 auto;
-  padding:28px 0 44px;
-}
-section{scroll-margin-top:145px}
-.panel{
-  margin-top:28px;
-  padding:30px 26px;
-  border:1px solid rgba(216,177,96,.18);
-  border-radius:26px;
-  background:
-    radial-gradient(circle at 86% 12%, rgba(216,177,96,.08), transparent 18%),
-    linear-gradient(180deg, rgba(28,34,53,.96), rgba(18,24,38,.98));
-  box-shadow:var(--shadow);
-  position:relative;
-  overflow:hidden;
-}
-.panel::before{
-  content:"";
-  position:absolute;
-  inset:12px;
-  border:1px solid rgba(216,177,96,.10);
-  border-radius:18px;
-  pointer-events:none;
-}
-.ornament{
-  width:240px;
-  height:20px;
-  margin:0 auto 18px;
-  position:relative;
-  z-index:1;
-}
-.ornament::before,.ornament::after{
-  content:"";
-  position:absolute;
-  top:50%;
-  left:0;
-  right:0;
-}
-.ornament::before{
-  height:1px;
-  background:linear-gradient(90deg, transparent, rgba(216,177,96,.55), transparent);
-}
-.ornament::after{
-  width:14px;
-  height:14px;
-  left:50%;
-  right:auto;
-  transform:translate(-50%, -50%);
-  border-radius:50%;
-  border:1px solid rgba(216,177,96,.45);
-  background:rgba(20,25,39,.92);
-}
-.section-title{
-  position:relative;
-  z-index:1;
-  margin:0;
-  text-align:center;
-  color:#f0dbaf;
-  font-size:clamp(1.9rem, 3vw, 3rem);
-  line-height:1.06;
-  text-transform:uppercase;
-}
-.section-lead{
-  position:relative;
-  z-index:1;
-  max-width:880px;
-  margin:14px auto 0;
-  text-align:center;
-  color:var(--text-soft);
-  font-size:1.02rem;
-  line-height:1.8;
-}
-.gallery-grid{
-  display:grid;
-  grid-template-columns:repeat(3, 1fr);
-  gap:18px;
-  margin-top:22px;
-  position:relative;
-  z-index:1;
-}
-.gallery-card{
-  border:1px solid rgba(216,177,96,.16);
-  border-radius:22px;
-  overflow:hidden;
-  background:
-    radial-gradient(circle at 84% 14%, rgba(216,177,96,.08), transparent 18%),
-    linear-gradient(180deg, rgba(43,53,78,.95), rgba(21,27,42,.98));
-  box-shadow:0 14px 28px rgba(0,0,0,.18);
-  cursor:pointer;
-  transition:.22s ease;
-}
-.gallery-card:hover{transform:translateY(-4px)}
-.gallery-card img{
-  width:100%;
-  aspect-ratio:16/11;
-  object-fit:cover;
-  border-bottom:1px solid rgba(216,177,96,.14);
-  transition:transform .28s ease;
-}
-.gallery-card:hover img{transform:scale(1.04)}
-.gallery-card .caption{padding:14px 16px 16px}
-.gallery-card h3{
-  margin:0 0 6px;
-  color:#f0dbaf;
-  font-size:1.12rem;
-}
-.gallery-card p{
-  margin:0;
-  color:#d4ccb9;
-  font-size:.94rem;
-  line-height:1.7;
-}
-.video-wrap{
-  position:relative;
-  z-index:1;
-  margin-top:22px;
-  display:grid;
-  gap:18px;
-}
-.video-box{
-  border:1px solid rgba(216,177,96,.16);
-  border-radius:22px;
-  overflow:hidden;
-  background:rgba(255,255,255,.04);
-  padding:16px;
-}
-.video-box video{
-  width:100%;
-  max-height:430px;
-  border-radius:16px;
-  background:#05070c;
-}
-.video-box h3{
-  color:#f0dbaf;
-  margin:14px 0 6px;
-}
-.video-box p{
-  margin:0;
-  color:#d4ccb9;
-  line-height:1.7;
-}
-.placeholder{
-  border:1px solid rgba(216,177,96,.16);
-  border-radius:22px;
-  padding:24px;
-  background:rgba(255,255,255,.04);
-  color:#d4ccb9;
-  text-align:center;
-  line-height:1.7;
-}
-.lightbox{
-  position:fixed;
-  inset:0;
-  display:none;
-  z-index:3000;
-  align-items:center;
-  justify-content:center;
-  padding:24px;
-  background:rgba(0,0,0,.76);
-  backdrop-filter:blur(6px);
-}
-.lightbox.open{display:flex}
-.lightbox-inner{
-  width:min(1120px, 96vw);
-  max-height:90vh;
-  border-radius:24px;
-  background:linear-gradient(180deg, rgba(35,44,65,.98), rgba(18,24,38,.99));
-  border:1px solid rgba(216,177,96,.20);
-  box-shadow:var(--shadow);
-  padding:20px;
-  display:grid;
-  grid-template-columns:1fr 340px;
-  gap:20px;
-  position:relative;
-}
-.lightbox-close{
-  position:absolute;
-  top:12px;
-  right:12px;
-  width:42px;
-  height:42px;
-  border-radius:999px;
-  border:1px solid rgba(216,177,96,.22);
-  background:rgba(255,255,255,.05);
-  color:#f2e2c3;
-  font-size:1.2rem;
-  cursor:pointer;
-  z-index:2;
-}
-.lightbox-image-wrap{
-  display:grid;
-  place-items:center;
-  min-height:300px;
-  overflow:hidden;
-  border-radius:18px;
-  background:rgba(0,0,0,.22);
-}
-.lightbox-image{
-  max-height:78vh;
-  width:auto;
-  object-fit:contain;
-}
-.lightbox-info{
-  border-left:1px solid rgba(216,177,96,.14);
-  padding:34px 14px 14px 20px;
-  overflow:auto;
-}
-.lightbox-info .role{
-  color:#e5c787;
-  text-transform:uppercase;
-  letter-spacing:.08em;
-  font-size:.82rem;
-}
-.lightbox-info h3{
-  color:#f0dbaf;
-  font-size:1.8rem;
-  margin:10px 0;
-}
-.lightbox-info p{
-  color:#d4ccb9;
-  line-height:1.75;
-  margin:0;
-}
-@media (max-width:1080px){
-  .hero-inner{grid-template-columns:1fr}
-  .hero-card{max-width:320px}
-  .gallery-grid{grid-template-columns:repeat(2, 1fr)}
-  .lightbox-inner{grid-template-columns:1fr}
-  .lightbox-info{border-left:0;border-top:1px solid rgba(216,177,96,.14)}
-}
-@media (max-width:760px){
-  .interworld-inner{align-items:flex-start}
-  .interworld-group{width:100%}
-  .interworld-link{flex:1 1 calc(50% - 10px); text-align:center}
-  .topbar{align-items:flex-start}
-  .topbar-left,.topbar-right{width:100%}
-  .nav-btn{flex:1 1 calc(50% - 10px)}
-  .gallery-grid{grid-template-columns:1fr}
-  .panel{padding:24px 16px}
-}
+    html{scroll-behavior:smooth}
 
+    body{
+      margin:0;
+      color:var(--text);
+      font-family:Georgia, "Times New Roman", serif;
+      background:
+        radial-gradient(circle at 80% 12%, rgba(216,177,96,.10), transparent 20%),
+        radial-gradient(circle at 20% 82%, rgba(216,177,96,.08), transparent 20%),
+        linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 45%, var(--bg-3) 100%);
+    }
+
+    a{color:inherit;text-decoration:none}
+    img,video{display:block;max-width:100%}
+
+    .nav-stack{
+      position:sticky;
+      top:0;
+      z-index:1600;
+      background:rgba(9,13,24,.88);
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
+      border-bottom:1px solid rgba(216,177,96,.16);
+      box-shadow:0 10px 26px rgba(0,0,0,.18);
+    }
+
+    .interworld-bar{
+      position:relative;
+      z-index:2;
+      background:rgba(9,13,24,.74);
+      border-bottom:1px solid rgba(216,177,96,.12);
+    }
+
+    .interworld-inner{
+      width:min(var(--maxw), 92%);
+      margin:0 auto;
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 0;
+    }
+
+    .interworld-group{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+
+    .interworld-link{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:9px 14px;
+      border-radius:999px;
+      border:1px solid rgba(216,177,96,.18);
+      background:rgba(255,255,255,.04);
+      color:#f2e2c3;
+      font-size:.95rem;
+      line-height:1;
+      transition:.22s ease;
+    }
+
+    .interworld-link:hover{
+      transform:translateY(-1px);
+      background:rgba(255,255,255,.07);
+      border-color:rgba(216,177,96,.32);
+      color:#fff2d2;
+    }
+
+    .interworld-link.primary{
+      color:#4a2f12;
+      background:linear-gradient(180deg, #d8b160 0%, #b78537 100%);
+      border-color:#8b6327;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.34);
+    }
+
+    .topbar{
+      position:relative;
+      z-index:1;
+      width:min(var(--maxw), 92%);
+      margin:0 auto;
+      padding:10px 0 12px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .topbar-left,
+    .topbar-right{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .nav-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:9px 13px;
+      border-radius:999px;
+      border:1px solid var(--gold-soft);
+      background:rgba(255,255,255,.04);
+      color:#f2e2c3;
+      transition:.2s ease;
+      box-shadow:0 10px 24px rgba(0,0,0,.12);
+    }
+
+    .nav-btn:hover{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,.08);
+    }
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      border-top:1px solid rgba(216,177,96,.16);
+      border-bottom:1px solid rgba(216,177,96,.20);
+      background:
+        linear-gradient(90deg, rgba(8,12,20,.82) 0%, rgba(8,12,20,.55) 48%, rgba(8,12,20,.18) 100%),
+        url("assets/fondo-sasha-panorama.png") center center / cover no-repeat;
+    }
+
+    .hero::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 76% 18%, rgba(216,177,96,.15), transparent 18%),
+        linear-gradient(180deg, rgba(0,0,0,.06), rgba(0,0,0,.24));
+      pointer-events:none;
+    }
+
+    .hero-inner{
+      position:relative;
+      z-index:1;
+      width:min(var(--maxw), 92%);
+      margin:0 auto;
+      padding:56px 0 52px;
+      display:grid;
+      grid-template-columns:320px 1fr;
+      gap:28px;
+      align-items:center;
+    }
+
+    .hero-card{
+      border-radius:24px;
+      padding:14px;
+      background:
+        radial-gradient(circle at 50% 18%, rgba(255,225,160,.12), transparent 18%),
+        linear-gradient(180deg, rgba(53,64,92,.96), rgba(24,31,47,.98));
+      border:1px solid rgba(216,177,96,.20);
+      box-shadow:var(--shadow);
+    }
+
+    .hero-card img{
+      width:100%;
+      aspect-ratio:2/3;
+      object-fit:cover;
+      border-radius:16px;
+      box-shadow:0 22px 36px rgba(0,0,0,.28);
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      padding:7px 12px;
+      margin-bottom:16px;
+      border-radius:999px;
+      border:1px solid rgba(216,177,96,.24);
+      color:#e5c787;
+      font-size:.82rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      background:rgba(255,255,255,.03);
+    }
+
+    h1{
+      margin:0 0 10px;
+      color:#f0c86f;
+      font-size:clamp(2.2rem, 4.8vw, 4rem);
+      line-height:.98;
+    }
+
+    .hero-copy{
+      max-width:780px;
+      color:var(--text-soft);
+      line-height:1.8;
+      font-size:1rem;
+    }
+
+    .hero-profile{
+      margin-top:20px;
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:10px;
+    }
+
+    .profile-chip{
+      border:1px solid rgba(216,177,96,.18);
+      border-radius:16px;
+      padding:12px;
+      background:rgba(255,255,255,.04);
+      box-shadow:0 12px 26px rgba(0,0,0,.12);
+    }
+
+    .profile-chip small{
+      display:block;
+      color:#e5c787;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      font-size:.72rem;
+      margin-bottom:5px;
+    }
+
+    .profile-chip strong{
+      display:block;
+      color:#fff2d2;
+      line-height:1.25;
+      font-size:.95rem;
+    }
+
+    .page{
+      width:min(var(--maxw), 92%);
+      margin:0 auto;
+      padding:28px 0 44px;
+    }
+
+    section{scroll-margin-top:145px}
+
+    .panel{
+      margin-top:28px;
+      padding:30px 26px;
+      border:1px solid rgba(216,177,96,.18);
+      border-radius:26px;
+      background:
+        radial-gradient(circle at 86% 12%, rgba(216,177,96,.08), transparent 18%),
+        linear-gradient(180deg, rgba(28,34,53,.96), rgba(18,24,38,.98));
+      box-shadow:var(--shadow);
+    }
+
+    .ornament{
+      width:260px;
+      height:18px;
+      margin:0 auto 14px;
+      position:relative;
+    }
+
+    .ornament::before{
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      top:50%;
+      height:1px;
+      background:linear-gradient(90deg, transparent, rgba(216,177,96,.36), transparent);
+    }
+
+    .ornament::after{
+      content:"";
+      position:absolute;
+      left:50%;
+      top:50%;
+      width:18px;
+      height:18px;
+      border-radius:50%;
+      transform:translate(-50%, -50%);
+      border:1px solid rgba(216,177,96,.55);
+      background:rgba(20,26,42,.95);
+    }
+
+    .section-title{
+      margin:0;
+      color:#f0c86f;
+      text-align:center;
+      font-size:clamp(2rem, 4vw, 3rem);
+      line-height:1;
+    }
+
+    .section-lead{
+      max-width:820px;
+      margin:14px auto 0;
+      text-align:center;
+      color:var(--text-soft);
+      line-height:1.8;
+    }
+
+    .gallery-grid{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:18px;
+      margin-top:24px;
+    }
+
+    .gallery-card{
+      position:relative;
+      overflow:hidden;
+      min-height:320px;
+      border-radius:22px;
+      border:1px solid rgba(216,177,96,.18);
+      background:linear-gradient(180deg, rgba(53,64,92,.96), rgba(24,31,47,.98));
+      cursor:pointer;
+      box-shadow:0 18px 42px rgba(0,0,0,.24);
+      transition:transform .24s ease, border-color .24s ease, box-shadow .24s ease;
+    }
+
+    .gallery-card:hover{
+      transform:translateY(-4px);
+      border-color:rgba(216,177,96,.42);
+      box-shadow:0 24px 58px rgba(0,0,0,.34), 0 0 24px rgba(216,177,96,.10);
+    }
+
+    .gallery-card img{
+      width:100%;
+      height:100%;
+      min-height:320px;
+      object-fit:cover;
+      transition:transform .28s ease, filter .28s ease;
+    }
+
+    .gallery-card:hover img{
+      transform:scale(1.04);
+      filter:brightness(1.06);
+    }
+
+    .caption{
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:0;
+      padding:22px 18px 18px;
+      background:linear-gradient(180deg, transparent, rgba(6,9,16,.92));
+    }
+
+    .caption h3{
+      margin:0;
+      color:#f0c86f;
+      font-size:1.35rem;
+      line-height:1.1;
+    }
+
+    .caption p{
+      margin:6px 0 0;
+      color:#f3e5c5;
+      line-height:1.35;
+      font-size:.95rem;
+    }
+
+    .video-wrap{
+      margin-top:24px;
+      display:grid;
+      grid-template-columns:repeat(2, 1fr);
+      gap:18px;
+    }
+
+    .video-box{
+      padding:14px;
+      border-radius:22px;
+      border:1px solid rgba(216,177,96,.18);
+      background:linear-gradient(180deg, rgba(53,64,92,.96), rgba(24,31,47,.98));
+      box-shadow:0 18px 42px rgba(0,0,0,.22);
+    }
+
+    .video-box video{
+      width:100%;
+      aspect-ratio:16/9;
+      border-radius:14px;
+      background:#05070d;
+    }
+
+    .video-box h3{
+      margin:12px 0 4px;
+      color:#f0c86f;
+    }
+
+    .video-box p{
+      margin:0;
+      color:var(--text-soft);
+      line-height:1.55;
+    }
+
+    .lightbox{
+      position:fixed;
+      inset:0;
+      z-index:3000;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:28px;
+      background:rgba(2,4,9,.78);
+      backdrop-filter:blur(8px);
+      -webkit-backdrop-filter:blur(8px);
+    }
+
+    .lightbox.open{display:flex}
+
+    .lightbox-inner{
+      position:relative;
+      width:min(1180px, 96vw);
+      max-height:92vh;
+      display:grid;
+      grid-template-columns:minmax(0, 1.3fr) minmax(330px, .7fr);
+      overflow:hidden;
+      border-radius:26px;
+      border:1px solid rgba(216,177,96,.24);
+      background:
+        radial-gradient(circle at 88% 12%, rgba(216,177,96,.10), transparent 20%),
+        linear-gradient(180deg, rgba(28,34,53,.98), rgba(14,19,32,.99));
+      box-shadow:0 30px 90px rgba(0,0,0,.48);
+    }
+
+    .lightbox-close{
+      position:absolute;
+      right:14px;
+      top:14px;
+      z-index:4;
+      width:42px;
+      height:42px;
+      border-radius:50%;
+      border:1px solid rgba(216,177,96,.26);
+      background:rgba(0,0,0,.34);
+      color:#fff2d2;
+      font-size:1.45rem;
+      cursor:pointer;
+    }
+
+    .lightbox-image-wrap{
+      display:grid;
+      place-items:center;
+      min-height:620px;
+      background:rgba(0,0,0,.22);
+    }
+
+    .lightbox-image{
+      width:100%;
+      height:100%;
+      max-height:92vh;
+      object-fit:contain;
+    }
+
+    .lightbox-info{
+      padding:34px 30px;
+      overflow:auto;
+      color:var(--text-soft);
+    }
+
+    .lightbox-info .eyebrow{
+      margin-bottom:12px;
+    }
+
+    .lightbox-info h3{
+      margin:0 0 8px;
+      color:#f0c86f;
+      font-size:2rem;
+      line-height:1;
+    }
+
+    .lightbox-role{
+      margin:0 0 18px;
+      color:#fff2d2;
+      font-weight:700;
+    }
+
+    .lightbox-desc{
+      margin:0 0 18px;
+      line-height:1.75;
+    }
+
+    .lightbox-info h4{
+      margin:22px 0 10px;
+      color:#f0c86f;
+      font-size:1.05rem;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+    }
+
+    .character-facts{
+      display:grid;
+      gap:9px;
+      margin:0;
+      padding:0;
+      list-style:none;
+    }
+
+    .character-facts li{
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid rgba(216,177,96,.16);
+      background:rgba(255,255,255,.035);
+      line-height:1.45;
+    }
+
+    .character-facts strong{
+      color:#fff2d2;
+    }
+
+    .character-note{
+      margin-top:18px;
+      padding:15px;
+      border-left:3px solid rgba(216,177,96,.55);
+      border-radius:14px;
+      background:rgba(216,177,96,.06);
+      line-height:1.7;
+      color:#f1dfbd;
+    }
+
+    @media (max-width: 980px){
+      .hero-inner{
+        grid-template-columns:1fr;
+      }
+
+      .hero-card{
+        max-width:320px;
+        margin:0 auto;
+      }
+
+      .hero-profile{
+        grid-template-columns:1fr;
+      }
+
+      .gallery-grid,
+      .video-wrap{
+        grid-template-columns:1fr;
+      }
+
+      .lightbox-inner{
+        grid-template-columns:1fr;
+        overflow:auto;
+      }
+
+      .lightbox-image-wrap{
+        min-height:360px;
+      }
+    }
   </style>
 </head>
-<body>
 
+<body>
   <div class="nav-stack">
     <div class="interworld-bar">
       <div class="interworld-inner">
@@ -448,6 +574,7 @@ section{scroll-margin-top:145px}
           <a class="interworld-link" href="https://www.worldanvil.com/w/demon-hunter-tabanne" target="_blank" rel="noopener noreferrer">Lore expandido</a>
           <a class="interworld-link" href="../systempyp/index.html">Pay &amp; Play System</a>
         </div>
+
         <div class="interworld-group">
           <a class="interworld-link primary" href="sasha.html">Sasha</a>
           <a class="interworld-link" href="party-girls.html">Party Girls</a>
@@ -456,6 +583,7 @@ section{scroll-margin-top:145px}
         </div>
       </div>
     </div>
+
     <nav class="topbar" aria-label="Navegación de página">
       <div class="topbar-left">
         <a class="nav-btn" href="index.html">← Volver al inicio</a>
@@ -463,20 +591,42 @@ section{scroll-margin-top:145px}
         <a class="nav-btn" href="#galeria">Galería</a>
         <a class="nav-btn" href="#videos">Vídeos</a>
       </div>
-      <div class="topbar-right"><a class="nav-btn" href="party-girls.html">Party Girls →</a></div>
+      <div class="topbar-right">
+        <a class="nav-btn" href="party-girls.html">Party Girls →</a>
+      </div>
     </nav>
   </div>
-
 
   <header class="hero">
     <div class="hero-inner">
       <div class="hero-card">
         <img src="assets/galerias/sasha/sasha-01.png" alt="Sasha">
       </div>
+
       <div>
         <div class="eyebrow">Galería de personaje</div>
         <h1>Sasha</h1>
-        <p class="hero-copy">Una selección visual centrada en Sasha. En esta página, la imagen principal de Sasha aparece también dentro de la galería, junto al resto de escenas e ilustraciones.</p>
+        <p class="hero-copy">
+          Sasha no empieza su historia como una elegida ni como una guerrera legendaria. Entra en Demon Hunter con más preguntas que certezas, y aprende a base de golpes, decisiones, errores y pequeñas victorias.
+        </p>
+        <p class="hero-copy">
+          Esta galería reúne retratos, escenas y variaciones visuales de su evolución: de noob perdida a aventurera capaz de mantenerse en pie cuando el mundo deja de parecer un juego.
+        </p>
+
+        <div class="hero-profile" aria-label="Ficha rápida de Sasha">
+          <div class="profile-chip">
+            <small>Rol</small>
+            <strong>Protagonista principal</strong>
+          </div>
+          <div class="profile-chip">
+            <small>Arquetipo</small>
+            <strong>Guerrera en evolución</strong>
+          </div>
+          <div class="profile-chip">
+            <small>Equipo</small>
+            <strong>Armadura, espada y escudo</strong>
+          </div>
+        </div>
       </div>
     </div>
   </header>
@@ -485,46 +635,78 @@ section{scroll-margin-top:145px}
     <section class="panel" id="galeria">
       <div class="ornament"></div>
       <h2 class="section-title">Imágenes</h2>
-      <p class="section-lead">Retratos, escenas y variaciones visuales de Sasha en una parrilla limpia, lista para seguir creciendo.</p>
-      <div class="gallery-grid">
+      <p class="section-lead">
+        Cada imagen funciona como una entrada de ficha: no solo muestra a Sasha, también sitúa una faceta de su viaje dentro de la saga.
+      </p>
 
-        <article class="gallery-card" data-title="Sasha" data-role="Protagonista" data-desc="Imagen principal de Sasha dentro de la galería del personaje." data-src="assets/galerias/sasha/sasha-01.png">
+      <div class="gallery-grid">
+        <article class="gallery-card"
+          data-title="Sasha"
+          data-role="Protagonista · Guerrera en evolución"
+          data-desc="La imagen base de Sasha: la protagonista en su etapa inicial, todavía aprendiendo a leer un mundo que parece tener reglas de juego, pero consecuencias reales."
+          data-note="Sasha avanza porque no tiene otra opción. No domina el mundo al que llega: lo descubre, lo sufre y lo entiende paso a paso. Su fuerza nace menos de la perfección que de la insistencia."
+          data-facts="Rol narrativo|Protagonista principal;Arquetipo|Aventurera en formación;Primera aparición|Volumen 1 · Mis inicios;Rasgos|Curiosa, terca, impulsiva y adaptable;Equipo característico|Armadura, espada y escudo;Conflicto|Sobrevivir en un mundo que parece un juego, pero castiga como algo real"
+          data-src="assets/galerias/sasha/sasha-01.png">
           <img src="assets/galerias/sasha/sasha-01.png" alt="Sasha">
           <div class="caption">
             <h3>Sasha</h3>
-            <p>Protagonista</p>
+            <p>Protagonista · Guerrera en evolución</p>
           </div>
         </article>
 
-        <article class="gallery-card" data-title="Sasha" data-role="Protagonista" data-desc="Variación visual de Sasha para ampliar su presencia en la web." data-src="assets/galerias/sasha/sasha-02.png">
-          <img src="assets/galerias/sasha/sasha-02.png" alt="Sasha">
+        <article class="gallery-card"
+          data-title="Sasha · Primeros pasos"
+          data-role="Aventurera en formación"
+          data-desc="Una faceta centrada en el inicio del viaje: Sasha todavía no domina el entorno, pero empieza a comprender que cada decisión deja una marca."
+          data-note="El primer tramo de Sasha no trata de grandeza, sino de aprendizaje. Cada error duele, cada prueba ordena el caos y cada avance la aleja de la noob que fue al principio."
+          data-facts="Rol narrativo|Inicio del arco de aprendizaje;Arquetipo|Noob resistente;Etapa|Primer contacto con Demon Hunter;Rasgos|Duda, reacción rápida y voluntad;Función visual|Mostrar vulnerabilidad sin quitar fuerza;Clave de personaje|Aprende porque el mundo no espera"
+          data-src="assets/galerias/sasha/sasha-02.png">
+          <img src="assets/galerias/sasha/sasha-02.png" alt="Sasha · Primeros pasos">
           <div class="caption">
             <h3>Sasha</h3>
-            <p>Protagonista</p>
+            <p>Primeros pasos · Aprendizaje</p>
           </div>
         </article>
 
-        <article class="gallery-card" data-title="Sasha" data-role="Protagonista" data-desc="Escena o retrato asociado a la evolución visual de Sasha." data-src="assets/galerias/sasha/sasha-03.png">
-          <img src="assets/galerias/sasha/sasha-03.png" alt="Sasha">
+        <article class="gallery-card"
+          data-title="Sasha · Exploradora"
+          data-role="Supervivencia y descubrimiento"
+          data-desc="Sasha como personaje de exploración: observa, calcula, se equivoca y vuelve a intentarlo. Su relación con el mundo nace de caminarlo."
+          data-note="Demon Hunter no se le explica con manuales cómodos. Sasha aprende mirando el terreno, leyendo amenazas y aceptando que el miedo también puede ser una herramienta."
+          data-facts="Rol narrativo|Exploradora del mundo;Arquetipo|Aprendiz práctica;Vínculo con el entorno|Descubre zonas, riesgos y reglas ocultas;Rasgos|Atención, cautela imperfecta y curiosidad;Función visual|Mostrar viaje y escala del mundo;Clave de personaje|El mapa se construye bajo sus pies"
+          data-src="assets/galerias/sasha/sasha-03.png">
+          <img src="assets/galerias/sasha/sasha-03.png" alt="Sasha · Exploradora">
           <div class="caption">
             <h3>Sasha</h3>
-            <p>Protagonista</p>
+            <p>Exploradora · Supervivencia</p>
           </div>
         </article>
 
-        <article class="gallery-card" data-title="Sasha" data-role="Protagonista" data-desc="Nueva imagen de Sasha integrada en la galería del personaje." data-src="assets/galerias/sasha/sasha-04.png">
-          <img src="assets/galerias/sasha/sasha-04.png" alt="Sasha">
+        <article class="gallery-card"
+          data-title="Sasha · Combate"
+          data-role="Guerrera de espada y escudo"
+          data-desc="La Sasha que empieza a responder al peligro: no como guerrera perfecta, sino como alguien que aprende a sostener el golpe y devolverlo."
+          data-note="Su combate no nace de la elegancia, sino de la necesidad. Escudo, armadura y espada son herramientas de supervivencia antes que símbolos de heroísmo."
+          data-facts="Rol narrativo|Acción y peligro directo;Arquetipo|Guerrera de aprendizaje progresivo;Equipo|Espada, escudo y armadura;Rasgos|Valentía imperfecta, instinto y resistencia;Función visual|Mostrar tensión y crecimiento;Clave de personaje|Cada combate le enseña algo"
+          data-src="assets/galerias/sasha/sasha-04.png">
+          <img src="assets/galerias/sasha/sasha-04.png" alt="Sasha · Combate">
           <div class="caption">
             <h3>Sasha</h3>
-            <p>Protagonista</p>
+            <p>Combate · Espada y escudo</p>
           </div>
         </article>
 
-        <article class="gallery-card" data-title="Sasha" data-role="Protagonista" data-desc="Imagen adicional de Sasha para completar el bloque visual." data-src="assets/galerias/sasha/sasha-05.png">
-          <img src="assets/galerias/sasha/sasha-05.png" alt="Sasha">
+        <article class="gallery-card"
+          data-title="Sasha · Evolución"
+          data-role="De noob a aventurera"
+          data-desc="La evolución de Sasha apunta a una protagonista que crece sin perder su origen: sigue siendo ella, pero cada experiencia cambia la forma en que mira el mundo."
+          data-note="La Sasha que avanza no borra a la Sasha que empezó. La arrastra consigo, la corrige y la convierte en memoria. Ahí está la gracia: no nace hecha, se fabrica."
+          data-facts="Rol narrativo|Evolución del personaje;Arquetipo|Heroína construida golpe a golpe;Etapa|Crecimiento progresivo;Rasgos|Determinación, adaptación y memoria del error;Función visual|Mostrar transformación sin perder identidad;Clave de personaje|No se convierte en otra: se vuelve más Sasha"
+          data-src="assets/galerias/sasha/sasha-05.png">
+          <img src="assets/galerias/sasha/sasha-05.png" alt="Sasha · Evolución">
           <div class="caption">
             <h3>Sasha</h3>
-            <p>Protagonista</p>
+            <p>Evolución · De noob a aventurera</p>
           </div>
         </article>
       </div>
@@ -534,8 +716,8 @@ section{scroll-margin-top:145px}
       <div class="ornament"></div>
       <h2 class="section-title">Vídeos</h2>
       <p class="section-lead">Escenas en movimiento reunidas en un bloque visual único.</p>
-      <div class="video-wrap">
 
+      <div class="video-wrap">
         <article class="video-box">
           <video controls preload="metadata">
             <source src="assets/videos/sasha/espejo.mp4" type="video/mp4">
@@ -587,13 +769,21 @@ section{scroll-margin-top:145px}
   <div class="lightbox" id="lightbox" aria-hidden="true">
     <div class="lightbox-inner">
       <button class="lightbox-close" type="button" aria-label="Cerrar">×</button>
+
       <div class="lightbox-image-wrap">
         <img class="lightbox-image" id="lightboxImage" src="" alt="">
       </div>
+
       <aside class="lightbox-info">
-        <div class="role" id="lightboxRole"></div>
-        <h3 id="lightboxTitle"></h3>
-        <p id="lightboxDesc"></p>
+        <div class="eyebrow">Ficha de personaje</div>
+        <h3 id="lightboxTitle">Sasha</h3>
+        <p class="lightbox-role" id="lightboxRole">Protagonista</p>
+        <p class="lightbox-desc" id="lightboxDesc"></p>
+
+        <h4>Ficha</h4>
+        <ul class="character-facts" id="lightboxFacts"></ul>
+
+        <div class="character-note" id="lightboxNote"></div>
       </aside>
     </div>
   </div>
@@ -604,32 +794,74 @@ section{scroll-margin-top:145px}
     const lightboxTitle = document.getElementById('lightboxTitle');
     const lightboxRole = document.getElementById('lightboxRole');
     const lightboxDesc = document.getElementById('lightboxDesc');
-    const closeBtn = document.querySelector('.lightbox-close');
+    const lightboxFacts = document.getElementById('lightboxFacts');
+    const lightboxNote = document.getElementById('lightboxNote');
+    const closeButton = document.querySelector('.lightbox-close');
 
-    document.querySelectorAll('.gallery-card').forEach(card => {
-      card.addEventListener('click', () => {
-        lightboxImage.src = card.dataset.src;
-        lightboxImage.alt = card.dataset.title;
-        lightboxTitle.textContent = card.dataset.title;
-        lightboxRole.textContent = card.dataset.role;
-        lightboxDesc.textContent = card.dataset.desc;
-        lightbox.classList.add('open');
-        lightbox.setAttribute('aria-hidden', 'false');
+    function renderFacts(facts){
+      lightboxFacts.innerHTML = '';
+      facts.split(';').forEach(item => {
+        const [label, value] = item.split('|');
+        if(!label || !value) return;
+
+        const li = document.createElement('li');
+        li.innerHTML = '<strong>' + label.trim() + ':</strong> ' + value.trim();
+        lightboxFacts.appendChild(li);
       });
-    });
+    }
+
+    function openLightbox(card){
+      const title = card.dataset.title || 'Sasha';
+      const role = card.dataset.role || 'Protagonista';
+      const desc = card.dataset.desc || '';
+      const src = card.dataset.src || '';
+      const note = card.dataset.note || '';
+      const facts = card.dataset.facts || '';
+
+      lightboxImage.src = src;
+      lightboxImage.alt = title;
+      lightboxTitle.textContent = title;
+      lightboxRole.textContent = role;
+      lightboxDesc.textContent = desc;
+      lightboxNote.textContent = note;
+      renderFacts(facts);
+
+      lightbox.classList.add('open');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
 
     function closeLightbox(){
       lightbox.classList.remove('open');
       lightbox.setAttribute('aria-hidden', 'true');
       lightboxImage.src = '';
+      document.body.style.overflow = '';
     }
 
-    closeBtn.addEventListener('click', closeLightbox);
-    lightbox.addEventListener('click', event => {
-      if(event.target === lightbox) closeLightbox();
+    document.querySelectorAll('.gallery-card').forEach(card => {
+      card.addEventListener('click', () => openLightbox(card));
+      card.addEventListener('keydown', event => {
+        if(event.key === 'Enter' || event.key === ' '){
+          event.preventDefault();
+          openLightbox(card);
+        }
+      });
+      card.setAttribute('tabindex', '0');
+      card.setAttribute('role', 'button');
     });
+
+    closeButton.addEventListener('click', closeLightbox);
+
+    lightbox.addEventListener('click', event => {
+      if(event.target === lightbox){
+        closeLightbox();
+      }
+    });
+
     document.addEventListener('keydown', event => {
-      if(event.key === 'Escape') closeLightbox();
+      if(event.key === 'Escape' && lightbox.classList.contains('open')){
+        closeLightbox();
+      }
     });
   </script>
 </body>
