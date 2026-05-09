@@ -376,18 +376,42 @@
       font-size:.95rem;
     }
 
-    .video-wrap{
+    .video-carousel{
+      position:relative;
       margin-top:24px;
-      display:grid;
-      grid-template-columns:repeat(2, 1fr);
-      gap:18px;
+      padding:0 54px;
+    }
+
+    .video-viewport{
+      overflow:hidden;
+      border-radius:24px;
+      border:1px solid rgba(216,177,96,.18);
+      background:rgba(10,14,24,.42);
+      box-shadow:0 18px 42px rgba(0,0,0,.22);
+    }
+
+    .video-track{
+      display:flex;
+      transition:transform .35s ease;
+      will-change:transform;
+    }
+
+    .video-slide{
+      flex:0 0 100%;
+      padding:16px;
     }
 
     .video-box{
+      display:grid;
+      grid-template-columns:minmax(0, 1.4fr) minmax(260px, .6fr);
+      gap:18px;
+      align-items:center;
       padding:14px;
       border-radius:22px;
       border:1px solid rgba(216,177,96,.18);
-      background:linear-gradient(180deg, rgba(53,64,92,.96), rgba(24,31,47,.98));
+      background:
+        radial-gradient(circle at 86% 12%, rgba(216,177,96,.08), transparent 20%),
+        linear-gradient(180deg, rgba(53,64,92,.96), rgba(24,31,47,.98));
       box-shadow:0 18px 42px rgba(0,0,0,.22);
     }
 
@@ -396,17 +420,98 @@
       aspect-ratio:16/9;
       border-radius:14px;
       background:#05070d;
+      box-shadow:0 16px 34px rgba(0,0,0,.28);
+    }
+
+    .video-info{
+      padding:6px 6px 6px 0;
+    }
+
+    .video-info .eyebrow{
+      margin-bottom:10px;
     }
 
     .video-box h3{
-      margin:12px 0 4px;
+      margin:0 0 8px;
       color:#f0c86f;
+      font-size:1.55rem;
+      line-height:1.05;
     }
 
     .video-box p{
       margin:0;
       color:var(--text-soft);
-      line-height:1.55;
+      line-height:1.65;
+    }
+
+    .carousel-btn{
+      position:absolute;
+      top:50%;
+      z-index:5;
+      transform:translateY(-50%);
+      width:44px;
+      height:44px;
+      border-radius:50%;
+      border:1px solid rgba(216,177,96,.28);
+      background:
+        radial-gradient(circle at 50% 24%, rgba(216,177,96,.12), transparent 45%),
+        rgba(10,14,24,.86);
+      color:#fff2d2;
+      font-size:1.8rem;
+      line-height:1;
+      cursor:pointer;
+      box-shadow:0 14px 30px rgba(0,0,0,.24);
+      transition:transform .2s ease, border-color .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+
+    .carousel-btn:hover{
+      transform:translateY(-50%) scale(1.06);
+      border-color:rgba(216,177,96,.50);
+      box-shadow:0 16px 34px rgba(0,0,0,.30), 0 0 18px rgba(216,177,96,.16);
+    }
+
+    .carousel-btn:focus-visible{
+      outline:2px solid rgba(216,177,96,.70);
+      outline-offset:3px;
+    }
+
+    .carousel-btn.prev{
+      left:0;
+    }
+
+    .carousel-btn.next{
+      right:0;
+    }
+
+    .carousel-dots{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:9px;
+      margin-top:16px;
+    }
+
+    .carousel-dot{
+      width:11px;
+      height:11px;
+      border-radius:50%;
+      border:1px solid rgba(216,177,96,.42);
+      background:rgba(255,255,255,.06);
+      cursor:pointer;
+      transition:transform .2s ease, background .2s ease, box-shadow .2s ease;
+    }
+
+    .carousel-dot.active{
+      transform:scale(1.22);
+      background:linear-gradient(180deg, #e5c682 0%, #c28a39 100%);
+      box-shadow:0 0 16px rgba(216,177,96,.24);
+    }
+
+    .carousel-status{
+      margin-top:10px;
+      color:var(--muted);
+      text-align:center;
+      font-size:.92rem;
     }
 
     .lightbox{
@@ -548,9 +653,38 @@
         grid-template-columns:1fr;
       }
 
-      .gallery-grid,
-      .video-wrap{
+      .gallery-grid{
         grid-template-columns:1fr;
+      }
+
+      .video-carousel{
+        padding:0 0 58px;
+      }
+
+      .video-box{
+        grid-template-columns:1fr;
+      }
+
+      .video-info{
+        padding:4px 2px 0;
+      }
+
+      .carousel-btn{
+        top:auto;
+        bottom:0;
+        transform:none;
+      }
+
+      .carousel-btn:hover{
+        transform:scale(1.06);
+      }
+
+      .carousel-btn.prev{
+        left:calc(50% - 54px);
+      }
+
+      .carousel-btn.next{
+        right:calc(50% - 54px);
       }
 
       .lightbox-inner{
@@ -717,51 +851,94 @@
       <h2 class="section-title">Vídeos</h2>
       <p class="section-lead">Escenas en movimiento reunidas en un bloque visual único.</p>
 
-      <div class="video-wrap">
-        <article class="video-box">
-          <video controls preload="metadata">
-            <source src="assets/videos/sasha/espejo.mp4" type="video/mp4">
-            Tu navegador no puede reproducir este vídeo.
-          </video>
-          <h3>Espejo</h3>
-          <p>Escena visual de Sasha.</p>
-        </article>
+      <div class="video-carousel" id="videoCarousel" aria-roledescription="carrusel" aria-label="Carrusel de vídeos de Sasha">
+        <button class="carousel-btn prev" type="button" aria-label="Vídeo anterior">‹</button>
 
-        <article class="video-box">
-          <video controls preload="metadata">
-            <source src="assets/videos/sasha/gallinas.mp4" type="video/mp4">
-            Tu navegador no puede reproducir este vídeo.
-          </video>
-          <h3>Gallinas</h3>
-          <p>Escena de Sasha vinculada al gallinero.</p>
-        </article>
+        <div class="video-viewport">
+          <div class="video-track">
+            <article class="video-slide" aria-label="Vídeo 1 de 5">
+              <div class="video-box">
+                <video controls preload="metadata">
+                  <source src="assets/videos/sasha/espejo.mp4" type="video/mp4">
+                  Tu navegador no puede reproducir este vídeo.
+                </video>
+                <div class="video-info">
+                  <div class="eyebrow">Vídeo 1</div>
+                  <h3>Espejo</h3>
+                  <p>Escena visual de Sasha centrada en la mirada, la identidad y la imagen que empieza a construirse de sí misma.</p>
+                </div>
+              </div>
+            </article>
 
-        <article class="video-box">
-          <video controls preload="metadata">
-            <source src="assets/videos/sasha/sasha-tier2.mp4" type="video/mp4">
-            Tu navegador no puede reproducir este vídeo.
-          </video>
-          <h3>Sasha tier 2</h3>
-          <p>Evolución visual de Sasha.</p>
-        </article>
+            <article class="video-slide" aria-label="Vídeo 2 de 5">
+              <div class="video-box">
+                <video controls preload="metadata">
+                  <source src="assets/videos/sasha/gallinas.mp4" type="video/mp4">
+                  Tu navegador no puede reproducir este vídeo.
+                </video>
+                <div class="video-info">
+                  <div class="eyebrow">Vídeo 2</div>
+                  <h3>Gallinas</h3>
+                  <p>Escena vinculada al aprendizaje inicial, las misiones sencillas y esa etapa donde todo parece pequeño hasta que empieza a importar.</p>
+                </div>
+              </div>
+            </article>
 
-        <article class="video-box">
-          <video controls preload="metadata">
-            <source src="assets/videos/sasha/sasha-transformacion.mp4" type="video/mp4">
-            Tu navegador no puede reproducir este vídeo.
-          </video>
-          <h3>Transformación</h3>
-          <p>Transformación visual de Sasha.</p>
-        </article>
+            <article class="video-slide" aria-label="Vídeo 3 de 5">
+              <div class="video-box">
+                <video controls preload="metadata">
+                  <source src="assets/videos/sasha/sasha-tier2.mp4" type="video/mp4">
+                  Tu navegador no puede reproducir este vídeo.
+                </video>
+                <div class="video-info">
+                  <div class="eyebrow">Vídeo 3</div>
+                  <h3>Sasha tier 2</h3>
+                  <p>Evolución visual de Sasha: una versión más preparada, más consciente del peligro y más cerca de dejar atrás su fase de noob.</p>
+                </div>
+              </div>
+            </article>
 
-        <article class="video-box">
-          <video controls preload="metadata">
-            <source src="assets/videos/sasha/sasha-viaje.mp4" type="video/mp4">
-            Tu navegador no puede reproducir este vídeo.
-          </video>
-          <h3>Viaje</h3>
-          <p>Escena de viaje de Sasha.</p>
-        </article>
+            <article class="video-slide" aria-label="Vídeo 4 de 5">
+              <div class="video-box">
+                <video controls preload="metadata">
+                  <source src="assets/videos/sasha/sasha-transformacion.mp4" type="video/mp4">
+                  Tu navegador no puede reproducir este vídeo.
+                </video>
+                <div class="video-info">
+                  <div class="eyebrow">Vídeo 4</div>
+                  <h3>Transformación</h3>
+                  <p>Una pieza centrada en el cambio: Sasha no se convierte en otra persona, pero empieza a mostrar lo que Demon Hunter despierta en ella.</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="video-slide" aria-label="Vídeo 5 de 5">
+              <div class="video-box">
+                <video controls preload="metadata">
+                  <source src="assets/videos/sasha/sasha-viaje.mp4" type="video/mp4">
+                  Tu navegador no puede reproducir este vídeo.
+                </video>
+                <div class="video-info">
+                  <div class="eyebrow">Vídeo 5</div>
+                  <h3>Viaje</h3>
+                  <p>Escena de recorrido y avance: Sasha como personaje que se define andando, explorando y midiendo un mundo que aún no comprende del todo.</p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <button class="carousel-btn next" type="button" aria-label="Vídeo siguiente">›</button>
+
+        <div class="carousel-dots" aria-label="Seleccionar vídeo">
+          <button class="carousel-dot active" type="button" aria-label="Ir al vídeo 1"></button>
+          <button class="carousel-dot" type="button" aria-label="Ir al vídeo 2"></button>
+          <button class="carousel-dot" type="button" aria-label="Ir al vídeo 3"></button>
+          <button class="carousel-dot" type="button" aria-label="Ir al vídeo 4"></button>
+          <button class="carousel-dot" type="button" aria-label="Ir al vídeo 5"></button>
+        </div>
+
+        <div class="carousel-status" id="carouselStatus">Vídeo 1 de 5</div>
       </div>
     </section>
   </main>
@@ -863,6 +1040,79 @@
         closeLightbox();
       }
     });
+
+    const carousel = document.getElementById('videoCarousel');
+    if(carousel){
+      const track = carousel.querySelector('.video-track');
+      const slides = Array.from(carousel.querySelectorAll('.video-slide'));
+      const prev = carousel.querySelector('.carousel-btn.prev');
+      const next = carousel.querySelector('.carousel-btn.next');
+      const dots = Array.from(carousel.querySelectorAll('.carousel-dot'));
+      const status = document.getElementById('carouselStatus');
+      let currentSlide = 0;
+
+      function pauseVideos(){
+        carousel.querySelectorAll('video').forEach(video => {
+          if(!video.paused){
+            video.pause();
+          }
+        });
+      }
+
+      function updateCarousel(index){
+        currentSlide = (index + slides.length) % slides.length;
+        track.style.transform = 'translateX(' + (-currentSlide * 100) + '%)';
+
+        dots.forEach((dot, dotIndex) => {
+          dot.classList.toggle('active', dotIndex === currentSlide);
+        });
+
+        if(status){
+          status.textContent = 'Vídeo ' + (currentSlide + 1) + ' de ' + slides.length;
+        }
+
+        pauseVideos();
+      }
+
+      prev.addEventListener('click', () => updateCarousel(currentSlide - 1));
+      next.addEventListener('click', () => updateCarousel(currentSlide + 1));
+
+      dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => updateCarousel(index));
+      });
+
+      carousel.addEventListener('keydown', event => {
+        if(event.key === 'ArrowLeft'){
+          updateCarousel(currentSlide - 1);
+        }
+
+        if(event.key === 'ArrowRight'){
+          updateCarousel(currentSlide + 1);
+        }
+      });
+
+      let startX = null;
+
+      carousel.addEventListener('touchstart', event => {
+        startX = event.touches[0].clientX;
+      }, {passive:true});
+
+      carousel.addEventListener('touchend', event => {
+        if(startX === null) return;
+
+        const endX = event.changedTouches[0].clientX;
+        const delta = endX - startX;
+
+        if(Math.abs(delta) > 45){
+          updateCarousel(currentSlide + (delta < 0 ? 1 : -1));
+        }
+
+        startX = null;
+      });
+
+      updateCarousel(0);
+    }
+
   </script>
 </body>
 </html>
