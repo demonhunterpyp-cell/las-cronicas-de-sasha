@@ -671,12 +671,96 @@
       }
     }
   
-    .interworld-inner{
+  
+    /* NAVEGACIÓN CLARA EN PÁGINAS DE PERSONAJE
+       Separación visual entre accesos generales y personajes. */
+    .nav-layout{
+      display:flex;
+      flex-direction:column;
+      align-items:stretch;
       justify-content:center;
+      gap:8px;
+      padding:10px 0;
     }
 
-    .interworld-group{
-      justify-content:center;
+    .nav-row{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding:8px 10px;
+      border-radius:18px;
+      border:1px solid rgba(216,177,96,.11);
+      background:rgba(255,255,255,.025);
+    }
+
+    .nav-row-general{
+      background:rgba(255,255,255,.022);
+    }
+
+    .nav-row-characters{
+      background:
+        radial-gradient(circle at 50% 0%, rgba(216,177,96,.07), transparent 34%),
+        rgba(216,177,96,.035);
+      border-color:rgba(216,177,96,.17);
+    }
+
+    .nav-row-label{
+      flex:0 0 92px;
+      color:#d8b160;
+      font-size:.72rem;
+      font-weight:700;
+      letter-spacing:.13em;
+      text-transform:uppercase;
+      opacity:.88;
+      text-align:right;
+    }
+
+    .nav-row .interworld-group{
+      flex:1;
+      justify-content:flex-start;
+      gap:9px;
+    }
+
+    .nav-row-general .interworld-link{
+      color:#dccbad;
+      background:rgba(255,255,255,.028);
+      border-color:rgba(216,177,96,.14);
+    }
+
+    .nav-row-characters .interworld-link{
+      min-width:108px;
+    }
+
+    .nav-row-characters .interworld-link.primary{
+      color:#4a2f12;
+      background:linear-gradient(180deg, #d8b160 0%, #b78537 100%);
+      border-color:#8b6327;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.34),
+        0 0 18px rgba(216,177,96,.16);
+    }
+
+    @media (max-width: 760px){
+      .nav-row{
+        align-items:stretch;
+        flex-direction:column;
+        gap:8px;
+      }
+
+      .nav-row-label{
+        flex:0 0 auto;
+        text-align:center;
+      }
+
+      .nav-row .interworld-group{
+        justify-content:center;
+      }
+
+      .nav-row .interworld-link{
+        flex:1 1 calc(50% - 8px);
+        min-width:0;
+        text-align:center;
+      }
     }
 
   </style>
@@ -685,23 +769,28 @@
 <body>
   <div class="nav-stack">
     <div class="interworld-bar">
-      <div class="interworld-inner">
-        <div class="interworld-group">
-          <a class="interworld-link primary" href="../index.html">Portal principal</a>
-          <a class="interworld-link" href="index.html">Inicio Crónicas</a>
-          <a class="interworld-link" href="../systempyp/index.html">Pay &amp; Play System</a>
-          <a class="interworld-link" href="https://www.worldanvil.com/w/demon-hunter-tabanne" target="_blank" rel="noopener noreferrer">Lore expandido</a>
+      <div class="interworld-inner nav-layout">
+        <div class="nav-row nav-row-general">
+          <span class="nav-row-label">Accesos</span>
+          <div class="interworld-group">
+            <a class="interworld-link" href="../index.html">Portal principal</a>
+            <a class="interworld-link" href="index.html">Inicio Crónicas</a>
+            <a class="interworld-link" href="../systempyp/index.html">Pay &amp; Play System</a>
+            <a class="interworld-link" href="https://www.worldanvil.com/w/demon-hunter-tabanne" target="_blank" rel="noopener noreferrer">Lore expandido</a>
+          </div>
         </div>
 
-        <div class="interworld-group">
-          <a class="interworld-link" href="sasha.html">Sasha</a>
-          <a class="interworld-link" href="party-girls.html">Party Girls</a>
-          <a class="interworld-link primary" href="aliados.html">Aliados</a>
-          <a class="interworld-link" href="enemigos.html">Enemigos</a>
+        <div class="nav-row nav-row-characters">
+          <span class="nav-row-label">Personajes</span>
+          <div class="interworld-group">
+            <a class="interworld-link" href="sasha.html">Sasha</a>
+            <a class="interworld-link" href="party-girls.html">Party Girls</a>
+            <a class="interworld-link primary" href="aliados.html">Aliados</a>
+            <a class="interworld-link" href="enemigos.html">Enemigos</a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
   </div>
 
   <header class="hero">
