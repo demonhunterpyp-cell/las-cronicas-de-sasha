@@ -102,44 +102,6 @@
       box-shadow:inset 0 1px 0 rgba(255,255,255,.34);
     }
 
-    .topbar{
-      position:relative;
-      z-index:1;
-      width:min(var(--maxw), 92%);
-      margin:0 auto;
-      padding:10px 0 12px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      flex-wrap:wrap;
-    }
-
-    .topbar-left,
-    .topbar-right{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-
-    .nav-btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-      padding:9px 13px;
-      border-radius:999px;
-      border:1px solid var(--gold-soft);
-      background:rgba(255,255,255,.04);
-      color:#f2e2c3;
-      transition:.2s ease;
-      box-shadow:0 10px 24px rgba(0,0,0,.12);
-    }
-
-    .nav-btn:hover{
-      transform:translateY(-2px);
-      background:rgba(255,255,255,.08);
-    }
 
     .hero{
       position:relative;
@@ -255,7 +217,7 @@
       padding:28px 0 44px;
     }
 
-    section{scroll-margin-top:145px}
+    section{scroll-margin-top:96px}
 
     .panel{
       margin-top:28px;
@@ -708,6 +670,15 @@
         min-height:360px;
       }
     }
+  
+    .interworld-inner{
+      justify-content:center;
+    }
+
+    .interworld-group{
+      justify-content:center;
+    }
+
   </style>
 </head>
 
@@ -719,6 +690,7 @@
           <a class="interworld-link primary" href="../index.html">Portal principal</a>
           <a class="interworld-link" href="index.html">Inicio Crónicas</a>
           <a class="interworld-link" href="../systempyp/index.html">Pay &amp; Play System</a>
+          <a class="interworld-link" href="https://www.worldanvil.com/w/demon-hunter-tabanne" target="_blank" rel="noopener noreferrer">Lore expandido</a>
         </div>
 
         <div class="interworld-group">
@@ -729,19 +701,7 @@
         </div>
       </div>
     </div>
-
-    <nav class="topbar" aria-label="Navegación de página">
-      <div class="topbar-left">
-        <a class="nav-btn" href="index.html">← Volver al inicio</a>
-        <a class="nav-btn" href="index.html#personajes">Personajes</a>
-        <a class="nav-btn" href="#galeria">Galería</a>
-        <a class="nav-btn" href="#videos">Vídeos</a>
-      </div>
-      <div class="topbar-right">
-        <a class="nav-btn" href="party-girls.html">← Party Girls</a>
-        <a class="nav-btn" href="enemigos.html">Enemigos →</a>
-      </div>
-    </nav>
+  </div>
   </div>
 
   <header class="hero">
