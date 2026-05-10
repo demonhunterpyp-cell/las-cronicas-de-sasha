@@ -694,6 +694,94 @@
     }
 
   
+  
+    /* HERO PARTY GIRLS · texto más legible y con más intención */
+    .hero::after{
+      background:
+        radial-gradient(circle at 76% 18%, rgba(216,177,96,.12), transparent 18%),
+        linear-gradient(90deg, rgba(3,5,10,.72) 0%, rgba(3,5,10,.58) 46%, rgba(3,5,10,.34) 100%),
+        linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.34));
+    }
+
+    .hero-content{
+      max-width:900px;
+      padding:24px 26px 22px;
+      border-radius:24px;
+      border:1px solid rgba(216,177,96,.16);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(216,177,96,.08), transparent 34%),
+        rgba(7,10,18,.38);
+      box-shadow:0 18px 42px rgba(0,0,0,.18);
+      backdrop-filter:blur(4px);
+      -webkit-backdrop-filter:blur(4px);
+    }
+
+    .hero-content .eyebrow{
+      margin-bottom:14px;
+      color:#ffe2a1;
+      font-size:.86rem;
+      font-weight:700;
+      background:rgba(7,10,18,.54);
+      text-shadow:0 1px 4px rgba(0,0,0,.72);
+    }
+
+    .hero-content h1{
+      margin-bottom:16px;
+      font-size:clamp(2.7rem, 5.2vw, 4.8rem);
+      text-shadow:
+        0 4px 10px rgba(0,0,0,.72),
+        0 0 22px rgba(216,177,96,.22);
+    }
+
+    .hero-content .hero-copy{
+      max-width:860px;
+      color:#fff0ce;
+      font-size:clamp(1.08rem, 1.25vw, 1.22rem);
+      line-height:1.78;
+      font-weight:600;
+      text-shadow:
+        0 2px 5px rgba(0,0,0,.86),
+        0 0 14px rgba(0,0,0,.48);
+    }
+
+    .hero-content .hero-copy-main{
+      font-size:clamp(1.16rem, 1.42vw, 1.34rem);
+      color:#fff5d8;
+    }
+
+    .hero-content .hero-copy + .hero-copy{
+      margin-top:10px;
+    }
+
+    .hero-content .hero-profile{
+      margin-top:24px;
+      gap:12px;
+    }
+
+    .hero-content .profile-chip{
+      padding:14px 15px;
+      background:rgba(7,10,18,.50);
+      border-color:rgba(216,177,96,.32);
+      box-shadow:
+        0 12px 28px rgba(0,0,0,.22),
+        inset 0 0 0 1px rgba(255,255,255,.03);
+      backdrop-filter:blur(6px);
+      -webkit-backdrop-filter:blur(6px);
+    }
+
+    .hero-content .profile-chip small{
+      color:#f0c86f;
+      font-size:.75rem;
+      font-weight:700;
+      text-shadow:0 1px 4px rgba(0,0,0,.70);
+    }
+
+    .hero-content .profile-chip strong{
+      color:#fff4d2;
+      font-size:1.03rem;
+      text-shadow:0 1px 5px rgba(0,0,0,.74);
+    }
+
   </style>
 </head>
 
@@ -723,24 +811,28 @@
         <img src="assets/galerias/party-girls/party-girls.png" alt="Party Girls">
       </div>
 
-      <div>
-        <div class="eyebrow">Galería de personaje</div>
+      <div class="hero-content">
+        <div class="eyebrow">Grupo de personajes</div>
         <h1>Party Girls</h1>
-        <p class="hero-copy">Las Party Girls reúnen una energía distinta dentro del universo de Sasha: grupo, contraste, complicidad y movimiento. No son un simple acompañamiento visual, sino una puerta para explorar dinámicas, carácter y presencia dentro de Demon Hunter.</p>
-        <p class="hero-copy">La imagen superior funciona como portada del apartado. Debajo se reúnen las fichas individuales ya disponibles: Azalea, Elorzal, Ilyanna y Monet.</p>
+        <p class="hero-copy hero-copy-main">
+          Las Party Girls no son un adorno alrededor de Sasha: son un grupo con voz propia, magia, fuerza, lealtades cruzadas y choques de carácter que amplían el viaje.
+        </p>
+        <p class="hero-copy">
+          Azalea, Elorzal, Ilyanna y Monet aportan cada una un pulso distinto. Juntas convierten el grupo en una mezcla de apoyo, tensión, humor y aventura.
+        </p>
 
         <div class="hero-profile" aria-label="Ficha rápida de Party Girls">
           <div class="profile-chip">
-            <small>Categoría</small>
-            <strong>Grupo de personajes</strong>
+            <small>Grupo</small>
+            <strong>Party Girls</strong>
+          </div>
+          <div class="profile-chip">
+            <small>Integrantes</small>
+            <strong>Azalea · Elorzal · Ilyanna · Monet</strong>
           </div>
           <div class="profile-chip">
             <small>Función</small>
-            <strong>Presencia, apoyo y contraste</strong>
-          </div>
-          <div class="profile-chip">
-            <small>Estado</small>
-            <strong>4 fichas individuales</strong>
+            <strong>Apoyo, contraste y crecimiento</strong>
           </div>
         </div>
       </div>
