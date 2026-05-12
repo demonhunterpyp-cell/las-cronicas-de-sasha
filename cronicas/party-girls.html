@@ -1081,6 +1081,61 @@
       }
     }
 
+  
+    /* FIX MODAL PARTY GIRLS · scroll en la columna de información */
+    .lightbox-inner{
+      align-items:stretch;
+      max-height:94vh;
+      overflow:hidden;
+    }
+
+    .lightbox-media{
+      min-height:0;
+      overflow:hidden;
+    }
+
+    .lightbox-info{
+      min-height:0;
+      max-height:94vh;
+      overflow-y:auto;
+      overflow-x:hidden;
+      padding-right:28px;
+      scrollbar-width:thin;
+      scrollbar-color:rgba(216,177,96,.55) rgba(255,255,255,.06);
+    }
+
+    .lightbox-info::-webkit-scrollbar{
+      width:10px;
+    }
+
+    .lightbox-info::-webkit-scrollbar-track{
+      background:rgba(255,255,255,.06);
+      border-radius:999px;
+    }
+
+    .lightbox-info::-webkit-scrollbar-thumb{
+      background:linear-gradient(180deg, rgba(216,177,96,.85), rgba(183,133,55,.85));
+      border-radius:999px;
+      border:2px solid rgba(7,10,18,.45);
+    }
+
+    .lightbox-info::-webkit-scrollbar-thumb:hover{
+      background:linear-gradient(180deg, rgba(235,198,116,.95), rgba(216,177,96,.95));
+    }
+
+    @media (max-width: 1100px){
+      .lightbox-inner{
+        max-height:none;
+        overflow:visible;
+      }
+
+      .lightbox-info{
+        max-height:none;
+        overflow:visible;
+        padding-right:26px;
+      }
+    }
+
   </style>
 </head>
 
