@@ -1666,7 +1666,7 @@
 
   
 
-    /* MARCA DE TRANSPARENCIA IA */
+    /* MARCA DE TRANSPARENCIA IA · Crónicas */
     .ai-badge-wrap{
       position:relative;
       display:block;
@@ -1678,12 +1678,13 @@
       display:block;
     }
 
-    .ai-badge-wrap[data-ai-generated="true"]::after{
+    .ai-badge-wrap[data-ai-generated="true"]::after,
+    .ai-bg-badge{
       content:"Generado por IA";
       position:absolute;
       left:10px;
       bottom:10px;
-      z-index:12;
+      z-index:20;
       display:inline-flex;
       align-items:center;
       justify-content:center;
@@ -1717,13 +1718,24 @@
       height:100%;
     }
 
+    .hero-banner .ai-bg-badge{
+      left:18px;
+      bottom:18px;
+    }
+
     @media (max-width:640px){
-      .ai-badge-wrap[data-ai-generated="true"]::after{
+      .ai-badge-wrap[data-ai-generated="true"]::after,
+      .ai-bg-badge{
         left:9px;
         bottom:9px;
         padding:6px 10px;
         font-size:.72rem;
         border-radius:11px;
+      }
+
+      .hero-banner .ai-bg-badge{
+        left:12px;
+        bottom:12px;
       }
     }
 
@@ -1795,7 +1807,8 @@
   </aside>
 
   <header class="hero" id="inicio">
-    <div class="hero-banner">
+    <div class="hero-banner" data-ai-generated="true" data-ai-disclosure="Imagen de fondo generada por inteligencia artificial">
+      <span class="ai-bg-badge" aria-hidden="true">Generado por IA</span>
       <div class="hero-banner-inner">
         <div class="hero-title-block hero-copy">
           <h1>Las Crónicas de Sasha</h1>
@@ -2178,5 +2191,8 @@
     });
   </script>
 </body>
+</html>
+
+
 </html>
 
