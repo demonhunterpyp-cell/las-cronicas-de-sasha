@@ -377,12 +377,17 @@
     }
 
     .video-box video,
+    .video-box iframe,
     .video-pending{
       width:100%;
       aspect-ratio:16/9;
       border-radius:14px;
       background:#05070d;
       box-shadow:0 16px 34px rgba(0,0,0,.28);
+    }
+
+    .video-box iframe{
+      border:0;
     }
 
     .video-pending{
@@ -1332,7 +1337,7 @@
     <section class="panel" id="videos">
       <div class="ornament"></div>
       <h2 class="section-title">Vídeos</h2>
-      <p class="section-lead">Carrusel preparado para escenas de Party Girls. De momento incluye espacios pendientes para añadir vídeos cuando estén disponibles.</p>
+      <p class="section-lead">Escenas en movimiento de las Party Girls, reunidas en su propio carrusel.</p>
 
       <div class="video-carousel" id="videoCarousel" aria-roledescription="carrusel" aria-label="Carrusel de vídeos de Party Girls">
         <button class="carousel-btn prev" type="button" aria-label="Vídeo anterior">‹</button>
@@ -1341,14 +1346,18 @@
           <div class="video-track">
             <article class="video-slide" aria-label="Vídeo 1 de 3">
               <div class="video-box">
-                <div class="video-pending">
-                  <span>Vídeo pendiente</span>
-                  <small>Espacio preparado para añadir el archivo cuando esté disponible</small>
-                </div>
+                <iframe
+                  src="https://www.youtube-nocookie.com/embed/p-oGVvTnfg4?enablejsapi=1"
+                  title="Presentación de las Party Girls"
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen>
+                </iframe>
                 <div class="video-info">
                   <div class="eyebrow">Vídeo 1</div>
                   <h3>Presentación de Party Girls</h3>
-                  <p>Espacio reservado para un vídeo de presentación del grupo.</p>
+                  <p>Presentación de Sasha, Monet, Elorzal, Azalea e Ilyanna: las cinco integrantes de Party Girls.</p>
                 </div>
               </div>
             </article>
@@ -1507,6 +1516,14 @@
           if(!video.paused){
             video.pause();
           }
+        });
+
+        carousel.querySelectorAll('iframe').forEach(frame => {
+          frame.contentWindow.postMessage(JSON.stringify({
+            event:'command',
+            func:'pauseVideo',
+            args:[]
+          }), '*');
         });
       }
 
